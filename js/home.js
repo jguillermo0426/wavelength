@@ -13,6 +13,29 @@ logoBar.addEventListener('click', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     updateLoginStatus();
+
+    const containers = document.querySelectorAll('.sort-option');
+
+    const recent = document.getElementById('recent');
+    recent.querySelector('.text').classList.add('clicked');
+    recent.querySelector('.image').classList.add('clicked');
+
+    containers.forEach(container => {
+        const image = container.querySelector('.image');
+        const paragraph = container.querySelector('.text');
+
+        container.addEventListener('click', function() {
+            // Remove 'clicked' class from all paragraphs and images within the same container
+            containers.forEach(c => {
+                c.querySelector('.text').classList.remove('clicked');
+                c.querySelector('.image').classList.remove('clicked');
+            });
+
+            // Add 'clicked' class to the clicked paragraph and image within the same container
+            paragraph.classList.add('clicked');
+            image.classList.add('clicked');
+        });
+    });
 });
 
 function toggleLoginStatus() {
@@ -39,5 +62,76 @@ function updateLoginStatus() {
         userBar.innerHTML = '<a href="home.html" class="logged-status" id="log-in" class="log-in" onclick="toggleLoginStatus();">log in</a>' + 
                             '<p>|</p>' + 
                             '<a href="home.html" class="logged-status" id="sign-up" class="sign-up">sign up<a>';
+    }
+}
+
+var posts = document.querySelectorAll(".post-footer");
+
+var clickedLike = false;
+var clickedDislike = false;
+
+for (var i = 0; i < posts.length; i++) {
+    var likeButton = posts[i].querySelector('.like');
+    var dislikeButton = posts[i].querySelector('.dislike');
+
+    likeButton.id = 'like-' + i;
+    dislikeButton.id = 'dislike-' + i;
+
+    likeButton.setAttribute('onclick', 'like(' + i + ')');
+    dislikeButton.setAttribute('onclick', 'dislike(' + i + ')');
+}
+
+function like(postNumber) {
+    if (clickedLike == false) {
+        clickedLike = true;
+        clickedDislike = false;
+    }
+
+    else if (clickedLike == false || (clickedLike == false && clickedDislike == true)) {
+        clickedDislike = false;
+        clickedLike = true;
+    }
+
+    else if (clickedLike == true) {
+        clickedLike = false;
+    }
+    
+    updateReactButtons(postNumber);
+}
+
+function dislike(postNumber) {
+    if (clickedDislike == false) {
+        clickedDislike = true;
+        clickedLike = false;
+    }
+
+    else if (clickedDislike == false || (clickedDislike == false && clickedLike == true)) {
+        clickedLike = false;
+        clickedDislike = true;
+    }
+
+    else if (clickedDislike == true) {
+        clickedDislike = false;
+    }
+
+    updateReactButtons(postNumber);
+}
+
+function updateReactButtons(postNumber) {
+    var like = document.getElementById('like-' + postNumber);
+    var dislike = document.getElementById('dislike-' + postNumber);
+
+    if (clickedDislike == true) {
+        dislike.src = '../svg/thumbs-up.svg';
+    }
+    else if (clickedLike == true) {
+        like.src = '../svg/thumbs-up.svg';
+    }
+
+    if(clickedDislike == false) {
+        dislike.src = '../svg/thumbs-up-stroke.svg';
+    }
+    if(clickedLike == false) {
+        like.src = '../svg/thumbs-up-stroke.svg';
     }
 }

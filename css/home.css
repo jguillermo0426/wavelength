@@ -207,6 +207,14 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    transition: all .3s ease;
+}
+
+.sort-option:hover {
+    cursor: pointer;
+    background-color: #bca7ff6b;
+    transition: all .3s ease;
 }
 
 .sort-option > img {
@@ -220,6 +228,11 @@ body {
     font-weight: 900;
     font-size: 25px;
     color: #F4EBEB;
+}
+
+.clicked {
+    color: #BBA7FF;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(23%) saturate(3847%) hue-rotate(201deg) brightness(101%) contrast(101%);
 }
 
 .featured-posts {
@@ -252,7 +265,7 @@ body {
     height: 500px;
     margin-right: 40px;
     margin-left: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     margin-top: 20px;
     border-radius: 25px;
     display: flex;
@@ -390,6 +403,11 @@ body {
     width: 120px;
 }
 
+.react-bar:hover {
+    transition: all .3s ease;
+    background-color: #bca7ff6b;
+}
+
 .like {
     width: 50px;
     margin-right: 5px;
@@ -412,5 +430,6 @@ body {
 .comment {
     width: 35px;
     margin-right: 10px;
+    margin-left: 5px;
     padding-top: 12px;
 }
