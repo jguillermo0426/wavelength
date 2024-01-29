@@ -97,12 +97,15 @@ var clickedDislike = false;
 var likeCount = 0;
 var dislikeCount = 0;
 
+var reactionGiven = false;
+
 function like(postNumber) {
     if (clickedLike == false) {
         clickedLike = true;
         clickedDislike = false;
         likeCount++;
         dislikeCount = 0;
+        reactionGiven = true;
     }
 
     else if (clickedLike == false || (clickedLike == false && clickedDislike == true)) {
@@ -110,12 +113,14 @@ function like(postNumber) {
         clickedLike = true;
         likeCount++;
         dislikeCount = 0;
+        reactionGiven = true;
     }
 
     else if (clickedLike == true) {
         clickedLike = false;
         likeCount++;
         dislikeCount = 0;
+        reactionGiven = false;
     }
     
     updateReactButtons(postNumber);
@@ -128,6 +133,7 @@ function dislike(postNumber) {
         clickedLike = false;
         dislikeCount++;
         likeCount = 0;
+        reactionGiven = true;
     }
 
     else if (clickedDislike == false || (clickedDislike == false && clickedLike == true)) {
@@ -135,12 +141,14 @@ function dislike(postNumber) {
         clickedDislike = true;
         dislikeCount++;
         likeCount = 0;
+        reactionGiven = true;
     }
 
     else if (clickedDislike == true) {
         clickedDislike = false;
         dislikeCount++;
         likeCount = 0;
+        reactionGiven = false;
     }
 
     updateReactButtons(postNumber);
@@ -166,6 +174,8 @@ function updateReactButtons(postNumber) {
     }
 }
 
+// ewan ko na kung anong gagawin dito HEAHSDFJKHSDKFHJ medj nababaliw na ako sa arch
+
 function disLikeCounter(postNumber) {
     var likeCounter = document.getElementById('post-' + postNumber).querySelector('#like-counter');
     var likes = parseInt(likeCounter.innerHTML);
@@ -182,7 +192,7 @@ function disLikeCounter(postNumber) {
         console.log('unclicked like 1');
     }
     else if (clickedLike == false && clickedDislike == true && likes > 0) {
-        if (likeCount == 0 && dislikeCount > 0) { 
+        if (likeCount == 0 && dislikeCount > 1 && reactionGiven == true) { 
             likes = likes;
             console.log('unclicked like 2');
         }
@@ -201,7 +211,7 @@ function disLikeCounter(postNumber) {
         console.log('unclicked dislike 1');
     }
     else if (clickedDislike == false && clickedLike == true && dislikes > 0) {
-        if (dislikeCount == 0 && likeCount > 0) {
+        if (dislikeCount == 0 && likeCount > 1 && reactionGiven == true) {
             dislikes = dislikes;
             console.log('unclicked dislike 2');
         }
@@ -214,6 +224,7 @@ function disLikeCounter(postNumber) {
 
     console.log(likeCount);
     console.log(dislikeCount);
+    console.log(reactionGiven);
 
     likeCounter.innerHTML = likes;
     dislikeCounter.innerHTML = dislikes;
