@@ -11,6 +11,7 @@ logoBar.addEventListener('click', function() {
     window.location.href = '../html/home.html';
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
     updateLoginStatus();
 
@@ -97,15 +98,12 @@ var clickedDislike = false;
 var likeCount = 0;
 var dislikeCount = 0;
 
-var reactionGiven = false;
-
 function like(postNumber) {
     if (clickedLike == false) {
         clickedLike = true;
         clickedDislike = false;
         likeCount++;
         dislikeCount = 0;
-        reactionGiven = true;
     }
 
     else if (clickedLike == false || (clickedLike == false && clickedDislike == true)) {
@@ -113,14 +111,10 @@ function like(postNumber) {
         clickedLike = true;
         likeCount++;
         dislikeCount = 0;
-        reactionGiven = true;
     }
 
     else if (clickedLike == true) {
         clickedLike = false;
-        likeCount++;
-        dislikeCount = 0;
-        reactionGiven = false;
     }
     
     updateReactButtons(postNumber);
@@ -133,7 +127,6 @@ function dislike(postNumber) {
         clickedLike = false;
         dislikeCount++;
         likeCount = 0;
-        reactionGiven = true;
     }
 
     else if (clickedDislike == false || (clickedDislike == false && clickedLike == true)) {
@@ -141,14 +134,10 @@ function dislike(postNumber) {
         clickedDislike = true;
         dislikeCount++;
         likeCount = 0;
-        reactionGiven = true;
     }
 
     else if (clickedDislike == true) {
         clickedDislike = false;
-        dislikeCount++;
-        likeCount = 0;
-        reactionGiven = false;
     }
 
     updateReactButtons(postNumber);
@@ -174,7 +163,10 @@ function updateReactButtons(postNumber) {
     }
 }
 
-// ewan ko na kung anong gagawin dito HEAHSDFJKHSDKFHJ medj nababaliw na ako sa arch
+// ewan ko na kung anong gagawin dito HEAHSDFJKHSDKFHJ medj nababaliw na ako sa
+
+var likeAfter = false;
+var dislikeAfter = false;
 
 function disLikeCounter(postNumber) {
     var likeCounter = document.getElementById('post-' + postNumber).querySelector('#like-counter');
@@ -184,47 +176,36 @@ function disLikeCounter(postNumber) {
     var dislikes = parseInt(dislikeCounter.innerHTML);
 
     if (clickedLike == true) {
-        likes += 1;
-        console.log('clicked like');
+        likes++;
+        likeAfter = true;
+        console.log('1');
     }
-    else if (clickedLike == false && likeCount > 0 && likes > 0) {
-        likes -= 1; 
-        console.log('unclicked like 1');
+    else if (clickedDislike == true) {
+        dislikes++;
+        dislikeAfter = true;
+        console.log('2');
     }
-    else if (clickedLike == false && clickedDislike == true && likes > 0) {
-        if (likeCount == 0 && dislikeCount > 1 && reactionGiven == true) { 
-            likes = likes;
-            console.log('unclicked like 2');
-        }
-        else {
-            likes -= 1;
-            console.log('unclicked like 3');
-        }
-    }
-    
-    if (clickedDislike == true) {
-        dislikes += 1;
-        console.log('clicked dislike');
-    }
-    else if (clickedDislike == false && dislikeCount > 0 && dislikes > 0) {
-        dislikes -= 1;
-        console.log('unclicked dislike 1');
-    }
-    else if (clickedDislike == false && clickedLike == true && dislikes > 0) {
-        if (dislikeCount == 0 && likeCount > 1 && reactionGiven == true) {
-            dislikes = dislikes;
-            console.log('unclicked dislike 2');
-        }
-        else {
-            dislikes -= 1;
-            console.log('unclicked dislike 3');
-        }
-    }
-    
 
-    console.log(likeCount);
-    console.log(dislikeCount);
-    console.log(reactionGiven);
+    if (clickedLike == false && likes > 0) {
+        if (likeAfter == true) {
+            likes--;
+            likeAfter = false;
+            console.log('3');
+        }
+    }
+    
+    if (clickedDislike == false && dislikes > 0) {
+        if (dislikeAfter == true) {
+            dislikes--;
+            dislikeAfter = false;
+            console.log('4');
+        }
+    }
+
+    console.log(clickedLike);
+    console.log(clickedDislike);
+    console.log("dislike after: " + dislikeAfter);
+    console.log("like after: " + likeAfter);
 
     likeCounter.innerHTML = likes;
     dislikeCounter.innerHTML = dislikes;
