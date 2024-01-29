@@ -7,6 +7,8 @@ var userBar = document.getElementById('user-bar');
 
 logoBar.style.cursor = 'pointer';
 
+var likeDislikeArray = [];
+
 logoBar.addEventListener('click', function() {
     window.location.href = '../html/home.html';
 });
@@ -26,15 +28,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const postTemplate = document.getElementById('post-0');
 
+
     for (var i = 0; i < posts.length; i++) {
         var likeButton = posts[i].querySelector('.like');
         var dislikeButton = posts[i].querySelector('.dislike');
     
         likeButton.id = 'like-' + i;
         dislikeButton.id = 'dislike-' + i;
+
+        var likeDislike = {
+            clickedLike: false,
+            clickedDislike: false,
+            likeAfter: false,
+            dislikeAfter: false
+        };
+
+        likeDislikeArray.push(likeDislike);
     
-        likeButton.setAttribute('onclick', 'like(' + i + ')');
-        dislikeButton.setAttribute('onclick', 'dislike(' + i + ')');
+        likeButton.setAttribute('onclick', 'likeWrapper(' + i + ')');
+        dislikeButton.setAttribute('onclick', 'dislikeWrapper(' + i + ')');
     }
 });
 
@@ -92,120 +104,103 @@ function updateLoginStatus() {
 
 var posts = document.querySelectorAll(".post-footer");
 
-var clickedLike = false;
-var clickedDislike = false;
-
-var likeCount = 0;
-var dislikeCount = 0;
-
-function like(postNumber) {
-    if (clickedLike == false) {
-        clickedLike = true;
-        clickedDislike = false;
-        likeCount++;
-        dislikeCount = 0;
-    }
-
-    else if (clickedLike == false || (clickedLike == false && clickedDislike == true)) {
-        clickedDislike = false;
-        clickedLike = true;
-        likeCount++;
-        dislikeCount = 0;
-    }
-
-    else if (clickedLike == true) {
-        clickedLike = false;
-    }
-    
-    updateReactButtons(postNumber);
-    disLikeCounter(postNumber);
+function likeWrapper(postNumber) {
+    like(postNumber, likeDislikeArray);
 }
 
-function dislike(postNumber) {
-    if (clickedDislike == false) {
-        clickedDislike = true;
-        clickedLike = false;
-        dislikeCount++;
-        likeCount = 0;
-    }
-
-    else if (clickedDislike == false || (clickedDislike == false && clickedLike == true)) {
-        clickedLike = false;
-        clickedDislike = true;
-        dislikeCount++;
-        likeCount = 0;
-    }
-
-    else if (clickedDislike == true) {
-        clickedDislike = false;
-    }
-
-    updateReactButtons(postNumber);
-    disLikeCounter(postNumber);
+function dislikeWrapper(postNumber) {
+    dislike(postNumber, likeDislikeArray);
 }
 
-function updateReactButtons(postNumber) {
+function like(postNumber, likeDislikeArray) {
+    if (likeDislikeArray[postNumber].clickedLike == false) {
+        likeDislikeArray[postNumber].clickedLike = true;
+        likeDislikeArray[postNumber].clickedDislike = false;
+        console.log('like 1');
+    } else if (likeDislikeArray[postNumber].clickedLike == false || (likeDislikeArray[postNumber].clickedLike == false && likeDislikeArray[postNumber].clickedDislike == true)) {
+        likeDislikeArray[postNumber].clickedDislike = false;
+        likeDislikeArray[postNumber].clickedLike = true;
+        console.log('like 2');
+    } else if (likeDislikeArray[postNumber].clickedLike == true) {
+        likeDislikeArray[postNumber].clickedLike = false;
+        console.log('like 3');
+    }
+
+    console.log('clicked like: ' + likeDislikeArray[postNumber].clickedLike);
+    updateReactButtons(postNumber, likeDislikeArray);
+    disLikeCounter(postNumber, likeDislikeArray);
+}
+
+function dislike(postNumber, likeDislikeArray) {
+    if (likeDislikeArray[postNumber].clickedDislike == false) {
+        likeDislikeArray[postNumber].clickedDislike = true;
+        likeDislikeArray[postNumber].clickedLike = false;
+    } else if (likeDislikeArray[postNumber].clickedDislike == false || (likeDislikeArray[postNumber].clickedDislike == false && likeDislikeArray[postNumber].clickedLike == true)) {
+        likeDislikeArray[postNumber].clickedLike = false;
+        likeDislikeArray[postNumber].clickedDislike = true;
+    } else if (likeDislikeArray[postNumber].clickedDislike == true) {
+        likeDislikeArray[postNumber].clickedDislike = false;
+    }
+
+    updateReactButtons(postNumber, likeDislikeArray);
+    disLikeCounter(postNumber, likeDislikeArray);
+}
+
+function updateReactButtons(postNumber, likeDislikeArray) {
     var like = document.getElementById('like-' + postNumber);
     var dislike = document.getElementById('dislike-' + postNumber);
 
-    if (clickedDislike == true) {
+    if (likeDislikeArray[postNumber].clickedDislike == true) {
         dislike.src = '../svg/thumbs-up.svg';
     }
-    else if (clickedLike == true) {
+    else if (likeDislikeArray[postNumber].clickedLike == true) {
         like.src = '../svg/thumbs-up.svg';
     }
 
-    if(clickedDislike == false) {
+    if(likeDislikeArray[postNumber].clickedDislike == false) {
         dislike.src = '../svg/thumbs-up-stroke.svg';
     }
-    if(clickedLike == false) {
+    if(likeDislikeArray[postNumber].clickedLike == false) {
         like.src = '../svg/thumbs-up-stroke.svg';
     }
 }
 
 // ewan ko na kung anong gagawin dito HEAHSDFJKHSDKFHJ medj nababaliw na ako sa
 
-var likeAfter = false;
-var dislikeAfter = false;
-
-function disLikeCounter(postNumber) {
+function disLikeCounter(postNumber, likeDislikeArray) {
     var likeCounter = document.getElementById('post-' + postNumber).querySelector('#like-counter');
     var likes = parseInt(likeCounter.innerHTML);
 
     var dislikeCounter = document.getElementById('post-' + postNumber).querySelector('#dislike-counter');
     var dislikes = parseInt(dislikeCounter.innerHTML);
 
-    if (clickedLike == true) {
+    if (likeDislikeArray[postNumber].clickedLike == true) {
         likes++;
-        likeAfter = true;
+        likeDislikeArray[postNumber].likeAfter = true;
         console.log('1');
     }
-    else if (clickedDislike == true) {
+    else if (likeDislikeArray[postNumber].clickedDislike == true) {
         dislikes++;
-        dislikeAfter = true;
+        likeDislikeArray[postNumber].dislikeAfter = true;
         console.log('2');
     }
 
-    if (clickedLike == false && likes > 0) {
-        if (likeAfter == true) {
+    if (likeDislikeArray[postNumber].clickedLike == false && likes > 0) {
+        if (likeDislikeArray[postNumber].likeAfter == true) {
             likes--;
-            likeAfter = false;
+            likeDislikeArray[postNumber].likeAfter = false;
             console.log('3');
         }
     }
     
-    if (clickedDislike == false && dislikes > 0) {
-        if (dislikeAfter == true) {
+    if (likeDislikeArray[postNumber].clickedDislike == false && dislikes > 0) {
+        if (likeDislikeArray[postNumber].dislikeAfter == true) {
             dislikes--;
-            dislikeAfter = false;
+            likeDislikeArray[postNumber].dislikeAfter = false;
             console.log('4');
         }
     }
 
-    console.log(clickedLike);
-    console.log(clickedDislike);
-    console.log("dislike after: " + dislikeAfter);
-    console.log("like after: " + likeAfter);
 
     likeCounter.innerHTML = likes;
     dislikeCounter.innerHTML = dislikes;
