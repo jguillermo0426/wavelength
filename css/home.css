@@ -433,3 +433,7 @@ body {
     margin-left: 5px;
     padding-top: 12px;
 }
+
+#post-0 {
+    display: none;
+}
