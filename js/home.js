@@ -48,6 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
         likeButton.setAttribute('onclick', 'likeWrapper(' + i + ')');
         dislikeButton.setAttribute('onclick', 'dislikeWrapper(' + i + ')');
     }
+
+    var createPostBar = document.getElementById('create-post');
+    var savedState = localStorage.getItem('createPostState');
+
+    if (savedState) {
+        createPostBar.style.display = savedState;
+    }
 });
 
 function highlightSort() {
@@ -77,16 +84,19 @@ function highlightSort() {
 
 function toggleLoginStatus() {
     var isLoggedIn = localStorage.getItem('isLoggedIn');
-    
+    var createPostBar = document.getElementById('create-post');
     if (isLoggedIn === 'true') {
         // User is logged in, perform logout
         localStorage.setItem('isLoggedIn', 'false');
         updateLoginStatus();
+        createPostBar.style.display = 'none';
     } else {
         // User is logged out, perform login
         localStorage.setItem('isLoggedIn', 'true');
         updateLoginStatus();
+        createPostBar.style.display = 'flex';
     }
+    localStorage.setItem('createPostState', createPostBar.style.display);
 }
 
 function updateLoginStatus() {
