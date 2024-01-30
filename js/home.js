@@ -8,6 +8,7 @@ var userBar = document.getElementById('user-bar');
 logoBar.style.cursor = 'pointer';
 
 var likeDislikeArray = [];
+var postInfo = [];
 
 logoBar.addEventListener('click', function() {
     window.location.href = '../html/home.html';
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLoginStatus();
 
     highlightSort();
+    sortPostsRecent();
 
     const posts = document.querySelectorAll('.post');
 
@@ -43,7 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
             dislikeAfter: false
         };
 
+        var likeCounter = document.getElementById('post-' + i).querySelector('#like-counter');
+        var likes = parseInt(likeCounter.innerHTML);
+
+        var dislikeCounter = document.getElementById('post-' + i).querySelector('#dislike-counter');
+        var dislikes = parseInt(dislikeCounter.innerHTML);
+
+        var reacts = {
+            likeCount: likes,
+            dislikeCount: dislikes,
+            date: '1970-01-01'
+        };
+
         likeDislikeArray.push(likeDislike);
+        reacts.date = getPostDate(i);
+        postInfo.push(reacts);
     
         likeButton.setAttribute('onclick', 'likeWrapper(' + i + ')');
         dislikeButton.setAttribute('onclick', 'dislikeWrapper(' + i + ')');
@@ -57,6 +73,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function getPostDate(dateString) {
+    var dateObject = new Date(dateString);
+    return dateObject;
+}
+
+function sortPostsRecent() {
+    var postArea = document.getElementById('post-area');
+
+    var post = postArea.querySelectorAll('.post');
+    var postSorted = [];
+    for (i = 0; i < post.length; i++) {
+        postSorted.push(post.item(i));
+    }
+
+    postSorted.sort(function(a, b) {
+        var compA = getPostDate(a.querySelector(".date").innerHTML);
+        var compB = getPostDate(b.querySelector(".date").innerHTML);
+        return (compA < compB) ? 1 : (compA > compB) ? -1 : 0;
+    });
+    for (i = 0; i < postSorted.length; i++) {
+        postArea.appendChild(postSorted[i]);
+        console.log(postSorted[i]);
+    }
+}
+
+function sortPostsPopular() {
+    var postArea = document.getElementById('post-area');
+
+    var post = postArea.querySelectorAll('.post');
+    var postSorted = [];
+    for (i = 0; i < post.length; i++) {
+        postSorted.push(post.item(i));
+    }
+    postSorted.sort(function(a, b) {
+        var compA = parseInt(a.querySelector('#like-counter').innerHTML);
+        var compB = parseInt(b.querySelector('#like-counter').innerHTML);
+        console.log('compA: ' + compA);
+        console.log('compB: ' + compB);
+
+        if (compA < compB) {
+            console.log(1);
+            return 1;
+        }
+        else if (compA > compB) {
+            console.log(-1);
+            return -1;
+        }
+        else {
+            console.log(0);
+            return 0;
+        }
+    });
+    for (i = 0; i < postSorted.length; i++) {
+        postArea.appendChild(postSorted[i]);
+        console.log(postSorted[i]);
+    }
+}
+
 function highlightSort() {
     const containers = document.querySelectorAll('.sort-option');
 
@@ -69,18 +143,29 @@ function highlightSort() {
         const paragraph = container.querySelector('.text');
 
         container.addEventListener('click', function() {
-            // Remove 'clicked' class from all paragraphs and images within the same container
+            
             containers.forEach(c => {
                 c.querySelector('.text').classList.remove('clicked');
                 c.querySelector('.image').classList.remove('clicked');
             });
 
-            // Add 'clicked' class to the clicked paragraph and image within the same container
             paragraph.classList.add('clicked');
             image.classList.add('clicked');
         });
     });
 }
+
+const popular = document.getElementById('popular');
+
+popular.addEventListener('click', function() {
+    sortPostsPopular();
+});
+
+const recent = document.getElementById('recent');
+
+recent.addEventListener('click', function() {
+    sortPostsRecent();
+});
 
 function toggleLoginStatus() {
     var isLoggedIn = localStorage.getItem('isLoggedIn');
