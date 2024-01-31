@@ -3,6 +3,7 @@
   <head>
     <title>Wavelength • Home</title>
     <link rel="stylesheet" href="../css/home.css">
+    <link rel=icon href="../svg/logo.svg">
   </head>
 
   <body>
@@ -24,7 +25,7 @@
           </div>
         </div>
 
-        <div class="feed">
+        <div id="feed" class="feed">
 
           <div id="create-post" class="create-post"> 
             <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
@@ -52,7 +53,7 @@
 
           <div id="post-area">
   
-            <div class="post">
+            <div id="template" class="post-template">
               <div class="post-header">
                 <img class="cover" src="https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550">
                 <div class="post-titles">
@@ -81,11 +82,14 @@
               </div>
   
               <div class="post-body">
-                <p>
+                <p class="post-title">
+                  Cool Arbum!
+                </p>
+                <p class="post-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.
                   <a href="#" class="see-more"> See more...</a>
                 </p>
-            </div>
+              </div>
                 
               <div class="post-footer">
                 <div id="likes-bar" class="react-bar">
@@ -104,115 +108,7 @@
                 </div>
               </div>
             </div>
-  
-            <div class="post">
-              <div class="post-header">
-                <img class="cover" src="https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png">
-                <div class="post-titles">
-                  <p class="song-album-title">Rock-Star</p>
-                  <p class="artist">Stray Kids</p>
-                  <div class="rating">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                  </div>
-                  <p class="user-reviewed">reviewed by <a href="home.html" class="user">crimson</a> on <span class="date">January 25, 2024</span></p>
-                  <div class="tags-area">
-                    <div class="tag">
-                      <p>Album</p>
-                    </div>
-                    <div class="tag">
-                      <p>K-Pop</p>
-                    </div>
-                    <div class="tag">
-                      <p>Rock</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="post-body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.
-                  <a href="#" class="see-more"> See more...</a>
-                </p>
-            </div>
-                
-              <div class="post-footer">
-                <div id="likes-bar" class="react-bar">
-                  <input type="image" class="like" src="../svg/thumbs-up-stroke.svg">
-                  <p id="like-counter" class="counter">100</p>
-                </div>
-  
-                <div id="dislikes-bar" class="react-bar">
-                  <input type="image" class="dislike" src="../svg/thumbs-up-stroke.svg">
-                  <p id="dislike-counter" class="counter">0</p>
-                </div>
-  
-                <div id="comments-bar" class="react-bar">
-                  <input type="image" class="comment" src="../svg/comment.svg">
-                  <p id="comment-counter" class="counter">0</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="post">
-              <div class="post-header">
-                <img class="cover" src="https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a">
-                <div class="post-titles">
-                  <p class="song-album-title">Habit</p>
-                  <p class="artist">SEKAI NO OWARI</p>
-                  <div class="rating">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                    <img src="../svg/star.svg">
-                  </div>
-                  <p class="user-reviewed">reviewed by <a href="home.html" class="user">crimson</a> on <span class="date">January 30, 2024</span></p>
-                  <div class="tags-area">
-                    <div class="tag">
-                      <p>Album</p>
-                    </div>
-                    <div class="tag">
-                      <p>K-Pop</p>
-                    </div>
-                    <div class="tag">
-                      <p>Rock</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="post-body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.
-                  <a href="#" class="see-more"> See more...</a>
-                </p>
-            </div>
-                
-              <div class="post-footer">
-                <div id="likes-bar" class="react-bar">
-                  <input type="image" class="like" src="../svg/thumbs-up-stroke.svg">
-                  <p id="like-counter" class="counter">75</p>
-                </div>
-  
-                <div id="dislikes-bar" class="react-bar">
-                  <input type="image" class="dislike" src="../svg/thumbs-up-stroke.svg">
-                  <p id="dislike-counter" class="counter">0</p>
-                </div>
-  
-                <div id="comments-bar" class="react-bar">
-                  <input type="image" class="comment" src="../svg/comment.svg">
-                  <p id="comment-counter" class="counter">0</p>
-                </div>
-              </div>
-            </div>
           </div>
-
-          <p class="load-more">Load more posts</p>
 
         </div>
     </div>

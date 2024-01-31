@@ -1,7 +1,58 @@
-var logoBar = document.getElementById('logo-bar');
+var postsData = [
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
+        trackName: "The Perfect Red Velvet",
+        artist: "Red Velvet",
+        rating: 5, 
+        user: "kiwidoms", 
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "Cool Arbum!",
+        likes: 10,
+        dislikes: 10,
+        comments: 10,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
+        trackName: "Rock-Star",
+        artist: "Stray Kids",
+        rating: 5, 
+        user: "crimson", 
+        reviewDate: "January 30, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Rock",
+        title: "Just feel the rock!",
+        likes: 100,
+        dislikes: 10,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
+        trackName: "Habit",
+        artist: "SEKAI NO OWARI",
+        rating: 4, 
+        user: "crimson", 
+        reviewDate: "January 30, 2024",
+        tag1: "Album",
+        tag2: "J-Pop",
+        tag3: "Indie",
+        title: "The title track was cool.",
+        likes: 5,
+        dislikes: 16,
+        comments: 30,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    }
+];
 
-var logInButton = document.getElementById('log-in');
-var logOutButton = document.getElementById('log-out');
+var logoBar = document.getElementById('logo-bar');
 
 var userBar = document.getElementById('user-bar');
 
@@ -15,11 +66,93 @@ logoBar.addEventListener('click', function() {
 });
 
 
+function createPost(postData) {
+    const postArea = document.getElementById("post-area");
+
+    const postDiv = document.createElement('div');
+    postDiv.className = "post";
+
+    var ratings = [];
+
+
+    for (let i = 0; i < postData.rating; i++) {
+        ratings.push('../svg/star.svg');
+    }
+    for (let i = 0; i < 5 - postData.rating; i++) {
+        ratings.push('../svg/star-empty.svg');
+    }
+
+    postDiv.innerHTML = `
+      <div class="post-header">
+        <a></a>
+        <img class="cover" src="${postData.cover}">
+        <div class="post-titles">
+          <p class="song-album-title">${postData.trackName}</p>
+          <p class="artist">${postData.artist}</p>
+          <div class="rating">
+            <img src=${ratings[0]}>
+            <img src=${ratings[1]}>
+            <img src=${ratings[2]}>
+            <img src=${ratings[3]}>
+            <img src=${ratings[4]}>
+          </div>
+          <p class="user-reviewed">reviewed by <a href="home.html" class="user">${postData.user}</a> on <span class="date">${postData.reviewDate}</span></p>
+            <div class="tags-area">
+              <div class="tag">
+                <p>${postData.tag1}</p>
+            </div>
+            <div class="tag">
+                <p>${postData.tag2}</p>
+            </div>
+            <div class="tag">
+                <p>${postData.tag3}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-body">
+        <p class="post-title">${postData.title}</p>
+        <p class="post-text">${postData.postText} <a href="#" class="see-more"> See more...</a></p>
+      </div>
+
+      <div class="post-footer">
+        <div id="likes-bar" class="react-bar">
+            <input type="image" class="like" src="../svg/thumbs-up-stroke.svg">
+            <p id="like-counter" class="counter">${postData.likes}</p>
+        </div>
+
+        <div id="dislikes-bar" class="react-bar">
+            <input type="image" class="dislike" src="../svg/thumbs-up-stroke.svg">
+            <p id="dislike-counter" class="counter">${postData.dislikes}</p>
+        </div>
+
+        <div id="comments-bar" class="react-bar">
+            <input type="image" class="comment" src="../svg/comment.svg">
+            <p id="comment-counter" class="counter">${postData.comments}</p>
+        </div>
+      </div>
+    `;
+
+    postArea.appendChild(postDiv);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     updateLoginStatus();
 
+    for (let i = 0; i < postsData.length; i++) {
+        createPost(postsData[i]);
+    }
+
     highlightSort();
     sortPostsRecent();
+
+    
+
+    const postArea = document.getElementById("feed");
+    var loadMore = document.createElement('p');
+    loadMore.innerHTML = `<p class="load-more">Load more posts</p>`
+    postArea.appendChild(loadMore);
 
     const posts = document.querySelectorAll('.post');
 
@@ -27,9 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const newId = 'post-' + i;
         post.id = newId;
     });
-
-    const postTemplate = document.getElementById('post-0');
-
 
     for (var i = 0; i < posts.length; i++) {
         var likeButton = posts[i].querySelector('.like');
@@ -44,6 +174,8 @@ document.addEventListener('DOMContentLoaded', function() {
             likeAfter: false,
             dislikeAfter: false
         };
+
+
 
         var likeCounter = document.getElementById('post-' + i).querySelector('#like-counter');
         var likes = parseInt(likeCounter.innerHTML);
@@ -170,6 +302,7 @@ recent.addEventListener('click', function() {
 function toggleLoginStatus() {
     var isLoggedIn = localStorage.getItem('isLoggedIn');
     var createPostBar = document.getElementById('create-post');
+
     if (isLoggedIn === 'true') {
         // User is logged in, perform logout
         localStorage.setItem('isLoggedIn', 'false');

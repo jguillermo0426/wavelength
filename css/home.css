@@ -263,7 +263,7 @@ body {
 .post {
     background-color: #211F27;
     width: 1100px;
-    height: 500px;
+    height: 540px;
     margin-right: 40px;
     margin-left: 40px;
     margin-bottom: 10px;
@@ -271,6 +271,10 @@ body {
     border-radius: 25px;
     display: flex;
     flex-direction: column;
+}
+
+.post-template {
+    display: none;
 }
 
 .post-header {
@@ -356,18 +360,29 @@ body {
 
 .post-body {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 0px 20px;
     background-color: #3B3942;
-    max-height: 150px; 
+    max-height: 190px; 
     padding: 20px;
     border-radius: 25px;
     overflow: hidden;
 }
 
-.post-body > p {
+.post-text {
     color: #F4EBEB;
     font-weight: normal;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-family: "OpenSans", sans-serif;
+    font-size: 18px;
+}
+
+.post-title {
+    color: #F4EBEB;
+    font-weight: bold;
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 0px;
