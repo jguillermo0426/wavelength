@@ -22,7 +22,7 @@ var postsData = [
         artist: "Stray Kids",
         rating: 5, 
         user: "crimson", 
-        reviewDate: "January 30, 2024",
+        reviewDate: "January 3, 2024",
         tag1: "Album",
         tag2: "K-Pop",
         tag3: "Rock",
@@ -49,6 +49,244 @@ var postsData = [
         comments: 30,
         postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
         
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
+        trackName: "Wife",
+        artist: "(G)I-DLE",
+        rating: 5, 
+        user: "marblemelon", 
+        reviewDate: "February 14, 2024",
+        tag1: "Track",
+        tag2: "K-Pop",
+        tag3: "Hip Hop",
+        title: "Taste is cocoloco",
+        likes: 5,
+        dislikes: 0,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
+        trackName: "The Perfect Red Velvet",
+        artist: "Red Velvet",
+        rating: 5, 
+        user: "kiwidoms", 
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "Cool Arbum!",
+        likes: 10,
+        dislikes: 10,
+        comments: 10,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
+        trackName: "Rock-Star",
+        artist: "Stray Kids",
+        rating: 5, 
+        user: "crimson", 
+        reviewDate: "January 3, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Rock",
+        title: "Just feel the rock!",
+        likes: 100,
+        dislikes: 10,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
+        trackName: "Habit",
+        artist: "SEKAI NO OWARI",
+        rating: 4, 
+        user: "crimson", 
+        reviewDate: "January 30, 2024",
+        tag1: "Album",
+        tag2: "J-Pop",
+        tag3: "Indie",
+        title: "The title track was cool.",
+        likes: 5,
+        dislikes: 16,
+        comments: 30,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
+        trackName: "Wife",
+        artist: "(G)I-DLE",
+        rating: 5, 
+        user: "marblemelon", 
+        reviewDate: "February 14, 2024",
+        tag1: "Track",
+        tag2: "K-Pop",
+        tag3: "Hip Hop",
+        title: "Taste is cocoloco",
+        likes: 5,
+        dislikes: 0,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
+        trackName: "The Perfect Red Velvet",
+        artist: "Red Velvet",
+        rating: 5, 
+        user: "kiwidoms", 
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "Cool Arbum!",
+        likes: 10,
+        dislikes: 10,
+        comments: 10,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
+        trackName: "Rock-Star",
+        artist: "Stray Kids",
+        rating: 5, 
+        user: "crimson", 
+        reviewDate: "January 3, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Rock",
+        title: "Just feel the rock!",
+        likes: 100,
+        dislikes: 10,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
+        trackName: "Habit",
+        artist: "SEKAI NO OWARI",
+        rating: 4, 
+        user: "crimson", 
+        reviewDate: "January 30, 2024",
+        tag1: "Album",
+        tag2: "J-Pop",
+        tag3: "Indie",
+        title: "The title track was cool.",
+        likes: 5,
+        dislikes: 16,
+        comments: 30,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
+        trackName: "Wife",
+        artist: "(G)I-DLE",
+        rating: 5, 
+        user: "marblemelon", 
+        reviewDate: "February 14, 2024",
+        tag1: "Track",
+        tag2: "K-Pop",
+        tag3: "Hip Hop",
+        title: "Taste is cocoloco",
+        likes: 5,
+        dislikes: 0,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
+        trackName: "The Perfect Red Velvet",
+        artist: "Red Velvet",
+        rating: 5, 
+        user: "kiwidoms", 
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "Cool Arbum!",
+        likes: 10,
+        dislikes: 10,
+        comments: 10,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
+        trackName: "Rock-Star",
+        artist: "Stray Kids",
+        rating: 5, 
+        user: "crimson", 
+        reviewDate: "January 3, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Rock",
+        title: "Just feel the rock!",
+        likes: 100,
+        dislikes: 10,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
+        trackName: "Habit",
+        artist: "SEKAI NO OWARI",
+        rating: 4, 
+        user: "crimson", 
+        reviewDate: "January 30, 2024",
+        tag1: "Album",
+        tag2: "J-Pop",
+        tag3: "Indie",
+        title: "The title track was cool.",
+        likes: 5,
+        dislikes: 16,
+        comments: 30,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
+        trackName: "Wife",
+        artist: "(G)I-DLE",
+        rating: 5, 
+        user: "marblemelon", 
+        reviewDate: "February 14, 2024",
+        tag1: "Track",
+        tag2: "K-Pop",
+        tag3: "Hip Hop",
+        title: "Taste is cocoloco",
+        likes: 5,
+        dislikes: 0,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/b/b0/Glass_Animals_-_Heat_Waves.png", 
+        trackName: "Heat Waves",
+        artist: "Glass Animals",
+        rating: 3, 
+        user: "crimson", 
+        reviewDate: "February 5, 2024",
+        tag1: "Track",
+        tag2: "Shiver Pop",
+        tag3: "Indie Rock",
+        title: "Heat Waves been faking me out",
+        likes: 0,
+        dislikes: 0,
+        comments: 5,
+        postText: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer finibus elit lectus, at bibendum enim varius nec. Aenean dui erat, dictum eu vestibulum viverra, ullamcorper at nunc. Curabitur sit amet pellentesque sem. Cras imperdiet venenatis nunc in vehicula. Fusce vestibulum lacinia rutrum. Etiam faucibus porta dolor, in molestie erat aliquet in. Etiam cursus commodo convallis. Vestibulum nec quam felis. Phasellus id interdum velit. Fusce non finibus turpis. Sed interdum eros condimentum aliquet auctor. Pellentesque blandit ut est sed lobortis. Nam hendrerit aliquet mauris eget porttitor. Donec semper eu nulla at dictum.",
+        
     }
 ];
 
@@ -65,10 +303,7 @@ logoBar.addEventListener('click', function() {
     window.location.href = '../html/home.html';
 });
 
-
-function createPost(postData) {
-    const postArea = document.getElementById("post-area");
-
+function createPost(postData, idNumber) {
     const postDiv = document.createElement('div');
     postDiv.className = "post";
 
@@ -82,6 +317,7 @@ function createPost(postData) {
         ratings.push('../svg/star-empty.svg');
     }
 
+    postDiv.id = "post-" + idNumber;
     postDiv.innerHTML = `
       <div class="post-header">
         <a></a>
@@ -134,37 +370,24 @@ function createPost(postData) {
       </div>
     `;
 
-    postArea.appendChild(postDiv);
+    return postDiv;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    updateLoginStatus();
-
-    for (let i = 0; i < postsData.length; i++) {
-        createPost(postsData[i]);
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
+}
 
-    highlightSort();
-    sortPostsRecent();
+var postsArray = [];
 
-    
+function assignId() {
+    for (let i = 0; i < postsData.length; i++) {
+        var postDiv = createPost(postsData[i], i);
 
-    const postArea = document.getElementById("feed");
-    var loadMore = document.createElement('p');
-    loadMore.innerHTML = `<p class="load-more">Load more posts</p>`
-    postArea.appendChild(loadMore);
+        var likeButton = postDiv.querySelector('.like');
+        var dislikeButton = postDiv.querySelector('.dislike');
 
-    const posts = document.querySelectorAll('.post');
-
-    posts.forEach((post, i) => {
-        const newId = 'post-' + i;
-        post.id = newId;
-    });
-
-    for (var i = 0; i < posts.length; i++) {
-        var likeButton = posts[i].querySelector('.like');
-        var dislikeButton = posts[i].querySelector('.dislike');
-    
         likeButton.id = 'like-' + i;
         dislikeButton.id = 'dislike-' + i;
 
@@ -175,13 +398,9 @@ document.addEventListener('DOMContentLoaded', function() {
             dislikeAfter: false
         };
 
+        var likes = parseInt(postsData[i].likes);
 
-
-        var likeCounter = document.getElementById('post-' + i).querySelector('#like-counter');
-        var likes = parseInt(likeCounter.innerHTML);
-
-        var dislikeCounter = document.getElementById('post-' + i).querySelector('#dislike-counter');
-        var dislikes = parseInt(dislikeCounter.innerHTML);
+        var dislikes = parseInt(postsData[i].dislikes);
 
         var reacts = {
             likeCount: likes,
@@ -190,20 +409,69 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         likeDislikeArray.push(likeDislike);
-        reacts.date = getPostDate(i);
+        reacts.date = getPostDate(postsData[i].reviewDate);
         postInfo.push(reacts);
-    
+        
         likeButton.setAttribute('onclick', 'likeWrapper(' + i + ')');
         dislikeButton.setAttribute('onclick', 'dislikeWrapper(' + i + ')');
-    }
 
+        postsArray.push(postDiv);
+    }
+}
+
+function loadPosts(loadedPosts) {
+    const postArea = document.getElementById("post-area");
+    removeAllChildNodes(postArea);
+    console.log(loadedPosts);
+
+    for (let i = 0; i < loadedPosts; i++) {
+        postArea.appendChild(postsArray[i]);
+        console.log(i + ": " + postsData[i]);
+    }
+}
+
+var loadedPosts = 15;
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateLoginStatus();
+    assignId();
+
+    highlightSort();
+
+    sortPostsRecent();
+
+    if (postsData.length < 15) {
+        loadedPosts = postsData.length;
+    }
+    loadPosts(loadedPosts);
+
+    
     var createPostBar = document.getElementById('create-post');
     var savedState = localStorage.getItem('createPostState');
 
     if (savedState) {
         createPostBar.style.display = savedState;
     }
+
+    const feed = document.getElementById("feed");
+    var loadMore = document.createElement('button');
+    loadMore.className = "load-more";
+    loadMore.innerHTML = `<span>Load more posts</span> 
+                            <span>+</span>`;
+    feed.appendChild(loadMore);
+    
+    loadMore.addEventListener('click', function() {
+        if (postsData.length - loadedPosts < 15) {
+            loadedPosts = loadedPosts + (postsData.length - loadedPosts);
+        }
+        else {
+            loadedPosts += 15;
+        }
+        loadPosts(loadedPosts);
+    });
 });
+
+
 
 function getPostDate(dateString) {
     var dateObject = new Date(dateString);
@@ -211,56 +479,41 @@ function getPostDate(dateString) {
 }
 
 function sortPostsRecent() {
-    var postArea = document.getElementById('post-area');
-
-    var post = postArea.querySelectorAll('.post');
-    var postSorted = [];
-    for (i = 0; i < post.length; i++) {
-        postSorted.push(post.item(i));
-    }
-
-    postSorted.sort(function(a, b) {
+    postsArray.sort(function(a, b) {
         var compA = getPostDate(a.querySelector(".date").innerHTML);
         var compB = getPostDate(b.querySelector(".date").innerHTML);
-        return (compA < compB) ? 1 : (compA > compB) ? -1 : 0;
-    });
-    for (i = 0; i < postSorted.length; i++) {
-        postArea.appendChild(postSorted[i]);
-        console.log(postSorted[i]);
-    }
-}
-
-function sortPostsPopular() {
-    var postArea = document.getElementById('post-area');
-
-    var post = postArea.querySelectorAll('.post');
-    var postSorted = [];
-    for (i = 0; i < post.length; i++) {
-        postSorted.push(post.item(i));
-    }
-    postSorted.sort(function(a, b) {
-        var compA = parseInt(a.querySelector('#like-counter').innerHTML);
-        var compB = parseInt(b.querySelector('#like-counter').innerHTML);
-        console.log('compA: ' + compA);
-        console.log('compB: ' + compB);
 
         if (compA < compB) {
-            console.log(1);
             return 1;
         }
         else if (compA > compB) {
-            console.log(-1);
             return -1;
         }
         else {
-            console.log(0);
             return 0;
         }
     });
-    for (i = 0; i < postSorted.length; i++) {
-        postArea.appendChild(postSorted[i]);
-        console.log(postSorted[i]);
-    }
+    loadedPosts = 15;
+    loadPosts(loadedPosts);
+}
+
+function sortPostsPopular() {
+    postsArray.sort(function(a, b) {
+        var compA = parseInt(a.querySelector('#like-counter').innerHTML);
+        var compB = parseInt(b.querySelector('#like-counter').innerHTML);
+
+        if (compA < compB) {
+            return 1;
+        }
+        else if (compA > compB) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    });
+    loadedPosts = 15;
+    loadPosts(loadedPosts);
 }
 
 function highlightSort() {
@@ -332,12 +585,37 @@ function updateLoginStatus() {
 
 var posts = document.querySelectorAll(".post-footer");
 
+function closeLoginPopup() {
+    let popUp = document.getElementById("login-popup");
+    popUp.style.display = 'none';
+}
+
 function likeWrapper(postNumber) {
-    like(postNumber, likeDislikeArray);
+    let popUp = document.getElementById("login-popup");
+
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+        popUp.style.display = 'none';
+        like(postNumber, likeDislikeArray);
+    }
+    else {
+        popUp.style.display = 'block';
+        console.log("You need to log in");
+    }
 }
 
 function dislikeWrapper(postNumber) {
-    dislike(postNumber, likeDislikeArray);
+    let popUp = document.getElementById("login-popup");
+    
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+        popUp.style.display = 'none';
+        dislike(postNumber, likeDislikeArray);
+    }
+    else {
+        popUp.style.display = 'block';
+        console.log("You need to log in");
+    }
 }
 
 function like(postNumber, likeDislikeArray) {
@@ -397,10 +675,10 @@ function updateReactButtons(postNumber, likeDislikeArray) {
 
 function disLikeCounter(postNumber, likeDislikeArray) {
     var likeCounter = document.getElementById('post-' + postNumber).querySelector('#like-counter');
-    var likes = parseInt(likeCounter.innerHTML);
+    var likes = parseInt(postsData[postNumber].likes);
 
     var dislikeCounter = document.getElementById('post-' + postNumber).querySelector('#dislike-counter');
-    var dislikes = parseInt(dislikeCounter.innerHTML);
+    var dislikes = parseInt(postsData[postNumber].dislikes);
 
     if (likeDislikeArray[postNumber].clickedLike == true) {
         likes++;
@@ -429,6 +707,10 @@ function disLikeCounter(postNumber, likeDislikeArray) {
         }
     }
 
+
+    postsData[postNumber].likes = likes;
+    postsData[postNumber].dislikes = dislikes;
+    
 
     likeCounter.innerHTML = likes;
     dislikeCounter.innerHTML = dislikes;

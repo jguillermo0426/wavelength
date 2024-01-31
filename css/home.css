@@ -493,4 +493,82 @@ body {
     font-family: "OpenSans", sans-serif;
     font-weight: 900;
     font-size: 20px;
+    background-color: transparent;
+    border: 0px;
+    margin: 30px;
+    border: 1px solid #3B3942;
+    transition: all .3s ease;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.load-more > span {
+    transition: all .3s ease;
+}
+
+.load-more > span:last-child {
+    transition: all .3s ease;
+    color: #3B3942;
+}
+
+.load-more:hover {
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.load-more:hover > span:first-child {
+    margin-right: 15px;
+}
+
+.load-more:hover > span {
+    transition: all .3s ease;
+    color: #F4EBEB;
+}
+
+.load-more:active {
+    background-color: #BBA7FF;
+    transition: all .3s ease;
+}
+
+.login-popup {
+    position: fixed;
+    margin: 20% 37%;
+    width: 100px;
+    height: 200px;
+    z-index: 20;
+    background-color: #f4ebebdc;
+    width: 350px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px 5px #211f2772;
+    display: none;
+}
+
+.login-popup > p {
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #211F27;
+    font-family: "OpenSans", sans-serif;
+    font-weight: bold;
+}
+
+.login-popup > button {
+    background-color: #BBA7FF;
+    margin-right: 10px;
+    border-radius: 25px;
+    border: 0px;
+    font-size: 15px;
+    padding: 5px 25px;
+    color: #211F27;
+    font-family: "OpenSans", sans-serif;
+    font-weight: bold;
+    transition: all 0.25s ease-in-out;
+}
+
+.login-popup > button:hover {
+    cursor: pointer;
+    color: #F4EBEB;
+    transition: all 0.25s ease-in-out;
+    background-color: #8F59DD;
 }
