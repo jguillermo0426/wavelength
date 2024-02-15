@@ -290,8 +290,24 @@ var postsData = [
     }
 ];
 
-var logoBar = document.getElementById('logo-bar');
+var userData = [
+    {
+        profilePicture: "https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg",
+        username: "hanni-pham",
+        postsLiked: [],
+        postsDisliked: [],
+        password: "hanni2009"
+    },
+    {
+        profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-468531bd9031bbc43980b8db0ea5fa75-lq",
+        username: "kiwidoms",
+        postsLiked: [],
+        postsDisliked: [],
+        password: "wiwidoms04"
+    }
+];
 
+var logoBar = document.getElementById('logo-bar');
 var userBar = document.getElementById('user-bar');
 
 logoBar.style.cursor = 'pointer';
@@ -422,18 +438,18 @@ function assignId() {
 function loadPosts(loadedPosts) {
     const postArea = document.getElementById("post-area");
     removeAllChildNodes(postArea);
-    console.log(loadedPosts);
 
     for (let i = 0; i < loadedPosts; i++) {
         postArea.appendChild(postsArray[i]);
-        console.log(i + ": " + postsData[i]);
     }
 }
 
 var loadedPosts = 15;
 
+var userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"));
+
 document.addEventListener('DOMContentLoaded', function() {
-    updateLoginStatus();
+    updateLoginStatus(JSON.parse(localStorage.getItem("userLoggedIn")));
     assignId();
 
     highlightSort();
@@ -471,7 +487,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function getProfilePicture(username) {
+    for (let i = 0; i < userData.length; i++) {
+        if (userData[i].username === username) {
+            console.log(userData[i].profilePicture);
+            return userData[i].profilePicture;
+        }
+    }
 
+    return null;
+}
 
 function getPostDate(dateString) {
     var dateObject = new Date(dateString);
@@ -552,34 +577,27 @@ recent.addEventListener('click', function() {
     sortPostsRecent();
 });
 
-function toggleLoginStatus() {
+function logOut() {
+    localStorage.setItem("isLoggedIn", false);
+}
+
+function updateLoginStatus(user) {
     var isLoggedIn = localStorage.getItem('isLoggedIn');
     var createPostBar = document.getElementById('create-post');
 
     if (isLoggedIn === 'true') {
-        // User is logged in, perform logout
-        localStorage.setItem('isLoggedIn', 'false');
-        updateLoginStatus();
-        createPostBar.style.display = 'none';
-    } else {
-        // User is logged out, perform login
-        localStorage.setItem('isLoggedIn', 'true');
-        updateLoginStatus();
+        createPostBar.querySelector("#profile-picture-post").src = JSON.parse(localStorage.getItem("profilePicture"));
+        userBar.innerHTML = `<div class='profile-pic-holder'> 
+                                <a class="profile-picture" href="home.html"><img src="${JSON.parse(localStorage.getItem("profilePicture"))}"></a>
+                             </div>
+                             <a href="home.html" class="logged-status" id="log-out" onclick="logOut();">log out</a>`;
         createPostBar.style.display = 'flex';
-    }
-    localStorage.setItem('createPostState', createPostBar.style.display);
-}
 
-function updateLoginStatus() {
-    var isLoggedIn = localStorage.getItem('isLoggedIn');
-
-    if (isLoggedIn === 'true') {
-        userBar.innerHTML = '<a class="profile-picture" href="home.html"><img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg"></a>' + 
-                            '<a href="home.html" class="logged-status" id="log-out" onclick="toggleLoginStatus();">log out</a>';
     } else {
-        userBar.innerHTML = '<a href="home.html" class="logged-status" id="log-in" class="log-in" onclick="toggleLoginStatus();">log in</a>' + 
-                            '<p>|</p>' + 
-                            '<a href="home.html" class="logged-status" id="sign-up" class="sign-up">sign up<a>';
+        userBar.innerHTML = `<a href="login.html" class="logged-status" id="log-in" class="log-in"">log in</a>
+                            <p>|</p>
+                            <a href="signup.html" class="logged-status" id="sign-up" class="sign-up">sign up<a>`;
+        createPostBar.style.display = 'none';
     }
 }
 
@@ -619,59 +637,152 @@ function dislikeWrapper(postNumber) {
 }
 
 function like(postNumber, likeDislikeArray) {
+
+    var postId = "post-" + postNumber;
+
+    var postIndex = postsArray.findIndex(post => post.id === postId);
+    
+    if (postIndex === -1) {
+        console.error("Post not found");
+        return;
+    }
+
     if (likeDislikeArray[postNumber].clickedLike == false) {
         likeDislikeArray[postNumber].clickedLike = true;
         likeDislikeArray[postNumber].clickedDislike = false;
+
+        var indexD = userLoggedIn.postsDisliked.findIndex(post => post.id === postId);
+        var indexL = userLoggedIn.postsLiked.findIndex(post => post.id === postId);
+
+        if (indexD !== -1) {
+            userLoggedIn.postsDisliked.splice(indexD, 1);
+        }
+
+        if (indexL === -1) {
+            userLoggedIn.postsLiked.push(postsArray[postIndex]);
+        }
+
         console.log('like 1');
     } else if (likeDislikeArray[postNumber].clickedLike == false || (likeDislikeArray[postNumber].clickedLike == false && likeDislikeArray[postNumber].clickedDislike == true)) {
         likeDislikeArray[postNumber].clickedDislike = false;
         likeDislikeArray[postNumber].clickedLike = true;
+
+        var indexD = userLoggedIn.postsDisliked.findIndex(post => post.id === postId);
+        var indexL = userLoggedIn.postsLiked.findIndex(post => post.id === postId);
+
+        if (indexD !== -1) {
+            userLoggedIn.postsDisliked.splice(indexD, 1);
+        }
+
+        if (indexL === -1) {
+            userLoggedIn.postsLiked.push(postsArray[postIndex]);
+        }
+
         console.log('like 2');
     } else if (likeDislikeArray[postNumber].clickedLike == true) {
         likeDislikeArray[postNumber].clickedLike = false;
+
+        var indexL = userLoggedIn.postsLiked.findIndex(post => post.id === postId);
+
+        if (indexL !== -1) {
+            userLoggedIn.postsLiked.splice(indexL, 1);
+        }
+
         console.log('like 3');
     }
 
     console.log('clicked like: ' + likeDislikeArray[postNumber].clickedLike);
-    updateReactButtons(postNumber, likeDislikeArray);
+    updateReactButtons(postNumber);
     disLikeCounter(postNumber, likeDislikeArray);
+
+    console.log(userLoggedIn.postsLiked);
+    console.log(userLoggedIn.postsDisliked);
 }
 
+
 function dislike(postNumber, likeDislikeArray) {
+    var postId = "post-" + postNumber;
+
+    var postIndex = postsArray.findIndex(post => post.id === postId);
+    
+    if (postIndex === -1) {
+        console.error("Post not found");
+        return;
+    }
+
     if (likeDislikeArray[postNumber].clickedDislike == false) {
         likeDislikeArray[postNumber].clickedDislike = true;
         likeDislikeArray[postNumber].clickedLike = false;
+
+        var indexD = userLoggedIn.postsDisliked.findIndex(post => post.id === postId);
+        var indexL = userLoggedIn.postsLiked.findIndex(post => post.id === postId);
+
+        if (indexL !== -1) {
+            userLoggedIn.postsLiked.splice(indexD, 1);
+        }
+
+        if (indexD === -1) {
+            userLoggedIn.postsDisliked.push(postsArray[postIndex]);
+        }
+
     } else if (likeDislikeArray[postNumber].clickedDislike == false || (likeDislikeArray[postNumber].clickedDislike == false && likeDislikeArray[postNumber].clickedLike == true)) {
         likeDislikeArray[postNumber].clickedLike = false;
         likeDislikeArray[postNumber].clickedDislike = true;
+
+        var indexD = userLoggedIn.postsDisliked.findIndex(post => post.id === postId);
+        var indexL = userLoggedIn.postsLiked.findIndex(post => post.id === postId);
+
+        if (indexL !== -1) {
+            userLoggedIn.postsLiked.splice(indexD, 1);
+        }
+
+        if (indexD === -1) {
+            userLoggedIn.postsDisliked.push(postsArray[postIndex]);
+        }
+
     } else if (likeDislikeArray[postNumber].clickedDislike == true) {
         likeDislikeArray[postNumber].clickedDislike = false;
+
+        var indexD = userLoggedIn.postsDisliked.findIndex(post => post.id === postId);
+
+        if (indexD !== -1) {
+            userLoggedIn.postsDisliked.splice(indexD, 1);
+        }
     }
 
-    updateReactButtons(postNumber, likeDislikeArray);
+    updateReactButtons(postNumber);
     disLikeCounter(postNumber, likeDislikeArray);
+
+    console.log(userLoggedIn.postsLiked);
+    console.log(userLoggedIn.postsDisliked);
 }
 
-function updateReactButtons(postNumber, likeDislikeArray) {
+function updateReactButtons(postNumber) {
+    var postId = "post-" + postNumber;
+
     var like = document.getElementById('like-' + postNumber);
     var dislike = document.getElementById('dislike-' + postNumber);
 
-    if (likeDislikeArray[postNumber].clickedDislike == true) {
+    var index = postsArray.findIndex(post => post.id === postId);   
+
+    if (userLoggedIn.postsDisliked.includes(postsArray[index])) {
         dislike.src = '../svg/thumbs-up.svg';
     }
-    else if (likeDislikeArray[postNumber].clickedLike == true) {
+    else if (userLoggedIn.postsLiked.includes(postsArray[index])) {
         like.src = '../svg/thumbs-up.svg';
     }
-
-    if(likeDislikeArray[postNumber].clickedDislike == false) {
+    
+    if (!(userLoggedIn.postsDisliked.includes(postsArray[index]))) {
         dislike.src = '../svg/thumbs-up-stroke.svg';
     }
-    if(likeDislikeArray[postNumber].clickedLike == false) {
+    
+    if (!(userLoggedIn.postsLiked.includes(postsArray[index]))) {
         like.src = '../svg/thumbs-up-stroke.svg';
     }
+
 }
 
-// ewan ko na kung anong gagawin dito HEAHSDFJKHSDKFHJ medj nababaliw na ako sa
+
 
 function disLikeCounter(postNumber, likeDislikeArray) {
     var likeCounter = document.getElementById('post-' + postNumber).querySelector('#like-counter');
@@ -680,18 +791,21 @@ function disLikeCounter(postNumber, likeDislikeArray) {
     var dislikeCounter = document.getElementById('post-' + postNumber).querySelector('#dislike-counter');
     var dislikes = parseInt(postsData[postNumber].dislikes);
 
-    if (likeDislikeArray[postNumber].clickedLike == true) {
+    var postId = "post-" + postNumber;
+    var index = postsArray.findIndex(post => post.id === postId); 
+
+    if (userLoggedIn.postsLiked.includes(postsArray[index])) {
         likes++;
         likeDislikeArray[postNumber].likeAfter = true;
         console.log('1');
     }
-    else if (likeDislikeArray[postNumber].clickedDislike == true) {
+    else if (userLoggedIn.postsDisliked.includes(postsArray[index])) {
         dislikes++;
         likeDislikeArray[postNumber].dislikeAfter = true;
         console.log('2');
     }
 
-    if (likeDislikeArray[postNumber].clickedLike == false && likes > 0) {
+    if (!(userLoggedIn.postsLiked.includes(postsArray[index])) && likes > 0) {
         if (likeDislikeArray[postNumber].likeAfter == true) {
             likes--;
             likeDislikeArray[postNumber].likeAfter = false;
@@ -699,7 +813,7 @@ function disLikeCounter(postNumber, likeDislikeArray) {
         }
     }
     
-    if (likeDislikeArray[postNumber].clickedDislike == false && dislikes > 0) {
+    if (!(userLoggedIn.postsDisliked.includes(postsArray[index])) && dislikes > 0) {
         if (likeDislikeArray[postNumber].dislikeAfter == true) {
             dislikes--;
             likeDislikeArray[postNumber].dislikeAfter = false;
@@ -714,4 +828,93 @@ function disLikeCounter(postNumber, likeDislikeArray) {
 
     likeCounter.innerHTML = likes;
     dislikeCounter.innerHTML = dislikes;
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+    var d = JSON.parse(localStorage.getItem('userData'));
+
+    console.log(d[0].postsLiked);
+}
+
+
+function checkRegister() {
+    var errorMessage = document.querySelector(".error-message");
+    var takenUser = false;
+    const username = document.forms["main-form"]["username"].value;
+    const password = document.forms["main-form"]["password"].value;
+    const confPassword = document.forms["main-form"]["confirm-password"].value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || userData;
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].username == username) {
+            takenUser = true;
+        }
+    }
+
+    if (username.length < 3) {
+        errorMessage.innerHTML = "Username must be more than 3 characters."
+        errorMessage.style.visibility = "visible";
+        return false;
+    }
+    else if (takenUser == true) {
+        errorMessage.innerHTML = "Username is already taken."
+        errorMessage.style.visibility = "visible";
+        return false;
+    }
+    else if (password.localeCompare(confPassword) != 0) {
+        errorMessage.innerHTML = "Passwords do not match."
+        errorMessage.style.visibility = "visible";
+        return false;
+    }
+
+    var user = {
+        profilePicture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        username: username,
+        postsLiked: [],
+        postsDisliked: [],
+        password: password
+    };
+
+    userData.push(user);
+
+    localStorage.setItem("users", JSON.stringify(userData));
+
+    errorMessage.style.visibility = "hidden";
+    return true;
+}
+
+function checkLogin() {
+    var errorMessage = document.querySelector(".error-message");
+    const username = document.forms["login-form"]["username"].value;
+    const password = document.forms["login-form"]["password"].value;
+
+    var userExists = false;
+    var userIndex = -1;
+
+    let users = JSON.parse(localStorage.getItem("users")) || userData;
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].username == username) {
+            userExists = true;
+            userIndex = i;
+        }
+    }
+
+    if (userExists != true) {
+        errorMessage.innerHTML = "Username does not exist."
+        errorMessage.style.visibility = "visible";
+        return false;
+    }
+    else if (users[userIndex].password != password) {
+        errorMessage.innerHTML = "Password is incorrect."
+        errorMessage.style.visibility = "visible";
+        return false;
+    }
+
+    localStorage.setItem("userLoggedIn", JSON.stringify(users[userIndex]));
+    localStorage.setItem("isLoggedIn", true);
+    localStorage.setItem("profilePicture", JSON.stringify(users[userIndex].profilePicture));
+
+    errorMessage.style.visibility = "hidden";
+    return true;
 }
