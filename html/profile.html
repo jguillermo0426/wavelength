@@ -8,6 +8,37 @@
   
   <body>
     <div class="profile-page">
+      <div id="edit-popup" class="edit-popup">
+        <div class="edit-header">
+          <img class="close-button" src="../png/x.png" onclick="closePopUp()">
+          <p>Edit Profile</p>
+          <button type="submit" class="save-button" onclick="closePopUp()">Save</button>
+        </div>
+
+        <div class="edit-banner">
+          <img class="banner" src="https://thekmeal.com/wp-content/uploads/2021/05/wave-to-earth.jpg">
+          <img class="banner-pen" src="../png/pen.png">
+        </div>
+
+        <img class="profile-pen" src="../png/pen.png">
+        <div class="edit-profile-picture">
+          <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+        </div>
+
+        <div class="edit-details">
+          <p>Display name</p>
+          <div class="input-details">
+            <input type="text" placeholder="Display name">
+          </div>
+        </div>
+        <div class="edit-details">
+          <p>Bio</p>
+          <div class="input-details">
+            <input type="text" placeholder="Bio">
+          </div>
+        </div>
+      </div>
+
       <div class="header-bar">
         <div id="logo-bar" class="logo-name">
           <img src='../svg/logo.svg'>
@@ -36,10 +67,7 @@
             <p id="username">hannipham</p>
             <p id="bio">esophagus esophagus</p>
           </div>
-
-          <div class="edit-profile">
-            <button>Edit Profile</button>
-          </div>
+          <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
         </div>
       </div>
 
@@ -246,5 +274,7 @@
         </div>
       </div>
     </div>
+
+    <script src="../js/profile.js"></script>
   </body>
 </html>
