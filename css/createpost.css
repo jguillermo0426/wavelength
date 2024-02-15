@@ -482,18 +482,42 @@ textarea {
     display: flex; 
 }
 
+.tag-box-clicked {
+    background-color: #8F59DD;
+    border: 1px solid;
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    display: flex; 
+}
+
 .tag-inner {
     width: 25px;
     margin-left: 2px;
     margin-right: 4px;
 }
 
+
 .tag-label {
+    margin-left: 10px;
     margin: 2px;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
     font-size: 18px;
     color: #A9A5B6;   
+}
+
+.tag-label-clicked {
+    margin-left: 10px;
+    margin: 2px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: white;   
 }
 
 .rate {
@@ -527,3 +551,6 @@ textarea {
 .rate > label:hover ~ input:checked ~ label {
     color: #FCD53F;
 }
+  
+  
+  
