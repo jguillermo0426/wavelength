@@ -300,6 +300,18 @@ body {
     margin-bottom: 0px;
 }
 
+.artist > a, .song-album-title > a {
+    text-decoration: none;
+    color: #F4EBEB;
+    transition: all 0.25s ease-in-out;
+}
+
+.artist > a:hover, .song-album-title > a:hover {
+    color: #BBA7FF;
+    transition: all 0.25s ease-in-out;
+}
+
+
 .rating {
     display: flex;
     flex-direction: row;

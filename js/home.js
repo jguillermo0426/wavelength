@@ -3,8 +3,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
         trackName: "The Perfect Red Velvet",
         artist: "Red Velvet",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "kiwidoms", 
+        userLink: "home.html",
         reviewDate: "January 26, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -20,8 +23,11 @@ var postsData = [
         cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
         trackName: "Rock-Star",
         artist: "Stray Kids",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 3, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -37,8 +43,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
         trackName: "Habit",
         artist: "SEKAI NO OWARI",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 4, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 30, 2024",
         tag1: "Album",
         tag2: "J-Pop",
@@ -54,8 +63,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
         trackName: "Wife",
         artist: "(G)I-DLE",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "marblemelon", 
+        userLink: "home.html",
         reviewDate: "February 14, 2024",
         tag1: "Track",
         tag2: "K-Pop",
@@ -71,8 +83,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
         trackName: "The Perfect Red Velvet",
         artist: "Red Velvet",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "kiwidoms", 
+        userLink: "home.html",
         reviewDate: "January 26, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -88,8 +103,11 @@ var postsData = [
         cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
         trackName: "Rock-Star",
         artist: "Stray Kids",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 3, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -105,8 +123,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
         trackName: "Habit",
         artist: "SEKAI NO OWARI",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 4, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 30, 2024",
         tag1: "Album",
         tag2: "J-Pop",
@@ -122,8 +143,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
         trackName: "Wife",
         artist: "(G)I-DLE",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "marblemelon", 
+        userLink: "home.html",
         reviewDate: "February 14, 2024",
         tag1: "Track",
         tag2: "K-Pop",
@@ -139,8 +163,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
         trackName: "The Perfect Red Velvet",
         artist: "Red Velvet",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "kiwidoms", 
+        userLink: "home.html",
         reviewDate: "January 26, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -156,8 +183,11 @@ var postsData = [
         cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
         trackName: "Rock-Star",
         artist: "Stray Kids",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 3, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -173,8 +203,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
         trackName: "Habit",
         artist: "SEKAI NO OWARI",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 4, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 30, 2024",
         tag1: "Album",
         tag2: "J-Pop",
@@ -190,8 +223,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
         trackName: "Wife",
         artist: "(G)I-DLE",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "marblemelon", 
+        userLink: "home.html",
         reviewDate: "February 14, 2024",
         tag1: "Track",
         tag2: "K-Pop",
@@ -207,8 +243,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
         trackName: "The Perfect Red Velvet",
         artist: "Red Velvet",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "kiwidoms", 
+        userLink: "home.html",
         reviewDate: "January 26, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -224,8 +263,11 @@ var postsData = [
         cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
         trackName: "Rock-Star",
         artist: "Stray Kids",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 3, 2024",
         tag1: "Album",
         tag2: "K-Pop",
@@ -241,8 +283,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273adbc64e70fdf990fb432c14a", 
         trackName: "Habit",
         artist: "SEKAI NO OWARI",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 4, 
         user: "crimson", 
+        userLink: "home.html",
         reviewDate: "January 30, 2024",
         tag1: "Album",
         tag2: "J-Pop",
@@ -258,8 +303,11 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d00001e0220f991e95301877ab21155a0", 
         trackName: "Wife",
         artist: "(G)I-DLE",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 5, 
         user: "marblemelon", 
+        userLink: "home.html",
         reviewDate: "February 14, 2024",
         tag1: "Track",
         tag2: "K-Pop",
@@ -275,8 +323,11 @@ var postsData = [
         cover: "https://upload.wikimedia.org/wikipedia/en/b/b0/Glass_Animals_-_Heat_Waves.png", 
         trackName: "Heat Waves",
         artist: "Glass Animals",
+        trackLink: "home.html",
+        artistLink: "home.html",
         rating: 3, 
-        user: "crimson", 
+        user: "hannipham", 
+        userLink: "profile-hanni.html",
         reviewDate: "February 5, 2024",
         tag1: "Track",
         tag2: "Shiver Pop",
@@ -293,31 +344,34 @@ var postsData = [
 var userData = [
     {
         profilePicture: "https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg",
-        username: "hanni-pham",
+        username: "hannipham",
         postsLiked: [],
         postsDisliked: [],
-        password: "hanni2009"
+        password: "hanni2009",
+        profileLink: "profile-hanni.html"
     },
     {
         profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-468531bd9031bbc43980b8db0ea5fa75-lq",
         username: "kiwidoms",
         postsLiked: [],
         postsDisliked: [],
-        password: "wiwidoms04"
+        password: "wiwidoms04",
+        profileLink: "home.html"
     }
 ];
-
-var logoBar = document.getElementById('logo-bar');
-var userBar = document.getElementById('user-bar');
-
-logoBar.style.cursor = 'pointer';
 
 var likeDislikeArray = [];
 var postInfo = [];
 
+var logoBar = document.getElementById('logo-bar');
+
+logoBar.style.cursor = 'pointer';
+
 logoBar.addEventListener('click', function() {
     window.location.href = '../html/home.html';
 });
+
+var userBar = document.getElementById('user-bar');
 
 function createPost(postData, idNumber) {
     const postDiv = document.createElement('div');
@@ -339,8 +393,8 @@ function createPost(postData, idNumber) {
         <a></a>
         <img class="cover" src="${postData.cover}">
         <div class="post-titles">
-          <p class="song-album-title">${postData.trackName}</p>
-          <p class="artist">${postData.artist}</p>
+          <p class="song-album-title"><a href="${postData.trackLink}">${postData.trackName}</a></p>
+          <p class="artist"><a href="${postData.artistLink}">${postData.artist}</a></p>
           <div class="rating">
             <img src=${ratings[0]}>
             <img src=${ratings[1]}>
@@ -348,7 +402,7 @@ function createPost(postData, idNumber) {
             <img src=${ratings[3]}>
             <img src=${ratings[4]}>
           </div>
-          <p class="user-reviewed">reviewed by <a href="home.html" class="user">${postData.user}</a> on <span class="date">${postData.reviewDate}</span></p>
+          <p class="user-reviewed">reviewed by <a href="${postData.userLink}" class="user">${postData.user}</a> on <span class="date">${postData.reviewDate}</span></p>
             <div class="tags-area">
               <div class="tag">
                 <p>${postData.tag1}</p>
@@ -588,7 +642,7 @@ function updateLoginStatus(user) {
     if (isLoggedIn === 'true') {
         createPostBar.querySelector("#profile-picture-post").src = JSON.parse(localStorage.getItem("profilePicture"));
         userBar.innerHTML = `<div class='profile-pic-holder'> 
-                                <a class="profile-picture" href="home.html"><img src="${JSON.parse(localStorage.getItem("profilePicture"))}"></a>
+                                <a class="profile-picture" href="${JSON.parse(localStorage.getItem("userLoggedIn")).profileLink}"><img src="${JSON.parse(localStorage.getItem("profilePicture"))}"></a>
                              </div>
                              <a href="home.html" class="logged-status" id="log-out" onclick="logOut();">log out</a>`;
         createPostBar.style.display = 'flex';
