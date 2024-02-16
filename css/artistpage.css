@@ -271,7 +271,7 @@ body {
 
 .artist-bio > a:link:hover {
     color: #BBA7FF;
-  }
+}
 
 .discog-header-container{
     display: flex;
@@ -361,13 +361,13 @@ body {
     text-align: left;
 }
 
-.album-title > a:link {
-    color: #F4EBEB;
+.album-title > a:link, a:visited{
+    color: #BBA7FF;
     text-decoration: none;
     font-weight: bold;
 }
 
-.album-title > a:link:hover {
+.album-title > a:hover {
     color: #F4EBEB;
   }
 
