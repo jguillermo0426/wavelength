@@ -22,13 +22,51 @@ var postsData = [
         First off, the whole vibe is SOOO cohesive. It's like dark, sultry Red Velvet on a whole new level, and honestly, I'm here for it. Every song feels like it belongs, you know? No skips, just straight bops from start to finish.`,
     },
     {
+        cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
+        trackName: "The Perfect Red Velvet",
+        artist: "Red Velvet",
+        trackLink: "home.html",
+        artistLink: "artistpage_redvelvet.html",
+        rating: 5, 
+        user: "kiwidoms", 
+        userLink: "profile-kiwidoms.html",
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "Cool Arbum",
+        likes: 2,
+        dislikes: 3,
+        comments: 3,
+        postText: ""
+    },
+    {
+        cover: "https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820-820x820.jpg", 
+        trackName: "Queen II",
+        artist: "Queen",
+        trackLink: "home.html",
+        artistLink: "artistpage_queen.html",
+        rating: 5, 
+        user: "kiwidoms", 
+        userLink: "profile-kiwidoms.html",
+        reviewDate: "January 26, 2024",
+        tag1: "Album",
+        tag2: "Pop",
+        tag3: "Rock",
+        title: "BEST POP ROCK ALBUM",
+        likes: 2,
+        dislikes: 3,
+        comments: 3,
+        postText: ""
+    },
+    {
         cover: "https://i.scdn.co/image/ab67616d0000b27374c732f8aa0e0ccbb3d17d96", 
         trackName: "Bewitched",
         artist: "Laufey",
         trackLink: "albumpage_bewitched.html",
         artistLink: "artistpage_laufey.html",
         rating: 5, 
-        user: "laufey", 
+        user: "pastebored", 
         userLink: "profile-pastebored.html",
         reviewDate: "February 14, 2024",
         tag1: "Album",
@@ -45,6 +83,25 @@ var postsData = [
         <br>
         <br>
         Laufey's debut is a delightful journey that effortlessly weaves through different genres. It's a bit like finding a hidden gem in a vintage store - unique, charming, and totally worth sharing with your music-loving friends. "Bewitched" is a solid introduction to Laufey's enchanting world, and it's a ride you won't want to miss. `,
+    },
+    {
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/88/da/da/88dada02-f9e3-b632-6fb7-d52414d7ac76/23UMGIM43940.rgb.jpg/1200x1200bf-60.jpg", 
+        trackName: "Unforgiven",
+        artist: "Lesserafim",
+        trackLink: "albumpage_unforgiven.html",
+        artistLink: "artistpage_lesserafim.html",
+        rating: 5, 
+        user: "hannipham", 
+        userLink: "profile-hannipham.html",
+        reviewDate: "February 14, 2024",
+        tag1: "Album",
+        tag2: "Pop",
+        tag3: "Jazz",
+        title: "I'm left bewitched...",
+        likes: 69,
+        dislikes: 3,
+        comments: 3,
+        postText: '',
     }
 ];
 
@@ -66,12 +123,28 @@ var userData = [
         profileLink: "home.html"
     },
     {
-        profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-468531bd9031bbc43980b8db0ea5fa75-lq",
+        profilePicture: "https://i.pinimg.com/originals/75/85/04/75850404ff3478f2dd4c0542640b6a94.jpg",
         username: "pastebored",
         postsLiked: [],
         postsDisliked: [],
         password: "superpass",
         profileLink: "profile-pastebored.html"
+    },
+    {
+        profilePicture: "https://i.pinimg.com/564x/01/d1/de/01d1deac19e09cb25080ea82375be36d.jpg",
+        username: "purpol",
+        postsLiked: [],
+        postsDisliked: [],
+        password: "superbass",
+        profileLink: "profile-purpol.html"
+    },
+    {
+        profilePicture: "https://i.pinimg.com/564x/63/98/34/6398342bc15470d4b537d6a939529d10.jpg",
+        username: "crimson",
+        postsLiked: [],
+        postsDisliked: [],
+        password: "basssuper",
+        profileLink: "profile-crimson.html"
     }
 ];
 
