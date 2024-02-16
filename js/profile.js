@@ -16,7 +16,13 @@ function openEditDelete(postID) {
   editDelete.style.top = pageY + 'px';
 }
 
-function closeEditDelete(postID) {
-  let editDelete = document.getElementById(postID);
-  editDelete.style.visibility = 'hidden';
+function deletePost(postID) {
+  let deletePost = document.getElementById(postID);
+  deletePost.style.visibility = 'hidden';
+}
+
+function editPost(postID) {
+  let editPost = document.getElementById(postID);
+  editPost.style.visibility = 'hidden';
+  window.location.href = '../html/editpost.html';
 }
