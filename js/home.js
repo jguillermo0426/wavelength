@@ -94,11 +94,14 @@ var postsData = [
         tag1: "Album",
         tag2: "Pop",
         tag3: "Jazz",
-        title: "I'm left bewitched...",
+        title: "Unforgiven I’m a Villain 😈",
         likes: 69,
         dislikes: 3,
         comments: 3,
-        postText: '',
+        postText: `OMG, y'all, can we talk about Stray Kids' new album "Rock-Star"? Because I am absolutely shook and living for every moment of it! 🌟💥
+        <br>
+        <br>
+        First things first, these boys are on fire! From the moment you hit play, "Rock-Star" explodes into your ears with this insane energy that grabs you by the collar and`,
     },
     {
         cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
