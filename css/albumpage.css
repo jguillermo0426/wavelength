@@ -185,32 +185,81 @@ body {
     width: 100%;
 }
 
+/* Body */
 .feed {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.artist-overview {
-    display: flex;
     flex-direction: row;
-    margin-top: 30px;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 25px;
 }
 
-.artist-pic-container {
+    /*side panel*/
+.album-side-panel {
+    display: flex;
+    flex-direction: column;
+    
     width: 25%;
+    height: auto;
+    
 }
-.artist-pic {
-    width: 300px;
-    height: 300px;
+
+.album-pic > img {
+    align-items:center;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.artist-info {
+.tracklist-box-parent {
+    padding-top: 10px;
+}
+
+.tracklist-box-inner {
+    background-color:  #211F27;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.album-tracklist-header{
+    color: #F4EBEB;
+    font-family: "OpenSans", sans-serif;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+}
+
+.tracklist-container {
+    border-bottom: 1px solid #F4EBEB;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.tracklist-number {
+    color: #F4EBEB;
+    font-family: "OpenSans", sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.tracklist-name {
+    color: #F4EBEB;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: left;
+}
+
+    /*main panel*/
+.main-panel {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -218,14 +267,121 @@ body {
     width: 75%;
 }
 
-.artist-name {
+.album-name {
     color: #F4EBEB;
     font-family: "OpenSans", sans-serif;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 40px;
+    padding-bottom: 20px;
 }
 
-.artist-genre {
+table {
+    width: 100%;
+    text-align: left;
+    padding-left: 5px;
+}
+
+tr {
+    font-family: "OpenSans", sans-serif;
+    font-size: 14px;
+    color: #F4EBEB;
+    text-align: left;
+    width: 70%;
+    text-align: left;
+}
+
+th {
+    width: 30%;
+    font-weight: bold;
+}
+
+td {
+    font-weight: normal;
+}
+
+/* reviews header */ 
+.reviews-header-container{
+    width: 100%;
+    border-top: 3px solid #211F27;
+    border-bottom: 3px solid #211F27;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+.reviews-header{
+    color: #F4EBEB;
+    font-family: "OpenSans", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+/* reviews area */ 
+.reviews-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews-box-parent {
+    margin: 10px;
+    padding: 10px;
+}
+
+.reviews-box-inner {
+    background-color:  #211F27;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+.reviews-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.reviews-profile-pic {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50px;
+    padding-left: 10px;
+}
+
+.review-body {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
+    background-color: #3B3942;
+    height: 3p50x;
+    padding: 10px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.review-text {
+    color: #F4EBEB;
+    font-weight: normal;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-family: "OpenSans", sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.user-date-container {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-left: 20px;
+    width: 70%;
+}
+
+.reviews-username {
     margin-right: 40px;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
@@ -235,10 +391,31 @@ body {
     margin-bottom: 0px;
 }
 
+.reviews-date {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #F4EBEB;
+    text-align: left;    
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.rating > img {
+    width: 25px;
+    margin-right: 5px;
+}
+
 .tags-area {
     display: flex;
     flex-direction: row;
     margin-top: 5px;
+    padding-left: 15px;
 }
 
 .tag {
@@ -250,150 +427,7 @@ body {
 .tag > p {
     color: #F4EBEB;
     font-weight: normal;
+    font-size: 14px;
     margin: 0px 10px;
     font-family: "OpenSans", sans-serif;
-}
-
-.artist-bio {
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 18px;
-    color: #F4EBEB;
-    margin-top: 10px;
-    margin-bottom: 0px;
-}
-
-.artist-bio > a:link {
-    color: #F4EBEB;
-    font-weight: bold;
-}
-
-.artist-bio > a:link:hover {
-    color: #BBA7FF;
-  }
-
-.discog-header-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-top: 3px solid #211F27;
-    border-bottom: 3px solid #211F27;
-    margin-bottom: 20px;
-}
-.discog-header > h1 {
-    color: #F4EBEB;
-    font-family: "OpenSans", sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    justify-content: left;
-    align-items: flex-start;
-}
-
-.discog-header-details{
-    display: flex;
-    flex-direction: row;
-}
-
-.empty-box{
-    width: 10%
-}
-
-.title-header {
-    margin-right: 20px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    color: #F4EBEB;
-    margin-bottom: 10px;
-    padding-left: 6%;
-    width: 20%;
-}
-
-.reviews-header{
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    color: #F4EBEB;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.album-container {
-    display: flex;  
-    flex-direction: column;
-    justify-content: center;
-    
-    padding-bottom: 5px;
-    width: 100%;
-}
-
-.album-panel {
-    display: flex;
-    flex-direction: row;
-}  
-
-.album-image > img {
-    width: 64px;
-    height: 64px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: 10px ;
-}
-
-.album-title-date-container {
-    display: flex;
-    flex-direction: column;
-    flex-flow: column;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding-left: 5px;
-    width: 90%;
-}
-
-.album-title {
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: #BBA7FF;
-    text-align: left;
-}
-
-.album-title > a:link {
-    color: #F4EBEB;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.album-title > a:link:hover {
-    color: #F4EBEB;
-  }
-
-.album-date {
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 12px;
-    color: #F4EBEB;
-    text-align: left;    
-}
-
-.album-reviews {
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 18px;
-    color: #F4EBEB;
-    text-align: left;
-}
-
-.album-average{
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    color: #BBA7FF;
-    text-align: left;
 }
