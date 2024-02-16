@@ -486,7 +486,6 @@ body {
 }
 
 
-
 .create-post-text {
     background-color: #3B3942;
     width: 100%;
@@ -496,6 +495,15 @@ body {
     align-items: center;
     justify-content: flex-start;
     border-radius: 25px;
+}
+
+.create-post-text > a:link, a:visited{
+    display: inline-flex;
+    align-items:center;
+    text-decoration: none;
+    color: #A9A5B6; 
+    width: 100%;
+    height: 72px;
 }
 
 .create-post-text > p {
