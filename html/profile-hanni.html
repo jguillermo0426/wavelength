@@ -31,6 +31,7 @@
             <input type="text" placeholder="Display name">
           </div>
         </div>
+
         <div class="edit-details">
           <p>Bio</p>
           <div class="input-details">
@@ -39,22 +40,22 @@
         </div>
       </div>
 
-       <div class="header-bar">
-          <div id="logo-bar" class="logo-name">
-            <img src='../svg/logo.svg'>
-            <p>Wavelength</p>
-          </div>
-
-          <div class="search-area">
-            <input type="text" placeholder="Type to search">
-          </div>
-
-          <div id="user-bar" class="user-bar">
-            <a href="login.html" id="log-in" class="logged-status">log in</a>
-            <p>|</p>
-            <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
-          </div>
+      <div class="header-bar">
+        <div id="logo-bar" class="logo-name">
+          <img src='../svg/logo.svg'>
+          <p>Wavelength</p>
         </div>
+
+        <div class="search-area">
+          <input type="text" placeholder="Type to search">
+        </div>
+
+        <div id="user-bar" class="user-bar">
+          <a href="login.html" id="log-in" class="logged-status">log in</a>
+          <p>|</p>
+          <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
+        </div>
+      </div>
 
       <div class="profile-banner">
         <img src="https://thekmeal.com/wp-content/uploads/2021/05/wave-to-earth.jpg"/>
@@ -158,8 +159,19 @@
                   <button class="tag">Contemporary R&B</button>
                 </div>
               </div>
+
               <div class="three-dots">
-                <img src="../png/dots.png">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
+                <div id="edit-delete-post-1" class="edit-delete-post">
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>
+                  </div>
+                </div>   
               </div>
             </div>
 
@@ -210,8 +222,19 @@
                   <button class="tag">Dance Pop</button>
                 </div>
               </div>
+
               <div class="three-dots">
-                <img src="../png/dots.png">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-2')">
+                <div id="edit-delete-post-2" class="edit-delete-post">
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-2')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-2')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>            
+                  </div>
+                </div> 
               </div>
             </div>
 
