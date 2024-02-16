@@ -40,9 +40,7 @@ var postsData = [
         comments: 3,
         postText: `I knew Red Velvet only through the album 'The Red,' to which I will upload its review later, lmao.
 
-        Three very good songs without a doubt, 'Bad Boy' is, if I'm not mistaken, already an anthem within K-pop culture, and it is well-deserved with its incredible vocals and the mature atmosphere that the group handles very well. 'All Right' reminds me a lot of a few songs from 'The Red,' and the change from what is mature to something more playful is so sudden. I don't mean this in a negative sense; in fact, it seems like a song I will listen to a lot from now on, but I feel like it doesn't quite fit here. But here's my issue: I understand that Red Velvet is known for releasing songs ranging from the most cheerful to more profound ones, and that kind of gets me because the rhythm changes are so strong that it's hard for me to listen to them in succession. 'Time To Love' is, for me, like a song that surely appears in a K-Drama, and well, it's good. It has a very elegant piano arrangement in the background and the sound of little stars that are well placed, giving it that special touch.
-        
-        A 6.5/10; it's a good EP that retains many of the group's previous concepts but more refined`,
+        Three very good songs without a doubt, 'Bad Boy' is, if I'm not mistaken, already an anthem within K-pop culture, and it is well-deserved with its incredible vocals and the mature atmosphere that the group handles very well. 'All Right' reminds me a lot of a few songs from 'The Red,' and the change from what is mature to something more playful is so sudden. I don't mean this in a negative sense; in fact, it seems like a song I will listen to a lot from now on, but I feel like it doesn't `,
     },
     {
         cover: "https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820-820x820.jpg", 
