@@ -501,9 +501,9 @@ body {
     display: inline-flex;
     align-items:center;
     text-decoration: none;
-    color: #A9A5B6; 
-    width: 100%;
-    height: 72px;
+    color: #A9A5B6;
+    width: 1000px; 
+    height: 70px;
 }
 
 .create-post-text > p {
