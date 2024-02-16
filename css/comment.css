@@ -237,6 +237,15 @@ body {
     margin-top: 15px;
     margin-bottom: 0px;
 }
+.song-album-title > a:link, a:visited{
+    color: #F4EBEB;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .song-album-title > a:hover {
+    color: #BBA7FF;
+  }
 
 .artist {
     margin-right: 40px;
@@ -246,6 +255,15 @@ body {
     color: #F4EBEB;
     margin-top: 5px;
     margin-bottom: 0px;
+}
+.artist > a:link, a:visited{
+    color: #F4EBEB;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+.artist > a:hover {
+    color: #BBA7FF;
 }
 
 .rating {

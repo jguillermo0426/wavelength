@@ -405,6 +405,16 @@ body {
   margin-bottom: 5px;
 }
 
+.post-track-album > a:link, a:visited{
+  color: #F4EBEB;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post-track-album > a:hover {
+  color: #BBA7FF;
+}
+
 .post-artist {
   font-family: OpenSans;
   font-weight: bold;
@@ -414,6 +424,15 @@ body {
   margin-bottom: 5px;
 }
 
+.post-artist > a:link, a:visited{
+  color: #F4EBEB;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post-artist > a:hover {
+  color: #BBA7FF;
+}
 .post-rating {
   margin: 5px 0px;
 }
