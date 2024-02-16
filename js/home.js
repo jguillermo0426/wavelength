@@ -89,7 +89,7 @@ var postsData = [
         artistLink: "artistpage_lesserafim.html",
         rating: 5, 
         user: "hannipham", 
-        userLink: "profile-hannipham.html",
+        userLink: "profile-hanni.html",
         reviewDate: "February 14, 2024",
         tag1: "Album",
         tag2: "Pop",
