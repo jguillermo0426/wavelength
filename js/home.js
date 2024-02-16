@@ -20,6 +20,31 @@ var postsData = [
         <br>
         <br>         
         First off, the whole vibe is SOOO cohesive. It's like dark, sultry Red Velvet on a whole new level, and honestly, I'm here for it. Every song feels like it belongs, you know? No skips, just straight bops from start to finish.`,
+    },
+    {
+        cover: "https://i.scdn.co/image/ab67616d0000b27374c732f8aa0e0ccbb3d17d96", 
+        trackName: "Bewitched",
+        artist: "Laufey",
+        trackLink: "albumpage_bewitched.html",
+        artistLink: "artistpage_laufey.html",
+        rating: 5, 
+        user: "laufey", 
+        userLink: "profile-pastebored.html",
+        reviewDate: "February 14, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Contemporary R&B",
+        title: "I'm left bewitched...",
+        likes: 69,
+        dislikes: 3,
+        comments: 3,
+        postText: `Laufey's second album, "Bewitched," is like stumbling into a whimsical forest of sound. From the get-go, the opening track "Dreamer" is a cozy enchantment, with Laufey's voice casting a spell that's hard to shake off.
+        <br>
+        <br>         
+        The title track, "Bewitched," ties it all together. It's a haunting melody, a bit mysterious, and it leaves you with that magical feeling, like you just finished a good book or a fantastic movie.
+        <br>
+        <br>
+        Laufey's debut is a delightful journey that effortlessly weaves through different genres. It's a bit like finding a hidden gem in a vintage store - unique, charming, and totally worth sharing with your music-loving friends. "Bewitched" is a solid introduction to Laufey's enchanting world, and it's a ride you won't want to miss. `,
     }
 ];
 
@@ -39,6 +64,14 @@ var userData = [
         postsDisliked: [],
         password: "wiwidoms04",
         profileLink: "home.html"
+    },
+    {
+        profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-468531bd9031bbc43980b8db0ea5fa75-lq",
+        username: "pastebored",
+        postsLiked: [],
+        postsDisliked: [],
+        password: "superpass",
+        profileLink: "profile-pastebored.html"
     }
 ];
 
