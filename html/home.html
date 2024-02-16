@@ -20,7 +20,7 @@
           </div>
 
           <div class="search-area">
-            <input type="text" placeholder="Type to search">
+            <input type="text" id="search" onkeyup="search()" placeholder="Type to search">
           </div>
 
           <div id="user-bar" class="user-bar">
@@ -53,11 +53,13 @@
             </div>
           </div>
 
-          <div class="featured-posts">
+          <div id="featured-posts" class="featured-posts">
             <p>Featured Posts</p>
             <hr>
           </div>
-
+          
+          <div id="filtered-tags" class="filtered-tags">
+          </div>
           <div id="post-area">
   
             <div id="template" class="post-template">

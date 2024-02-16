@@ -350,6 +350,13 @@ body {
     background-color: #8F59DD;
     margin-right: 10px;
     border-radius: 25px;
+    transition: all 0.25s ease-in-out;
+}
+
+.tag:hover {
+    background-color: #BBA7FF;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
 }
 
 .tag > p {
@@ -581,4 +588,12 @@ body {
     color: #F4EBEB;
     transition: all 0.25s ease-in-out;
     background-color: #8F59DD;
+}
+
+.filtered-tags {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 40px;
+    display: none;
+    padding-top: 10px;
 }
