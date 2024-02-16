@@ -404,13 +404,13 @@ function createPost(postData, idNumber) {
           </div>
           <p class="user-reviewed">reviewed by <a href="${postData.userLink}" class="user">${postData.user}</a> on <span class="date">${postData.reviewDate}</span></p>
             <div class="tags-area">
-              <div class="tag">
+              <div class="tag" onclick="tagClick('${postData.tag1}')">
                 <p>${postData.tag1}</p>
             </div>
-            <div class="tag">
+            <div class="tag" onclick="tagClick('${postData.tag2}')">
                 <p>${postData.tag2}</p>
             </div>
-            <div class="tag">
+            <div class="tag" onclick="tagClick('${postData.tag3}')">
                 <p>${postData.tag3}</p>
             </div>
           </div>
@@ -450,6 +450,8 @@ function removeAllChildNodes(parent) {
 }
 
 var postsArray = [];
+var filteredPosts = [];
+var isFiltered = false;
 
 function assignId() {
     for (let i = 0; i < postsData.length; i++) {
@@ -489,12 +491,12 @@ function assignId() {
     }
 }
 
-function loadPosts(loadedPosts) {
+function loadPosts(loadedPosts, array) {
     const postArea = document.getElementById("post-area");
     removeAllChildNodes(postArea);
 
     for (let i = 0; i < loadedPosts; i++) {
-        postArea.appendChild(postsArray[i]);
+        postArea.appendChild(array[i]);
     }
 }
 
@@ -513,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (postsData.length < 15) {
         loadedPosts = postsData.length;
     }
-    loadPosts(loadedPosts);
+    loadPosts(loadedPosts, postsArray);
 
     
     var createPostBar = document.getElementById('create-post');
@@ -531,13 +533,19 @@ document.addEventListener('DOMContentLoaded', function() {
     feed.appendChild(loadMore);
     
     loadMore.addEventListener('click', function() {
-        if (postsData.length - loadedPosts < 15) {
-            loadedPosts = loadedPosts + (postsData.length - loadedPosts);
+        var array = postsArray;
+
+        if (isFiltered) {
+            array = filteredPosts;
+        }
+
+        if (array.length - loadedPosts < 15) {
+            loadedPosts = loadedPosts + (array.length - loadedPosts);
         }
         else {
             loadedPosts += 15;
         }
-        loadPosts(loadedPosts);
+        loadPosts(loadedPosts, array);
     });
 });
 
@@ -557,8 +565,16 @@ function getPostDate(dateString) {
     return dateObject;
 }
 
+var sorted = "recent";
+
 function sortPostsRecent() {
-    postsArray.sort(function(a, b) {
+    var array = postsArray;
+
+    if (isFiltered) {
+        array = filteredPosts;
+    }
+
+    array.sort(function(a, b) {
         var compA = getPostDate(a.querySelector(".date").innerHTML);
         var compB = getPostDate(b.querySelector(".date").innerHTML);
 
@@ -572,12 +588,24 @@ function sortPostsRecent() {
             return 0;
         }
     });
-    loadedPosts = 15;
-    loadPosts(loadedPosts);
+
+    if (array.length < 15) {
+        loadedPosts = array.length;
+    }
+    else {
+        loadedPosts = 15;
+    }
+    loadPosts(loadedPosts, array);
 }
 
 function sortPostsPopular() {
-    postsArray.sort(function(a, b) {
+    var array = postsArray;
+
+    if (isFiltered) {
+        array = filteredPosts;
+    }
+
+    array.sort(function(a, b) {
         var compA = parseInt(a.querySelector('#like-counter').innerHTML);
         var compB = parseInt(b.querySelector('#like-counter').innerHTML);
 
@@ -591,8 +619,14 @@ function sortPostsPopular() {
             return 0;
         }
     });
-    loadedPosts = 15;
-    loadPosts(loadedPosts);
+
+    if (array.length < 15) {
+        loadedPosts = array.length;
+    }
+    else {
+        loadedPosts = 15;
+    }
+    loadPosts(loadedPosts, array);
 }
 
 function highlightSort() {
@@ -622,12 +656,14 @@ function highlightSort() {
 const popular = document.getElementById('popular');
 
 popular.addEventListener('click', function() {
+    sorted = "popular";
     sortPostsPopular();
 });
 
 const recent = document.getElementById('recent');
 
 recent.addEventListener('click', function() {
+    sorted = "recent";
     sortPostsRecent();
 });
 
@@ -971,4 +1007,90 @@ function checkLogin() {
 
     errorMessage.style.visibility = "hidden";
     return true;
+}
+
+function search() {
+    var input = document.getElementById("search");
+    var filter = input.value.toLowerCase().trim();
+
+    const postArea = document.getElementById("post-area");
+    removeAllChildNodes(postArea);
+    filteredPosts.length = 0;
+
+    if (postsData.length < 15) {
+        loadedPosts = postsData.length;
+    }
+    else {
+        loadedPosts = 15;
+    }
+
+    if (filter === "") {
+        isFiltered = false;
+        if (sorted === "recent") {
+            sortPostsRecent();
+        }
+        else if (sorted === "popular") {
+            sortPostsPopular();
+        }
+
+        loadPosts(loadedPosts, postsArray);
+    }
+    else {
+        isFiltered = true;
+
+        for (let i = 0; i < postsArray.length; i++) {
+            var trackName = postsArray[i].querySelector(".song-album-title").innerText;
+            var artistName = postsArray[i].querySelector(".artist").innerText;
+            var postTitle = postsArray[i].querySelector(".post-title").innerText;
+            var postBody = postsArray[i].querySelector(".post-text").innerText;
+
+            if (trackName.toLowerCase().includes(filter) || artistName.toLowerCase().includes(filter) || postTitle.toLowerCase().includes(filter) || postBody.toLowerCase().includes(filter)) {
+                console.log(filter, trackName.toLowerCase(), artistName.toLowerCase());
+                filteredPosts.push(postsArray[i]);
+            }
+        }
+    
+        if (filteredPosts.length < 15) {
+            loadedPosts = filteredPosts.length;
+        }
+        else {
+            loadedPosts = 15;
+        }
+    
+        loadPosts(loadedPosts, filteredPosts);
+    }
+}
+
+function tagClick(filterTag) {
+    const tag = document.createElement('div');
+    tag.className = "tag";
+    tag.onclick = function() {
+        tagUnclick(tag);
+    };
+    tag.innerHTML = `
+        <p>${filterTag}</p>
+    `;
+    const filteredTags = document.getElementById("filtered-tags");
+    filteredTags.style.display = "flex";
+    
+    var tags = filteredTags.querySelectorAll(".tag");
+
+    if (tags.length == 5) {
+        return;
+    }
+
+    for (let i = 0; i < tags.length; i++) {
+        if (tags[i].innerText === filterTag) {
+            return;
+        }
+    }
+
+    filteredTags.appendChild(tag);
+}
+
+function tagUnclick(tag) {
+    const filteredTags = document.getElementById("filtered-tags");
+    filteredTags.style.display = "flex";
+
+    filteredTags.removeChild(tag);
 }
