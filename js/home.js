@@ -25,7 +25,7 @@ var postsData = [
         cover: "https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550", 
         trackName: "The Perfect Red Velvet",
         artist: "Red Velvet",
-        trackLink: "home.html",
+        trackLink: "albumpage_tprv.html",
         artistLink: "artistpage_redvelvet.html",
         rating: 5, 
         user: "kiwidoms", 
@@ -44,7 +44,7 @@ var postsData = [
         cover: "https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820-820x820.jpg", 
         trackName: "Queen II",
         artist: "Queen",
-        trackLink: "home.html",
+        trackLink: "albumpage_queenii.html",
         artistLink: "artistpage_queen.html",
         rating: 5, 
         user: "kiwidoms", 
@@ -79,10 +79,7 @@ var postsData = [
         postText: `Laufey's second album, "Bewitched," is like stumbling into a whimsical forest of sound. From the get-go, the opening track "Dreamer" is a cozy enchantment, with Laufey's voice casting a spell that's hard to shake off.
         <br>
         <br>         
-        The title track, "Bewitched," ties it all together. It's a haunting melody, a bit mysterious, and it leaves you with that magical feeling, like you just finished a good book or a fantastic movie.
-        <br>
-        <br>
-        Laufey's debut is a delightful journey that effortlessly weaves through different genres. It's a bit like finding a hidden gem in a vintage store - unique, charming, and totally worth sharing with your music-loving friends. "Bewitched" is a solid introduction to Laufey's enchanting world, and it's a ride you won't want to miss. `,
+        The title track, "Bewitched," ties it all together. It's a haunting melody, a bit mysterious, and it leaves you with that magical feeling, like you just finished a good book or a fantastic movie.`,
     },
     {
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/88/da/da/88dada02-f9e3-b632-6fb7-d52414d7ac76/23UMGIM43940.rgb.jpg/1200x1200bf-60.jpg", 
@@ -102,6 +99,28 @@ var postsData = [
         dislikes: 3,
         comments: 3,
         postText: '',
+    },
+    {
+        cover: "https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png", 
+        trackName: "Rock-Star",
+        artist: "Stray Kids",
+        trackLink: "albumpage_rockstar.html",
+        artistLink: "artistpage_straykids.html",
+        rating: 5, 
+        user: "pastebored", 
+        userLink: "profile-pastebored.html",
+        reviewDate: "January 1, 2024",
+        tag1: "Album",
+        tag2: "K-Pop",
+        tag3: "Pop Rap",
+        title: "🤘 FEEL THE ROCK!! 🤘",
+        likes: 69,
+        dislikes: 3,
+        comments: 3,
+        postText: `OMG, y'all, can we talk about Stray Kids' new album "Rock-Star"? Because I am absolutely shook and living for every moment of it! 🌟💥
+        <br>
+        <br>
+        First things first, these boys are on fire! From the moment you hit play, "Rock-Star" explodes into your ears with this insane energy that grabs you by the collar and`,
     }
 ];
 
@@ -115,12 +134,12 @@ var userData = [
         profileLink: "profile-hanni.html"
     },
     {
-        profilePicture: "https://qph.cf2.quoracdn.net/main-qimg-468531bd9031bbc43980b8db0ea5fa75-lq",
+        profilePicture: "https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg",
         username: "kiwidoms",
         postsLiked: [],
         postsDisliked: [],
         password: "wiwidoms04",
-        profileLink: "home.html"
+        profileLink: "profile-kiwidoms.html"
     },
     {
         profilePicture: "https://i.pinimg.com/originals/75/85/04/75850404ff3478f2dd4c0542640b6a94.jpg",
