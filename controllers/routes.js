@@ -66,10 +66,20 @@ function add(server){
           loggedUser = user_data;
           resp.redirect('/');
           console.log('Redirecting');
+        } else {
+          console.log('User and Password not found!')
+          isLogged = false;
         }
       }).catch(errorFn);
     });
-  
+    
+    server.get('/logout', async(req, resp) => {
+      isLogged = false;
+      loggedUser = [];
+      console.log('Logging out');
+      console.log(loggedUser);
+      resp.redirect('/');
+    })
   }
 
 module.exports.add = add;
