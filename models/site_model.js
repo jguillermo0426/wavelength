@@ -23,4 +23,30 @@ const postSchema = new mongoose.Schema({
 
 const wavelengthModel = mongoose.model('post_data', postSchema);
 
-module.exports = wavelengthModel;
+
+const profileSchema = new mongoose.Schema({
+    username: String,
+    bio: String,
+    user_image: String,
+    header_image: String
+}, {versionKey: false});
+
+const profileModel = mongoose.model('profile', profileSchema);
+
+
+const commentSchema = new mongoose.Schema({
+    username: String,
+    user_image: String,
+    postTitle: String,
+    commentText: String,
+    likes: Number,
+    dislikes: Number,
+    replies: Number
+}, {versionKey: false});
+
+const commentModel = mongoose.model('comment', commentSchema);
+
+
+module.exports = {wavelengthModel, 
+                profileModel,
+                commentModel};

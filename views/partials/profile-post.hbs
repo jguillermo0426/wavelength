@@ -1,0 +1,70 @@
+{{#each post_data}}
+<div id="template" class="post">
+  <div class="post-header">
+    <img class="cover" src="{{cover}}">
+    <div class="post-titles">
+      <p class="song-album-title"><a href="{{trackLink}}">{{trackName}}</a></p>
+      <p class="artist"><a href="{{artistLink}}">{{artist}}</a></p>
+      <div class="rating">
+        {{{ratingStars rating}}}
+      </div>
+      <p class="user-reviewed">reviewed on <span class="date">{{reviewDate}}</span></p>
+      <div class="tags-area">
+        <div class="tag">
+          <p>{{tag1}}</p>
+        </div>
+        <div class="tag">
+          <p>{{tag2}}</p>
+        </div>
+        <div class="tag">
+          <p>{{tag3}}</p>
+        </div>
+      </div>    
+    </div>
+
+    <div class="three-dots">
+      <img src="../common/png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
+      <div id="edit-delete-post-1" class="edit-delete-post">
+        <div class="option" onclick="editPost('edit-delete-post-1')">
+          <img class="pen-stroke" src="../common/png/pen-stroke.png">
+          <p>Edit Post</p>
+        </div>
+
+        <div class="option" onclick="deletePost('edit-delete-post-1')">
+          <img class="trash" src="../common/png/trash.png">
+          <p>Delete Post</p>
+        </div>
+      </div>   
+    </div>
+  </div>
+         
+  <div class="post-body">
+    <p class="post-title">
+      {{title}}
+    </p>
+    <p class="post-text">
+      {{{truncateText postText 500}}}
+      {{#if (showSeeMore postText 500)}}
+        <a href="{{postLink}}" class="see-more"> See more</a>
+      {{/if}}
+    </p>
+  </div>
+        
+  <div class="post-footer">
+    <div id="likes-bar" class="react-bar">
+      <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
+      <p id="like-counter" class="counter">{{likes}}</p>
+    </div>
+
+    <div id="dislikes-bar" class="react-bar">
+      <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
+      <p id="dislike-counter" class="counter">{{dislikes}}</p>
+    </div>
+
+    <div id="comments-bar" class="react-bar">
+      <input type="image" class="comment" src="../common/svg/comment.svg">
+      <p id="comment-counter" class="counter">{{comments}}</p>
+    </div>
+  </div>
+</div>
+{{/each}}

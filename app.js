@@ -18,7 +18,7 @@ server.use(express.static('public'));
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/wavelength');
+mongoose.connect('mongodb+srv://wavelength_group:wavelength@wavelength.gszzu7l.mongodb.net/wavelength');
 
 const controllers = ['routes'];
 for(var i=0; i<controllers.length; i++){

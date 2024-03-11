@@ -1,4 +1,12 @@
-const postController = require('./post_controller')
+const postController = require('./post_controller');
+const profileController = require('./profile_controller');
+const commentController = require('./comment_controller');
+
+function errorFn(err){
+  console.log('Error found. Please trace!');
+  console.error(err);
+}
+
 
 function add(server){
     server.get('/', function(req, resp){
@@ -13,6 +21,26 @@ function add(server){
           console.error('Error occurred while getting posts:', err);
       });
     });
+
+    //PROFILE PAGE
+    /*
+    server.get('/', function(req, resp){
+      const username = "hannipham";
+
+      profileController.getProfile(username).then(profile => {
+        postController.getUserPosts(username).then(posts => {
+          commentController.getUserComments(username).then(comments => {
+            resp.render('profile',{
+              layout: 'profile_layout',
+              title: 'Wavelength • Profile',
+              profile_data: profile,
+              post_data: posts,
+              comment_data: comments
+            }); 
+          }).catch(errorFn);
+        }).catch(errorFn);
+      }).catch(errorFn);
+    });*/
   }
 
 module.exports.add = add;

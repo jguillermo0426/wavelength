@@ -11,4 +11,11 @@ function getAllPosts() {
     return allPosts;
 }
 
+
+function getUserPosts(username) {
+    var userPosts = Posts.wavelengthModel.find({user: username}).lean();
+    return userPosts;
+}
+
 module.exports.getAllPosts = getAllPosts; 
+module.exports.getUserPosts = getUserPosts;
