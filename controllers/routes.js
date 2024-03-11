@@ -23,8 +23,7 @@ function add(server){
     });
 
     //PROFILE PAGE
-    /*
-    server.get('/', function(req, resp){
+    server.get('/profile', function(req, resp){
       const username = "hannipham";
 
       profileController.getProfile(username).then(profile => {
@@ -40,7 +39,7 @@ function add(server){
           }).catch(errorFn);
         }).catch(errorFn);
       }).catch(errorFn);
-    });*/
+    });
   }
 
 module.exports.add = add;
