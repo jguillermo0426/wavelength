@@ -10,4 +10,12 @@ function getProfile(username) {
     return profile;
 }
 
-module.exports.getProfile = getProfile; 
+function logUser(username, password){
+    const searchQuery = { username: username, password: password };
+
+    var profile = Profiles.profileModel.findOne(searchQuery).lean();
+    return profile;
+}
+
+module.exports.getProfile = getProfile;
+module.exports.logUser = logUser; 

@@ -7,6 +7,8 @@ function errorFn(err){
   console.error(err);
 }
 
+var loggedUser = [];
+var isLogged = false;
 
 function add(server){
     server.get('/', function(req, resp){
@@ -14,7 +16,9 @@ function add(server){
         resp.render('main',{
           layout: 'index',
           title: 'Wavelength • Home',
-          post_data: posts
+          post_data: posts,
+          isLogged: isLogged,
+          user : loggedUser
         }); 
       
       }).catch(err => {
@@ -40,6 +44,32 @@ function add(server){
         }).catch(errorFn);
       }).catch(errorFn);
     });
+    
+
+    server.get('/login', function(req, resp){
+      resp.render('login',{
+        layout: 'index',
+        title: 'Wavelength • Log-in',
+      });
+    });
+
+    server.post('/login', async (req, resp) => {
+      var user = req.body.username;
+      var pass = req.body.password;
+
+      profileController.logUser(user, pass).then(function(user_data){
+        console.log('Finding user');
+
+        if(user_data != undefined && user_data._id != null){
+          console.log(user_data);
+          isLogged = true;
+          loggedUser = user_data;
+          resp.redirect('/');
+          console.log('Redirecting');
+        }
+      }).catch(errorFn);
+    });
+  
   }
 
 module.exports.add = add;

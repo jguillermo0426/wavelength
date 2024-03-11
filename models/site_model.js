@@ -21,11 +21,12 @@ const postSchema = new mongoose.Schema({
     postLink: String
 },{ versionKey: false });
 
-const wavelengthModel = mongoose.model('post_data', postSchema);
+const postModel = mongoose.model('post_data', postSchema);
 
 
 const profileSchema = new mongoose.Schema({
     username: String,
+    password: String,
     bio: String,
     user_image: String,
     header_image: String
@@ -47,6 +48,6 @@ const commentSchema = new mongoose.Schema({
 const commentModel = mongoose.model('comment', commentSchema);
 
 
-module.exports = {wavelengthModel, 
+module.exports = {postModel, 
                 profileModel,
                 commentModel};

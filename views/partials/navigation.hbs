@@ -7,10 +7,17 @@
     <div class="search-area">
     <input type="text" id="search" onkeyup="search()" placeholder="Type to search">
     </div>
-
     <div id="user-bar" class="user-bar">
-    <a href="login.html" id="log-in" class="logged-status">log in</a>
+{{#if isLogged}}
+    <div class="profile-pic-holder">
+        <a class="profile-picture" href="/profile-{{{ user.username }}}"> <img src="{{{ user.user_image }}}"> </a>
+    </div>
+        <a href="/" class="logged-status" id="log-out">log out</a>
+{{/if}}
+{{#unless isLogged}}
+    <a href="/login" id="log-in" class="logged-status">log in</a>
     <p>|</p>
     <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
+{{/unless}}
     </div>
 </div>
