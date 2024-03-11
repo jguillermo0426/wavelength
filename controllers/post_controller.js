@@ -7,7 +7,7 @@ function errorFn(err){
 
 
 function getAllPosts() {
-    var allPosts = Posts.postModelModel.find({}).lean();
+    var allPosts = Posts.postModel.find({}).lean();
     return allPosts;
 }
 
