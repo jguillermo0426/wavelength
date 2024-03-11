@@ -55,6 +55,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 25%;
+  cursor: pointer;
 }
 
 .logo-name > img {
