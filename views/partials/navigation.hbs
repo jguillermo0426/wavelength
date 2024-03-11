@@ -12,7 +12,7 @@
     <div class="profile-pic-holder">
         <a class="profile-picture" href="/profile-{{{ user.username }}}"> <img src="{{{ user.user_image }}}"> </a>
     </div>
-        <a href="/" class="logged-status" id="log-out">log out</a>
+        <a href="/logout" class="logged-status" id="log-out">log out</a>
 {{/if}}
 {{#unless isLogged}}
     <a href="/login" id="log-in" class="logged-status">log in</a>

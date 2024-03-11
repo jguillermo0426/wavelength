@@ -7,9 +7,9 @@
     {{#if isLogged}}
         <img id="profile-picture-post" src="{{{user.user_image}}}" />
     {{/if}}
-    {{#else}}
-        <img id="profile-picture-post" src="../public/common/png/blank-profile.png" />
-    {{/else}}
+    {{#unless isLogged}}
+        <img id="profile-picture-post" src='../common/png/blank-profile.png' />
+    {{/unless}}
     </div>
     <div id="create-post-text" class="create-post-text">
         <a class="create-post-text" href="createpost.html">
