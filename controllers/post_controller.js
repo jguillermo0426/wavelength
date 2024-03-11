@@ -7,13 +7,13 @@ function errorFn(err){
 
 
 function getAllPosts() {
-    var allPosts = Posts.wavelengthModel.find({}).lean();
+    var allPosts = Posts.postModel.find({}).lean();
     return allPosts;
 }
 
 
 function getUserPosts(username) {
-    var userPosts = Posts.wavelengthModel.find({user: username}).lean();
+    var userPosts = Posts.postModel.find({user: username}).lean();
     return userPosts;
 }
 
