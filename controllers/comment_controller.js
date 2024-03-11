@@ -7,7 +7,7 @@ function errorFn(err){
 
 
 function getAllComments() {
-    var allComments = Posts.find({}).lean();
+    var allComments = Comments.commentModel.find({}).lean();
     return allComments;
 }
 

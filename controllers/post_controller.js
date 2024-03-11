@@ -7,7 +7,7 @@ function errorFn(err){
 
 
 function getAllPosts() {
-    var allPosts = Posts.find({}).lean();
+    var allPosts = Posts.wavelengthModel.find({}).lean();
     return allPosts;
 }
 
