@@ -5,10 +5,6 @@ function errorFn(err){
     console.error(err);
 }
 
-function getProfile(username) {
-    var profile = Profiles.profileModel.findOne({ username: username}).lean();
-    return profile;
-}
 
 function logUser(username, password){
     const searchQuery = { username: username, password: password };
@@ -17,5 +13,4 @@ function logUser(username, password){
     return profile;
 }
 
-module.exports.getProfile = getProfile;
 module.exports.logUser = logUser; 

@@ -8,13 +8,13 @@
   </div>
 
   <div class="edit-banner">
-    <img class="banner" src="{{profile_data.header_image}}">
+    <img class="banner" src="{{user.header_image}}">
     <img class="banner-pen" src="../png/pen.png">
   </div>
 
   <img class="profile-pen" src="/common/png/pen.png">
   <div class="edit-profile-picture">
-    <img src="{{profile_data.user_image}}">
+    <img src="{{user.user_image}}">
   </div>
 
   <div class="edit-details">
@@ -33,15 +33,15 @@
 </div>
 
 <div class="profile-banner">
-  <img src="{{profile_data.header_image}}"/>
+  <img src="{{user.header_image}}"/>
 </div>
 <div class="profile">
   <div class="profile-section">
-    <img src="{{profile_data.user_image}}"/>
+    <img src="{{user.user_image}}"/>
     <div class="profile-elements">
       <div class="profile-info">
-        <p id="username">{{profile_data.username}}</p>
-        <p id="bio">{{profile_data.bio}}</p>
+        <p id="username">{{user.username}}</p>
+        <p id="bio">{{user.bio}}</p>
       </div>
       <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
     </div>
@@ -57,28 +57,20 @@
   </div>
 
   <!-- RECENT POSTS -->
-  {{#if post_data.length}}
-    {{> profile-post}}
-  {{else}}
-    <p class="no-content">
-      There's nothing 
-      <br>
-      here...
-    </p>
-  {{/if}}
+  <div id="recent-posts-area">
+    {{#if post_data.length}}
+      {{> profile-post}}
+    {{else}}
+      <p class="no-content">
+        There's nothing 
+        <br>
+        here...
+      </p>
+    {{/if}}
+  </div>
 
   <!-- RECENT COMMENTS -->
-  {{#each comment_data}}
-  <div class="recent-comment">
-    <div class="comment-body">
-      <div class="comment-profile-picture">
-        <img src="{{user_image}}">
-      </div>
-      <div class="comment-info">
-        <p class="comment-status"><span class="comment-username">{{username}}</span> commented on <span class="comment-title">{{postTitle}}</span></p>
-        <p class="comment-content">{{commentText}} </p>
-      </div>
-    </div>
+  <div id="recent-comments-area">
+    {{> profile-comments}}
   </div>
-  {{/each}}
 </div>

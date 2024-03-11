@@ -11,6 +11,7 @@ var loggedUser = [];
 var isLogged = false;
 
 function add(server){
+    //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
         resp.render('main',{
@@ -26,26 +27,7 @@ function add(server){
       });
     });
 
-    //PROFILE PAGE
-    server.get('/profile', function(req, resp){
-      const username = "hannipham";
-
-      profileController.getProfile(username).then(profile => {
-        postController.getUserPosts(username).then(posts => {
-          commentController.getUserComments(username).then(comments => {
-            resp.render('profile',{
-              layout: 'profile_layout',
-              title: 'Wavelength • Profile',
-              profile_data: profile,
-              post_data: posts,
-              comment_data: comments
-            }); 
-          }).catch(errorFn);
-        }).catch(errorFn);
-      }).catch(errorFn);
-    });
-    
-
+    //LOGIN PAGE
     server.get('/login', function(req, resp){
       resp.render('login',{
         layout: 'index',
@@ -67,6 +49,24 @@ function add(server){
           resp.redirect('/');
           console.log('Redirecting');
         }
+      }).catch(errorFn);
+    });
+
+    //PROFILE PAGE
+    server.get('/profile-:username', function(req, resp){
+      const username = req.params.username;
+
+      postController.getUserPosts(username).then(posts => {
+        commentController.getUserComments(username).then(comments => {
+          resp.render('profile',{
+            layout: 'index',
+            title: 'Wavelength • '+ username,
+            isLogged: isLogged,
+            user : loggedUser,
+            post_data: posts,
+            comment_data: comments
+          }); 
+        }).catch(errorFn);
       }).catch(errorFn);
     });
   
