@@ -1,0 +1,25 @@
+{{> header-logo}}
+
+<form name="signup-form" method="post" action='/signup'>
+        <div class="form">
+            <div class="form-body">
+              <p class="register">REGISTER</p>
+
+              <p class="field-text">Username</p>
+              <input name = "username" type="text" class="field" id="username-field">
+
+              <p class="field-text">Password</p>
+              <input name = "password" type="password" class="field" id="password-field">
+
+              <p class="field-text">Confirm Password</p>
+              <input name = "confirm-password" type="password" class="field" id="confirm-password-field">
+            </div>
+
+            <p class="error-message">Error message.</p>
+
+            <div class="button-area">
+                <input class="submit-login-button" type="submit" value="Sign Up"></input>
+            </div>
+          <p class="bottom-text">Have an account? <span><a href="/login">Log in</a></span>.</p>
+        </div>
+      </form>
