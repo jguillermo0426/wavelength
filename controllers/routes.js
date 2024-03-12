@@ -14,9 +14,10 @@ var isLogged = false;
     * Sign Up Page (functionality to be accomplished)
     > Artists Page
     > Album Page
-    > Create Post Page
+    * Create Post Page
       > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
-    > Full Post Page
+      > List of tags (dunno if need na sa MCO2)
+    > View Full Post Page
     > Add navigation menu in navigation bar 
       > (to include view all artists)
       > tas nakalimutan ko na kung ano pa pwede ilagay
@@ -24,7 +25,8 @@ var isLogged = false;
     * Profile Page:
       > Edit Profile Pop-up 
       > Triple dot feature (for editing and deleting own posts and comments)
-    *Home Page
+    * Home Page
+
        
 */
 function add(server){
