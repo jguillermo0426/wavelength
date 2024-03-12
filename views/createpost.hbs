@@ -1,0 +1,85 @@
+{{> navigation}}
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <div class="feed">
+          <form action="/createpost" method="post">
+            <div class="post">
+                <div class="panel">
+                    <img class="cover" src="https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550">
+                    <img class="hover-cover" src="/common/svg/hover-cover.svg">
+                </div>
+                <div class="panel">
+                    <p class="label">Create a Post</p>
+                    <div class="artist-label">
+                       <p class="song-album-title">The Perfect Red Velvet</p>
+                       <p class="artist">Red Velvet</p>
+                    </div>
+                    <div class="box-title">
+                        <input class="title-area" type="text" placeholder=" Title">
+                    </div>
+                      <div class="box-post">
+                          <div class="box-header">
+                              <div class="bold">B</div>
+                              <div class="italics">&nbsp;I&nbsp;</div>
+                              <div class="underline">U</div>
+                              <div class="strikethrough">S</div>
+                              <div class="markdown">Markdown Mode</div>
+                          </div>
+                          <textarea placeholder="Write a review"></textarea>
+                    </div>
+                    <div class="bottom-label">
+                        <div class="rating-label">
+                            Rating
+                            <div class="rate">
+                              <input type="radio" id="star5" name="rate" value="5" />
+                              <label for="star5" class="fas fa-star" title="text"></label>
+                              <input type="radio" id="star4" name="rate" value="4" />
+                              <label for="star4" class="fas fa-star" title="text"></label>
+                              <input type="radio" id="star3" name="rate" value="3" />
+                              <label for="star3" class="fas fa-star" title="text"></label>
+                              <input type="radio" id="star2" name="rate" value="2" />
+                              <label for="star2" class="fas fa-star" title="text"></label>
+                              <input type="radio" id="star1" name="rate" value="1" />
+                              <label for="star1" class="fas fa-star" title="text"></label>
+                            </div>
+                        </div>
+                        <div class="tags-label">
+                          Tags
+                          <div class="tag-panel">
+                            <div class="tag-box-clicked">
+                              <img class="tag-inner" src="/common/svg/check-tag.svg">
+                              <p class="tag-label-clicked">Artist</p>
+                            </div>
+                            <div class="tag-box">
+                              <img class="tag-inner" src="/common/svg/add-tag.svg">
+                              <p class="tag-label">Album</p>
+                            </div>
+                            <div class="tag-box">
+                              <img class="tag-inner" src="/common/svg/add-tag.svg">
+                              <p class="tag-label">Track</p>
+                            </div>
+                            <div class="tag-box">
+                              <img class="tag-inner" src="/common/svg/search-tag.svg">
+                              <p class="tag-label">Search</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-post-footer">
+                      <div class="empty-box">
+
+                      </div>
+                      <div class="empty-box">
+
+                      </div>
+                      <div class="empty-box">
+
+                      </div>
+                       <button class="submit-button" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>  
