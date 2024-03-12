@@ -128,6 +128,23 @@ function add(server){
       console.log(loggedUser);
       resp.redirect('/');
     })
+
+    server.get('/createpost', (req, resp) => {
+      resp.render('createpost', { 
+        layout: 'createpost_layout',
+        title: 'Create Post' 
+      }); 
+    });
+
+    server.post('/createpost', async (req, resp) => {
+      try {
+          const postData = req.body; 
+          const newPost = await postController.createPost(postData);
+          resp.redirect('/'); 
+      } catch (error) {
+          resp.render('error');
+          };
+  });
   }
 
 module.exports.add = add;
