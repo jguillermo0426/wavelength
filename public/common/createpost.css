@@ -504,7 +504,7 @@ textarea {
 
 .tag-label {
     margin-left: 10px;
-    margin: 2px;
+    margin: 5px;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
     font-size: 18px;
@@ -513,7 +513,7 @@ textarea {
 
 .tag-label-clicked {
     margin-left: 10px;
-    margin: 2px;
+    margin: 5px;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
     font-size: 18px;
