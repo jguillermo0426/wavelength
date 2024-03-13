@@ -17,5 +17,12 @@ function getUserComments(username) {
     return userComments;
 }
 
+function getPostComments() {
+    var comments = Comments.commentModel.find({ postTitle: postID }).lean();
+    return comments;
+
+}
+
 module.exports.getAllComments = getAllComments; 
 module.exports.getUserComments = getUserComments; 
+module.exports.getPostComments = getPostComments;
