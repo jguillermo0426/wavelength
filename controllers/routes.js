@@ -9,8 +9,28 @@ function errorFn(err){
 
 var loggedUser = [];
 var isLogged = false;
+/*
+  To Do List ( "*" - done ; ">" = to be accomplished):  
+    * Sign Up Page (functionality to be accomplished)
+    > Artists Page
+    > Album Page
+    * Create Post Page
+      > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
+      > List of tags (dunno if need na sa MCO2)
+    > View Full Post Page
+    > Add navigation menu in navigation bar 
+      > (to include view all artists)
+      > tas nakalimutan ko na kung ano pa pwede ilagay
+      > log-out (when a user is logged in)
+    * Profile Page:
+      > Edit Profile Pop-up 
+      > Triple dot feature (for editing and deleting own posts and comments)
+    * Home Page
 
+       
+*/
 function add(server){
+    //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
         resp.render('main',{
@@ -26,26 +46,7 @@ function add(server){
       });
     });
 
-    //PROFILE PAGE
-    server.get('/profile', function(req, resp){
-      const username = "hannipham";
-
-      profileController.getProfile(username).then(profile => {
-        postController.getUserPosts(username).then(posts => {
-          commentController.getUserComments(username).then(comments => {
-            resp.render('profile',{
-              layout: 'profile_layout',
-              title: 'Wavelength • Profile',
-              profile_data: profile,
-              post_data: posts,
-              comment_data: comments
-            }); 
-          }).catch(errorFn);
-        }).catch(errorFn);
-      }).catch(errorFn);
-    });
-    
-
+    //LOGIN PAGE (add sessions in the future)
     server.get('/login', function(req, resp){
       resp.render('login',{
         layout: 'index',
@@ -67,12 +68,61 @@ function add(server){
           resp.redirect('/');
           console.log('Redirecting');
         } else {
+          // add detailed error handling in the future
           console.log('User and Password not found!')
           isLogged = false;
         }
       }).catch(errorFn);
     });
+
+    // SIGNUP PAGE
+    server.get('/signup', function(req, resp){
+      resp.render('signup',{
+        layout: 'index',
+        title: 'Wavelength • Sign-up',
+      });
+    });
+
+    server.post('/signup', async (req, resp) => {
+      var user = req.body.username;
+      var pass = req.body.password;
+
+      profileController.logUser(user, pass).then(function(user_data){
+        console.log('Finding user');
+
+        if(user_data == undefined && user_data._id == null){
+          //fix code that adds user to database (and makes pfp & header pic blank )
+          isLogged = true;
+          loggedUser = user_data;
+          resp.redirect('/');
+          console.log('Redirecting');
+        } else {
+          // add detailed error handling in the future
+          console.log('User is takenfound!')
+          isLogged = false;
+        }
+      }).catch(errorFn);
+    });
+
+    //PROFILE PAGE
+    server.get('/profile-:username', function(req, resp){
+      const username = req.params.username;
+
+      postController.getUserPosts(username).then(posts => {
+        commentController.getUserComments(username).then(comments => {
+          resp.render('profile',{
+            layout: 'index',
+            title: 'Wavelength • '+ username,
+            isLogged: isLogged,
+            user : loggedUser,
+            post_data: posts,
+            comment_data: comments
+          }); 
+        }).catch(errorFn);
+      }).catch(errorFn);
+    });
     
+    //LOGOUT Function 
     server.get('/logout', async(req, resp) => {
       isLogged = false;
       loggedUser = [];
@@ -80,6 +130,23 @@ function add(server){
       console.log(loggedUser);
       resp.redirect('/');
     })
+
+    server.get('/createpost', (req, resp) => {
+      resp.render('createpost', { 
+        layout: 'createpost_layout',
+        title: 'Create Post' 
+      }); 
+    });
+
+    server.post('/createpost', async (req, resp) => {
+      try {
+          const postData = req.body; 
+          const newPost = await postController.createPost(postData);
+          resp.redirect('/'); 
+      } catch (error) {
+          resp.render('error');
+          };
+  });
   }
 
 module.exports.add = add;
