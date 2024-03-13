@@ -1,6 +1,10 @@
 
 const { Double } = require('bson');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
+
+
 const postSchema = new mongoose.Schema({
     cover: { type: String }, // Album cover, link to album model (?)
     trackName: { type: String }, // Album name, link to album model (?)
@@ -44,6 +48,15 @@ const commentSchema = new mongoose.Schema({
 
 const commentModel = mongoose.model('comment', commentSchema);
 
+
+const likePostSchema = new mongoose.Schema({
+    username: String,
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
+}, {versionKey: false});
+
+const likePostModel = mongoose.model('liked_post', likePostSchema);
+
+
 /*const artistSchema = new mongoose.Schema({
     artist_name: { type: String },
     artist_image: { type: String },
@@ -67,4 +80,5 @@ const albumSchema = new mongoose.Schema({
 
 module.exports = {postModel, 
                 profileModel,
-                commentModel};
+                commentModel,
+                likePostModel};
