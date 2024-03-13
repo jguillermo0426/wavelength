@@ -139,6 +139,9 @@ function add(server){
       }
     });*/
     
+    // ARTIST PAGE
+    server.get('/profile-:artist_name')
+
     //LOGOUT Function 
     server.get('/logout', async(req, resp) => {
       isLogged = false;
@@ -148,6 +151,7 @@ function add(server){
       resp.redirect('/');
     })
 
+    // CREATE POST
     server.get('/createpost', (req, resp) => {
       resp.render('createpost', { 
         layout: 'createpost_layout',
