@@ -41,7 +41,11 @@
     <div class="profile-elements">
       <div class="profile-info">
         <p id="username">{{user.username}}</p>
-        <p id="bio">{{user.bio}}</p>
+        {{#if user.bio}}
+          <p id="bio">{{user.bio}}</p>
+        {{else}}
+          <p id="bio">no bio</p>
+        {{/if}}
       </div>
       <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
     </div>

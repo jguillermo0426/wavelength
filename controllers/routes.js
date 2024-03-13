@@ -123,21 +123,6 @@ function add(server){
         }).catch(errorFn);
       }).catch(errorFn); 
     });
-
-    /*
-    server.post('/profile-:username', async(req, resp) => {
-      const username = req.params.username;
-      const option = req.body.option;
-
-      if(option == 'posts'){
-        const html = await postController.getUserPosts(username);
-        resp.json({ html });
-      }
-      else if (option == 'comments'){
-        const html = await commentController.getUserComments(username);
-        resp.json({ html });
-      }
-    });*/
     
     // ARTIST PAGE
     server.get('/profile-:artist_name')

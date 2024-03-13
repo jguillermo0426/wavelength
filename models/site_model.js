@@ -48,7 +48,7 @@ const commentSchema = new mongoose.Schema({
 
 const commentModel = mongoose.model('comment', commentSchema);
 
-const artistSchema = new mongoose.Schema({
+/*const artistSchema = new mongoose.Schema({
     artist_name: { type: String },
     artist_image: { type: String },
     genres: { type : [String], default: null },
@@ -66,7 +66,7 @@ const albumSchema = new mongoose.Schema({
     tags: { type : [String], default: null },
     tracklist: { type : [String] },
 
-}, { versionKey: false}); 
+}, { versionKey: false}); */
 
 
 module.exports = {postModel, 

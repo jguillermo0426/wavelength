@@ -626,7 +626,7 @@ body {
 }
 
 #recent-posts-area {
-  display: flex;
+  display: block;
 }
 
 .filtered-tags {
