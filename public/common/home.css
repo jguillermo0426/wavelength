@@ -872,18 +872,49 @@ input:focus {
     border-bottom: 3px solid #211F27;
   }
   
-  .profile-options > p {
+  .profile-option {
     font-family: OpenSans;
     font-weight: bold;
     font-size: 20px;
     color:#A9A5B6;
     cursor: pointer;
-    transition: color 0.15s;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.25s ease-in-out;
     margin: 15px 0px;
   }
   
-  .profile-options > p:hover {
+#posts-btn {
+  color:#BBA7FF;
+}
+
+.profile-option:hover {
     color: #BBA7FF;
+    transition: all 0.25s ease-in-out;
+}
+
+.profile-option:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #BBA7FF;
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+    text-decoration: none;
+}
+
+.profile-option:hover::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: #BBA7FF; /* Set the underline color */
+    transition: transform 0.25s ease-out;
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
   
 
