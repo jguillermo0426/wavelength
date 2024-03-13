@@ -161,7 +161,7 @@ function add(server){
       }
     });
 
-    //PROFILE PAGE
+    //VIEW POST PAGE
     server.get('/viewpost', function(req, resp){
       const postID = req.params.postID;
 
