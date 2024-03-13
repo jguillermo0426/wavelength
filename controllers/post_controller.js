@@ -5,6 +5,11 @@ function errorFn(err){
     console.error(err);
 }
 
+function getPostById (postID){
+    var postID = Posts.postModel.findById(postID).lean();
+    return postID;
+}
+
 
 function getAllPosts() {
     var allPosts = Posts.postModel.find({}).lean();
@@ -26,6 +31,7 @@ function createPost(newPost) {
 module.exports = {
     getAllPosts,
     getUserPosts,
-    createPost
+    createPost,
+    getPostById,
 }
 
