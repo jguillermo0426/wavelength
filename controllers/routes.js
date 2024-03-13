@@ -140,13 +140,13 @@ function add(server){
 
     server.post('/createpost', async (req, resp) => {
       try {
-          const postData = req.body; 
-          const newPost = await postController.createPost(postData);
-          resp.redirect('/'); 
+        const postData = req.body; 
+        const newPost = await postController.createPost(postData);
+        resp.redirect('/'); 
       } catch (error) {
-          resp.send('error');
-          };
-  });
+        resp.status(500).send('Error creating post: ' + error.message);
+      }
+    });
   }
 
 module.exports.add = add;

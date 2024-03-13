@@ -18,7 +18,7 @@ function getUserPosts(username) {
 }
 
 function createPost(newPost) {
-    var postInstance = Posts.postModel(newPost).add();
+    var postInstance = Posts.postModel(newPost);
     return postInstance;
 }
 
