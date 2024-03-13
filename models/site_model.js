@@ -1,11 +1,12 @@
 
+const { Double } = require('bson');
 const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
-    cover: String,
-    trackName: String,
-    artist: String,
-    trackLink: String,
-    artistLink: String,
+    cover: { type: String }, // Album cover, link to album model (?)
+    trackName: { type: String }, // Album name, link to album model (?)
+    artist: { type: String }, // Artist name, 
+    trackLink: { type: String },
+    artistLink: { type: String },
     rating: Number, 
     user: String, 
     userLink: String,
@@ -46,6 +47,26 @@ const commentSchema = new mongoose.Schema({
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);
+
+const artistSchema = new mongoose.Schema({
+    artist_name: { type: String },
+    artist_image: { type: String },
+    genres: { type : [String], default: null },
+    biography: String,
+
+}, {versionKey: false});
+
+const artistModel = mongoose.model('artist', artistSchema);
+
+const albumSchema = new mongoose.Schema({
+    album_name: String,
+    artist_name: { type: Schema.Types.ObjectId, ref: 'artist'},
+    release_date: Date,
+    average_rating: Double,
+    tags: { type : [String], default: null },
+    tracklist: { type : [String] },
+
+}, { versionKey: false}); 
 
 
 module.exports = {postModel, 

@@ -1,4 +1,4 @@
-// npm i dotdotdot-js
+// npm i dotdotdot-js express express-handlebars body-parser mongoose 
 const express = require('express');
 const server = express();
 
