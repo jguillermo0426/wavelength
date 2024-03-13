@@ -111,11 +111,12 @@ function add(server){
       profileController.getUserProfile(username).then(profile => {
         postController.getUserPosts(username).then(posts => {
           commentController.getUserComments(username).then(comments => {
+            //console.log(profile);
             resp.render('profile',{
               layout: 'index',
               title: 'Wavelength • '+ username,
               isLogged: isLogged,
-              user : profile,
+              user : profile[0],
               post_data: posts,
               comment_data: comments
             }); 
