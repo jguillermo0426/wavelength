@@ -14,7 +14,7 @@ function logUser(username, password){
 }
 
 function getUserProfile(username){
-    var profile = Profiles.profileModel.find({username: username}).lean();
+    var profile = Profiles.profileModel.findOne({username: username}).lean();
     return profile;
 }
 

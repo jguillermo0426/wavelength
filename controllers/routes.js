@@ -116,7 +116,7 @@ function add(server){
               layout: 'index',
               title: 'Wavelength • '+ username,
               isLogged: isLogged,
-              user : profile[0],
+              user : profile,
               post_data: posts,
               comment_data: comments
             }); 
