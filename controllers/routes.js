@@ -144,7 +144,7 @@ function add(server){
           const newPost = await postController.createPost(postData);
           resp.redirect('/'); 
       } catch (error) {
-          resp.render('error');
+          resp.send('error');
           };
   });
   }

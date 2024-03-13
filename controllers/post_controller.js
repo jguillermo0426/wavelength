@@ -17,5 +17,14 @@ function getUserPosts(username) {
     return userPosts;
 }
 
-module.exports.getAllPosts = getAllPosts; 
-module.exports.getUserPosts = getUserPosts;
+function createPost(newPost) {
+    var postInstance = Posts.postModel(newPost).add();
+    return postInstance;
+}
+
+module.exports = {
+    getAllPosts,
+    getUserPosts,
+    createPost
+}
+
