@@ -5,11 +5,8 @@ const postSchema = new mongoose.Schema({
     cover: { type: String }, // Album cover, link to album model (?)
     trackName: { type: String }, // Album name, link to album model (?)
     artist: { type: String }, // Artist name, 
-    trackLink: { type: String },
-    artistLink: { type: String },
     rating: Number, 
     user: String, 
-    userLink: String,
     reviewDate: String,
     tag1: String,
     tag2: String,
@@ -19,7 +16,6 @@ const postSchema = new mongoose.Schema({
     dislikes: Number,
     comments: Number,
     postText: String,
-    postLink: String
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);
