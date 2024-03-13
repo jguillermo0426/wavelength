@@ -26,23 +26,37 @@ function editPost(postID) {
 }
 
 
+function updateButtonColor(button) {
+    $(".profile-options p").css("color", "#A9A5B6"); 
+    button.css("color", "#BBA7FF"); 
+}
+
+
 $(document).ready(function() {
+
+    
     $("#posts-btn").click(function(){
         $("#recent-posts-area").css("display", "block");
         $("#recent-comments-area").css("display", "none");
         $("#likes-area").css("display", "none");
+
+        updateButtonColor($(this));
     });
 
     $("#comments-btn").click(function(){
         $("#recent-posts-area").css("display", "none");
         $("#recent-comments-area").css("display", "block");
         $("#likes-area").css("display", "none");
+
+        updateButtonColor($(this));
     });
 
     $("#likes-btn").click(function(){
         $("#recent-posts-area").css("display", "none");
         $("#recent-comments-area").css("display", "none");
         $("#likes-area").css("display", "block");
+
+        updateButtonColor($(this));
     });
 
     $(".edit-profile").click(function() {

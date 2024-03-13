@@ -21,21 +21,7 @@
         </div>
       </div>    
     </div>
-
-    <div class="three-dots">
-      <img src="../common/png/dots.png" id="edit-delete-btn"> 
-      <div post-id="{{_id}}" class="edit-delete-post">
-        <div id="edit-option" class="option edit">
-          <img class="pen-stroke" src="../common/png/pen-stroke.png">
-          <p>Edit Post</p>
-        </div>
-
-        <div id="delete-option" class="option delete">
-          <img class="trash" src="../common/png/trash.png">
-          <p>Delete Post</p>
-        </div>
-      </div>   
-    </div>
+    {{> edit-delete-post}}
   </div>
          
   <div class="post-body">
@@ -45,7 +31,7 @@
     <p class="post-text">
       {{{truncateText postText 500}}}
       {{#if (showSeeMore postText 500)}}
-        <a href="{{postLink}}" class="see-more"> See more</a>
+        <a href="/{{{ title }}}-{{{ _id }}}" class="see-more"> See more</a>
       {{/if}}
     </p>
   </div>
