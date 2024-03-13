@@ -156,25 +156,25 @@ function add(server){
     });
 
 
-    // // VIEW FULL POST
-    // server.get('/viewpost', function(req, resp){
-    //   const username = req.params.username;
+    // VIEW FULL POST
+    server.get('/viewpost', function(req, resp){
+      const username = req.params.username;
 
-    //   profileController.getUserProfile(username).then(profile => {
-    //     postController.getUserPosts(username).then(posts => {
-    //       commentController.getUserComments(username).then(comments => {
-    //         resp.render('viewpost',{
-    //           layout: 'index',
-    //           title: 'Wavelength • View Post',
-    //           isLogged: isLogged,
-    //           user : profile,
-    //           post_data: posts,
-    //           comment_data: comments
-    //         }); 
-    //       }).catch(errorFn);
-    //     }).catch(errorFn);
-    //   }).catch(errorFn); 
-    // });
+      profileController.getUserProfile(username).then(profile => {
+        postController.getUserPosts(username).then(posts => {
+          commentController.getUserComments(username).then(comments => {
+            resp.render('viewpost',{
+              layout: 'comment_layout',
+              title: 'Wavelength • View Post',
+              isLogged: isLogged,
+              user : profile,
+              post_data: posts,
+              comment_data: comments
+            }); 
+          }).catch(errorFn);
+        }).catch(errorFn);
+      }).catch(errorFn); 
+    });
   }
 
 module.exports.add = add;
