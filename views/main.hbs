@@ -1,22 +1,17 @@
 {{> navigation}}
 
 <div id="feed" class="feed">
-    <div id="create-post" class="create-post"> 
-    
-    <div id="pfp-holder">
     {{#if isLogged}}
+    <div id="create-post" class="create-post"> 
+    <div id="pfp-holder">
         <img id="profile-picture-post" src="{{{user.user_image}}}" />
-    {{/if}}
-    {{#unless isLogged}}
-        <img id="profile-picture-post" src='../common/png/blank-profile.png' />
-    {{/unless}}
     </div>
-    <div id="create-post-text" class="create-post-text">
-        <a class="create-post-text" href="/createpost">
+    <div id="create-post-text" class="create-post-text" onclick="window.location = '/createpost'">
         <p>Create post</p>
         </a>
     </div>
     </div>
+    {{/if}}
     
 
     <div class="sort-feed">
