@@ -108,19 +108,36 @@ function add(server){
     server.get('/profile-:username', function(req, resp){
       const username = req.params.username;
 
-      postController.getUserPosts(username).then(posts => {
-        commentController.getUserComments(username).then(comments => {
-          resp.render('profile',{
-            layout: 'index',
-            title: 'Wavelength • '+ username,
-            isLogged: isLogged,
-            user : loggedUser,
-            post_data: posts,
-            comment_data: comments
-          }); 
+      profileController.getUserProfile(username).then(profile => {
+        postController.getUserPosts(username).then(posts => {
+          commentController.getUserComments(username).then(comments => {
+            resp.render('profile',{
+              layout: 'index',
+              title: 'Wavelength • '+ username,
+              isLogged: isLogged,
+              user : profile,
+              post_data: posts,
+              comment_data: comments
+            }); 
+          }).catch(errorFn);
         }).catch(errorFn);
-      }).catch(errorFn);
+      }).catch(errorFn); 
     });
+
+    /*
+    server.post('/profile-:username', async(req, resp) => {
+      const username = req.params.username;
+      const option = req.body.option;
+
+      if(option == 'posts'){
+        const html = await postController.getUserPosts(username);
+        resp.json({ html });
+      }
+      else if (option == 'comments'){
+        const html = await commentController.getUserComments(username);
+        resp.json({ html });
+      }
+    });*/
     
     //LOGOUT Function 
     server.get('/logout', async(req, resp) => {

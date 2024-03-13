@@ -13,4 +13,10 @@ function logUser(username, password){
     return profile;
 }
 
+function getUserProfile(username){
+    var profile = Profiles.profileModel.find({username: username}).lean();
+    return profile;
+}
+
 module.exports.logUser = logUser; 
+module.exports.getUserProfile = getUserProfile; 
