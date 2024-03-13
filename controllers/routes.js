@@ -23,8 +23,8 @@ var isLogged = false;
       > tas nakalimutan ko na kung ano pa pwede ilagay
       > log-out (when a user is logged in)
     * Profile Page:
-      > Edit Profile Pop-up 
-      > Triple dot feature (for editing and deleting own posts and comments)
+      * Edit Profile Pop-up 
+      * Triple dot feature (for editing and deleting own posts and comments)
     * Home Page
 
        
