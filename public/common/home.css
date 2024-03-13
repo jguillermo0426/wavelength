@@ -889,8 +889,8 @@ input:focus {
 }
 
 .profile-option:hover {
-    color: #BBA7FF;
-    transition: all 0.25s ease-in-out;
+  font-size: 22px;
+  color: #BBA7FF;
 }
 
 .profile-option:after {

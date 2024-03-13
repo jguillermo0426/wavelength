@@ -1,6 +1,7 @@
 const postController = require('./post_controller');
 const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
+const likeController = require('./like_controller');
 
 function errorFn(err){
   console.log('Error found. Please trace!');
@@ -109,19 +110,24 @@ function add(server){
       const username = req.params.username;
 
       profileController.getUserProfile(username).then(profile => {
-        postController.getUserPosts(username).then(posts => {
-          commentController.getUserComments(username).then(comments => {
-            //console.log(profile);
-            resp.render('profile',{
-              layout: 'index',
-              title: 'Wavelength • '+ username,
-              isLogged: isLogged,
-              user : profile,
-              post_data: posts,
-              comment_data: comments
-            }); 
-          }).catch(errorFn);
-        }).catch(errorFn);
+      postController.getUserPosts(username).then(posts => {
+      commentController.getUserComments(username).then(comments => {
+      likeController.getLikedPosts(username).then(liked_posts => {
+        //console.log(profile);
+        //console.log(liked_posts);
+        //console.log(posts);
+        resp.render('profile',{
+          layout: 'index',
+          title: 'Wavelength • '+ username,
+          isLogged: isLogged,
+          user : profile,
+          post_data: posts,
+          comment_data: comments,
+          liked_posts: liked_posts,
+        });
+      }); 
+      }).catch(errorFn);
+      }).catch(errorFn);
       }).catch(errorFn); 
     });
     
