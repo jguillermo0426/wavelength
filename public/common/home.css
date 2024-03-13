@@ -333,13 +333,20 @@ body {
     color: #F4EBEB;
     margin-top: 10px;
     margin-bottom: 0px;
+    text-decoration: none;
 }
 
-.user, .user > a:visited {
+.user-reviewed > a:visited, .user-reviewed > a {
     color: #8F59DD;
     font-weight: bold;
     text-decoration: none;
     margin-bottom: 0px;
+    transition: all 0.25s ease-in-out;
+}
+
+.user-reviewed > a:hover {
+  color: #BBA7FF;
+  transition: all 0.25s ease-in-out;
 }
 
 .tags-area {
