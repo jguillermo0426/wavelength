@@ -629,6 +629,10 @@ body {
   display: block;
 }
 
+#likes-area {
+  display: none;
+}
+
 .filtered-tags {
     display: flex;
     flex-direction: row;
@@ -976,7 +980,7 @@ input:focus {
     font-size: 20px;
   }
   
-  .close-button {
+  #close-btn {
     width: 25px;
     height: 25px;
     padding: 1%;
@@ -985,11 +989,11 @@ input:focus {
     transition: background-color 0.15s;
   }
   
-  .close-button:hover{
+  #close-btn:hover{
     background-color: #3B3942;
   }
   
-  .save-button {
+  #save-btn {
     font-family: OpenSans;
     font-weight: bold;
     color: #F4EBEB;
@@ -1002,7 +1006,7 @@ input:focus {
     transition: opacity 0.15s;
   }
   
-  .save-button:hover {
+  #save-btn:hover {
     opacity: 0.9;
   }
   

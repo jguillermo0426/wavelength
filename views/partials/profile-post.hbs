@@ -23,14 +23,14 @@
     </div>
 
     <div class="three-dots">
-      <img src="../common/png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
-      <div id="edit-delete-post-1" class="edit-delete-post">
-        <div class="option" onclick="editPost('edit-delete-post-1')">
+      <img src="../common/png/dots.png" id="edit-delete-btn"> 
+      <div post-id="{{_id}}" class="edit-delete-post">
+        <div id="edit-option" class="option edit">
           <img class="pen-stroke" src="../common/png/pen-stroke.png">
           <p>Edit Post</p>
         </div>
 
-        <div class="option" onclick="deletePost('edit-delete-post-1')">
+        <div id="delete-option" class="option delete">
           <img class="trash" src="../common/png/trash.png">
           <p>Delete Post</p>
         </div>

@@ -1,36 +1,6 @@
 {{> navigation}}
 
-<div id="edit-popup" class="edit-popup">
-  <div class="edit-header">
-    <img class="close-button" src="/common/png/x.png" onclick="closePopUp()">
-    <p>Edit Profile</p>
-    <button type="submit" class="save-button" onclick="closePopUp()">Save</button>
-  </div>
-
-  <div class="edit-banner">
-    <img class="banner" src="{{user.header_image}}">
-    <img class="banner-pen" src="../png/pen.png">
-  </div>
-
-  <img class="profile-pen" src="/common/png/pen.png">
-  <div class="edit-profile-picture">
-    <img src="{{user.user_image}}">
-  </div>
-
-  <div class="edit-details">
-    <p>Display name</p>
-    <div class="input-details">
-      <input type="text" placeholder="Display name">
-    </div>
-  </div>
-
-  <div class="edit-details">
-    <p>Bio</p>
-    <div class="input-details">
-      <input type="text" placeholder="Bio">
-    </div>
-  </div>
-</div>
+{{> edit-profile}}
 
 <div class="profile-banner">
   <img src="{{{user.header_image}}}"/>

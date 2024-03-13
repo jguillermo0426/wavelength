@@ -1,0 +1,31 @@
+<div id="edit-popup" class="edit-popup">
+  <div class="edit-header">
+    <img id="close-btn" src="/common/png/x.png" onclick="closePopUp()">
+    <p>Edit Profile</p>
+    <button type="submit" id="save-btn">Save</button>
+  </div>
+
+  <div class="edit-banner">
+    <img class="banner" src="{{user.header_image}}">
+    <img class="banner-pen" src="/common/png/pen.png">
+  </div>
+
+  <img class="profile-pen" src="/common/png/pen.png">
+  <div class="edit-profile-picture">
+    <img src="{{user.user_image}}">
+  </div>
+
+  <div class="edit-details">
+    <p>Display name</p>
+    <div class="input-details">
+      <input type="text" placeholder="Display name">
+    </div>
+  </div>
+
+  <div class="edit-details">
+    <p>Bio</p>
+    <div class="input-details">
+      <input type="text" placeholder="Bio">
+    </div>
+  </div>
+</div>
