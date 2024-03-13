@@ -111,6 +111,7 @@ function add(server){
       profileController.getUserProfile(username).then(profile => {
         postController.getUserPosts(username).then(posts => {
           commentController.getUserComments(username).then(comments => {
+            //console.log(profile);
             resp.render('profile',{
               layout: 'index',
               title: 'Wavelength • '+ username,
