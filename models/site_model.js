@@ -39,7 +39,7 @@ const profileModel = mongoose.model('profile', profileSchema);
 const commentSchema = new mongoose.Schema({
     username: String,
     user_image: String,
-    postTitle: String,
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'},
     commentText: String,
     likes: Number,
     dislikes: Number,
