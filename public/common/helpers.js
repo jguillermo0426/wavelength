@@ -30,5 +30,9 @@ module.exports = {
         let showSeeMore = text.length > maxLength;
 
         return showSeeMore;
+    },
+
+    formatNameToLink: function(class_data){
+        return class_data.toLowerCase().replace(/\s/g, "-")
     }
 }
