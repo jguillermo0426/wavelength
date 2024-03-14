@@ -647,3 +647,10 @@ textarea {
     height: 21px;
   }
 
+  .no-content {
+    font-family: OpenSans;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #F4EBEB;
+    text-align: center;
+  }

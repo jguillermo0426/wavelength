@@ -169,14 +169,14 @@ function add(server){
         postController.getPostById(postID).then(post => {
           commentController.getPostComments(postID).then(comments => {
             //console.log(profile);
-            //console.log(posts);
+            console.log(comments);
             resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
               isLogged: isLogged,
               user : profile,
               post_data: post,
-              comment_data: comments
+              comments: comments
             }); 
           }).catch(errorFn);
         }).catch(errorFn);
