@@ -134,8 +134,6 @@ function add(server){
     });
     
     // ARTIST PAGE
-    // to do: figure out how to format proper dynamic link
-    // ayusin yung hbs ng artist
     server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
       const artistname = req.params.artist;
       console.log(artistname);
@@ -210,14 +208,14 @@ function add(server){
         postController.getPostById(postID).then(post => {
           commentController.getPostComments(postID).then(comments => {
             //console.log(profile);
-            //console.log(posts);
+            console.log(comments);
             resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
               isLogged: isLogged,
               user : profile,
               post_data: post,
-              comment_data: comments
+              comments: comments
             }); 
           }).catch(errorFn);
         }).catch(errorFn);
