@@ -7,7 +7,7 @@ function errorFn(err){
 
 function getAlbumPage(albumname){
     var album = Album.albumModel.find({ album_name: albumname }).lean();
-    return artist;
+    return album;
 }
 
 /*
