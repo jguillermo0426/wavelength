@@ -2,6 +2,7 @@ const postController = require('./post_controller');
 const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
 const artistController = require('./artist_controller');
+const albumController = require('./album_controller');
 const likeController = require('./like_controller');
 
 function errorFn(err){
@@ -152,10 +153,24 @@ function add(server){
       }).catch(errorFn);
     });
 
-    // ALBUM PAGE
-    server.get('/album-page/:album', async(req, resp) => {
-      const albumname = req.params.album;
-      console.log(albumname);
+
+    //ALBUM PAGE
+    server.get('/album-:albumname', function(req, resp){
+      const albumname = req.params.albumname;
+
+      albumController.getAlbum(albumname).then(album => {
+      postController.getAlbumReviews(albumname).then(reviews =>{
+        console.log(album);
+        resp.render('album', {
+          layout: 'albumpage_layout',
+          title: 'Wavelength • '+ albumname,
+          album: album,
+          isLogged: isLogged,
+          user: loggedUser,
+          reviews: reviews
+        });
+      });
+      });
     });
 
     //LOGOUT Function 

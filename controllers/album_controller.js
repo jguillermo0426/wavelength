@@ -1,3 +1,4 @@
+const { get } = require('mongoose');
 const Album = require('../models/site_model');
 
 function errorFn(err){
@@ -5,16 +6,10 @@ function errorFn(err){
     console.error(err);
 }
 
-function getAlbumPage(albumname){
-    var album = Album.albumModel.find({ album_name: albumname }).lean();
+function getAlbum(albumName){
+    var album = Album.albumModel.findOne({ album_name : albumName }).lean();
     return album;
 }
 
-/*
-function getDiscogAlbums(artistname){
-    var artist = Artist.artistModel.findOne({ artist_name: artistname }).populate('albumIds').lean().exec();
-    return artist;
-}
-*/
 
-module.exports = { getAlbumPage }
+module.exports.getAlbum = getAlbum;

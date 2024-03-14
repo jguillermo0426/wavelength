@@ -16,6 +16,10 @@ module.exports = {
     
         return stars;
     },
+
+    increment : function(value) {
+        return parseInt(value) + 1;
+    },
     
     truncateText: function(text, maxLength) {
         if (text.length > maxLength) {

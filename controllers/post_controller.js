@@ -28,10 +28,16 @@ function createPost(newPost) {
     return postInstance;
 }
 
+function getAlbumReviews(albumName){
+    var albumReviews = Posts.postModel.find({trackName: albumName}).lean();
+    return albumReviews;
+}
+
 module.exports = {
     getAllPosts,
     getUserPosts,
     createPost,
     getPostById,
+    getAlbumReviews
 }
 
