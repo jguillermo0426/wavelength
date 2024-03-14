@@ -133,8 +133,6 @@ function add(server){
     });
     
     // ARTIST PAGE
-    // to do: figure out how to format proper dynamic link
-    // ayusin yung hbs ng artist
     server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
       const artistname = req.params.artist;
       console.log(artistname);
@@ -152,6 +150,12 @@ function add(server){
           });
         });
       }).catch(errorFn);
+    });
+
+    // ALBUM PAGE
+    server.get('/album-page/:album', async(req, resp) => {
+      const albumname = req.params.album;
+      console.log(albumname);
     });
 
     //LOGOUT Function 
