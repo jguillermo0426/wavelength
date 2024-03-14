@@ -15,8 +15,8 @@ var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
     * Sign Up Page (functionality, to follow)
-    > Artists Page
-    > Album Page
+    * Artists Page
+    * Album Page
     * Create Post Page
       > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
       > List of tags (dunno if need na sa MCO2)
@@ -213,7 +213,8 @@ function add(server){
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
               isLogged: isLogged,
-              user : profile,
+              user: loggedUser,
+              userpost : profile,
               post_data: post,
               comments: comments
             }); 
