@@ -1,45 +1,45 @@
-    {{>navigation}}
+{{>navigation}}
 
 <div class="feed">
     <div class="post">
         <div class="post-header">
-            <img class="cover" src="{{cover}}">
+            <img class="cover" src="{{post_data.cover}}">
             <div class="post-titles">
-                <p class="song-album-title"><a href="{{trackLink}}">{{trackName}}</a></p>
-                <p class="artist"><a href="{{artistLink}}">{{artist}}</a></p>
+                <p class="song-album-title"><a href="/">{{post_data.trackName}}</a></p>
+                <p class="artist"><a href="/">{{post_data.artist}}</a></p>
                 <div class="rating">
-                    {{{ratingStars rating}}}
+                    {{{ratingStars post_data.rating}}}
                 </div>
-                <p class="user-reviewed">reviewed by <a href="{{userLink}}" class="user">{{user}}</a> on <span class="date">{{reviewDate}}</span></p>
+                <p class="user-reviewed">reviewed by <a href="/" class="user">{{post_data.user}}</a> on <span class="date">{{post_data.reviewDate}}</span></p>
                 <div class="tags-area">
                     <div class="tag">
-                        <p>{{tag1}}</p>
+                        <p>{{post_data.tag1}}</p>
                     </div>
                     <div class="tag">
-                        <p>{{tag2}}</p>
+                        <p>{{post_data.tag2}}</p>
                     </div>
                     <div class="tag">
-                        <p>{{tag3}}</p>
+                        <p>{{post_data.tag3}}</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="post-body">
-            <p class="post-title"></p>
+            <p class="post-title">{{post_data.postText}}</p>
             <p class="post-text"></p>
         </div>
         <div class="post-footer">
             <div id="likes-bar" class="react-bar">
                 <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
-                <p id="like-counter" class="counter">{{likes}}</p>
+                <p id="like-counter" class="counter">{{post_data.likes}}</p>
             </div>
             <div id="dislikes-bar" class="react-bar">
                 <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
-                <p id="dislike-counter" class="counter">{{dislikes}}</p>
+                <p id="dislike-counter" class="counter">{{post_data.dislikes}}</p>
             </div>
             <div id="comments-bar" class="react-bar">
                 <input type="image" class="comment" src="../common/svg/comment.svg">
-                <p id="comment-counter" class="counter">{{comments}}</p>
+                <p id="comment-counter" class="counter">{{post_data.comments}}</p>
             </div>
         </div>
 

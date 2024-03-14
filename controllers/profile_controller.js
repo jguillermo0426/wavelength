@@ -18,5 +18,20 @@ function getUserProfile(username){
     return profile;
 }
 
+function getProfileByPost(postID) {
+    return Profiles.postModel.findById(postID).then(post => {
+        if (!post) {
+            console.error('Post not found');
+            return;
+        }
+
+        const username = post.user;
+        const profile = getUserProfile(username);
+
+        return profile;
+    }).catch(errorFn);
+}
+
 module.exports.logUser = logUser; 
 module.exports.getUserProfile = getUserProfile; 
+module.exports.getProfileByPost = getProfileByPost;

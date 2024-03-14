@@ -2,25 +2,25 @@
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-Regular.ttf'); 
+    src: url('../common/fonts/OpenSans-Regular.ttf'); 
     font-weight: normal
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-ExtraBold.ttf'); 
+    src: url('../common/fonts/OpenSans-ExtraBold.ttf'); 
     font-weight: 900;
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-Bold.ttf'); 
+    src: url('../common/fonts/OpenSans-Bold.ttf'); 
     font-weight: bold;
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-LightItalic.ttf'); 
+    src: url('../common/fonts/OpenSans-LightItalic.ttf'); 
     font-weight: 100;
     font-style: italic;
 }
@@ -85,7 +85,7 @@ body {
     font-weight: normal;
     padding-left: 50px;
     background-color: #F4EBEB;
-    background-image: url('../svg/search.svg');
+    background-image: url('../common/svg/search.svg');
     background-position: 17px 13px;
     background-repeat: no-repeat;
     background-size: 20px;

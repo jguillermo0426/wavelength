@@ -30,7 +30,7 @@
         <p class="post-text">
             {{{truncateText postText 500}}}
             {{#if (showSeeMore postText 500)}}
-                <a href="/viewpost" class="see-more"> See more</a>
+                <a href="/{{{ title }}}-{{{ _id }}}" class="see-more"> See more</a>
             {{/if}}
         </p>
         </div>

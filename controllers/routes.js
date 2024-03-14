@@ -162,18 +162,20 @@ function add(server){
     });
 
     //VIEW POST PAGE
-    server.get('/viewpost', function(req, resp){
+    server.get('/:title-:postID', function(req, resp){
       const postID = req.params.postID;
 
-      profileController.getUserProfile(postID).then(profile => {
-        postController.getPostById(postID).then(posts => {
+      profileController.getProfileByPost(postID).then(profile => {
+        postController.getPostById(postID).then(post => {
           commentController.getPostComments(postID).then(comments => {
+            //console.log(profile);
+            //console.log(posts);
             resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
               isLogged: isLogged,
               user : profile,
-              post_data: posts,
+              post_data: post,
               comment_data: comments
             }); 
           }).catch(errorFn);
