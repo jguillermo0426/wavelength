@@ -115,7 +115,7 @@ function add(server){
       commentController.getUserComments(username).then(comments => {
       likeController.getLikedPosts(username).then(liked_posts => {
         //console.log(profile);
-        //console.log(liked_posts);
+        console.log(liked_posts);
         //console.log(posts);
         resp.render('profile',{
           layout: 'index',
@@ -146,7 +146,7 @@ function add(server){
           resp.render('artist', {
             layout: 'artistpage_layout',
             title: 'Wavelength • '+ artistname,
-            artist: artist,
+            artist: artist_full,
             isLogged: isLogged,
             user: loggedUser
           });

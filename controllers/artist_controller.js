@@ -12,7 +12,7 @@ function getArtistPage(artistname){
 
 
 function getDiscogAlbums(artistname){
-    var artist = Artist.artistModel.find({ artist_name: artistname }).populate('albumsIds').lean().exec();
+    var artist = Artist.artistModel.findOne({ artist_name: artistname }).populate('albumIds').lean().exec();
     return artist;
 }
 

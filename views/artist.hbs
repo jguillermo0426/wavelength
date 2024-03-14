@@ -17,7 +17,7 @@
       </div>
       <br>
       <p class="artist-bio"><b>Biography</b></p>
-      <p class="artist-bio">{{ artist.biography }} <a href="FullBiography-{{ artist.artist_name }}.html">read more</a></p>
+      <p class="artist-bio">{{{ artist.biography }}} <a href="/FullBiography-{{{ artist.artist_name }}}">read more</a></p>
     </div>
   </div>
   <div class="discog-header-container">
@@ -37,5 +37,20 @@
       </div>
     </div>
   </div>
+  {{#each artist.albumIds}}
+          <div class="album-container">
+            <div class="album-panel">
+              <div class="album-image">
+                <img src="{{{ album_image }}}">
+              </div>
+              <div class="album-title-date-container">
+                <span class="album-title"><a href="/albumpage">{{{ album_name }}}</a></span>
+                <span class="album-date">{{{ release_year}}}</span>  
+              </div>
+              <p class="album-reviews">{{{ reviews }}}</p>
+              <p class="album-average">{{{ average_rating }}}</p>
+            </div>
+          </div>
+{{/each}} 
      
 </div>
