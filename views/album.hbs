@@ -1,0 +1,76 @@
+{{> navigation}}
+<div class="main-page">
+<div class="feed">
+    <div class="album-side-panel">
+        <div class="album-pic">
+            <img src="{{album.album_image}}">
+        </div>  
+        <div class="tracklist-box-parent">
+            <div class="tracklist-box-inner">
+                <p class="album-tracklist-header">Track List</p>
+                {{#each album.tracklist as |track index|}}
+                <div class="tracklist-container">
+                    <span class="tracklist-number">{{increment index}}</span>
+                    <span class="tracklist-name">{{track}}</span>
+                </div>
+                {{/each}}
+            </div>
+            
+        </div>
+    </div>
+    <div class="main-panel">
+        <div class="album-info">
+            <span class="album-name">{{album.album_name}}</span>
+            <table class="album-info">
+                <tr>
+                    <th>Artist</th>
+                    <td>{{album.artist_name}}</td>
+                </tr>
+                <tr>
+                    <th>Release Date</th>
+                    <td>{{album.release_date}}</td>
+                </tr>
+                <tr>
+                    <th>Rating</th>
+                    <td>{{album.average_rating}} / 5.0</td>
+                </tr>
+                <tr>
+                    <th>Tags</th>
+                </tr>
+            </table>
+            <div class="tags-area">
+                {{#each tags}}
+                <div class="tag">
+                    <p>{{this}}</p>
+                </div>
+                {{/each}}
+                </div>
+        </div>
+        <div class="reviews-header-container">
+            <span class="reviews-header">Reviews</span>
+        </div>
+        {{#each reviews}}
+        <div class="reviews-area">
+            <div class="reviews-box-parent">
+                <div class="reviews-box-inner">
+                    <div class="reviews-header">
+                        <div class="user-date-container">
+                            <span class="reviews-username">{{user}}</span>
+                            <span class="reviews-date">reviewed on: {{reviewDate}}</span>
+                        </div>
+                        <div class="rating">
+                            {{{ratingStars rating}}}
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <p class="review-text">
+                            {{postText}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+</div>
