@@ -1,6 +1,7 @@
 const postController = require('./post_controller');
 const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
+const artistController = require('./artist_controller');
 const likeController = require('./like_controller');
 
 function errorFn(err){
@@ -12,7 +13,7 @@ var loggedUser = [];
 var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
-    * Sign Up Page (functionality to be accomplished)
+    * Sign Up Page (functionality, to follow)
     > Artists Page
     > Album Page
     * Create Post Page
@@ -132,7 +133,26 @@ function add(server){
     });
     
     // ARTIST PAGE
-    server.get('/profile-:artist_name')
+    // to do: figure out how to format proper dynamic link
+    // ayusin yung hbs ng artist
+    server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
+      const artistname = req.params.artist;
+      console.log(artistname);
+      artistController.getArtistPage(artistname).then(artist =>{
+        console.log(artist);
+        console.log('artist found!');
+        artistController.getDiscogAlbums(artistname).then(artist_full => {
+          console.log(artist_full);
+          resp.render('artist', {
+            layout: 'artistpage_layout',
+            title: 'Wavelength • '+ artistname,
+            artist: artist,
+            isLogged: isLogged,
+            user: loggedUser
+          });
+        });
+      }).catch(errorFn);
+    });
 
     //LOGOUT Function 
     server.get('/logout', async(req, resp) => {
