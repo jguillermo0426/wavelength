@@ -18,7 +18,7 @@ function getUserComments(username) {
 }
 
 function getPostComments(postID) {
-    var comments = Comments.commentModel.find({ postID: postID }).populate('postId').lean().exec();
+    var comments = Comments.commentModel.find({ postId: postID }).populate('postId').lean().exec();
     return comments;
 
 }

@@ -88,6 +88,5 @@ module.exports = {postModel,
                 profileModel,
                 commentModel,
                 likePostModel,
-                commentModel, 
                 artistModel, 
                 albumModel};
