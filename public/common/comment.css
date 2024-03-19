@@ -468,14 +468,16 @@ body {
 }
 
 .comment-footer {
-    margin: 20px
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    margin: 20px;
 }
 
 .comment-submit {
     background-color: #8F59DD;
     width: 150px;
     height: 40px;
-    float: right;
     border: none;
     border-radius: 25px; 
     cursor: pointer;
@@ -510,6 +512,7 @@ textarea {
 .comment-container {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 
@@ -521,8 +524,16 @@ textarea {
 
 .comment-icon{
     border-radius: 50%;
-    width: 80px;
+    width: 60px;
     margin-left: 20px;
+}
+
+#pfp {
+    padding-top: 20px;
+}
+
+#text {
+    width: 100%;
 }
 
 .comment-line {
@@ -555,6 +566,10 @@ textarea {
     flex-direction: row;
 }
 
+.user-panel > p {
+   margin-bottom: 10px;
+}
+
 .user-name {
     font-family: "OpenSans", sans-serif;
     color: white;
@@ -572,12 +587,12 @@ textarea {
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: "OpenSans", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     text-align: justify;
 }
 
 .comment-feed {
-    margin-top: 100px;
+    margin-top: 30px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;

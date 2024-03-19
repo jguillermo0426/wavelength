@@ -1,10 +1,10 @@
 {{#each comments}}
 <div class="comment-feed">
   <div class="comment-container">
-    <div class="comment-panel">
+    <div class="comment-panel" id="pfp">
       <img class="comment-icon" src="{{user_image}}">
     </div>
-    <div class="comment-panel">
+    <div class="comment-panel" id="text">
       <div class="user-panel">
         <p class="user-name"><strong>{{username}}</strong> • 2 hrs ago</p>
         <div class="three-dots">
@@ -37,12 +37,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="comment-section">
-
-  <div class="comment-user">
-    <p>{{user.username}}</p>
   </div>
 </div>
 {{/each}}
