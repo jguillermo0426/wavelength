@@ -15,13 +15,18 @@ var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
     > Sign Up functionality
-    > Password hashing and 
+      > checking database for availability of username
+      > Adding new user to database
+    > Password hashing and remember session function
     > Home page
       > Like and dislike functionality
       > Comment functionality (can be redirection to view full post page)
       > Recent and Popular functionality
+    > Sign up or log-in prompt (for unlogged user when trying to upvote, downvote, or comment)
     > Search Functionality
-    > Profile Page functionality:
+      > Searching posts 
+      > Limit search with tags
+    > Profile Page functionality (edit and delete functions should only be visible to logged user):
       > Edit Profile functionality
       > Edit Post functionality
       > Delete Post functionality
@@ -47,6 +52,7 @@ var isLogged = false;
       > tas nakalimutan ko na kung ano pa pwede ilagay
       > log-out (when a user is logged in)
     > add tags database (?)
+    > error checking!
 
        
 */
