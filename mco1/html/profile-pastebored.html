@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wavelength • Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel=icon href="../svg/logo.svg">
+  </head>
+  
+  <body>
+    <div class="profile-page">
+      <div id="edit-popup" class="edit-popup">
+        <div class="edit-header">
+          <img class="close-button" src="../png/x.png" onclick="closePopUp()">
+          <p>Edit Profile</p>
+          <button type="submit" class="save-button" onclick="closePopUp()">Save</button>
+        </div>
+
+        <div class="edit-banner">
+          <img class="banner" src="https://images4.alphacoders.com/134/1349540.png">
+          <img class="banner-pen" src="../png/pen.png">
+        </div>
+
+        <img class="profile-pen" src="../png/pen.png">
+        <div class="edit-profile-picture">
+          <img src="https://i.pinimg.com/originals/75/85/04/75850404ff3478f2dd4c0542640b6a94.jpg">
+        </div>
+
+        <div class="edit-details">
+          <p>Display name</p>
+          <div class="input-details">
+            <input type="text" placeholder="Display name">
+          </div>
+        </div>
+
+        <div class="edit-details">
+          <p>Bio</p>
+          <div class="input-details">
+            <input type="text" placeholder="Bio">
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bar">
+        <div id="logo-bar" class="logo-name">
+          <img src='../svg/logo.svg'>
+          <p>Wavelength</p>
+        </div>
+
+        <div class="search-area">
+          <input type="text" placeholder="Type to search">
+        </div>
+
+        <div id="user-bar" class="user-bar">
+          <a href="login.html" id="log-in" class="logged-status">log in</a>
+          <p>|</p>
+          <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
+        </div>
+      </div>
+
+      <div class="profile-banner">
+        <img src="https://images4.alphacoders.com/134/1349540.png"/>
+      </div>
+
+      <div class="profile-section">
+        <img src="https://i.pinimg.com/originals/75/85/04/75850404ff3478f2dd4c0542640b6a94.jpg"/>
+        <div class="profile-elements">
+          <div class="profile-info">
+            <p id="username">pastebored</p>
+            <p id="bio">patuloy na dumadaloy</p>
+          </div>
+          <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
+        </div>
+      </div>
+
+      <div class="profile-feed">
+        <div class="profile-options">
+          <p>Artists</p>
+          <p>Albums</p>
+          <p>Tracks</p>
+          <p>Likes</p>
+        </div>
+
+        <!-- FAVORITE ALBUMS -->
+        <div class="favorite-album-section">
+          <div class="section-title">
+            <p>Favorite Albums</p>
+          </div>
+
+          <div class="favorite-albums-grid">
+            <!-- Album 1 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://i.scdn.co/image/ab67616d0000b27374c732f8aa0e0ccbb3d17d96">
+              </div>
+
+              <div class="favorite-album-title">
+                <p>Bewitched</p> 
+              </div> 
+            </div>
+
+            <!-- Album 2 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://ipurple.eu/1033-large_default/stray-kids-in-in-life.jpg">
+              </div>
+              <div class="favorite-album-title">
+                <p>IN LIFE</p> 
+              </div> 
+            </div>
+
+            <!-- Album 3 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://i.scdn.co/image/ab67616d0000b27377b9aeb46d46a39699ac4b77">
+              </div>
+              <div class="favorite-album-title">
+                <p>Everything I Know About Love</p> 
+              </div>    
+            </div>
+            
+            <!-- Album 4 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png">
+              </div>   
+              <div class="favorite-album-title">
+                <p>Rock-Star</p> 
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT POSTS -->
+        <div class="recent-posts-section">
+          <div class="section-title">
+            <p>Recent Posts</p>
+          </div>
+
+          <!-- Post 1 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://i.scdn.co/image/ab67616d0000b27374c732f8aa0e0ccbb3d17d96"> 
+              </div>
+              <div class="post-details">
+                <p class="post-track-album"><a href="albumpage_bewitched.html">Bewitched</a></p>
+                <p class="post-artist"><a href="artistpage_laufey.html">Laufey</a></p>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                </div>
+                <p class="date-time">reviewed on: February 14, 2024 | Edited 4 hrs ago</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">Traditional Pop</button>
+                  <button class="tag">Bossa Nova</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
+                <div id="edit-delete-post-1" class="edit-delete-post">
+                  <div class="option" onclick="editPost('edit-delete-post-1')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="deletePost('edit-delete-post-1')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>
+                  </div>
+                </div>   
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">I'm left bewitched...</p>
+              <p class="review-content">
+                Laufey's second album, "Bewitched," is like stumbling into a whimsical forest of sound. From the get-go, the opening track "Dreamer" is a cozy enchantment, with Laufey's voice casting a spell that's hard to shake off.
+                <a href="pastebored-post-1.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">69</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">1</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Stray_Kids_-_Rock-Star.png"> 
+              </div>
+              <div class="post-details">
+                <p class="post-track-album"><a href="albumpage_rockstar.html">Rock-Star</a></p>
+                <p class="post-artist"><a href="artistpage_straykids.html">Stray Kids</a></p>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star-empty.svg">
+                </div>
+                <p class="date-time">reviewed on: January 1, 2024</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">K-Pop</button>
+                  <button class="tag">Pop Rap</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-2')">
+                <div id="edit-delete-post-2" class="edit-delete-post">
+                  <div class="option" onclick="editPost('edit-delete-post-2')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="deletePost('edit-delete-post-2')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>            
+                  </div>
+                </div> 
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">🤘 FEEL THE ROCK!! 🤘</p>
+              <p class="review-content">
+                OMG, y'all, can we talk about Stray Kids' new album "Rock-Star"? Because I am absolutely shook and living for every moment of it! 🌟💥
+                <br>
+                <br>
+                First things first, these boys are on fire! From the moment you hit play, "Rock-Star" explodes into your ears with this insane energy that grabs you by the collar and    
+                <a href="pastebored-post-2.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">9</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT COMMENTS -->
+        <div class="recent-comments-section">
+          <div class="section-title">
+            <p>Recent Comments</p>
+          </div>
+
+          <!-- Comment 1 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">hannipham</span> commented on <a href="#" class="comment-title">Cool Arbum!</a></p>
+              <p class="comment-content">
+                I am really not a Red Velvet fan. I started to listen to them during monster by Irene and Seulgi. Then later I tried to listen more of then. The first album I ever loved as whole is this album. Amazing lyrics vocal music beats and some rap. A whole damn full course meal. 
+                <a href="comment.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Comment 2 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">hannipham</span> commented on <a href="#" class="comment-title"> Cool Arbum!</a></p>
+              <p class="comment-content">
+                True! Personally, Kingdom Come is one of the best things ive ever heard along with look still obsessed with this album.
+                <a href="comment.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/profile.js"></script>
+    <script src="../js/home.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </body>
+</html>

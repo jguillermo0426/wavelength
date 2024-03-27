@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wavelength • Log In</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel=icon href="../svg/logo.svg">
+  </head>
+
+  <body>
+    <div class="main-page">
+        <div class="header-bar">
+          <div id="logo-bar" class="logo-name">
+            <img src='../svg/logo.svg'>
+            <p>Wavelength</p>
+          </div>
+        </div>
+
+        <form name="login-form" onsubmit="return checkLogin()" method="get" action="home.html">
+          <div class="form">
+            <div class="form-body">
+              <p class="register">LOG IN</p>
+
+              <p class="field-text">Username</p>
+              <input type="text" name="username" class="field" id="username-field">
+
+              <p class="field-text">Password</p>
+              <input type="password" name="password" class="field" id="password-field">
+              
+              <div class="remember">
+                  <input type="checkbox">
+                  <p>Remember me</p>
+              </div>
+            </div>
+            
+            <p class="error-message">Error message.</p>
+
+            <div class="button-area">
+              <input class="submit-button" type="submit" value="Log In"></input>
+            </div>
+
+            <p class="bottom-text">Don't have an account? <span><a href="signup.html">Sign up</a></span>.</p>
+          </div>
+        </form>
+    </div>
+    
+	<script src="../js/home.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </body>
+</html>
