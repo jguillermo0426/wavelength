@@ -4,9 +4,17 @@
     <p>Wavelength</p>
     </div>
 
-    <div class="search-area">
-    <input type="text" id="search" placeholder="Type to search">
-    </div>
+    <form class="search-area" method="get" action="search">
+        <input type="text" name="search" id="search" placeholder="Type to search">
+        <p class="text">Filter:</p>
+        <select name="options" id="options">
+            <option value="title">Post Title</option>
+            <option value="trackName">Track</option>
+            <option value="artist">Artist</option>
+            <option value="tag">Tag</option>
+            <option value="postText">Post Text</option>
+        </select>
+    </form>
     <div id="user-bar" class="user-bar">
 {{#if isLogged}}
     <div class="profile-pic-holder">
