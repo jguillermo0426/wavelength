@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wavelength • Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel=icon href="../svg/logo.svg">
+  </head>
+  
+  <body>
+    <div class="profile-page">
+      <div id="edit-popup" class="edit-popup">
+        <div class="edit-header">
+          <img class="close-button" src="../png/x.png" onclick="closePopUp()">
+          <p>Edit Profile</p>
+          <button type="submit" class="save-button" onclick="closePopUp()">Save</button>
+        </div>
+
+        <div class="edit-banner">
+          <img class="banner" src="https://thekmeal.com/wp-content/uploads/2021/05/wave-to-earth.jpg">
+          <img class="banner-pen" src="../png/pen.png">
+        </div>
+
+        <img class="profile-pen" src="../png/pen.png">
+        <div class="edit-profile-picture">
+          <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+        </div>
+
+        <div class="edit-details">
+          <p>Display name</p>
+          <div class="input-details">
+            <input type="text" placeholder="Display name">
+          </div>
+        </div>
+
+        <div class="edit-details">
+          <p>Bio</p>
+          <div class="input-details">
+            <input type="text" placeholder="Bio">
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bar">
+        <div id="logo-bar" class="logo-name">
+          <img src='../svg/logo.svg'>
+          <p>Wavelength</p>
+        </div>
+
+        <div class="search-area">
+          <input type="text" placeholder="Type to search">
+        </div>
+
+        <div id="user-bar" class="user-bar">
+          <a href="login.html" id="log-in" class="logged-status">log in</a>
+          <p>|</p>
+          <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
+        </div>
+      </div>
+
+      <div class="profile-banner">
+        <img src="https://thekmeal.com/wp-content/uploads/2021/05/wave-to-earth.jpg"/>
+      </div>
+
+      <div class="profile-section">
+        <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg"/>
+        <div class="profile-elements">
+          <div class="profile-info">
+            <p id="username">hannipham</p>
+            <p id="bio">esophagus esophagus</p>
+          </div>
+          <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
+        </div>
+      </div>
+
+      <div class="profile-feed">
+        <div class="profile-options">
+          <p>Artists</p>
+          <p>Albums</p>
+          <p>Tracks</p>
+          <p>Likes</p>
+        </div>
+
+        <!-- FAVORITE ALBUMS -->
+        <div class="favorite-album-section">
+          <div class="section-title">
+            <p>Favorite Albums</p>
+          </div>
+
+          <div class="favorite-albums-grid">
+            <!-- Album 1 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://3.bp.blogspot.com/-KzgxuacQK9w/Wm8gwDgksoI/AAAAAAAAC6o/mkVF5V8kNLkP2nLb7qqHDrFmliOMsb7gQCLcBGAs/s1600/cover.jpg">
+              </div>
+
+              <div class="favorite-album-title">
+                <p>The Perfect Red Velvet</p> 
+              </div> 
+            </div>
+
+            <!-- Album 2 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/91QQT5bRXQL._SL1500_.jpg">
+              </div>
+              <div class="favorite-album-title">
+                <p>'The ReVe Festival' Finale</p> 
+              </div> 
+            </div>
+
+            <!-- Album 3 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://i1.sndcdn.com/artworks-000257951624-284ja8-t500x500.jpg">
+              </div>
+              <div class="favorite-album-title">
+                <p>Perfect Velvet - The 2nd Album</p> 
+              </div>    
+            </div>
+            
+            <!-- Album 4 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://images.genius.com/fa18e20f10496599519ed7b4430c2b38.1000x1000x1.png">
+              </div>   
+              <div class="favorite-album-title">
+                <p>'The ReVe Festival 2022 - Feel My Rhythm'</p> 
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT POSTS -->
+        <div class="recent-posts-section">
+          <div class="section-title">
+            <p>Recent Posts</p>
+          </div>
+
+          <!-- Post 1 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://3.bp.blogspot.com/-KzgxuacQK9w/Wm8gwDgksoI/AAAAAAAAC6o/mkVF5V8kNLkP2nLb7qqHDrFmliOMsb7gQCLcBGAs/s1600/cover.jpg"> 
+              </div>
+              <div class="post-details">
+                <p class="post-track-album">The Perfect Red Velvet</p>
+                <p class="post-artist">Red Velvet</p>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                </div>
+                <p class="date-time">reviewed on: January 26, 2024 | Edited 4 hrs ago</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">K-Pop</button>
+                  <button class="tag">Contemporary R&B</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
+                <div id="edit-delete-post-1" class="edit-delete-post">
+                  <div class="option" onclick="editPost('edit-delete-post-1')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="deletePost('edit-delete-post-1')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>
+                  </div>
+                </div>   
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">SUCH A BOP</p>
+              <p class="review-content">
+                Omg Reveluvs, did y'all snag "The Perfect Red Velvet" yet?! This album is NO JOKE. Like, I wasn't even a hardcore stan before, but this album SLAPS so hard.
+                First off, the whole vibe is SOOO cohesive. It's like dark, sultry Red Velvet on a whole new level, and honestly, I'm here for it. 
+                <a href="hanni-post-1.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">10</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">5</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/88/da/da/88dada02-f9e3-b632-6fb7-d52414d7ac76/23UMGIM43940.rgb.jpg/1200x1200bf-60.jpg"> 
+              </div>
+              <div class="post-details">
+                <p class="post-track-album">UNFORGIVEN</p>
+                <p class="post-artist">LE SSERAFIM</p>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star-empty.svg">
+                </div>
+                <p class="date-time">reviewed on: January 20, 2024</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">K-Pop</button>
+                  <button class="tag">Dance Pop</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-2')">
+                <div id="edit-delete-post-2" class="edit-delete-post">
+                  <div class="option" onclick="editPost('edit-delete-post-2')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="deletePost('edit-delete-post-2')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>            
+                  </div>
+                </div> 
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">Unforgiven I’m a Villain 😈</p>
+              <p class="review-content">
+                Okay, first of all, let me just say WOW Le Sserafim really came in HOT with their debut album!  UNFORGIVEN is like a chaotic party where every genre got an invite: Western showdowns ("Unforgiven"), tropical beach vibes ("No-Return"), even some chill melancholic moments ("Blue Flame"). It's all over the place, but somehow... it kinda works? The title track "Unforgiven" is a total banger, ngl. Sass level  with that whole    
+                <a href="hanni-post-2.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">9</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT COMMENTS -->
+        <div class="recent-comments-section">
+          <div class="section-title">
+            <p>Recent Comments</p>
+          </div>
+
+          <!-- Comment 1 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">hannipham</span> commented on <a href="#" class="comment-title">Cool Arbum!</a></p>
+              <p class="comment-content">
+                I am really not a Red Velvet fan. I started to listen to them during monster by Irene and Seulgi. Then later I tried to listen more of then. The first album I ever loved as whole is this album. Amazing lyrics vocal music beats and some rap. A whole damn full course meal. 
+                <a href="kiwi-post-3.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Comment 2 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">hannipham</span> commented on <a href="#" class="comment-title"> Cool Arbum!</a></p>
+              <p class="comment-content">
+                True! Personally, Kingdom Come is one of the best things ive ever heard along with look still obsessed with this album.
+                <a href="kiwi-post-3.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/profile.js"></script>
+    <script src="../js/home.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,556 @@
+/* Custom fonts */
+
+@font-face { 
+    font-family: OpenSans; 
+    src: url('../fonts/OpenSans-Regular.ttf'); 
+    font-weight: normal
+}
+
+@font-face { 
+    font-family: OpenSans; 
+    src: url('../fonts/OpenSans-ExtraBold.ttf'); 
+    font-weight: 900;
+}
+
+@font-face { 
+    font-family: OpenSans; 
+    src: url('../fonts/OpenSans-Bold.ttf'); 
+    font-weight: bold;
+}
+
+@font-face { 
+    font-family: OpenSans; 
+    src: url('../fonts/OpenSans-LightItalic.ttf'); 
+    font-weight: 100;
+    font-style: italic;
+}
+
+::selection {
+    color: #211F27;
+    background: #BBA7FF;
+}
+
+/* body */
+body { 
+    margin: 0px; 
+    background-color: #3B3942;
+    overflow: auto;
+}
+
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+}
+
+/* header elements */
+.header-bar {
+    background-color: #211F27;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-name {
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+}
+
+.logo-name > img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.logo-name > p {
+    margin: 5px 0px;
+    color: #F4EBEB;
+    font-family: "OpenSans", sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.search-area {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 60px;
+}
+
+.search-area > input {
+    width: 60%;
+    height: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    padding-left: 50px;
+    background-color: #F4EBEB;
+    background-image: url('../svg/search.svg');
+    background-position: 17px 13px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border: 0px;
+    font-size: 15px;
+    border-radius: 25px;
+    color: #211F27;
+}
+
+.search-area > input:focus { outline: none; }
+
+.search-area > input::placeholder {
+    font-family: "OpenSans", sans-serif;
+    font-style: italic;
+    color: #211F27;
+}
+
+.user-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 25%;
+}
+
+.logged-status, .user-bar > p {
+    font-family: "OpenSans", sans-serif;
+    font-style: regular;
+    color: #F4EBEB;
+    text-decoration: none;
+    margin-right: 20px;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+}
+
+.logged-status:hover {
+    color: #BBA7FF;
+    transition: all 0.25s ease-in-out;
+}
+
+.logged-status:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #BBA7FF;
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+}
+
+.logged-status:hover::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: #BBA7FF; /* Set the underline color */
+    transition: transform 0.25s ease-out;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 5px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-picture > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture::before {
+    transition: background-color  0.25s ease-in-out;
+    background-color: #3b394200;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-picture:hover::before {
+    background-color: #3b39427b;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* feed */
+.feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 150px;
+}
+
+
+.clicked {
+    color: #BBA7FF;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(23%) saturate(3847%) hue-rotate(201deg) brightness(101%) contrast(101%);
+}
+
+/* create a review box */
+.post {
+    background-color: #211F27;
+    width: 1100px;
+    height: 900px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 25px;
+    display: flex;
+}
+
+/* divide the cover and content */
+.panel {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-left: 10px;
+}
+
+.cover {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+.hover-cover {
+    position: absolute;
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+/* label */
+.label {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 25px;
+    color: #A9A5B6;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.bottom-label {
+    display: flex;
+    flex-direction: row;
+}
+
+.rating-label {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 25px;
+    color: #A9A5B6;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-label {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 25px;
+    color: #A9A5B6;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-album-title {
+    margin-right: 20px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    color: #F4EBEB;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.artist-label {
+    display: flex;
+    flex-direction: row;
+}
+
+.artist {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 25px;
+    color: #F4EBEB;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+/* textarea for review */
+textarea {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    font-family: "OpenSans", sans-serif;
+    color: #A9A5B6;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3B3942;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+}
+
+/* title input */
+.box-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #3B3942;
+    width: 800px;
+    height: 50px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.title-area {
+    margin: 5px;
+    width: 790px;
+    height: 40px;
+    padding: 12px 12px;
+    border-radius: 10px;
+    font-family: "OpenSans", sans-serif;
+    color: #A9A5B6;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3B3942;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+}
+
+
+.box-post {
+    font-size: 20px;
+    color: #A9A5B6;
+    background-color: #3B3942;
+    width: 800px;
+    height: 400px;
+    margin-right: 40px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    background-color: #56545D;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.bold, .italics, .underline, .strikethrough, .markdown {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 5px;
+
+}
+
+.bold:hover, .italics:hover, .underline:hover, .strikethrough:hover, .markdown:hover {
+    cursor: pointer;
+    background-color: #3B3942;
+    transition: all .3s ease;
+
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italics {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.markdown {
+    font-family: "OpenSans", sans-serif;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-left: auto;
+}
+
+
+.box-post-footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.empty-box{
+    width: 25%;
+}
+
+
+/* function */
+
+.hover-cover:hover {
+    transition: all .3s ease;
+    opacity: 0.6;
+
+}
+
+.submit-button {
+    background-color: #8F59DD;
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: 80px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    font-family: "OpenSans", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.submit-button:hover {
+    transition: all .3s ease;
+    opacity: 0.6;
+}
+
+
+.tag-panel {
+    display: flex;
+    flex-direction: row;
+}
+
+.tag-box {
+    border-color: #A9A5B6;
+    border: 1px solid;
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    display: flex; 
+}
+
+.tag-box-clicked {
+    background-color: #8F59DD;
+    border: 1px solid;
+    width: 100px;
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    display: flex; 
+}
+
+.tag-inner {
+    width: 25px;
+    margin-left: 2px;
+    margin-right: 4px;
+}
+
+
+.tag-label {
+    margin-left: 10px;
+    margin: 2px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #A9A5B6;   
+}
+
+.tag-label-clicked {
+    margin-left: 10px;
+    margin: 2px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: white;   
+}
+
+.rate {
+    float: left;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 35px;
+}
+.rate:not(:checked) > input {
+    position: absolute;
+    display: none;
+}
+.rate:not(:checked) > label {
+    margin-left: 0px;
+    margin-top: 3px;
+    float:right;
+    padding: 5px;
+}
+
+.rate > input:checked ~ label {
+    color: #FCD53F;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #FCD53F;
+}
+  
+  
+  

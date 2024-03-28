@@ -14,21 +14,45 @@ var loggedUser = [];
 var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
-    * Sign Up Page (functionality, to follow)
-    * Artists Page
-    * Album Page
-    * Create Post Page
+    > Sign Up functionality
+      > checking database for availability of username
+      > Adding new user to database
+    > Password hashing and remember session function
+    > Home page
+      > Like and dislike functionality
+      > Comment functionality (can be redirection to view full post page)
+      > Recent and Popular functionality
+    > Sign up or log-in prompt (for unlogged user when trying to upvote, downvote, or comment)
+    > Search Functionality
+      > Searching posts 
+      > Limit search with tags
+    > Profile Page functionality (edit and delete functions should only be visible to logged user):
+      > Edit Profile functionality
+      > Edit Post functionality
+      > Delete Post functionality
+      > Edit Comment Functionality
+      > Delete Comment Functionality
+    > Artists Page 
+      > Genres tag (get most popular genre tags for that artist)
+      > Reviews average aggregate (get total number of reviews for that album)
+      > Average score aggregate (get average score for that album
+    > Album Page
+      > Average Ratings aggregate
+      > Make reviews in album page link to full post of review
+    > Create Post Page
       > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
-      > List of tags (dunno if need na sa MCO2)
+      > Add tags
+      > Markdown (optional for bonus points)
     > View Full Post Page
-    > Add navigation menu in navigation bar 
+        > comment function
+        > nested comments
+        > liking and disliking other comments  
+    > Add navigation menu in navigation bar (gawin ba to hahaha)
       > (to include view all artists)
       > tas nakalimutan ko na kung ano pa pwede ilagay
       > log-out (when a user is logged in)
-    * Profile Page:
-      * Edit Profile Pop-up 
-      * Triple dot feature (for editing and deleting own posts and comments)
-    * Home Page
+    > add tags database (?)
+    > error checking!
 
        
 */
@@ -46,6 +70,22 @@ function add(server){
       
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
+      });
+    });
+
+    //POST SEARCH RESULTS PAGE
+    server.get('/search', function(req, resp){
+      var searchquery = req.query.search;
+      var option = req.query.options;
+
+      postController.getSearched(searchquery, option).then(posts => {
+        resp.render('searchresults', {
+          layout: 'index',
+          title: 'Wavelength • Search',
+          post_data: posts,
+          isLogged: isLogged,
+          user: loggedUser
+        }); 
       });
     });
 

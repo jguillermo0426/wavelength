@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wavelength • Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel=icon href="../svg/logo.svg">
+  </head>
+  
+  <body>
+    <div class="profile-page">
+      <div id="edit-popup" class="edit-popup">
+        <div class="edit-header">
+          <img class="close-button" src="../png/x.png" onclick="closePopUp()">
+          <p>Edit Profile</p>
+          <button type="submit" class="save-button" onclick="closePopUp()">Save</button>
+        </div>
+
+        <div class="edit-banner">
+          <img class="banner" src="https://thekmeal.com/wp-content/uploads/2021/05/wave-to-earth.jpg">
+          <img class="banner-pen" src="../png/pen.png">
+        </div>
+
+        <img class="profile-pen" src="../png/pen.png">
+        <div class="edit-profile-picture">
+          <img src="https://i.pinimg.com/736x/ed/42/34/ed4234840e9d633c60a64c956bb6a629.jpg">
+        </div>
+
+        <div class="edit-details">
+          <p>Display name</p>
+          <div class="input-details">
+            <input type="text" placeholder="Display name">
+          </div>
+        </div>
+
+        <div class="edit-details">
+          <p>Bio</p>
+          <div class="input-details">
+            <input type="text" placeholder="Bio">
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bar">
+        <div id="logo-bar" class="logo-name">
+          <img src='../svg/logo.svg'>
+          <p>Wavelength</p>
+        </div>
+
+        <div class="search-area">
+          <input type="text" placeholder="Type to search">
+        </div>
+
+        <div id="user-bar" class="user-bar">
+          <a href="login.html" id="log-in" class="logged-status">log in</a>
+          <p>|</p>
+          <a href="signup.html" id="sign-up" class="logged-status">sign up<a>
+        </div>
+      </div>
+
+      <div class="profile-banner">
+        <img src="https://i.pinimg.com/564x/33/6c/09/336c0969011a09b11b8e12ae8f48a28b.jpg"/>
+      </div>
+
+      <div class="profile-section">
+        <img src="https://i.pinimg.com/564x/cd/41/88/cd418886665578256031d8381a9d1046.jpg"/>
+        <div class="profile-elements">
+          <div class="profile-info">
+            <p id="username">kiwidoms</p>
+            <p id="bio">i love music</p>
+          </div>
+          <button type="submit" class="edit-profile" onclick="openPopUp()">Edit Profile</button>
+        </div>
+      </div>
+
+      <div class="profile-feed">
+        <div class="profile-options">
+          <p>Artists</p>
+          <p>Albums</p>
+          <p>Tracks</p>
+          <p>Likes</p>
+        </div>
+
+        <!-- FAVORITE ALBUMS -->
+        <div class="favorite-album-section">
+          <div class="section-title">
+            <p>Favorite Albums</p>
+          </div>
+
+          <div class="favorite-albums-grid">
+            <!-- Album 1 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://3.bp.blogspot.com/-KzgxuacQK9w/Wm8gwDgksoI/AAAAAAAAC6o/mkVF5V8kNLkP2nLb7qqHDrFmliOMsb7gQCLcBGAs/s1600/cover.jpg">
+              </div>
+
+              <div class="favorite-album-title">
+                <p>The Perfect Red Velvet</p> 
+              </div> 
+            </div>
+
+            <!-- Album 2 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Japanese_Breakfast_-_Psychopomp.jpg">
+              </div>
+              <div class="favorite-album-title">
+                <p>Psychopomp</p> 
+              </div> 
+            </div>
+
+            <!-- Album 3 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Mitski_-_The_Land_Is_Inhospitable_and_So_Are_We.png">
+              </div>
+              <div class="favorite-album-title">
+                <p>The Land is Inhospitable and So Are We</p> 
+              </div>    
+            </div>
+            
+            <!-- Album 4 -->
+            <div class="favorite-album-cover">
+              <div class="favorite-album-img">
+                <img src="https://i.scdn.co/image/ab67616d0000b273ef44bbd3f33154800a4cbdde">
+              </div>   
+              <div class="favorite-album-title">
+                <p>Houseplants</p> 
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT POSTS -->
+        <div class="recent-posts-section">
+          <div class="section-title">
+            <p>Recent Posts</p>
+          </div>
+
+          <!-- Post 1 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://3.bp.blogspot.com/-KzgxuacQK9w/Wm8gwDgksoI/AAAAAAAAC6o/mkVF5V8kNLkP2nLb7qqHDrFmliOMsb7gQCLcBGAs/s1600/cover.jpg"> 
+              </div>
+              <div class="post-details">
+                <a href="albumpage_tprv.html"><p class="post-track-album">The Perfect Red Velvet</p></a>
+                <a href="artistpage_redvelvet.html"><p class="post-artist">Red Velvet</p>
+                </a>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                </div>
+                <p class="date-time">reviewed on: January 26, 2024 | Edited 4 hrs ago</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">K-Pop</button>
+                  <button class="tag">Contemporary R&B</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-1')"> 
+                <div id="edit-delete-post-1" class="edit-delete-post">
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>
+                  </div>
+                </div>   
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">Cool Arbum!</p>
+              <p class="review-content">
+                I knew Red Velvet only through the album 'The Red,' to which I will upload its review later, lmao. Three very good songs without a doubt, 'Bad Boy' is, if I'm not mistaken, already an anthem within K-pop culture, and it is well-deserved with its incredible vocals and the mature atmosphere that the group handles very well.
+                <a href="kiwi-post-3.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">10</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">5</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="recent-post">
+            <div class="post-info">
+              <div class="post-image">
+                <img src="https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820.jpg"> 
+              </div>
+              <div class="post-details">
+                <p class="post-track-album">Queen II</p>
+                <a href="artistpage_queen.html"><p class="post-artist">Queen</p>
+                </a>
+                <div class="post-rating">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star.svg">
+                  <img src="../svg/star-empty.svg">
+                </div>
+                <p class="date-time">reviewed on: February 14, 2024</p>
+                <div class="post-tags">
+                  <button class="tag">Album</button>
+                  <button class="tag">Pop</button>
+                  <button class="tag">Rock</button>
+                </div>
+              </div>
+
+              <div class="three-dots">
+                <img src="../png/dots.png" onclick="openEditDelete('edit-delete-post-2')">
+                <div id="edit-delete-post-2" class="edit-delete-post">
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-2')">
+                    <img class="pen-stroke" src="../png/pen-stroke.png">
+                    <p>Edit Post</p>
+                  </div>
+                  <div class="option" onclick="closeEditDelete('edit-delete-post-2')">
+                    <img class="trash" src="../png/trash.png">
+                    <p>Delete Post</p>            
+                  </div>
+                </div> 
+              </div>
+            </div>
+
+            <div class="review">
+              <p class="review-title">BEST POP ROCK ALBUM</p>
+              <p class="review-content">
+                I really like how it expands on the blend of rock music and high fantasy themes seen in Queen I and since by that point, Queen had a better grasp of the kind of style they were going for so they were able to perfect the formula. Queen has made masterpieces but, Queen II isn't just a masterpiece, it is perfection in it's purest form. In my opinion, there is no part of Queen II that isn't good. Every single song on it from the Procession all the way to Seven Seas Of Rhye is excellent. Queen II captures everything I love about Queen and music in general.
+                <a href="kiwi-post-4.html" class="see-more"> See more...</a> 
+              </p>
+            </div>
+
+            <div class="reactions">
+              <div class="react-bar">
+                <div id="like-img"></div>
+                <p class="counter">9</p>
+              </div>
+              <div class="react-bar">
+                <div id="dislike-img"></div>
+                <p class="counter">0</p>
+              </div>
+              <div class="react-bar">
+                <div id="comment-img"></div>
+                <p class="counter">3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT COMMENTS -->
+        <div class="recent-comments-section">
+          <div class="section-title">
+            <p>Recent Comments</p>
+          </div>
+
+          <!-- Comment 1 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/564x/cd/41/88/cd418886665578256031d8381a9d1046.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">kiwidoms</span> commented on <a href="#" class="comment-title">SUCH A BOP</a></p>
+              <p class="comment-content">Every song is a bop and my favorite red velvet album (if i was forced to choose, their whole discography is amazing) Wish i was able to own a copy but they are all sold out 
+                <a href="hanni-post-2.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Comment 2 -->
+          <div class="recent-comment">
+            <div class="comment-profile-picture">
+              <img src="https://i.pinimg.com/564x/cd/41/88/cd418886665578256031d8381a9d1046.jpg">
+            </div>
+            <div class="comment-info">
+              <p class="comment-status"><span class="comment-username">kiwidoms</span> commented on <a href="#" class="comment-title"> Unforgiven I’m a Villain 😈</a></p>
+              <p class="comment-content">EAmazing album on repeat no skips
+                <a href="hanni-post-2.html" class="comment-see-more"> See more...</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/profile.js"></script>
+    <script src="../js/home.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </body>
+</html>
