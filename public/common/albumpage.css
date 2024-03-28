@@ -2,28 +2,29 @@
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-Regular.ttf'); 
+    src: url('../common/fonts/OpenSans-Regular.ttf'); 
     font-weight: normal
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-ExtraBold.ttf'); 
+    src: url('../common/fonts/OpenSans-ExtraBold.ttf'); 
     font-weight: 900;
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-Bold.ttf'); 
+    src: url('../common/fonts/OpenSans-Bold.ttf'); 
     font-weight: bold;
 }
 
 @font-face { 
     font-family: OpenSans; 
-    src: url('../fonts/OpenSans-LightItalic.ttf'); 
+    src: url('../common/fonts/OpenSans-LightItalic.ttf'); 
     font-weight: 100;
     font-style: italic;
 }
+
 
 ::selection {
     color: #211F27;
@@ -55,7 +56,9 @@ body {
     display: flex;
     flex-direction: row;
     width: 25%;
+    cursor: pointer;
 }
+
 
 .logo-name > img {
     width: 50px;
@@ -85,7 +88,7 @@ body {
     font-weight: normal;
     padding-left: 50px;
     background-color: #F4EBEB;
-    background-image: url('../svg/search.svg');
+    background-image: url('../common/svg/search.svg');
     background-position: 17px 13px;
     background-repeat: no-repeat;
     background-size: 20px;
@@ -420,3 +423,26 @@ td {
     margin: 0px 10px;
     font-family: "OpenSans", sans-serif;
 }
+
+.text {
+    font-family: OpenSans;
+    font-weight: normal;
+    color: #F4EBEB;
+    font-size: 16px;
+    margin: 10px;
+  }
+
+  #options {
+    font-family: OpenSans;
+    font-weight: normal;
+  }
+
+  select {
+    background-color: #F4EBEB;
+  }
+
+  select:focus {
+    outline: none;
+  }
+
+  

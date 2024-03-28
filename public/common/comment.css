@@ -25,6 +25,7 @@
     font-style: italic;
 }
 
+
 ::selection {
     color: #211F27;
     background: #BBA7FF;
@@ -55,7 +56,9 @@ body {
     display: flex;
     flex-direction: row;
     width: 25%;
+    cursor: pointer;
 }
+
 
 .logo-name > img {
     width: 50px;
@@ -657,4 +660,25 @@ textarea {
     font-weight: bolder;
     color: #F4EBEB;
     text-align: center;
+  }
+
+  .text {
+    font-family: OpenSans;
+    font-weight: normal;
+    color: #F4EBEB;
+    font-size: 16px;
+    margin: 10px;
+  }
+
+  #options {
+    font-family: OpenSans;
+    font-weight: normal;
+  }
+
+  select {
+    background-color: #F4EBEB;
+  }
+
+  select:focus {
+    outline: none;
   }
