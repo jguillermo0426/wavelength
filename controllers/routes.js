@@ -49,6 +49,22 @@ function add(server){
       });
     });
 
+    //POST SEARCH RESULTS PAGE
+    server.get('/search', function(req, resp){
+      var searchquery = req.query.search;
+      var option = req.query.options;
+
+      postController.getSearched(searchquery, option).then(posts => {
+        resp.render('searchresults', {
+          layout: 'index',
+          title: 'Wavelength • Search',
+          post_data: posts,
+          isLogged: isLogged,
+          user: loggedUser
+        }); 
+      });
+    });
+
     //LOGIN PAGE (add sessions in the future)
     server.get('/login', function(req, resp){
       resp.render('login',{

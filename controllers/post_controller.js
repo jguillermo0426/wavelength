@@ -33,11 +33,27 @@ function getAlbumReviews(albumName){
     return albumReviews;
 }
 
+function getSearched(query, option) {
+
+    if (option === "tag") {
+        var posts = Posts.postModel.find({$or:[
+            {tag1: {$regex: query, $options: 'i' }},
+            {tag2: {$regex: query, $options: 'i' }},
+            {tag2: {$regex: query, $options: 'i' }}
+        ]}).lean();
+    }
+    else {
+        var posts = Posts.postModel.find({[option]: {$regex: query, $options: 'i' }}).lean();
+    }
+    return posts;
+}
+
 module.exports = {
     getAllPosts,
     getUserPosts,
     createPost,
     getPostById,
-    getAlbumReviews
+    getAlbumReviews,
+    getSearched
 }
 
