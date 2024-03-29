@@ -39,7 +39,7 @@ function getSearched(query, option) {
         var posts = Posts.postModel.find({$or:[
             {tag1: {$regex: query, $options: 'i' }},
             {tag2: {$regex: query, $options: 'i' }},
-            {tag2: {$regex: query, $options: 'i' }}
+            {tag3: {$regex: query, $options: 'i' }}
         ]}).lean();
     }
     else {

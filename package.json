@@ -15,5 +15,6 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.1"
   },
-  "description": ""
+  "description": "How to Set Up?",
+  "devDependencies": {}
 }
