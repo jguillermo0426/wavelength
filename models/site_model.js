@@ -3,7 +3,19 @@ const { Double } = require('bson');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
+var SpotifyWebApi = require('spotify-web-api-node');
 
+var spotifyApi = new SpotifyWebApi({
+    clientId: "1c191b56a7214acfb136f009122cc556",
+    clientSecret: "dbacde75c3e24c75b5517190f17155e6"
+});
+
+spotifyApi.clientCredentialsGrant().then(data => {
+    console.log(data.body)
+    spotifyApi.setAccessToken(data.body["access_token"]);
+}).catch(error => {
+    console.log("Something went wrong when retrieving an access token", error);
+});
 
 const postSchema = new mongoose.Schema({
     cover: { type: String }, // Album cover, link to album model (?)
@@ -89,4 +101,5 @@ module.exports = {postModel,
                 commentModel,
                 likePostModel,
                 artistModel, 
-                albumModel};
+                albumModel,
+                spotifyApi};

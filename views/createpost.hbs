@@ -2,15 +2,19 @@
         <div class="feed">
           <form action="/createpost" method="post">
             <div class="post">
-                <div class="panel">
-                    <img class="cover" src="https://i.scdn.co/image/ab67616d0000b273b64001fa6292caefc7605550">
+                <div class="panel" id="select-album">
+                    <img class="cover" src="{{albumData}}">
                     <img class="hover-cover" src="/common/svg/hover-cover.svg">
+                      <div class="search-album">
+                        <input id="track-name" type="text" placeholder="Enter url link of track"/>
+                        <button type="button" class="search-button">Search</button>
+                      </div>
                 </div>
                 <div class="panel">
                     <p class="label">Create a Post</p>
                     <div class="artist-label">
-                       <p class="song-album-title">The Perfect Red Velvet</p>
-                       <p class="artist">Red Velvet</p>
+                       <p class="song-album-title">Track Name</p>
+                       <p class="artist">Artist</p>
                     </div>
                     <div class="box-title">
                         <input class="title-area" type="text" placeholder=" Title">

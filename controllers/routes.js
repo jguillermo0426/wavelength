@@ -222,11 +222,32 @@ function add(server){
       resp.redirect('/');
     })
 
+    var albumCover = 'https://via.placeholder.com/150';
+
+    server.post('/getAlbumData', (req, resp) => {
+      const albumUrl = req.body.url;
+      albumController.getAlbumCover(albumUrl).then(albumData => {
+        albumController.getAlbumArtist(albumUrl).then(artistData =>{
+          albumController.getAlbumName(albumUrl).then(albumName => {
+            console.log("album name: ", albumName);
+            resp.send({cover: albumData, artist: artistData, name: albumName});
+            albumCover = albumData;
+          });
+        });
+      });
+    });
+
     // CREATE POST
     server.get('/createpost', (req, resp) => {
+      //console.log('albumData:', albumData);
       resp.render('createpost', { 
         layout: 'createpost_layout',
-        title: 'Create Post' 
+        title: 'Create Post', 
+        isLogged: isLogged,
+        user: loggedUser,
+        albumData: 'https://via.placeholder.com/150',
+        artist: "Artist",
+        name: "Track Name"
       }); 
     });
 
