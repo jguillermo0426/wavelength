@@ -24,8 +24,8 @@ var isLogged = false;
       * Recent and Popular functionality
     > Sign up or log-in prompt (for unlogged user when trying to upvote, downvote, or comment)
     > Search Functionality
-      > Searching posts 
-      > Limit search with tags
+      * Searching posts 
+      * Limit search with tags
     > Profile Page functionality (edit and delete functions should only be visible to logged user):
       > Edit Profile functionality
       > Edit Post functionality
