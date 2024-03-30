@@ -467,6 +467,60 @@ textarea {
 }
 
 
+.rate {
+    float: left;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 35px;
+}
+.rate:not(:checked) > input {
+    position: absolute;
+    display: none;
+}
+.rate:not(:checked) > label {
+    margin-left: 0px;
+    margin-top: 3px;
+    float:right;
+    padding: 5px;
+}
+
+.rate > input:checked ~ label {
+    color: #FCD53F;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #FCD53F;
+}
+
+.text {
+    font-family: OpenSans;
+    font-weight: normal;
+    color: #F4EBEB;
+    font-size: 16px;
+    margin: 10px;
+  }
+
+  #options {
+    font-family: OpenSans;
+    font-weight: normal;
+  }
+
+  select {
+    background-color: #F4EBEB;
+  }
+
+  select:focus {
+    outline: none;
+  }
+/* 
+  
 .tag-panel {
     display: flex;
     flex-direction: row;
@@ -521,60 +575,51 @@ textarea {
     font-weight: normal;
     font-size: 18px;
     color: white;   
+} */
+ 
+ #ck-button {
+    height: 30px;
+    width: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+     border-radius:50px;
+     border:1px solid #D0D0D0;
+     overflow:auto;
+     float:left;
+ }
+ 
+ #ck-button label {
+     float:left;
+     width: 100px;
+     font-family: "OpenSans", sans-serif;
+     font-weight: normal;
+     font-size: 18px;
+     color: #A9A5B6;  
+ }
+ 
+ #ck-button label span {
+     text-align:center;
+     padding:3px 0px;
+     display:block;
+     border-radius:4px;
+ }
+ 
+ #ck-button label input {
+     position:absolute;
+     top:-20px;
+ }
+ 
+ #ck-button input:hover + span {
+    background-color:  #BBA7FF;
 }
+ 
+ #ck-button input:checked + span {
+     background-color:#8F59DD;
+     color:#fff;
+ }
+ 
+ #ck-button input:checked:hover + span {
+     background-color:#8F59DD;
+     color:#fff;
+ }
 
-.rate {
-    float: left;
-    margin-top: 5px;
-    margin-left: 0px;
-    margin-right: 35px;
-}
-.rate:not(:checked) > input {
-    position: absolute;
-    display: none;
-}
-.rate:not(:checked) > label {
-    margin-left: 0px;
-    margin-top: 3px;
-    float:right;
-    padding: 5px;
-}
-
-.rate > input:checked ~ label {
-    color: #FCD53F;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #FCD53F;
-}
-
-.text {
-    font-family: OpenSans;
-    font-weight: normal;
-    color: #F4EBEB;
-    font-size: 16px;
-    margin: 10px;
-  }
-
-  #options {
-    font-family: OpenSans;
-    font-weight: normal;
-  }
-
-  select {
-    background-color: #F4EBEB;
-  }
-
-  select:focus {
-    outline: none;
-  }
-  
-  
-  
