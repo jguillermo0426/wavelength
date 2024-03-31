@@ -7,8 +7,10 @@ $(document).ready(function() {
 
     var posts = $("#post-area").children();
 
-    var sortedPosts = posts.sort(function (a, b) {
-        return parseInt($(b).find("#like-counter").text()) - parseInt($(a).find("#like-counter").text());
+    posts.sort(function (a, b) {
+        let a_date = new Date($(a).find(".date").text());
+        let b_date = new Date($(b).find(".date").text());
+        return b_date.getTime() - a_date.getTime();
     }).appendTo($("#post-area"));
 
 
@@ -27,7 +29,9 @@ $(document).ready(function() {
         var posts = $("#post-area").children();
 
         posts.sort(function (a, b) {
-            return parseInt($(b).find("#like-counter").text()) - parseInt($(a).find("#like-counter").text());
+            let a_date = new Date($(a).find(".date").text());
+            let b_date = new Date($(b).find(".date").text());
+            return b_date.getTime() - a_date.getTime();
         }).appendTo($("#post-area"));
     });
 
@@ -45,9 +49,7 @@ $(document).ready(function() {
         var posts = $("#post-area").children();
 
         posts.sort(function (a, b) {
-            let a_date = new Date($(a).find(".date").text());
-            let b_date = new Date($(b).find(".date").text());
-            return b_date.getTime() - a_date.getTime();
+            return parseInt($(b).find("#like-counter").text()) - parseInt($(a).find("#like-counter").text());
         }).appendTo($("#post-area"));
     });
 });

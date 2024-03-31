@@ -29,7 +29,7 @@ function getPostComments(postId, comments) {
         }
     }
     console.log(commentsId);
-    var comments = Comments.postModel.findOne({comments: {$in: commentsId}}).populate('comments').lean().exec();
+    var comments = Comments.postModel.find({comments: {$in: commentsId}}).populate('comments').lean().exec();
     return comments;
 }
 
