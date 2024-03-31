@@ -603,6 +603,7 @@ textarea {
  
  #ck-button input:hover + span {
     background-color:  #BBA7FF;
+    cursor: pointer;
 }
  
  #ck-button input:checked + span {
