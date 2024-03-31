@@ -59,15 +59,13 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        postController.getLikes(posts).then(likedPosts => {
-          //console.log(likedPosts);
-          resp.render('main',{
-            layout: 'index',
-            title: 'Wavelength • Home',
-            post_data: likedPosts,
-            isLogged: isLogged,
-            user : loggedUser
-          });  
+        //console.log(likedPosts);
+        resp.render('main',{
+          layout: 'index',
+          title: 'Wavelength • Home',
+          post_data: posts,
+          isLogged: isLogged,
+          user : loggedUser
         });
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
@@ -289,18 +287,20 @@ function add(server){
 
       profileController.getProfileByPost(postID).then(profile => {
         postController.getPostById(postID).then(post => {
-          commentController.getPostComments(postID).then(comments => {
-            //console.log(profile);
-            console.log(comments);
-            resp.render('viewpost',{
+          commentController.getAllComments().then(comments => {
+            //console.log(comments);
+            commentController.getPostComments(postID, comments).then(postComments => {
+              console.log(postComments);
+              resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
               isLogged: isLogged,
               user: loggedUser,
               userpost : profile,
               post_data: post,
-              comments: comments
+              comments: postComments.comments
             }); 
+            });
           }).catch(errorFn);
         }).catch(errorFn);
       }).catch(errorFn); 
