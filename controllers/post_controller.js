@@ -34,7 +34,7 @@ function getAlbumReviews(albumName){
 }
 
 function getSearched(query, option) {
-
+    
     if (option === "tag") {
         var posts = Posts.postModel.find({$or:[
             {tag1: {$regex: query, $options: 'i' }},

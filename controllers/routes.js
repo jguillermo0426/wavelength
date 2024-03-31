@@ -79,15 +79,35 @@ function add(server){
       var searchquery = req.query.search;
       var option = req.query.options;
 
-      postController.getSearched(searchquery, option).then(posts => {
-        resp.render('searchresults', {
-          layout: 'index',
-          title: 'Wavelength • Search',
-          post_data: posts,
-          isLogged: isLogged,
-          user: loggedUser
+      if (option === "username") {
+        profileController.getUserProfile(searchquery).then(user => {
+          if (user != null) {
+            resp.redirect('profile-' + searchquery);
+          }
+          else {
+            postController.getSearched(searchquery, option).then(posts => {
+              resp.render('searchresults', {
+                layout: 'index',
+                title: 'Wavelength • Search',
+                post_data: posts,
+                isLogged: isLogged,
+                user: loggedUser
+              }); 
+            });
+          }
         }); 
-      });
+      }
+      else {
+        postController.getSearched(searchquery, option).then(posts => {
+          resp.render('searchresults', {
+            layout: 'index',
+            title: 'Wavelength • Search',
+            post_data: posts,
+            isLogged: isLogged,
+            user: loggedUser
+          }); 
+        });
+      }
     });
 
     //LOGIN PAGE (add sessions in the future)
