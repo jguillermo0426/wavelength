@@ -29,7 +29,7 @@ const postSchema = new mongoose.Schema({
     tag3: String,
     title: String,
     likes: [{ type: Schema.Types.ObjectId, ref: 'profile'}],
-    dislikes:[ { type: Schema.Types.ObjectId, ref: 'disliked_post'}],
+    dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
     postText: String,
 },{ versionKey: false });
@@ -51,7 +51,6 @@ const profileModel = mongoose.model('profile', profileSchema);
 const commentSchema = new mongoose.Schema({
     username: String,
     user_image: String,
-    postId: { type: Schema.Types.ObjectId, ref: 'post_data'},
     commentText: String,
     likes: Number,
     dislikes: Number,
@@ -59,22 +58,6 @@ const commentSchema = new mongoose.Schema({
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);
-
-
-const likePostSchema = new mongoose.Schema({
-    username: String,
-    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
-}, {versionKey: false});
-
-const likePostModel = mongoose.model('liked_post', likePostSchema);
-
-const dislikePostSchema = new mongoose.Schema({
-    username: String,
-    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
-}, {versionKey: false});
-
-const dislikePostModel = mongoose.model('disliked_post', dislikePostSchema);
-
 
 const artistSchema = new mongoose.Schema({
     artist_name: { type: String },
@@ -106,8 +89,6 @@ const albumModel = mongoose.model('album', albumSchema);
 module.exports = {postModel, 
                 profileModel,
                 commentModel,
-                likePostModel,
-                dislikePostModel,
                 artistModel, 
                 albumModel,
                 spotifyApi};

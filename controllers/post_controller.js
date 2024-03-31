@@ -48,24 +48,12 @@ function getSearched(query, option) {
     return posts;
 }
 
-function getLikes(posts) {
-    var postIds = [];
-
-    for (let i = 0; i < posts.length; i++) {
-        postIds.push(posts[i]._id);
-    }
-
-    var postLikes = Posts.postModel.find({_id:{$in: postIds}}).populate('likes').lean().exec();
-    return postLikes;
-}
-
 module.exports = {
     getAllPosts,
     getUserPosts,
     createPost,
     getPostById,
     getAlbumReviews,
-    getSearched,
-    getLikes
+    getSearched
 }
 
