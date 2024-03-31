@@ -10,6 +10,11 @@ function getPostById (postID){
     return postID;
 }
 
+function getPostInstance (postID){
+    var post = Posts.postModel.findById(postID).exec();
+    return post;
+}
+
 
 function getAllPosts() {
     var allPosts = Posts.postModel.find({}).lean();
@@ -54,6 +59,7 @@ module.exports = {
     createPost,
     getPostById,
     getAlbumReviews,
-    getSearched
+    getSearched,
+    getPostInstance
 }
 
