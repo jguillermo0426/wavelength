@@ -42,9 +42,11 @@ var isLogged = false;
       > Average Ratings aggregate
       > Make reviews in album page link to full post of review
     > Create Post Page
-      > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
-      > Add tags
+      * Search Album Pop-up (must list albums available in database and have ability to search for specific album)
+      * Add tags
       > Markdown (optional for bonus points)
+      > Search tag popup
+      > Submit post 
     > View Full Post Page
         > comment function
         > nested comments
@@ -234,8 +236,19 @@ function add(server){
       commentController.getUserComments(username).then(comments => {
       profileController.getLikes(profile).then(liked_posts => {
         //console.log(profile);
-        console.log(liked_posts);
+        //console.log(loggedUser._id);
+        //console.log(liked_posts);
         //console.log(posts);
+
+        sameLoggedProfile = false;
+        if(String(loggedUser._id) == String(profile._id)){
+          sameLoggedProfile = true;
+        }
+        else{
+          sameLoggedProfile = false;
+        }
+
+        console.log(sameLoggedProfile)
         resp.render('profile',{
           layout: 'index',
           title: 'Wavelength • '+ username,
@@ -244,6 +257,7 @@ function add(server){
           post_data: posts,
           comment_data: comments,
           liked_posts: liked_posts,
+          sameLoggedProfile: sameLoggedProfile
       }); 
       });
         
