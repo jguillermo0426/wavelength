@@ -455,6 +455,10 @@ body {
     margin-right: 5px;
 }
 
+#with-like {
+  display: none;
+}
+
 .dislike {
     transform: rotateX(180deg);
     width: 50px;
@@ -462,7 +466,7 @@ body {
     margin-top: 5px;
 }
 
-.counter {
+.counter{
     font-family: "OpenSans", sans-serif;
     color: #F4EBEB;
     font-weight: normal;

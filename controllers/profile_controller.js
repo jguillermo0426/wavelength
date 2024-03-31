@@ -33,7 +33,7 @@ function getProfileByPost(postID) {
 }
 
 function getLikes(username) {
-    likedPosts = Profiles.postModel.find({likes: username._id}).populate('likes').lean().exec();
+    var likedPosts = Profiles.postModel.find({likes: username._id}).populate('likes').lean().exec();
     return likedPosts;
 }
 

@@ -1,5 +1,5 @@
 {{#each post_data}}
-<div id="template" class="post">
+<div id="post_{{_id}}" class="post">
         <div class="post-header">
         <img class="cover" src="{{cover}}">
         <div class="post-titles">
@@ -36,17 +36,18 @@
         </div>
         
         <div class="post-footer">
-        <div id="likes-bar" class="react-bar">
-            <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
+        <div id="likes-bar" class="react-bar likes-bar">
+            <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+            <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
             <p id="like-counter" class="counter">{{likes.length}}</p>
         </div>
 
-        <div id="dislikes-bar" class="react-bar">
+        <div id="dislikes-bar" class="react-bar dislikes-bar">
             <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
             <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
         </div>
 
-        <div id="comments-bar" class="react-bar">
+        <div id="comments-bar" class="react-bar comment-bar">
             <input type="image" class="comment" src="../common/svg/comment.svg">
             <p id="comment-counter" class="counter">{{comments.length}}</p>
         </div>

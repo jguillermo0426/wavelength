@@ -3,6 +3,9 @@ const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
 const artistController = require('./artist_controller');
 const albumController = require('./album_controller');
+const Model = require('../models/site_model');
+const { trusted } = require('mongoose');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 function errorFn(err){
   console.log('Error found. Please trace!');
@@ -70,6 +73,62 @@ function add(server){
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
+    });
+
+    server.post('/like-dislike', function(req, resp){
+      if (isLogged === true) {
+        console.log('worked');
+        var id = req.body.postId;
+        postController.getPostById(id).then(post => {
+          var liked = false;
+          if (post.likes.length) {
+            for (let i = 0; i < post.likes.length; i++) {
+              if (post.likes[i].toString() === loggedUser._id.toString()) {
+                liked = false;
+                console.log('liked false');
+                break;
+              }
+              else {
+                liked = true;
+                console.log('liked true');
+              }
+            }
+          }
+          else {
+            liked = true;
+            console.log('liked true');
+          }
+
+          if (req.body.type === 'clicked') {
+            if (liked === false) {
+              Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                console.log(post.likes.length)
+                resp.send({
+                  liked: liked,
+                  likes: post.likes.length
+                });
+              });
+            }
+            else {
+              Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                console.log(post.likes.length)
+                resp.send({
+                  liked: liked,
+                  likes: post.likes.length
+                });
+              });
+            }
+          }
+          
+          else if (req.body.type === 'load') {
+            resp.send({liked: liked});
+          }
+
+        });
+      }
+      else {
+        resp.send({output: "nouser"});
+      }
     });
 
     //POST SEARCH RESULTS PAGE
@@ -288,8 +347,11 @@ function add(server){
       profileController.getProfileByPost(postID).then(profile => {
         postController.getPostById(postID).then(post => {
           commentController.getAllComments().then(comments => {
-            //console.log(comments);
             commentController.getPostComments(postID, comments).then(postComments => {
+              var pComments = [];
+              if (postComments.length) {
+                pComments = postComments[0].comments
+              }
               console.log(postComments);
               resp.render('viewpost',{
               layout: 'comment_layout',
@@ -298,7 +360,7 @@ function add(server){
               user: loggedUser,
               userpost : profile,
               post_data: post,
-              comments: postComments.comments
+              comments: pComments
             }); 
             });
           }).catch(errorFn);
