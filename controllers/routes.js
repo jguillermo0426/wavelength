@@ -39,9 +39,11 @@ var isLogged = false;
       > Average Ratings aggregate
       > Make reviews in album page link to full post of review
     > Create Post Page
-      > Search Album Pop-up (must list albums available in database and have ability to search for specific album)
-      > Add tags
+      * Search Album Pop-up (must list albums available in database and have ability to search for specific album)
+      * Add tags
       > Markdown (optional for bonus points)
+      > Search tag popup
+      > Submit post 
     > View Full Post Page
         > comment function
         > nested comments
