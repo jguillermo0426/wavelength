@@ -3,7 +3,6 @@ const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
 const artistController = require('./artist_controller');
 const albumController = require('./album_controller');
-const likeController = require('./like_controller');
 
 function errorFn(err){
   console.log('Error found. Please trace!');
@@ -60,14 +59,16 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        resp.render('main',{
-          layout: 'index',
-          title: 'Wavelength • Home',
-          post_data: posts,
-          isLogged: isLogged,
-          user : loggedUser
-        }); 
-      
+        postController.getLikes(posts).then(likedPosts => {
+          //console.log(likedPosts);
+          resp.render('main',{
+            layout: 'index',
+            title: 'Wavelength • Home',
+            post_data: likedPosts,
+            isLogged: isLogged,
+            user : loggedUser
+          });  
+        });
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
@@ -154,7 +155,7 @@ function add(server){
       profileController.getUserProfile(username).then(profile => {
       postController.getUserPosts(username).then(posts => {
       commentController.getUserComments(username).then(comments => {
-      likeController.getLikedPosts(username).then(liked_posts => {
+      profileController.getLikes(profile).then(liked_posts => {
         //console.log(profile);
         console.log(liked_posts);
         //console.log(posts);
@@ -166,8 +167,9 @@ function add(server){
           post_data: posts,
           comment_data: comments,
           liked_posts: liked_posts,
-        });
       }); 
+      });
+        
       }).catch(errorFn);
       }).catch(errorFn);
       }).catch(errorFn); 

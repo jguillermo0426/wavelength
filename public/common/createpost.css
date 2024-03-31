@@ -378,14 +378,13 @@ textarea {
     margin-bottom: 5px;
     margin-left: 20px;
     margin-right: 5px;
-
+    transition: all .3s ease;
 }
 
-.bold:hover, .italics:hover, .underline:hover, .strikethrough:hover, .markdown:hover {
+.bold:hover, .italics:hover, .underline:hover, .strikethrough:hover {
     cursor: pointer;
     background-color: #3B3942;
     transition: all .3s ease;
-
 }
 
 .bold {
