@@ -3,7 +3,19 @@ const { Double } = require('bson');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
+var SpotifyWebApi = require('spotify-web-api-node');
 
+var spotifyApi = new SpotifyWebApi({
+    clientId: "1c191b56a7214acfb136f009122cc556",
+    clientSecret: "dbacde75c3e24c75b5517190f17155e6"
+});
+
+spotifyApi.clientCredentialsGrant().then(data => {
+    console.log(data.body)
+    spotifyApi.setAccessToken(data.body["access_token"]);
+}).catch(error => {
+    console.log("Something went wrong when retrieving an access token", error);
+});
 
 const postSchema = new mongoose.Schema({
     cover: { type: String }, // Album cover, link to album model (?)
@@ -16,9 +28,9 @@ const postSchema = new mongoose.Schema({
     tag2: String,
     tag3: String,
     title: String,
-    likes: Number,
-    dislikes: Number,
-    comments: Number,
+    likes: [{ type: Schema.Types.ObjectId, ref: 'profile'}],
+    dislikes:[ { type: Schema.Types.ObjectId, ref: 'disliked_post'}],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
     postText: String,
 },{ versionKey: false });
 
@@ -56,6 +68,13 @@ const likePostSchema = new mongoose.Schema({
 
 const likePostModel = mongoose.model('liked_post', likePostSchema);
 
+const dislikePostSchema = new mongoose.Schema({
+    username: String,
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
+}, {versionKey: false});
+
+const dislikePostModel = mongoose.model('disliked_post', dislikePostSchema);
+
 
 const artistSchema = new mongoose.Schema({
     artist_name: { type: String },
@@ -88,5 +107,7 @@ module.exports = {postModel,
                 profileModel,
                 commentModel,
                 likePostModel,
+                dislikePostModel,
                 artistModel, 
-                albumModel};
+                albumModel,
+                spotifyApi};
