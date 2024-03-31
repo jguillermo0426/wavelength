@@ -177,8 +177,19 @@ function add(server){
       commentController.getUserComments(username).then(comments => {
       profileController.getLikes(profile).then(liked_posts => {
         //console.log(profile);
-        console.log(liked_posts);
+        //console.log(loggedUser._id);
+        //console.log(liked_posts);
         //console.log(posts);
+
+        sameLoggedProfile = false;
+        if(String(loggedUser._id) == String(profile._id)){
+          sameLoggedProfile = true;
+        }
+        else{
+          sameLoggedProfile = false;
+        }
+
+        console.log(sameLoggedProfile)
         resp.render('profile',{
           layout: 'index',
           title: 'Wavelength • '+ username,
@@ -187,6 +198,7 @@ function add(server){
           post_data: posts,
           comment_data: comments,
           liked_posts: liked_posts,
+          sameLoggedProfile: sameLoggedProfile
       }); 
       });
         

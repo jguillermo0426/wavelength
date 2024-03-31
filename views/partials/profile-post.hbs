@@ -21,7 +21,9 @@
         </div>
       </div>    
     </div>
-    {{> edit-delete-post}}
+    {{#if ../sameLoggedProfile}}
+      {{> edit-delete-post}}
+    {{/if}}
   </div>
          
   <div class="post-body">
