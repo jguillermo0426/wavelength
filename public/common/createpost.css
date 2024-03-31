@@ -578,7 +578,7 @@ textarea {
 } */
  
  #ck-button {
-    height: 30px;
+    height: 29px;
     width: 100px;
     margin-top: 10px;
     margin-right: 10px;
@@ -593,7 +593,7 @@ textarea {
      width: 100px;
      font-family: "OpenSans", sans-serif;
      font-weight: normal;
-     font-size: 18px;
+     font-size: 16.5px;
      color: #A9A5B6;  
  }
  
@@ -607,6 +607,7 @@ textarea {
  #ck-button label input {
      position:absolute;
      top:-20px;
+     visibility: hidden;
  }
  
  #ck-button input:hover + span {
