@@ -32,6 +32,12 @@ function getProfileByPost(postID) {
     }).catch(errorFn);
 }
 
+function getLikes(username) {
+    likedPosts = Profiles.postModel.find({likes: username._id}).populate('likes').lean().exec();
+    return likedPosts;
+}
+
 module.exports.logUser = logUser; 
 module.exports.getUserProfile = getUserProfile; 
 module.exports.getProfileByPost = getProfileByPost;
+module.exports.getLikes = getLikes;

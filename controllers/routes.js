@@ -3,7 +3,6 @@ const profileController = require('./profile_controller');
 const commentController = require('./comment_controller');
 const artistController = require('./artist_controller');
 const albumController = require('./album_controller');
-const likeController = require('./like_controller');
 
 function errorFn(err){
   console.log('Error found. Please trace!');
@@ -60,14 +59,16 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        resp.render('main',{
-          layout: 'index',
-          title: 'Wavelength • Home',
-          post_data: posts,
-          isLogged: isLogged,
-          user : loggedUser
-        }); 
-      
+        postController.getLikes(posts).then(likedPosts => {
+          //console.log(likedPosts);
+          resp.render('main',{
+            layout: 'index',
+            title: 'Wavelength • Home',
+            post_data: likedPosts,
+            isLogged: isLogged,
+            user : loggedUser
+          });  
+        });
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
@@ -78,15 +79,35 @@ function add(server){
       var searchquery = req.query.search;
       var option = req.query.options;
 
-      postController.getSearched(searchquery, option).then(posts => {
-        resp.render('searchresults', {
-          layout: 'index',
-          title: 'Wavelength • Search',
-          post_data: posts,
-          isLogged: isLogged,
-          user: loggedUser
+      if (option === "username") {
+        profileController.getUserProfile(searchquery).then(user => {
+          if (user != null) {
+            resp.redirect('profile-' + searchquery);
+          }
+          else {
+            postController.getSearched(searchquery, option).then(posts => {
+              resp.render('searchresults', {
+                layout: 'index',
+                title: 'Wavelength • Search',
+                post_data: posts,
+                isLogged: isLogged,
+                user: loggedUser
+              }); 
+            });
+          }
         }); 
-      });
+      }
+      else {
+        postController.getSearched(searchquery, option).then(posts => {
+          resp.render('searchresults', {
+            layout: 'index',
+            title: 'Wavelength • Search',
+            post_data: posts,
+            isLogged: isLogged,
+            user: loggedUser
+          }); 
+        });
+      }
     });
 
     //LOGIN PAGE (add sessions in the future)
@@ -154,7 +175,7 @@ function add(server){
       profileController.getUserProfile(username).then(profile => {
       postController.getUserPosts(username).then(posts => {
       commentController.getUserComments(username).then(comments => {
-      likeController.getLikedPosts(username).then(liked_posts => {
+      profileController.getLikes(profile).then(liked_posts => {
         //console.log(profile);
         console.log(liked_posts);
         //console.log(posts);
@@ -166,8 +187,9 @@ function add(server){
           post_data: posts,
           comment_data: comments,
           liked_posts: liked_posts,
-        });
       }); 
+      });
+        
       }).catch(errorFn);
       }).catch(errorFn);
       }).catch(errorFn); 
@@ -222,11 +244,32 @@ function add(server){
       resp.redirect('/');
     })
 
+    var albumCover = 'https://via.placeholder.com/150';
+
+    server.post('/getAlbumData', (req, resp) => {
+      const albumUrl = req.body.url;
+      albumController.getAlbumCover(albumUrl).then(albumData => {
+        albumController.getAlbumArtist(albumUrl).then(artistData =>{
+          albumController.getAlbumName(albumUrl).then(albumName => {
+            console.log("album name: ", albumName);
+            resp.send({cover: albumData, artist: artistData, name: albumName});
+            albumCover = albumData;
+          });
+        });
+      });
+    });
+
     // CREATE POST
     server.get('/createpost', (req, resp) => {
+      //console.log('albumData:', albumData);
       resp.render('createpost', { 
         layout: 'createpost_layout',
-        title: 'Create Post' 
+        title: 'Create Post', 
+        isLogged: isLogged,
+        user: loggedUser,
+        albumData: 'https://via.placeholder.com/150',
+        artist: "Artist",
+        name: "Track Name"
       }); 
     });
 

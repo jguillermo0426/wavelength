@@ -31,15 +31,15 @@
         <div class="post-footer">
             <div id="likes-bar" class="react-bar">
                 <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
-                <p id="like-counter" class="counter">{{post_data.likes}}</p>
+                <p id="like-counter" class="counter">{{post_data.likes.length}}</p>
             </div>
             <div id="dislikes-bar" class="react-bar">
                 <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
-                <p id="dislike-counter" class="counter">{{post_data.dislikes}}</p>
+                <p id="dislike-counter" class="counter">{{post_data.dislikes.length}}</p>
             </div>
             <div id="comments-bar" class="react-bar">
                 <input type="image" class="comment" src="../common/svg/comment.svg">
-                <p id="comment-counter" class="counter">{{post_data.comments}}</p>
+                <p id="comment-counter" class="counter">{{post_data.comments.length}}</p>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <p>commenting as</p>
             </div>
             <div class="comment-user">
-                <p>{{userpost.username}}</p>
+                <p>{{user.username}}</p>
             </div>
         </div>
         <textarea placeholder="Write a comment"></textarea>

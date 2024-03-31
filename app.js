@@ -1,6 +1,7 @@
 // npm i dotdotdot-js express express-handlebars body-parser mongoose 
 const express = require('express');
 const server = express();
+var SpotifyWebApi = require('spotify-web-api-node');
 
 const bodyParser = require('body-parser')
 server.use(express.json()); 
