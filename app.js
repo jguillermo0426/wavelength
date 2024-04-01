@@ -1,4 +1,4 @@
-// npm i dotdotdot-js express express-handlebars body-parser mongoose 
+// npm i dotdotdot-js express express-handlebars body-parser mongoose bcrypt
 const express = require('express');
 const server = express();
 var SpotifyWebApi = require('spotify-web-api-node');
@@ -16,6 +16,9 @@ server.engine('hbs', handlebars.engine({
 server.set('view engine', 'hbs');
 
 server.use(express.static('public'));
+
+const bcrypt = require('brcypt');
+const saltRounds = 10;
 
 const mongoose = require('mongoose');
 
