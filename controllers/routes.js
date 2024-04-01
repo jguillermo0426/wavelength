@@ -21,8 +21,8 @@ var isLogged = false;
       > Adding new user to database
     > Password hashing and remember session function
     > Home page
-      > Like and dislike functionality
-      > Comment functionality (can be redirection to view full post page)
+      * Like and dislike functionality
+      * Comment functionality (can be redirection to view full post page)
       * Recent and Popular functionality
     > Sign up or log-in prompt (for unlogged user when trying to upvote, downvote, or comment)
     > Search Functionality
