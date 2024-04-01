@@ -59,18 +59,16 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        albumController.getAlbumArtist().then(artist => {
-          //console.log(likedPosts);
-          resp.render('main',{
-            layout: 'index',
-            title: 'Wavelength • Home',
-            post_data: posts,
-            isLogged: isLogged,
-            user : loggedUser
-          });
+        //console.log(likedPosts);
+        resp.render('main',{
+          layout: 'index',
+          title: 'Wavelength • Home',
+          post_data: posts,
+          isLogged: isLogged,
+          user : loggedUser
+        });
         }).catch(err => {
             console.error('Error occurred while getting posts:', err);
-          });
       });
     });
 
