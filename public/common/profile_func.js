@@ -85,4 +85,14 @@ $(document).ready(function() {
         //alert("delete button clicked on "+ postID);
     });
 });
+
+// for error in log-in/sign-up
+function showError() {
+    /*
+    var errorMessage = document.querySelector(".error-message");
+    errorMessage.innerHTML = error
+    errorMessage.style.visibility = "visible";
+    */
+   $("#error-message").css("visibility", "visible");
+}
   

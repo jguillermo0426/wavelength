@@ -767,7 +767,7 @@ input:focus {
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0px;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 

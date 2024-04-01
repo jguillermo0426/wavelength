@@ -17,9 +17,6 @@ server.set('view engine', 'hbs');
 
 server.use(express.static('public'));
 
-const bcrypt = require('brcypt');
-const saltRounds = 10;
-
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://wavelength_group:wavelength@wavelength.gszzu7l.mongodb.net/wavelength');

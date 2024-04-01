@@ -5,7 +5,7 @@ function errorFn(err){
     console.error(err);
 }
 
-
+// to be deleted, no longer needed 
 function logUser(username, password){
     const searchQuery = { username: username, password: password };
 
@@ -32,6 +32,14 @@ function getProfileByPost(postID) {
     }).catch(errorFn);
 }
 
+
+function createInstance(user, pass) {
+    const profileInstance = Profiles.profileModel({
+        username : user, password : pass, user_image : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png", header_image: "https://online.visual-paradigm.com/repository/images/b2c10a4f-bfaf-4528-b257-fbe1e780f220/twitter-headers-design/blank-twitter-header.png", bio : ""
+    });
+    return profileInstance;
+}
+
 function getLikes(username) {
     var likedPosts = Profiles.postModel.find({likes: username._id}).populate('likes').lean().exec();
     return likedPosts;
@@ -40,4 +48,5 @@ function getLikes(username) {
 module.exports.logUser = logUser; 
 module.exports.getUserProfile = getUserProfile; 
 module.exports.getProfileByPost = getProfileByPost;
+module.exports.createInstance = createInstance;
 module.exports.getLikes = getLikes;

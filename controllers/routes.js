@@ -7,6 +7,8 @@ const Model = require('../models/site_model');
 const { trusted } = require('mongoose');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+const bcrypt = require('bcrypt');
+
 function errorFn(err){
   console.log('Error found. Please trace!');
   console.error(err);
@@ -280,25 +282,53 @@ function add(server){
     server.post('/login', async (req, resp) => {
       var user = req.body.username;
       var pass = req.body.password;
-
-      profileController.logUser(user, pass).then(function(user_data){
+      
+      profileController.getUserProfile(user).then(function(user_data){
         console.log('Finding user');
+        //var match = false;
+        /*
+        if(user_data == undefined && user_data == null){
+          resp.send("no user"); //
+          isLogged = false;
+          console.log('User not found.');
+          return
+        }
+        const isValid = bcrypt.compare(pass, user_data.password);
+        if(!isValid){
+          resp.send("Incorrect password"); //
+          isLogged = false;
+          console.log('Password is incorrect.');
+          return
+        }
 
+        console.log(user_data);
+        isLogged = true;
+        loggedUser = user_data;
+        resp.redirect('/');
+        console.log('Redirecting');
+        */
         if(user_data != undefined && user_data._id != null){
-          console.log(user_data);
-          isLogged = true;
-          loggedUser = user_data;
-          resp.redirect('/');
-          console.log('Redirecting');
+          bcrypt.compare(pass, user_data.password, function(err, result) {
+            if(result){
+              console.log(user_data);
+              isLogged = true;
+              loggedUser = user_data;
+              resp.redirect('/');
+              console.log('Redirecting');
+            } else {
+              console.log('Password is incorrect');
+            }
+          });
         } else {
           // add detailed error handling in the future
-          console.log('User and Password not found!')
+          console.log('User not found!')
           isLogged = false;
         }
       }).catch(errorFn);
     });
 
     // SIGNUP PAGE
+      // First check if username is taken, if not create a user and put a blank header and blank pfp
     server.get('/signup', function(req, resp){
       resp.render('signup',{
         layout: 'index',
@@ -307,12 +337,55 @@ function add(server){
     });
 
     server.post('/signup', async (req, resp) => {
-      var user = req.body.username;
-      var pass = req.body.password;
+      const user = req.body.username;
+      const pass = req.body.password;
+      const confirmpass = req.body.confirmpassword;
+      
+      profileController.getUserProfile(user).then(function(user_data){
+        console.log('Checking validity of username...');
 
-      profileController.logUser(user, pass).then(function(user_data){
-        console.log('Finding user');
+        if(user_data != undefined && user_data._id != null){
+          //Turn Error message to visible and display "Username already taken"
+          /*var error = "Username already taken"; 
+          profileController.errorMessage(error);*/
+          //profileController.showError();
+          console.log('Username already taken');
+          resp.render('signup',{
+            layout: 'index',
+            title: 'Wavelength • Sign-up',
+            status: 'bad',
+            message: 'Username already taken'
+          });
+        } else if(pass != confirmpass){
+          //Turn Error message to visible and display "Password and Confirmed Password does not match"
+          /*var error = "Passwords does not match";
+          profileController.errorMessage(error);*/
+          //profileController.showError();
+          console.log('Passwords do not match');
+          resp.render('signup',{
+            layout: 'index',
+            title: 'Wavelength • Sign-up',
+            status: 'bad',
+            message: 'Passwords do not match'
+          });
+        } else {
 
+          const saltRounds = 10;
+          bcrypt.hash(pass, saltRounds, function(err,hash){
+            encrypted_pass = hash;
+            console.log("Encrypted pass: " +encrypted_pass);
+            const profileInstance = profileController.createInstance(user,hash);
+
+            profileInstance.save().then(function(action) {
+              isLogged = false;
+              resp.redirect('/');
+              console.log('Redirecting');
+            }).catch(errorFn); 
+          });
+          
+          
+        }
+        /*
         if(user_data == undefined && user_data._id == null){
           //fix code that adds user to database (and makes pfp & header pic blank )
           isLogged = true;
@@ -323,7 +396,7 @@ function add(server){
           // add detailed error handling in the future
           console.log('User is takenfound!')
           isLogged = false;
-        }
+        } */
       }).catch(errorFn);
     });
 
