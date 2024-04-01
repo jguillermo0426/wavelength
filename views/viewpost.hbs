@@ -1,7 +1,7 @@
 {{>navigation}}
 
 <div class="feed">
-    <div class="post">
+    <div class="post" id="post_{{post_data._id}}">
         <div class="post-header">
             <img class="cover" src="{{post_data.cover}}">
             <div class="post-titles">
@@ -29,12 +29,14 @@
             <p class="post-text">{{post_data.postText}}</p>
         </div>
         <div class="post-footer">
-            <div id="likes-bar" class="react-bar">
-                <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
+            <div id="likes-bar" class="react-bar likes-bar">
+                <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
                 <p id="like-counter" class="counter">{{post_data.likes.length}}</p>
             </div>
-            <div id="dislikes-bar" class="react-bar">
-                <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
+            <div id="dislikes-bar" class="react-bar dislikes-bar">
+                 <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
                 <p id="dislike-counter" class="counter">{{post_data.dislikes.length}}</p>
             </div>
             <div id="comments-bar" class="react-bar">
@@ -44,6 +46,7 @@
         </div>
 
         <!-- COMMENTS SECTION -->
+        {{#if user}}
         <div class="comment-section">
             <div class="comment-label">
                 <p>commenting as</p>
@@ -59,6 +62,7 @@
                 <p class="comment-button">Comment</p>
             </div>
         </div>
+        {{/if}}
 
     <!-- COMMENT CONTAINER -->
   <div id="comments-area">
