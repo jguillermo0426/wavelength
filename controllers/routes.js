@@ -30,10 +30,10 @@ var isLogged = false;
     > Search Functionality
       * Searching posts 
       * Limit search with tags
-    > Profile Page functionality (edit and delete functions should only be visible to logged user):
+    * Profile Page functionality (edit and delete functions should only be visible to logged user):
       > Edit Profile functionality
-      > Edit Post functionality
-      > Delete Post functionality
+      * Edit Post functionality
+      * Delete Post functionality
       > Edit Comment Functionality
       > Delete Comment Functionality
     > Artists Page 
