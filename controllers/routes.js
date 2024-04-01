@@ -59,18 +59,18 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        postController.getLikes(posts).then(likedPosts => {
+        albumController.getAlbumArtist().then(artist => {
           //console.log(likedPosts);
           resp.render('main',{
             layout: 'index',
             title: 'Wavelength • Home',
-            post_data: likedPosts,
+            post_data: posts,
             isLogged: isLogged,
             user : loggedUser
-          });  
-        });
-      }).catch(err => {
-          console.error('Error occurred while getting posts:', err);
+          });
+        }).catch(err => {
+            console.error('Error occurred while getting posts:', err);
+          });
       });
     });
 
@@ -215,6 +215,25 @@ function add(server){
       }).catch(errorFn);
     });
 
+    server.get('/arist/:artist-:id', function(req, resp) {
+      const artistname = req.params.artist;
+      const artistId = req.params.id;
+      console.log(artistname);
+      artistController.getArtistPage(artistname).then(artist =>{
+        console.log(artist);
+        console.log('artist found!');
+        artistController.getDiscogAlbums(artistname).then(artist_full => {
+          console.log(artist_full);
+          resp.render('artist', {
+            layout: 'artistpage_layout',
+            title: 'Wavelength • '+ artistname,
+            artist: artist_full,
+            isLogged: isLogged,
+            user: loggedUser
+          });
+        });
+      }).catch(errorFn);
+    });
 
     //ALBUM PAGE
     server.get('/album-:albumname', function(req, resp){
@@ -252,7 +271,7 @@ function add(server){
         albumController.getAlbumArtist(albumUrl).then(artistData =>{
           albumController.getAlbumName(albumUrl).then(albumName => {
             console.log("album name: ", albumName);
-            resp.send({cover: albumData, artist: artistData, name: albumName});
+            resp.send({cover: albumData, artist: artistData.name, name: albumName});
             albumCover = albumData;
           });
         });

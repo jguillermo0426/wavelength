@@ -47,7 +47,7 @@ function getAlbumArtist(url) {
         if (!artist.length) {
             throw new Error('Album has no artists'); 
         }
-        return artist[0].name;
+        return artist[0];
     })
     .catch(error => {
         console.error('Error fetching artist:', error);
