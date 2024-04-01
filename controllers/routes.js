@@ -369,6 +369,31 @@ function add(server){
       }).catch(errorFn);
       }).catch(errorFn); 
     });
+
+
+    //EDIT POST PAGE
+    server.get('/edit-post/:postID', async (req, resp) => {
+      const postID = req.params.postID;
+      const post_data = await postController.getPostById(postID);
+
+      resp.render('edit-post', {
+        layout: 'editpost_layout',
+        title: 'Wavelength • Edit Post',
+        post_data: post_data
+      });
+    });
+
+    server.post('/update-post/:postID', function(req, resp){
+      const postID = req.params.postID;
+      postController.getPostInstance(postID).then(post => {
+        post.title = req.body.title;
+        post.postText = req.body.postText;
+        post.save().then(result => {
+          resp.redirect(`/${post.trackName}-${post._id}`);
+        });
+      });
+    });
+
     
     // ARTIST PAGE
     server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
