@@ -23,62 +23,44 @@
                         <div class="markdown">Markdown Mode</div>
                     </div>
                     <textarea name="postText">{{post_data.postText}}</textarea>
-              </div>
+                </div>
               <div class="bottom-label">
                   <div class="rating-label">
                       Rating
                       <div class="rate">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" class="fas fa-star" title="text"></label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" class="fas fa-star" title="text"></label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" class="fas fa-star" title="text"></label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" class="fas fa-star" title="text"></label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" class="fas fa-star" title="text"></label>
+                        <input type="radio" id="star5" name="rating" value="5" {{#if (checkSelectedRating post_data.rating 5)}} checked {{/if}}/>
+                        <label for="star5" class="fas fa-star" title="5"></label>
+                        <input type="radio" id="star4" name="rating" value="4" {{#if (checkSelectedRating post_data.rating 4)}} checked {{/if}}/>
+                        <label for="star4" class="fas fa-star" title="4"></label>
+                        <input type="radio" id="star3" name="rating" value="3" {{#if (checkSelectedRating post_data.rating 3)}} checked {{/if}}/>
+                        <label for="star3" class="fas fa-star" title="3"></label>
+                        <input type="radio" id="star2" name="rating" value="2" {{#if (checkSelectedRating post_data.rating 2)}} checked {{/if}}/>
+                        <label for="star2" class="fas fa-star" title="2"></label>
+                        <input type="radio" id="star1" name="rating" value="1" {{#if (checkSelectedRating post_data.rating 1)}} checked {{/if}}/>
+                        <label for="star1" class="fas fa-star" title="1"></label>
                       </div>
                   </div>
                   <div class="tags-label">
                     Tags
                     <div class="tag-panel">
-                    <div id="ck-button">
-                      <label>
-                          <input type="checkbox" value="1"><span>Artist</span>                      
-                      </label>
+                      <input class="add-tag" type="text" id="input" placeholder="Enter genre . . .">
+                      <div class="tag-container">
+                      </div>
                     </div>
-                      <div id="ck-button">
-                      <label>
-                          <input type="checkbox" value="2"><span>Album</span>                        
-                      </label>
-                    </div>
-                    <div id="ck-button">
-                      <label>
-                          <input type="checkbox" value="3"><span>Track</span>                        
-                      </label>
-                    </div>
-                    <div id="ck-button">
-                      <label>
-                          <input type="checkbox" value="4"><span>Search</span>                        
-                      </label>
-                    </div> 
+                    <div class="tag-note">
+                      Separate tags with a comma. Maximum of 3 tags only.
                     </div>
                   </div>
               </div>
-              <div class="box-post-footer">
-                <div class="empty-box">
-
-                </div>
-                <div class="empty-box">
-
-                </div>
-                <div class="empty-box">
-
-                </div>
-                  <button id="save-changes-btn" class="save-changes-btn" type="submit">Save changes</button>
+            <div class="bottom-label">
+              <div class="empty-box">
               </div>
+              <div class="empty-box">
+              </div>
+              <div class="empty-box">
+              </div>
+              <button id="submit" class="submit-button" type="submit">Submit</button>
+            </div>
           </div>
-      </div>
     </form>
   </div>

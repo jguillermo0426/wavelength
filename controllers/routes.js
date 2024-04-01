@@ -457,8 +457,33 @@ function add(server){
       postController.getPostInstance(postID).then(post => {
         post.title = req.body.title;
         post.postText = req.body.postText;
+        post.rating = Number(req.body.rating);
+        post.edited = true;
         post.save().then(result => {
           resp.redirect(`/${post.trackName}-${post._id}`);
+        });
+      });
+    });
+
+
+    //DELETE POST PAGE
+    server.get('/delete-post/:postID', async (req, resp) => {
+      const postID = req.params.postID;
+      const post_data = await postController.getPostById(postID);
+
+      resp.render('delete-post', {
+        layout: 'editpost_layout',
+        title: 'Wavelength • Delete Post',
+        post_data: post_data
+      });
+    });
+
+    server.post('/deleted/:postID', function(req, resp){
+      const postID = req.params.postID;
+      postController.getPostInstance(postID).then(post => {
+        post.deleted = true
+        post.save().then(result => {
+          resp.redirect(`/profile-${post.user}`);
         });
       });
     });

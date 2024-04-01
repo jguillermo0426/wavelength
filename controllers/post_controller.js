@@ -72,6 +72,7 @@ module.exports = {
     getAlbumReviews,
     getSearched,
     getPostLikes,
-    getPostDislikes
+    getPostDislikes,
+    getPostInstance
 }
 

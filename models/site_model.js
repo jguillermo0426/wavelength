@@ -32,6 +32,8 @@ const postSchema = new mongoose.Schema({
     dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
     postText: String,
+    edited: Boolean,
+    deleted: Boolean
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);

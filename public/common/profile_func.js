@@ -31,9 +31,7 @@ function updateButtonColor(button) {
     button.css("color", "#BBA7FF"); 
 }
 
-
 $(document).ready(function() {
-
     
     $("#posts-btn").click(function(){
         $("#recent-posts-area").css("display", "block");

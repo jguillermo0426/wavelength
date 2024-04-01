@@ -1,57 +1,61 @@
 {{#each post_data}}
-<div id="post_{{_id}}" class="post">
-        <div class="post-header">
-        <img class="cover" src="{{cover}}">
-        <div class="post-titles">
-          <p class="song-album-title"><a href="/album-{{trackName}}">{{trackName}}</a></p>
-          <p class="artist"><a href="/artist-page/{{artist}}">{{artist}}</a></p>
-            <div class="rating">
-                {{{ratingStars rating}}}
-            </div>
-            <p class="user-reviewed">reviewed by <a href="/profile-{{user}}" class="user">{{user}}</a> on <span class="date">{{reviewDate}}</span></p>
-            <div class="tags-area">
-            <div class="tag">
-                <p>{{tag1}}</p>
-            </div>
-            <div class="tag">
-                <p>{{tag2}}</p>
-            </div>
-            <div class="tag">
-                <p>{{tag3}}</p>
-            </div>
-            </div>
-        </div>
-        </div>
+    {{#unless deleted}}
+        <div id="post_{{_id}}" class="post">
+                <div class="post-header">
+                <img class="cover" src="{{cover}}">
+                <div class="post-titles">
+                <p class="song-album-title"><a href="/album-{{trackName}}">{{trackName}}</a></p>
+                <p class="artist"><a href="/artist-page/{{artist}}">{{artist}}</a></p>
+                    <div class="rating">
+                        {{{ratingStars rating}}}
+                    </div>
+                    <p class="user-reviewed">reviewed by <a href="/profile-{{user}}" class="user">{{user}}</a> on <span class="date">{{reviewDate}}
+                        {{#if edited}} | Edited {{/if}}
+                    </span></p>
+                    <div class="tags-area">
+                    <div class="tag">
+                        <p>{{tag1}}</p>
+                    </div>
+                    <div class="tag">
+                        <p>{{tag2}}</p>
+                    </div>
+                    <div class="tag">
+                        <p>{{tag3}}</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
 
-        <div class="post-body">
-        <p class="post-title">
-            {{title}}
-        </p>
-        <p class="post-text">
-            {{{truncateText postText 500}}}
-            {{#if (showSeeMore postText 500)}}
-                <a href="/{{{ title }}}-{{{ _id }}}" class="see-more"> See more</a>
-            {{/if}}
-        </p>
-        </div>
-        
-        <div class="post-footer">
-        <div id="likes-bar" class="react-bar likes-bar">
-            <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
-            <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
-            <p id="like-counter" class="counter">{{likes.length}}</p>
-        </div>
+                <div class="post-body">
+                <p class="post-title">
+                    {{title}}
+                </p>
+                <p class="post-text">
+                    {{{truncateText postText 500}}}
+                    {{#if (showSeeMore postText 500)}}
+                        <a href="/{{{ title }}}-{{{ _id }}}" class="see-more"> See more</a>
+                    {{/if}}
+                </p>
+                </div>
+                
+                <div class="post-footer">
+                <div id="likes-bar" class="react-bar likes-bar">
+                    <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                    <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
+                    <p id="like-counter" class="counter">{{likes.length}}</p>
+                </div>
 
-        <div id="dislikes-bar" class="react-bar dislikes-bar">
-            <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
-            <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
-            <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
-        </div>
+                <div id="dislikes-bar" class="react-bar dislikes-bar">
+                    <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                    <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
+                    <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
+                </div>
 
-        <div id="comments-bar" class="react-bar comment-bar" onclick="window.location = `/{{{ title }}}-{{{ _id }}}`">
-            <input type="image" class="comment" src="../common/svg/comment.svg">
-            <p id="comment-counter" class="counter">{{comments.length}}</p>
+                <div id="comments-bar" class="react-bar comment-bar" onclick="window.location = `/{{{ title }}}-{{{ _id }}}`">
+                    <input type="image" class="comment" src="../common/svg/comment.svg">
+                    <p id="comment-counter" class="counter">{{comments.length}}</p>
+                </div>
+                </div>
         </div>
-        </div>
-</div>
+    {{/unless}}
 {{/each}}

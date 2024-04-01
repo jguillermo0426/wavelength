@@ -38,5 +38,10 @@ module.exports = {
 
     formatNameToLink: function(class_data){
         return class_data.toLowerCase().replace(/\s/g, "-")
+    },
+
+    checkSelectedRating: function(userRating, ratingOption) {
+        let selectedRating = userRating == ratingOption;
+        return selectedRating;
     }
 }
