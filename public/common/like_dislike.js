@@ -67,7 +67,7 @@ $('document').ready(function() {
 
         $.post(
             'like-dislike',
-            {postId: id, type: 'clicked'},
+            {postId: id, type: 'clicked', click: 'like'},
             function(data, status){
                 if (status === "success") {
                     if (data.liked === true) {
@@ -76,14 +76,6 @@ $('document').ready(function() {
                         likeCounter.html(likes);
                         unliked.css("display", "none");
                         liked.css("display", "block");
-
-                        if (data.disliked === true) {
-                            console.log('undisliked');
-                            var dislikes = data.dislikes - 1;
-                            dislikeCounter.html(dislikes);
-                            disliked.css("display", "none");
-                            undisliked.css("display", "block");
-                        }
                     }
                     else if (data.liked === false) {
                         console.log('unliked');
@@ -91,6 +83,21 @@ $('document').ready(function() {
                         likeCounter.html(likes);
                         liked.css("display", "none");
                         unliked.css("display", "block");
+                    }
+
+                    if (data.disliked === true && data.match === true) {
+                        console.log('undisliked');
+                        var dislikes = data.dislikes - 1;
+                        dislikeCounter.html(dislikes);
+                        disliked.css("display", "none");
+                        undisliked.css("display", "block");
+                    }
+                    else if (data.disliked === false) {
+                        console.log('undisliked');
+                        var dislikes = data.dislikes - 1;
+                        dislikeCounter.html(dislikes);
+                        disliked.css("display", "none");
+                        undisliked.css("display", "block");
                     }
                 }
         });
@@ -100,7 +107,7 @@ $('document').ready(function() {
         var post = $(this).parent().parent().attr('id');
         var id = post.replace("post_", "");
 
-        var likesbar = $(this).parent().children("#dislikes-bar");
+        var likesbar = $(this).parent().children("#likes-bar");
 
         var dislikeCounter = $(this).children('#dislike-counter');
         var likeCounter = $(likesbar).children("#like-counter");
@@ -114,7 +121,7 @@ $('document').ready(function() {
 
         $.post(
             'like-dislike',
-            {postId: id, type: 'clicked'},
+            {postId: id, type: 'clicked', click: 'dislike'},
             function(data, status){
                 if (status === "success") {
                     if (data.disliked === true) {
@@ -132,7 +139,14 @@ $('document').ready(function() {
                         undisliked.css("display", "block");
                     }
                     
-                    else if (data.liked === true) {
+                    if (data.liked === true && data.match === true) {
+                        console.log('unliked');
+                        var likes = data.likes - 1;
+                        likeCounter.html(likes);
+                        liked.css("display", "none");
+                        unliked.css("display", "block");
+                    }
+                    else if (data.liked === false) {
                         console.log('unliked');
                         var likes = data.likes - 1;
                         likeCounter.html(likes);

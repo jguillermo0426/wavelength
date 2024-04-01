@@ -92,32 +92,20 @@ function add(server){
                   disliked = true;
                   console.log(id, '1', liked, disliked);
                 }
-                else if (postLikes && postLikes._id.toString() != loggedUser._id.toString()) {
+                else if (postLikes && postLikes._id.toString() != loggedUser._id.toString() && postDislikes && postDislikes._id.toString() != loggedUser._id.toString()) {
                   liked = true; //like
                   disliked = true;
                   console.log(id, '2', liked, disliked);
-
-                  if(postDislikes && postDislikes._id.toString() === loggedUser._id.toString()) {
-                    disliked = false; //undislike
-                    match = true;
-                    console.log(id, '4', liked, disliked);
-                  }
                 } 
                 else if (postDislikes && postDislikes._id.toString() === loggedUser._id.toString()) {
                   disliked = false;
                   liked = true;
                   console.log(id, '5', liked, disliked);
                 }
-                else if (postDislikes && postDislikes._id.toString() != loggedUser._id.toString()) {
+                else {
+                  liked = true; //like
                   disliked = true;
-                  liked = true;
-                  console.log(id, '6', liked, disliked);
-
-                  if (postLikes && postLikes._id.toString() === loggedUser._id.toString()) {
-                    liked = false;
-                    match = true;
-                    console.log(id, '7', liked, disliked);
-                  }
+                  console.log(id, '8', liked, disliked);
                 }
               }
               else {
@@ -127,17 +115,18 @@ function add(server){
               }
 
               if (req.body.type === 'clicked') {
-                if (liked === false ) {
+                if (liked === false) {
                   Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
-                    if (disliked === false) {
+                    if (disliked === true && req.body.click === 'dislike') {
                       Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
                         resp.send({
                           liked: liked,
                           likes: post.likes.length,
                           disliked: disliked,
                           dislikes: post.dislikes.length,
+                          match: match
                         });
-                        console.log('disliked');
+                        console.log('disliked 2');
                       });
                     }
                     else {
@@ -146,12 +135,13 @@ function add(server){
                         likes: post.likes.length,
                         disliked: disliked,
                         dislikes: post.dislikes.length,
+                        match: match
                       });
-                      console.log('unliked');
+                      console.log('unliked 2');
                     }
                   });
                 }
-                else if (liked === true) {
+                else if (liked === true && req.body.click === 'like') {
                   Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
                     if (disliked === false) {
                       Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
@@ -160,8 +150,9 @@ function add(server){
                           likes: post.likes.length,
                           disliked: disliked,
                           dislikes: post.dislikes.length,
+                          match: match
                         });
-                        console.log('undisliked');
+                        console.log('undisliked 1');
                       });
                     }
                     else if (disliked === true) {
@@ -170,8 +161,9 @@ function add(server){
                         likes: post.likes.length,
                         disliked: disliked,
                         dislikes: post.dislikes.length,
+                        match: match
                       });
-                    console.log('liked');
+                    console.log('liked 1');
                     }
                   });
                 }
@@ -183,9 +175,10 @@ function add(server){
                           liked: liked,
                           likes: post.likes.length,
                           disliked: disliked,
-                          dislikes: post.dislikes.length
+                          dislikes: post.dislikes.length,
+                          match: match
                         });
-                        console.log("liked");
+                        console.log("liked 2");
                       });
                     }
                     else {
@@ -193,9 +186,10 @@ function add(server){
                         liked: liked,
                         likes: post.likes.length,
                         disliked: disliked,
-                        dislikes: post.dislikes.length
+                        dislikes: post.dislikes.length,
+                        match: match
                       });
-                      console.log('undisliked');
+                      console.log('undisliked 2');
                     }
                   });
                 }
@@ -208,8 +202,9 @@ function add(server){
                           likes: post.likes.length,
                           disliked: disliked,
                           dislikes: post.dislikes.length,
+                          match: match
                         });
-                        console.log('unliked');
+                        console.log('unliked 1');
                       });
                     }
                     else {
@@ -218,8 +213,9 @@ function add(server){
                         likes: post.likes.length,
                         disliked: disliked,
                         dislikes: post.dislikes.length,
+                        match: match
                       });
-                    console.log('disliked');
+                    console.log('disliked 1');
                     }
                   });
                 }
