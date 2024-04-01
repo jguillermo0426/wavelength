@@ -99,6 +99,10 @@ $('document').ready(function() {
                         disliked.css("display", "none");
                         undisliked.css("display", "block");
                     }
+
+                    if (data.output === 'nouser') {
+                        alert("You must be logged in to interact with posts");
+                    }
                 }
         });
     });
@@ -152,6 +156,10 @@ $('document').ready(function() {
                         likeCounter.html(likes);
                         liked.css("display", "none");
                         unliked.css("display", "block");
+                    }
+
+                    if (data.output === 'nouser') {
+                        alert("You must be logged in to interact with posts");
                     }
                 }
         });
