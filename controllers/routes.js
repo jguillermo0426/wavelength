@@ -79,53 +79,157 @@ function add(server){
 
     server.post('/like-dislike', function(req, resp){
       if (isLogged === true) {
-        console.log('worked');
         var id = req.body.postId;
+        var liked = false;
+        var disliked = false;
+        var match = false;
         postController.getPostById(id).then(post => {
-          var liked = false;
-          if (post.likes.length) {
-            for (let i = 0; i < post.likes.length; i++) {
-              if (post.likes[i].toString() === loggedUser._id.toString()) {
-                liked = false;
-                console.log('liked false');
-                break;
+          postController.getPostLikes(post.likes).then(postLikes => {
+            postController.getPostDislikes(post.dislikes).then(postDislikes => {
+              if (post.likes.length || post.dislikes.length) {
+                if (postLikes && postLikes._id.toString() === loggedUser._id.toString()) {
+                  liked = false; //unlike
+                  disliked = true;
+                  console.log(id, '1', liked, disliked);
+                }
+                else if (postLikes && postLikes._id.toString() != loggedUser._id.toString()) {
+                  liked = true; //like
+                  disliked = true;
+                  console.log(id, '2', liked, disliked);
+
+                  if(postDislikes && postDislikes._id.toString() === loggedUser._id.toString()) {
+                    disliked = false; //undislike
+                    match = true;
+                    console.log(id, '4', liked, disliked);
+                  }
+                } 
+                else if (postDislikes && postDislikes._id.toString() === loggedUser._id.toString()) {
+                  disliked = false;
+                  liked = true;
+                  console.log(id, '5', liked, disliked);
+                }
+                else if (postDislikes && postDislikes._id.toString() != loggedUser._id.toString()) {
+                  disliked = true;
+                  liked = true;
+                  console.log(id, '6', liked, disliked);
+
+                  if (postLikes && postLikes._id.toString() === loggedUser._id.toString()) {
+                    liked = false;
+                    match = true;
+                    console.log(id, '7', liked, disliked);
+                  }
+                }
               }
               else {
-                liked = true;
-                console.log('liked true');
+                liked = true; //like
+                disliked = true;
+                console.log(id, '3', liked, disliked);
               }
-            }
-          }
-          else {
-            liked = true;
-            console.log('liked true');
-          }
 
-          if (req.body.type === 'clicked') {
-            if (liked === false) {
-              Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
-                console.log(post.likes.length)
-                resp.send({
-                  liked: liked,
-                  likes: post.likes.length
-                });
-              });
-            }
-            else {
-              Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
-                console.log(post.likes.length)
-                resp.send({
-                  liked: liked,
-                  likes: post.likes.length
-                });
-              });
-            }
-          }
-          
-          else if (req.body.type === 'load') {
-            resp.send({liked: liked});
-          }
-
+              if (req.body.type === 'clicked') {
+                if (liked === false ) {
+                  Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                    if (disliked === false) {
+                      Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: post.likes.length,
+                          disliked: disliked,
+                          dislikes: post.dislikes.length,
+                        });
+                        console.log('disliked');
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: post.likes.length,
+                        disliked: disliked,
+                        dislikes: post.dislikes.length,
+                      });
+                      console.log('unliked');
+                    }
+                  });
+                }
+                else if (liked === true) {
+                  Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                    if (disliked === false) {
+                      Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: post.likes.length,
+                          disliked: disliked,
+                          dislikes: post.dislikes.length,
+                        });
+                        console.log('undisliked');
+                      });
+                    }
+                    else if (disliked === true) {
+                      resp.send({
+                        liked: liked,
+                        likes: post.likes.length,
+                        disliked: disliked,
+                        dislikes: post.dislikes.length,
+                      });
+                    console.log('liked');
+                    }
+                  });
+                }
+                else if (disliked === false) {
+                  Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
+                    if (liked === false) {
+                      Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: post.likes.length,
+                          disliked: disliked,
+                          dislikes: post.dislikes.length
+                        });
+                        console.log("liked");
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: post.likes.length,
+                        disliked: disliked,
+                        dislikes: post.dislikes.length
+                      });
+                      console.log('undisliked');
+                    }
+                  });
+                }
+                else if (disliked === true) {
+                  Model.postModel.findOneAndUpdate({_id: post._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(postDislikes => {
+                    if (liked === false) {
+                      Model.postModel.findOneAndUpdate({_id: post._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(postLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: post.likes.length,
+                          disliked: disliked,
+                          dislikes: post.dislikes.length,
+                        });
+                        console.log('unliked');
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: post.likes.length,
+                        disliked: disliked,
+                        dislikes: post.dislikes.length,
+                      });
+                    console.log('disliked');
+                    }
+                  });
+                }
+                console.log('\n');
+              }
+              else if (req.body.type === 'load') {
+                resp.send({liked: liked, disliked: disliked, id: post._id});
+              }
+            });
+          }); 
         });
       }
       else {

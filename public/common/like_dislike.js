@@ -4,7 +4,7 @@ $('document').ready(function() {
     for (let i = 0; i < posts.length; i++) {
         var postId = $(posts[i]).attr('id');
         console.log(postId);
-        var id = postId.replace("post_", "");        
+        var id = postId.replace("post_", "");   
         
         $.post(
             'like-dislike',
@@ -14,10 +14,14 @@ $('document').ready(function() {
                     var unliked = $(posts[i]).children('.post-footer').children('#likes-bar').children('#no-like');
                     var liked = $(posts[i]).children('.post-footer').children('#likes-bar').children('#with-like');
 
+                    var undisliked = $(posts[i]).children('.post-footer').children('#dislikes-bar').children('#no-like');
+                    var disliked = $(posts[i]).children('.post-footer').children('#dislikes-bar').children('#with-like');
+
                     if (data.output === 'nouser') {
                         console.log("user is not logged in");
                     }
                     else {
+                        console.log(data.id, data.liked, data.disliked);
                         if (data.liked === false) {
                             console.log('liked');
                             unliked.css("display", "none");
@@ -27,6 +31,17 @@ $('document').ready(function() {
                             console.log('unliked');
                             liked.css("display", "none");
                             unliked.css("display", "block");
+                        }
+
+                        if (data.disliked === false) {
+                            console.log('disliked');
+                            undisliked.css("display", "none");
+                            disliked.css("display", "block");
+                        }
+                        else if (data.disliked === true) {
+                            console.log('undisliked');
+                            disliked.css("display", "none");
+                            undisliked.css("display", "block");
                         }
                     }
                 }
@@ -38,10 +53,18 @@ $('document').ready(function() {
     $(".likes-bar").click(function() {
         var post = $(this).parent().parent().attr('id');
         var id = post.replace("post_", "");
+
+        var dislikesBar = $(this).parent().children("#dislikes-bar");
+
         var likeCounter = $(this).children('#like-counter');
+        var dislikeCounter = $(dislikesBar).children("#dislike-counter");
+
         var unliked = $(this).children('#no-like');
         var liked = $(this).children('#with-like');
-        //console.log(liked);
+
+        var undisliked = $(dislikesBar).children('#no-like');
+        var disliked = $(dislikesBar).children('#with-like');
+
         $.post(
             'like-dislike',
             {postId: id, type: 'clicked'},
@@ -53,6 +76,14 @@ $('document').ready(function() {
                         likeCounter.html(likes);
                         unliked.css("display", "none");
                         liked.css("display", "block");
+
+                        if (data.disliked === true) {
+                            console.log('undisliked');
+                            var dislikes = data.dislikes - 1;
+                            dislikeCounter.html(dislikes);
+                            disliked.css("display", "none");
+                            undisliked.css("display", "block");
+                        }
                     }
                     else if (data.liked === false) {
                         console.log('unliked');
@@ -63,5 +94,53 @@ $('document').ready(function() {
                     }
                 }
         });
+    });
+
+    $(".dislikes-bar").click(function() {
+        var post = $(this).parent().parent().attr('id');
+        var id = post.replace("post_", "");
+
+        var likesbar = $(this).parent().children("#dislikes-bar");
+
+        var dislikeCounter = $(this).children('#dislike-counter');
+        var likeCounter = $(likesbar).children("#like-counter");
+
+        var undisliked = $(this).children('#no-like');
+        var disliked = $(this).children('#with-like');
+
+        var unliked = $(likesbar).children('#no-like');
+        var liked = $(likesbar).children('#with-like');
+
+
+        $.post(
+            'like-dislike',
+            {postId: id, type: 'clicked'},
+            function(data, status){
+                if (status === "success") {
+                    if (data.disliked === true) {
+                        console.log('disliked');
+                        var dislikes = data.dislikes + 1;
+                        dislikeCounter.html(dislikes);
+                        undisliked.css("display", "none");
+                        disliked.css("display", "block");
+                    }
+                    if (data.disliked === false) {
+                        console.log('undisliked');
+                        var dislikes = data.dislikes - 1;
+                        dislikeCounter.html(dislikes);
+                        disliked.css("display", "none");
+                        undisliked.css("display", "block");
+                    }
+                    
+                    else if (data.liked === true) {
+                        console.log('unliked');
+                        var likes = data.likes - 1;
+                        likeCounter.html(likes);
+                        liked.css("display", "none");
+                        unliked.css("display", "block");
+                    }
+                }
+        });
+        
     });
 });

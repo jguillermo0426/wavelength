@@ -48,12 +48,25 @@ function getSearched(query, option) {
     return posts;
 }
 
+function getPostLikes(posts) {
+    var postLikes = Posts.profileModel.findOne({_id: {$in: posts}}).lean();
+    return postLikes;
+}
+
+function getPostDislikes(posts) {
+    var postDislikes = Posts.profileModel.findOne({_id: {$in: posts}}).lean();
+    return postDislikes;
+}
+
+
 module.exports = {
     getAllPosts,
     getUserPosts,
     createPost,
     getPostById,
     getAlbumReviews,
-    getSearched
+    getSearched,
+    getPostLikes,
+    getPostDislikes
 }
 
