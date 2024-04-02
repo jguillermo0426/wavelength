@@ -664,6 +664,9 @@ function add(server){
       const artistId = await albumController.getAlbumArtistId(albumId);
       const fullDate = month + " " + day + ", " + year;
       try {
+
+        const tags = req.body.tags.split(',').map(tag => tag.trim());
+
           const postData = {
               trackName: name,
               artist: artist,
@@ -676,11 +679,13 @@ function add(server){
               albumId: albumId,
               artistId: artistId,
               deleted: false,
-              edited: false
-              // tag
+              edited: false,
           };
+
+          for (let i = 0; i < Math.min(tags.length, 3); i++) {
+            postData['tag' + (i + 1)] = tags[i];
+        }
   
-          console.log(req.body);
           const newPost = new Model.postModel(postData);
             
           const savedPost = await newPost.save();
