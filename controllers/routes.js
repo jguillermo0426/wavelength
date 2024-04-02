@@ -33,7 +33,7 @@ var isLogged = false;
       * Adding new user to database
     * Password hashing
     > remember session function (test nalang if goods na)
-    > Home page
+    * Home page
       * Like and dislike functionality
       * Comment functionality (can be redirection to view full post page)
       * Recent and Popular functionality
@@ -59,7 +59,7 @@ var isLogged = false;
       * Add tags
       > Markdown (optional for bonus points)
       * Search tag popup
-      > Submit post 
+      * Submit post 
     > View Full Post Page
         > comment function
         > nested comments
