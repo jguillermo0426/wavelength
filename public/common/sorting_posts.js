@@ -10,12 +10,8 @@ $(document).ready(function() {
     posts.sort(function (a, b) {
         let a_date = new Date($(a).find(".date").text());
         let b_date = new Date($(b).find(".date").text());
-        console.log($(b).find(".date").text(), "-", $(a).find(".date").text());
-        console.log(b_date.getTime() - a_date.getTime());
         return b_date.getTime() - a_date.getTime();
     }).appendTo($("#post-area"));
-
-
 
     $("#recent").click(function() {
         var popularImage = $("#popular-img");
@@ -53,5 +49,22 @@ $(document).ready(function() {
         posts.sort(function (a, b) {
             return parseInt($(b).find("#like-counter").text()) - parseInt($(a).find("#like-counter").text());
         }).appendTo($("#post-area"));
+    });
+
+    console.log(posts);
+    var loaded = 0;
+
+    var unloadedPosts = posts.slice(16, posts.length);
+    console.log(unloadedPosts);
+    for (let i = 0; i < unloadedPosts.length; i++) {
+        $(unloadedPosts[i]).css("display", "none");
+    }
+    
+    $(".load-more").click(function(){
+        loaded += 15;
+        loadedPosts = unloadedPosts.slice(0, loaded);
+        for (let i = 0; i < unloadedPosts.length; i++) {
+            $(loadedPosts[i]).css("display", "flex");
+        }
     });
 });
