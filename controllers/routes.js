@@ -608,6 +608,8 @@ function add(server){
               title: req.body.title,
               postText: req.body.postText,
               rating: req.body.rating,
+              // user
+              // tag
           };
   
           console.log(req.body);
