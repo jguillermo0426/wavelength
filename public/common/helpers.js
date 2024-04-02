@@ -43,5 +43,10 @@ module.exports = {
     checkSelectedRating: function(userRating, ratingOption) {
         let selectedRating = userRating == ratingOption;
         return selectedRating;
+    },
+
+    sameLoggedProfile: function(loggedUser, profile){
+        let sameLoggedProfile = loggedUser == profile;
+        return sameLoggedProfile;
     }
 }

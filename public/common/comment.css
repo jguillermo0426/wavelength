@@ -684,3 +684,17 @@ textarea {
   select:focus {
     outline: none;
   }
+
+  .three-dots {
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+  
+  .three-dots > img {
+    cursor: pointer;
+  }
+
+  a.option {
+    text-decoration: none;
+  }

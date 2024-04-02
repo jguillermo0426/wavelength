@@ -25,6 +25,9 @@
                     </div>
                 </div>
             </div>
+            {{#if sameLoggedProfile}}
+                {{> edit-delete-post-main}}
+            {{/if}}
         </div>
         <div class="post-body">
             <p class="post-title">{{post_data.title}}</p>

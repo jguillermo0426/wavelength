@@ -688,7 +688,7 @@ textarea {
     margin-bottom: 15px;
   }
 
-  a#cancel-delete-btn {
+  #cancel-delete-btn {
     color: #F4EBEB;
     background-color: #3B3942;
     font-size: 24px;
@@ -718,7 +718,7 @@ textarea {
     text-decoration: none;
   }
 
-  a#cancel-delete-btn:hover {
+  #cancel-delete-btn:hover {
     background-color: #595662;
   }
 

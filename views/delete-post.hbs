@@ -4,7 +4,8 @@
     <p id="delete-text">Delete Post?</p>
     <p id="delete-post-warning">Once you delete this post, it cannot be undone.</p>
     <div class="delete-popup-options">
-      <a href="/profile-{{post_data.user}}" id="cancel-delete-btn">Cancel</a>
+      <!--<a href="/profile-{{post_data.user}}" id="cancel-delete-btn">Cancel</a>-->
+      <button type="submit" id="cancel-delete-btn">Cancel</button>
       <form name="deleted" action="/deleted-post/{{post_data._id}}" method="post">
         <button type="submit" id="confirm-delete-btn">Delete</button>
       </form>

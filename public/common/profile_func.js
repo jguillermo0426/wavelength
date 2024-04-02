@@ -36,6 +36,17 @@ function openEditDeleteComment(commentID) {
     $(".edit-delete-comment[comment-id='" + commentID + "']").css("visibility", "visible");
 }
 
+function deleteComment(commentID) {
+    let deleteComment = $('[comment-id="' + commentID + '"]');
+    deleteComment.css("visibility", "hidden");
+}
+
+
+function editComment(commentID) {
+    let editComment = $('[comment-id="' + commentID + '"]');
+    editComment.css("visibility", "hidden");
+}
+
 
 $(document).ready(function() {
     
@@ -94,16 +105,23 @@ $(document).ready(function() {
         //alert("button clicked on " + commentID);
     }); 
 
-    /*$("#save-btn").click(function() {
-        let oldUsername = $('#old-username').val();
-        $.post('/edit-profile/:${oldUsername}',
-            function(data, status){
-                if(status === 'success'){
-                    alert("Username already taken.");
-                }
-            }
-        );
-    });*/
+    $(".edit-comment").click(function() {
+        let commentID = $(this).closest('.edit-delete-comment').attr('comment-id');
+        editComment(commentID);
+    });
+
+    $(".delete-comment").click(function() {
+        let commentID = $(this).closest('.edit-delete-comment').attr('comment-id');
+        deleteComment(commentID);
+    });
+
+    $("#cancel-delete-btn").click(function() {
+        window.history.back();
+    });
+
+    $("#confirm-delete-btn").click(function() {
+        window.history.back();
+    });
 });
 
 

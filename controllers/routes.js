@@ -12,12 +12,6 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
 
-const LastFmApi = require('lastfm-api-client');
-const LastFmClient = new LastFmApi({
-    apiKey   : 'a51f36830a90a1c82caa90049def47a9',
-    apiSecret: '3f887f343ced4c2dc34d1502e7887384'
-});
-
 function errorFn(err){
   console.log('Error found. Please trace!');
   console.error(err);
@@ -96,7 +90,7 @@ function add(server){
           isLogged: isLogged,
           user : loggedUser
         });
-        //console.log(posts);
+        console.log(posts);
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
@@ -591,20 +585,16 @@ function add(server){
           albumController.getArtistPicture(id).then(image => {
             postController.getAllPosts().then(posts => {
               artistController.getArtistAlbums(id, posts).then(albums => {
-                LastFmClient.artist.getInfo({artist: artist}).then((lfmresponse) => {
-                  console.log(lfmresponse);
-                  resp.render('artist', {
-                    layout: 'artistpage_layout',
-                    title: 'Wavelength • ' + artist,
-                    artistname: artist,
-                    artistImg: image,
-                    genres: genres,
-                    albums: albums,
-                    isLogged: isLogged,
-                    user: loggedUser,
-                    bio: lfmresponse.artist.bio.summary 
-                  });
-                })
+                resp.render('artist', {
+                  layout: 'artistpage_layout',
+                  title: 'Wavelength • ' + artist,
+                  artistname: artist,
+                  artistImg: image,
+                  genres: genres,
+                  albums: albums,
+                  isLogged: isLogged,
+                  user: loggedUser
+                });
               });
             });
           });
@@ -735,6 +725,15 @@ function add(server){
               if (postComments.length) {
                 pComments = postComments[0].comments
               }
+
+              sameLoggedProfile = false;
+              if(String(loggedUser._id) == String(profile._id)){
+                sameLoggedProfile = true;
+              }
+              else{
+                sameLoggedProfile = false;
+              }
+
               console.log(postComments);
               resp.render('viewpost',{
               layout: 'comment_layout',
@@ -743,7 +742,8 @@ function add(server){
               user: loggedUser,
               userpost : profile,
               post_data: post,
-              comments: pComments
+              comments: pComments,
+              sameLoggedProfile: sameLoggedProfile
             }); 
             });
           }).catch(errorFn);
