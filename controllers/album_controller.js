@@ -55,6 +55,36 @@ function getAlbumArtist(url) {
     });
 }
 
+function getArtistName(id) {
+    return Album.spotifyApi.getArtist(id)
+    .then(data => {
+        const artist = data.body.name;
+        if (!artist.length) {
+            throw new Error('No artists'); 
+        }
+        return artist;
+    })
+    .catch(error => {
+        console.error('Error fetching artist:', error);
+        return 'Artist';
+    });
+}
+
+function getArtistPicture(id) {
+    return Album.spotifyApi.getArtist(id)
+    .then(data => {
+        const artist = data.body.images[0].url;
+        if (!artist.length) {
+            throw new Error('No artists'); 
+        }
+        return artist;
+    })
+    .catch(error => {
+        console.error('Error fetching artist:', error);
+        return 'Artist';
+    });
+}
+
 function getAlbumName(url) {
     if (url == null) {
         var splitUrl = url;
@@ -79,7 +109,36 @@ function getAlbumName(url) {
 }
 
 
+function getAlbumPosts(id, posts) {
+    return Album.spotifyApi.getArtistAlbums(id, {include_groups: 'album,single', limit: 50})
+    .then(data => {
+        const albums = data.body.items;
+        if (!albums.length) {
+            throw new Error('No albums'); 
+        }
+
+        for (let i = 0; i < albums.length; i++) {
+            var qty = 0;
+            for (let j = 0; j < posts.length; j++) {
+                if (posts[i].albumId === id) {
+                    qty += 1;
+                }
+            }
+            albums[i].reviews = qty;
+        }
+        return albums;
+    })
+    .catch(error => {
+        console.error('Error fetching albums:', error);
+        return 'Albums';
+    });
+}
+
+
 module.exports.getAlbum = getAlbum;
 module.exports.getAlbumCover = getAlbumCover;
 module.exports.getAlbumArtist = getAlbumArtist;
 module.exports.getAlbumName = getAlbumName;
+module.exports.getArtistName = getArtistName;
+module.exports.getArtistPicture = getArtistPicture;
+module.exports.getAlbumPosts = getAlbumPosts;

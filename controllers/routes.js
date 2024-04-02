@@ -66,7 +66,6 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
-        //console.log(likedPosts);
         resp.render('main',{
           layout: 'index',
           title: 'Wavelength • Home',
@@ -465,6 +464,7 @@ function add(server){
 
     
     // ARTIST PAGE
+    /*
     server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
       const artistname = req.params.artist;
       console.log(artistname);
@@ -482,6 +482,31 @@ function add(server){
           });
         });
       }).catch(errorFn);
+    });
+    */
+
+    server.get('/artist-page/:artist-:id', async (req, resp) => { // /artist-page/:artist_name
+      const id = req.params.id;
+      albumController.getArtistName(id).then(artist => {
+        artistController.getArtistGenres(id).then(genres => {
+          albumController.getArtistPicture(id).then(image => {
+            postController.getAllPosts().then(posts => {
+              artistController.getArtistAlbums(id, posts).then(albums => {
+                resp.render('artist', {
+                  layout: 'artistpage_layout',
+                  title: 'Wavelength • ' + artist,
+                  artistname: artist,
+                  artistImg: image,
+                  genres: genres,
+                  albums: albums,
+                  isLogged: isLogged,
+                  user: loggedUser
+                });
+              });
+            });
+          });
+        }); 
+      }); 
     });
 
 

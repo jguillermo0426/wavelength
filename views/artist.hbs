@@ -3,21 +3,19 @@
 <div class="feed">
   <div class="artist-overview">
     <div class="aritst-pic-container">
-      <img class="artist-pic" src="{{{ artist.artist_image }}}">
+      <img class="artist-pic" src="{{{ artistImg }}}">
     </div>
     <div class="artist-info">
-      <div class="artist-name">{{{ artist.artist_name }}}</div>
+      <div class="artist-name">{{{ artistname }}}</div>
       <p class="artist-genre"><b>Genres</b></p>
       <div class="tags-area">
-{{#each artist.genres}}
+{{#each genres}}
         <div class="tag">
           <p>{{this}}</p>
         </div>
 {{/each}}
       </div>
       <br>
-      <p class="artist-bio"><b>Biography</b></p>
-      <p class="artist-bio">{{{ artist.biography }}} <a href="/FullBiography-{{{ artist.artist_name }}}">read more</a></p>
     </div>
   </div>
   <div class="discog-header-container">
@@ -37,20 +35,26 @@
       </div>
     </div>
   </div>
-  {{#each artist.albumIds}}
-          <div class="album-container">
-            <div class="album-panel">
-              <div class="album-image">
-                <img src="{{{ album_image }}}">
-              </div>
-              <div class="album-title-date-container">
-                <span class="album-title"><a href="/album-{{album_name}}">{{{ album_name }}}</a></span>
-                <span class="album-date">{{{ release_year}}}</span>  
-              </div>
-              <p class="album-reviews">{{{ reviews }}}</p>
-              <p class="album-average">{{{ average_rating }}}</p>
-            </div>
-          </div>
+  {{#each albums}}
+  <div class="album-container">
+    <div class="album-panel">
+      <div class="album-image">
+        <img src="{{{ images.1.url }}}">
+      </div>
+      <div class="album-title-date-container">
+        <span class="album-title"><a href="/album-{{ name }}" class="album-link">{{{ name }}}</a></span>
+        <span class="album-date">{{{ release_date }}}</span>  
+      </div>
+      <div class="album-metrics">
+        <div class="album-reviews">{{{ reviews }}}</div>
+        {{#if average}}
+        <div class="album-average">{{{ average }}}</div>
+        {{else}}
+        <div class="album-average">0</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 {{/each}} 
      
 </div>
