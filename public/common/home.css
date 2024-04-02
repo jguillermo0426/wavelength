@@ -996,13 +996,14 @@ input:focus {
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 580px;
+    width: 600px;
     max-height: 465px;
     margin: 10% 30%;
-    padding: 5px;
+    padding: 10px;
     z-index: 20;
     background-color: #211F27;
     border-radius: 20px;
+    border: 1px solid #F4EBEB;
     box-shadow: 5px 5px 10px 5px #211f2772;
     visibility: hidden;
   }
@@ -1042,7 +1043,7 @@ input:focus {
     font-weight: bold;
     color: #F4EBEB;
     font-size: 16px;
-    background-color: #BBA7FF;
+    background-color: #8F59DD;
     border-radius: 20px;
     border: none;
     padding: 6px 15px;

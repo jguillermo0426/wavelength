@@ -6,7 +6,7 @@
       <p>Edit Profile</p>
       <button type="submit" id="save-btn">Save</button>
     </div>
-  
+  <!--
     <div class="edit-banner">
       <img class="banner" src="{{user.header_image}}">
       <img class="banner-pen" src="/common/png/pen.png">
@@ -14,8 +14,9 @@
 
     <img class="profile-pen" src="/common/png/pen.png">
     <div class="edit-profile-picture">
+      <input type="file" id="edit-profile-picture" name="user_image">
       <img src="{{user.user_image}}">
-    </div>
+    </div>-->
 
     <div class="edit-details">
       <p>Display name</p>
@@ -30,6 +31,21 @@
         <input id="edit-bio" type="text" value="{{user.bio}}" name="bio">
       </div>
     </div>
+
+    <div class="edit-details">
+      <p>Profile picture URL</p>
+      <div class="input-details">
+        <input id="edit-profile-picture" type="text" value="{{user.user_image}}" name="user_image">
+      </div>
+    </div>
+
+    <div class="edit-details">
+      <p>Header URL</p>
+      <div class="input-details">
+        <input id="edit-header" type="text" value="{{user.header_image}}" name="header_image">
+      </div>
+    </div>
+
     <!--<div id="edit-profile-message">
       <p>Username already taken</p>
     </div>-->
