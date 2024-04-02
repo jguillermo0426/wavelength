@@ -713,6 +713,7 @@ function add(server){
               artistId: artistId,
               deleted: false,
               edited: false,
+              userId: loggedUser._id
           };
 
           for (let i = 0; i < Math.min(tags.length, 3); i++) {
