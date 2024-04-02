@@ -997,7 +997,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     width: 580px;
-    height: 450px;
+    max-height: 465px;
     margin: 10% 30%;
     padding: 5px;
     z-index: 20;
@@ -1048,6 +1048,7 @@ input:focus {
     padding: 6px 15px;
     cursor: pointer;
     transition: opacity 0.15s;
+    text-decoration: none;
   }
   
   #save-btn:hover {
@@ -1303,4 +1304,13 @@ input:focus {
     margin-bottom: 10px;
     margin-top: 20px;
     border-radius: 25px;
+  }
+
+  #edit-profile-message {
+    color:rgb(223, 43, 43);
+    font-family: OpenSans;
+    font-weight: normal;
+    text-align: center;
+    font-size: 16px;
+    display: none;
   }

@@ -35,7 +35,8 @@ const postSchema = new mongoose.Schema({
     edited: Boolean,
     deleted: Boolean,
     artistId: String,
-    albumId: String
+    albumId: String,
+    userId: { type: Schema.Types.ObjectId, ref: 'profile'}
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);
@@ -60,7 +61,8 @@ const commentSchema = new mongoose.Schema({
     dislikes: Number,
     replies: Number,
     edited: Boolean,
-    deleted: Boolean
+    deleted: Boolean,
+    userId: { type: Schema.Types.ObjectId, ref: 'profile'}
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);

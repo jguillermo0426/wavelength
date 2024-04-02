@@ -17,7 +17,7 @@ function getPostInstance (postID){
 
 
 function getAllPosts() {
-    var allPosts = Posts.postModel.find({}).lean();
+    var allPosts = Posts.postModel.find({}).populate('userId').lean();
     return allPosts;
 }
 
@@ -25,6 +25,11 @@ function getAllPosts() {
 function getUserPosts(username) {
     var userPosts = Posts.postModel.find({user: username}).lean();
     return userPosts;
+}
+
+function getUserPost(userID){
+    var userPost = Posts.postModel.find({userId: userID}).populate('userId').lean();
+    return userPost;
 }
 
 
@@ -83,6 +88,7 @@ module.exports = {
     getPostLikes,
     getPostDislikes,
     getPostInstance,
-    removeCommentFromPost
+    removeCommentFromPost,
+    getUserPost
 }
 

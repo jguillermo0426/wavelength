@@ -1,31 +1,37 @@
-<div id="edit-popup" class="edit-popup">
-  <div class="edit-header">
-    <img id="close-btn" src="/common/png/x.png" onclick="closePopUp()">
-    <p>Edit Profile</p>
-    <button type="submit" id="save-btn">Save</button>
-  </div>
-
-  <div class="edit-banner">
-    <img class="banner" src="{{user.header_image}}">
-    <img class="banner-pen" src="/common/png/pen.png">
-  </div>
-
-  <img class="profile-pen" src="/common/png/pen.png">
-  <div class="edit-profile-picture">
-    <img src="{{user.user_image}}">
-  </div>
-
-  <div class="edit-details">
-    <p>Display name</p>
-    <div class="input-details">
-      <input type="text" placeholder="Display name">
+<form name="edit-profile" action="/edit-profile/{{user.username}}" method="post">
+  <input type="hidden" id="old-username" value="{{user.username}}">
+  <div id="edit-popup" class="edit-popup">
+    <div class="edit-header">
+      <img id="close-btn" src="/common/png/x.png">
+      <p>Edit Profile</p>
+      <button type="submit" id="save-btn">Save</button>
     </div>
-  </div>
-
-  <div class="edit-details">
-    <p>Bio</p>
-    <div class="input-details">
-      <input type="text" placeholder="Bio">
+  
+    <div class="edit-banner">
+      <img class="banner" src="{{user.header_image}}">
+      <img class="banner-pen" src="/common/png/pen.png">
     </div>
+
+    <img class="profile-pen" src="/common/png/pen.png">
+    <div class="edit-profile-picture">
+      <img src="{{user.user_image}}">
+    </div>
+
+    <div class="edit-details">
+      <p>Display name</p>
+      <div class="input-details">
+        <input id="edit-username" type="text" value="{{user.username}}" name="username">
+      </div>
+    </div>
+
+    <div class="edit-details">
+      <p>Bio</p>
+      <div class="input-details">
+        <input id="edit-bio" type="text" value="{{user.bio}}" name="bio">
+      </div>
+    </div>
+    <!--<div id="edit-profile-message">
+      <p>Username already taken</p>
+    </div>-->
   </div>
-</div>
+</form>

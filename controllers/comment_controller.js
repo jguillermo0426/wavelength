@@ -12,13 +12,13 @@ function getCommentById (commentID){
 
 
 function getAllComments() {
-    var allComments = Comments.commentModel.find({}).lean();
+    var allComments = Comments.commentModel.find({}).populate('userId').lean();
     return allComments;
 }
 
 
-function getUserComments(username) {
-    var userComments = Comments.commentModel.find({username: username}).lean();
+function getUserComments(userID) {
+    var userComments = Comments.commentModel.find({userId: userID}).populate('userId').lean();
     return userComments;
 }
 

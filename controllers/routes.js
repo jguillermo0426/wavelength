@@ -90,6 +90,7 @@ function add(server){
           isLogged: isLogged,
           user : loggedUser
         });
+        //console.log(posts);
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
@@ -409,12 +410,14 @@ function add(server){
       const username = req.params.username;
 
       profileController.getUserProfile(username).then(profile => {
-      postController.getUserPosts(username).then(posts => {
-      commentController.getUserComments(username).then(comments => {
+      const userID = String(profile._id);
+      postController.getUserPost(userID).then(posts => {
+      commentController.getUserComments(userID).then(comments => {
       profileController.getLikes(profile).then(liked_posts => {
         //console.log(profile);
         //console.log(loggedUser._id);
         //console.log(liked_posts);
+        //console.log(userID);
         //console.log(posts);
 
         sameLoggedProfile = false;
@@ -436,11 +439,23 @@ function add(server){
           liked_posts: liked_posts,
           sameLoggedProfile: sameLoggedProfile
       }); 
-      });
-        
+      });   
       }).catch(errorFn);
       }).catch(errorFn);
       }).catch(errorFn); 
+    });
+
+
+    //EDIT PROFILE
+    server.post('/edit-profile/:username', function(req, resp){
+      const username = req.params.username;
+      profileController.getUserInstance(username).then(profile => {
+        profile.username = req.body.username;
+        profile.bio = req.body.bio;
+        profile.save().then(result => {
+          resp.redirect(`/profile-${profile.username}`);
+        });
+      });
     });
 
 

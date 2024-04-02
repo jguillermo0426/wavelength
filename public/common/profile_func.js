@@ -67,7 +67,7 @@ $(document).ready(function() {
         openEditProfilePopUp();
     })
     
-    $("#close-btn, #save-btn").click(function() {
+    $("#close-btn").click(function() {
         closeEditProfilePopUp();
     })
 
@@ -93,6 +93,17 @@ $(document).ready(function() {
         openEditDeleteComment(commentID);
         //alert("button clicked on " + commentID);
     }); 
+
+    /*$("#save-btn").click(function() {
+        let oldUsername = $('#old-username').val();
+        $.post('/edit-profile/:${oldUsername}',
+            function(data, status){
+                if(status === 'success'){
+                    alert("Username already taken.");
+                }
+            }
+        );
+    });*/
 });
 
 

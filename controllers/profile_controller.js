@@ -45,8 +45,16 @@ function getLikes(username) {
     return likedPosts;
 }
 
-module.exports.logUser = logUser; 
-module.exports.getUserProfile = getUserProfile; 
-module.exports.getProfileByPost = getProfileByPost;
-module.exports.createInstance = createInstance;
-module.exports.getLikes = getLikes;
+function getUserInstance (username){
+    var user = Profiles.profileModel.findOne({username: username}).exec();
+    return user;
+}
+
+module.exports = {
+    logUser,
+    getUserProfile,
+    getProfileByPost,
+    createInstance,
+    getLikes,
+    getUserInstance
+}

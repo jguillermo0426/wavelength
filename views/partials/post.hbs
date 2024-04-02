@@ -9,7 +9,7 @@
                     <div class="rating">
                         {{{ratingStars rating}}}
                     </div>
-                    <p class="user-reviewed">reviewed by <a href="/profile-{{user}}" class="user">{{user}}</a> on <span class="date">{{reviewDate}}</span>
+                    <p class="user-reviewed">reviewed by <a href="/profile-{{userId.username}}" class="user">{{userId.username}}</a> on <span class="date">{{reviewDate}}</span>
                         <span>{{#if edited}} | Edited {{/if}}</span></p>
                     <div class="tags-area">
                     <div class="tag">
