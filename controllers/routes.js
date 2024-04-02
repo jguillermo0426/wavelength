@@ -28,11 +28,11 @@ var loggedUser = [];
 var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
-    > Sign Up functionality (error checking nalang pati sa log-in, di ko mapagana nang maayos yung resp.send -rence)
+    * Sign Up functionality
       * checking database for availability of username
       * Adding new user to database
     * Password hashing
-    > remember session function
+    > remember session function (test nalang if goods na)
     > Home page
       * Like and dislike functionality
       * Comment functionality (can be redirection to view full post page)
@@ -48,26 +48,22 @@ var isLogged = false;
       * Edit Comment Functionality
       * Delete Comment Functionality
     > Artists Page 
-      > Genres tag (get most popular genre tags for that artist)
+      * Genres tag (get most popular genre tags for that artist)
       > Reviews average aggregate (get total number of reviews for that album)
       > Average score aggregate (get average score for that album
     > Album Page
-      > Average Ratings aggregate
-      > Make reviews in album page link to full post of review
+      * Average Ratings aggregate
+      * Make reviews in album page link to full post of review
     > Create Post Page
       * Search Album Pop-up (must list albums available in database and have ability to search for specific album)
       * Add tags
       > Markdown (optional for bonus points)
-      > Search tag popup
+      * Search tag popup
       > Submit post 
     > View Full Post Page
         > comment function
         > nested comments
         > liking and disliking other comments  
-    > Add navigation menu in navigation bar (gawin ba to hahaha)
-      > (to include view all artists)
-      > tas nakalimutan ko na kung ano pa pwede ilagay
-      > log-out (when a user is logged in)
     > add tags database (?)
     > error checking!
 
@@ -477,7 +473,9 @@ function add(server){
       resp.render('edit-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Post',
-        post_data: post_data
+        post_data: post_data,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
@@ -503,7 +501,9 @@ function add(server){
       resp.render('delete-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Post',
-        post_data: post_data
+        post_data: post_data,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
@@ -526,7 +526,10 @@ function add(server){
       resp.render('edit-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Comment',
-        comment: comment
+        comment: comment,
+        isLogged: isLogged,
+        user: loggedUser
+        
       });
     });
 
@@ -550,7 +553,9 @@ function add(server){
       resp.render('delete-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Comment',
-        comment: comment
+        comment: comment,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
