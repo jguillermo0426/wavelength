@@ -511,23 +511,23 @@ function add(server){
 
 
     //ALBUM PAGE
-    server.get('/album-:albumname', function(req, resp){
+    server.get("/album-:albumname([a-zA-Z0-9,.;:_'\\s-]*)-:id", function(req, resp){
       const albumname = req.params.albumname;
-
-      albumController.getAlbum(albumname).then(album => {
-      postController.getAlbumReviews(albumname).then(reviews =>{
-        console.log(album);
-        resp.render('album', {
-          layout: 'albumpage_layout',
-          title: 'Wavelength • '+ albumname,
-          album: album,
-          isLogged: isLogged,
-          user: loggedUser,
-          reviews: reviews
+      const id = req.params.id;
+      postController.getAllPosts().then(posts => {
+        albumController.getAlbumData(id, posts).then(data => {
+          var reviews = postController.getAlbumReviews(id, posts);
+            resp.render('album', {
+              layout: 'albumpage_layout',
+              title: 'Wavelength • '+ albumname,
+              albumData: data,
+              isLogged: isLogged,
+              user: loggedUser,
+              reviews: reviews
+            });
+          });
         });
       });
-      });
-    });
 
     //LOGOUT Function 
     server.get('/logout', async(req, resp) => {
