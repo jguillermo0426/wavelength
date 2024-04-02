@@ -17,6 +17,7 @@ spotifyApi.clientCredentialsGrant().then(data => {
     console.log("Something went wrong when retrieving an access token", error);
 });
 
+
 const postSchema = new mongoose.Schema({
     cover: { type: String }, // Album cover, link to album model (?)
     trackName: { type: String }, // Album name, link to album model (?)
