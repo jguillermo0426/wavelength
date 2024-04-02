@@ -57,12 +57,10 @@
                 <p>{{user.username}}</p>
             </div>
         </div>
-        <textarea placeholder="Write a comment"></textarea>
+        <textarea name="commentText" placeholder="Write a comment"></textarea>
 
         <div class="comment-footer">
-            <div class="comment-submit">
-                <p class="comment-button">Comment</p>
-            </div>
+              <button id="submit" class="comment-button" type="submit">Comment</button>
         </div>
         {{/if}}
 
