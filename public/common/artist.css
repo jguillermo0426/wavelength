@@ -261,7 +261,6 @@ body {
 .artist-bio > a:link, a:visited{
     color: #F4EBEB;
     font-weight: bold;
-    target-new: new; 
 }
 
 .artist-bio > a:link:hover {
