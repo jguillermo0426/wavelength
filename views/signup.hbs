@@ -6,16 +6,16 @@
         <p class="register">REGISTER</p>
 
         <p class="field-text">Username</p>
-        <input name = "username" type="text" class="field" id="username-field" required>
+        <input name = "username" type="text" class="field" value="{{username}}" id="username-field" required>
 
         <p class="field-text">Password</p>
-        <input name = "password" type="password" class="field" id="password-field" required>
+        <input name = "password" type="password" class="field" value="{{password}}" id="password-field" required>
 
         <p class="field-text">Confirm Password</p>
-        <input name = "confirmpassword" type="password" class="field" id="confirm-password-field" required>
+        <input name = "confirmpassword" type="password" class="field" value="{{confirmpassword}}" id="confirm-password-field" required>
       </div>
 
-      <p class="error-message"></p>
+      <p class="error-message">{{message}}</p>
 
       <div class="button-area">
           <input class="submit-login-button" type="submit" value="Sign Up"></input>

@@ -296,13 +296,25 @@ function add(server){
               console.log('Redirecting');
             } else {
               console.log('Password is incorrect');
-              resp.send({ message : 'Password is incorrect.' });
+              resp.render('login',{
+                layout: 'index',
+                title: 'Wavelength • Log-in',
+                message: "Password is incorrect",
+                username: user,
+                password: pass
+              });
             }
           });
         } else {
           // add detailed error handling in the future
           console.log('User not found.')
-          resp.send({ message : 'User not found.' });
+          resp.render('login',{
+            layout: 'index',
+            title: 'Wavelength • Log-in',
+            message: "User not found.",
+            username: user,
+            password: pass
+          });
           isLogged = false;
         }
       }).catch(errorFn);
@@ -336,26 +348,28 @@ function add(server){
           //var error = "Username already taken"; 
           
           //resp.status(400).json({ message: 'Username already taken' });
-          /*resp.render('signup',{
+          resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
             status: 'bad',
-            message: 'Username already taken'
-          });*/
-          resp.send({ message : 'Username already taken' });
+            message: 'Username already taken',
+            username: username,
+            password: password,
+            confirmpassword: confirmpassword
+          });
+          //resp.send({ message : 'Username already taken' });
           console.log('Username already taken');
         } else if(password != confirmpassword){
           //Turn Error message to visible and display "Password and Confirmed Password does not match"
           //var error = "Passwords does not match";
           
-          /*resp.render('signup',{
+          resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
             status: 'bad',
-            message: 'Passwords do not match'
-          });*/
-          //resp.status(400).json({ message: 'Passwords do not match' });
-          resp.send({ message : 'Passwords do not match '});
+            message: 'Passwords do not match',
+            username: username
+          });
           console.log('Passwords do not match');
         } else {
 
