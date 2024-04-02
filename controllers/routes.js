@@ -615,13 +615,24 @@ function add(server){
 
     server.post('/createpost', async (req, resp) => {
       try {
-        const postData = req.body; 
-        const newPost = await postController.createPost(postData);
-        resp.redirect('/'); 
+          const postData = {
+              // trackName: req.body.trackName,
+              // artist: req.body.artist,
+              title: req.body.title,
+              postText: req.body.postText,
+              rating: req.body.rating,
+          };
+  
+          console.log(req.body);
+          const newPost = new Model.postModel(postData);
+            
+          const savedPost = await newPost.save();
+            resp.redirect('/');
       } catch (error) {
-        resp.status(500).send('Error creating post: ' + error.message);
+          resp.status(500).send('Error creating post: ' + error.message);
       }
-    });
+  });
+  
 
     //VIEW POST PAGE
     server.get('/:title-:postID', function(req, resp){
