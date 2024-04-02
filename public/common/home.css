@@ -761,13 +761,14 @@ input:focus {
     text-decoration: none;
 }
 
-.error-message {
+
+.error-message{
     color: #F4EBEB;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0px;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 
 
@@ -1198,5 +1199,73 @@ input:focus {
 
   select:focus {
     outline: none;
+  }
+
+  .delete-post-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .delete-popup-content {
+    margin: 80px 0px;
+  }
+
+  .delete-popup-content > p {
+    color: #F4EBEB;
+    font-size: 28px;
+    font-family: OpenSans;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+
+  #delete-post-warning {
+    color: #A9A5B6;
+    font-size: 18px;
+    font-family: OpenSans;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  a.cancel-delete-btn {
+    color: #F4EBEB;
+    background-color: #3B3942;
+    font-size: 20px;
+    font-family: OpenSans;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #A9A5B6;
+    border-radius: 30px;
+    margin: 10px;
+    width: 190px;
+    cursor: pointer;
+    transition: background-color, 0.15s;
+  }
+
+  a.confirm-delete-btn {
+    color: #F4EBEB;
+    background-color: rgb(223, 43, 43);
+    font-size: 20px;
+    font-family: OpenSans;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid rgb(223, 43, 43);
+    border-radius: 30px;
+    margin: 10px;
+    width: 190px;
+    cursor: pointer;
+    transition: background-color, border, 0.15s;
+  }
+
+  a.cancel-delete-btn:hover {
+    background-color: #595662;
+  }
+
+  a.confirm-delete-btn:hover {
+    background-color: rgb(189, 42, 42);
+    border: 1px solid rgb(189, 42, 42);
   }
   

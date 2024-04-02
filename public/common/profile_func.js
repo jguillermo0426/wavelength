@@ -31,9 +31,7 @@ function updateButtonColor(button) {
     button.css("color", "#BBA7FF"); 
 }
 
-
 $(document).ready(function() {
-
     
     $("#posts-btn").click(function(){
         $("#recent-posts-area").css("display", "block");
@@ -86,13 +84,5 @@ $(document).ready(function() {
     });
 });
 
-// for error in log-in/sign-up
-function showError() {
-    /*
-    var errorMessage = document.querySelector(".error-message");
-    errorMessage.innerHTML = error
-    errorMessage.style.visibility = "visible";
-    */
-   $("#error-message").css("visibility", "visible");
-}
+
   

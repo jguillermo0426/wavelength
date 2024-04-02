@@ -18,10 +18,11 @@ var loggedUser = [];
 var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
-    > Sign Up functionality
-      > checking database for availability of username
-      > Adding new user to database
-    > Password hashing and remember session function
+    > Sign Up functionality (error checking nalang pati sa log-in, di ko mapagana nang maayos yung resp.send -rence)
+      * checking database for availability of username
+      * Adding new user to database
+    * Password hashing
+    > remember session function
     > Home page
       * Like and dislike functionality
       * Comment functionality (can be redirection to view full post page)
@@ -30,10 +31,10 @@ var isLogged = false;
     > Search Functionality
       * Searching posts 
       * Limit search with tags
-    > Profile Page functionality (edit and delete functions should only be visible to logged user):
+    * Profile Page functionality (edit and delete functions should only be visible to logged user):
       > Edit Profile functionality
-      > Edit Post functionality
-      > Delete Post functionality
+      * Edit Post functionality
+      * Delete Post functionality
       > Edit Comment Functionality
       > Delete Comment Functionality
     > Artists Page 
@@ -284,28 +285,7 @@ function add(server){
       
       profileController.getUserProfile(user).then(function(user_data){
         console.log('Finding user');
-        //var match = false;
-        /*
-        if(user_data == undefined && user_data == null){
-          resp.send("no user"); //
-          isLogged = false;
-          console.log('User not found.');
-          return
-        }
-        const isValid = bcrypt.compare(pass, user_data.password);
-        if(!isValid){
-          resp.send("Incorrect password"); //
-          isLogged = false;
-          console.log('Password is incorrect.');
-          return
-        }
-
-        console.log(user_data);
-        isLogged = true;
-        loggedUser = user_data;
-        resp.redirect('/');
-        console.log('Redirecting');
-        */
+        
         if(user_data != undefined && user_data._id != null){
           bcrypt.compare(pass, user_data.password, function(err, result) {
             if(result){
@@ -316,11 +296,13 @@ function add(server){
               console.log('Redirecting');
             } else {
               console.log('Password is incorrect');
+              resp.send({ message : 'Password is incorrect.' });
             }
           });
         } else {
           // add detailed error handling in the future
-          console.log('User not found!')
+          console.log('User not found.')
+          resp.send({ message : 'User not found.' });
           isLogged = false;
         }
       }).catch(errorFn);
@@ -336,44 +318,52 @@ function add(server){
     });
 
     server.post('/signup', async (req, resp) => {
-      const user = req.body.username;
-      const pass = req.body.password;
-      const confirmpass = req.body.confirmpassword;
+      const username = req.body.username;
+      const password = req.body.password;
+      const confirmpassword = req.body.confirmpassword;
+
+      //const { username, password, confirmpassword } = req.body;
       
-      profileController.getUserProfile(user).then(function(user_data){
+      console.log(username);
+      console.log(password);
+      console.log(confirmpassword);
+
+      profileController.getUserProfile(username).then(function(user_data){
         console.log('Checking validity of username...');
 
         if(user_data != undefined && user_data._id != null){
           //Turn Error message to visible and display "Username already taken"
-          /*var error = "Username already taken"; 
-          profileController.errorMessage(error);*/
-          //profileController.showError();
-          console.log('Username already taken');
-          resp.render('signup',{
+          //var error = "Username already taken"; 
+          
+          //resp.status(400).json({ message: 'Username already taken' });
+          /*resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
             status: 'bad',
             message: 'Username already taken'
-          });
-        } else if(pass != confirmpass){
+          });*/
+          resp.send({ message : 'Username already taken' });
+          console.log('Username already taken');
+        } else if(password != confirmpassword){
           //Turn Error message to visible and display "Password and Confirmed Password does not match"
-          /*var error = "Passwords does not match";
-          profileController.errorMessage(error);*/
-          //profileController.showError();
-          console.log('Passwords do not match');
-          resp.render('signup',{
+          //var error = "Passwords does not match";
+          
+          /*resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
             status: 'bad',
             message: 'Passwords do not match'
-          });
+          });*/
+          //resp.status(400).json({ message: 'Passwords do not match' });
+          resp.send({ message : 'Passwords do not match '});
+          console.log('Passwords do not match');
         } else {
 
           const saltRounds = 10;
-          bcrypt.hash(pass, saltRounds, function(err,hash){
+          bcrypt.hash(password, saltRounds, function(err,hash){
             encrypted_pass = hash;
             console.log("Encrypted pass: " +encrypted_pass);
-            const profileInstance = profileController.createInstance(user,hash);
+            const profileInstance = profileController.createInstance(username ,hash);
 
             profileInstance.save().then(function(action) {
               isLogged = false;
@@ -384,19 +374,36 @@ function add(server){
           
           
         }
-        /*
-        if(user_data == undefined && user_data._id == null){
-          //fix code that adds user to database (and makes pfp & header pic blank )
-          isLogged = true;
-          loggedUser = user_data;
-          resp.redirect('/');
-          console.log('Redirecting');
-        } else {
-          // add detailed error handling in the future
-          console.log('User is takenfound!')
-          isLogged = false;
-        } */
       }).catch(errorFn);
+    
+   /** 
+        const { username, password, confirmpassword } = req.body;
+        
+        console.log(username);
+        console.log(password);
+        console.log(confirmpassword);
+        // Check Password Match
+        if (password !== confirmpassword) {
+          return resp.status(400).json({ message: 'Passwords do not match' });
+        }
+
+        // Hash Password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        try {
+          // Create User
+          const profileInstance = profileController.createInstance(username,hashedPassword);
+          await profileInstance.save();
+
+          resp.status(201).json({ message: 'User created successfully!' });
+          await resp.redirect('/');
+        } catch (err) {
+          // Handle duplicate username error
+          if (err.code === 11000) {
+            return resp.status(400).json({ message: 'Username already taken' });
+          }
+          resp.status(500).json({ message: 'Error creating user' });
+        }*/
     });
 
     //PROFILE PAGE
@@ -456,8 +463,33 @@ function add(server){
       postController.getPostInstance(postID).then(post => {
         post.title = req.body.title;
         post.postText = req.body.postText;
+        post.rating = Number(req.body.rating);
+        post.edited = true;
         post.save().then(result => {
           resp.redirect(`/${post.trackName}-${post._id}`);
+        });
+      });
+    });
+
+
+    //DELETE POST PAGE
+    server.get('/delete-post/:postID', async (req, resp) => {
+      const postID = req.params.postID;
+      const post_data = await postController.getPostById(postID);
+
+      resp.render('delete-post', {
+        layout: 'editpost_layout',
+        title: 'Wavelength • Delete Post',
+        post_data: post_data
+      });
+    });
+
+    server.post('/deleted/:postID', function(req, resp){
+      const postID = req.params.postID;
+      postController.getPostInstance(postID).then(post => {
+        post.deleted = true
+        post.save().then(result => {
+          resp.redirect(`/profile-${post.user}`);
         });
       });
     });

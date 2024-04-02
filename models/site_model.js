@@ -32,14 +32,16 @@ const postSchema = new mongoose.Schema({
     dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
     postText: String,
+    edited: Boolean,
+    deleted: Boolean
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);
 
 
 const profileSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    username: { type : String , required: true, unique: true },
+    password: { type : String , required: true },
     bio: String,
     user_image: String,
     header_image: String
