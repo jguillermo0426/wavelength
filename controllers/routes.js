@@ -571,7 +571,10 @@ function add(server){
       console.log(req.session);
     })
 
-    var albumCover = 'https://via.placeholder.com/150';
+    var cover = 'https://via.placeholder.com/150';
+    var artist = "Artist";
+    var name = "Track Name";
+    var albumLink = "";
 
     server.post('/getAlbumData', (req, resp) => {
       const albumUrl = req.body.url;
@@ -580,7 +583,10 @@ function add(server){
           albumController.getAlbumName(albumUrl).then(albumName => {
             console.log("album name: ", albumName);
             resp.send({cover: albumData, artist: artistData, name: albumName});
-            albumCover = albumData;
+            cover = albumData;
+            artist = artistData;
+            name = albumName;
+            albumLink = albumUrl;
           });
         });
       });
@@ -601,14 +607,30 @@ function add(server){
     });
 
     server.post('/createpost', async (req, resp) => {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = months[date.getMonth()];
+      const day = date.getDate();
+
+      var albumId = albumLink.replace("https://open.spotify.com/album/", "");
+      const artistId = await albumController.getAlbumArtistId(albumId);
+      const fullDate = month + " " + day + ", " + year;
       try {
           const postData = {
-              // trackName: req.body.trackName,
-              // artist: req.body.artist,
+              trackName: name,
+              artist: artist,
               title: req.body.title,
               postText: req.body.postText,
-              rating: req.body.rating,
-              // user
+              rating: parseInt(req.body.rate, 10),
+              cover: cover,
+              user: loggedUser.username,
+              reviewDate: fullDate,
+              albumId: albumId,
+              artistId: artistId,
+              deleted: false,
+              edited: false
               // tag
           };
   

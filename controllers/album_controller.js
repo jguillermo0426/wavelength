@@ -55,6 +55,22 @@ function getAlbumArtist(url) {
     });
 }
 
+function getAlbumArtistId(url) {
+    
+    return Album.spotifyApi.getAlbum(url)
+    .then(data => {
+        const artist = data.body.artists;
+        if (!artist.length) {
+            throw new Error('Album has no artists'); 
+        }
+        return artist[0].id;
+    })
+    .catch(error => {
+        console.error('Error fetching artist:', error);
+        return 'Artist';
+    });
+}
+
 function getArtistName(id) {
     return Album.spotifyApi.getArtist(id)
     .then(data => {
@@ -185,3 +201,4 @@ module.exports.getArtistName = getArtistName;
 module.exports.getArtistPicture = getArtistPicture;
 module.exports.getAlbumPosts = getAlbumPosts;
 module.exports.getAlbumData = getAlbumData;
+module.exports.getAlbumArtistId = getAlbumArtistId;
