@@ -144,7 +144,7 @@ function getAlbumData(id, posts) {
 
         var postRatings = [];
         for (let i = 0; i < posts.length; i++) {
-            if (posts[i].albumId === id) {
+            if (posts[i].albumId === id && posts[i].deleted === false) {
                 postRatings.push(posts[i].rating);
             }
         }
@@ -159,7 +159,7 @@ function getAlbumData(id, posts) {
         const release_date = album.release_date;
         const artist = album.artists[0].name;
         const artistId = album.artists[0].id;
-        const average = averageRating;
+        const average = averageRating.toFixed(2);
 
         albumData.name = name;
         albumData.image = image;

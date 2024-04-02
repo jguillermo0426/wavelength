@@ -10,6 +10,8 @@ $(document).ready(function() {
     posts.sort(function (a, b) {
         let a_date = new Date($(a).find(".date").text());
         let b_date = new Date($(b).find(".date").text());
+        console.log($(b).find(".date").text(), "-", $(a).find(".date").text());
+        console.log(b_date.getTime() - a_date.getTime());
         return b_date.getTime() - a_date.getTime();
     }).appendTo($("#post-area"));
 

@@ -33,7 +33,9 @@ const postSchema = new mongoose.Schema({
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
     postText: String,
     edited: Boolean,
-    deleted: Boolean
+    deleted: Boolean,
+    artistId: String,
+    albumId: String
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);
