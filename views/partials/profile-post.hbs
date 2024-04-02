@@ -10,17 +10,23 @@
             {{{ratingStars rating}}}
           </div>
           <p class="user-reviewed">reviewed on <span class="date">{{reviewDate}} {{#if edited}} | Edited {{/if}}</span></p>
-          <div class="tags-area">
-            <div class="tag">
-              <p>{{tag1}}</p>
-            </div>
-            <div class="tag">
-              <p>{{tag2}}</p>
-            </div>
-            <div class="tag">
-              <p>{{tag3}}</p>
-            </div>
-          </div>    
+                    <div class="tags-area">
+                        {{#if tag1}}
+                        <div class="tag">
+                            <p>{{tag1}}</p>
+                        </div>
+                        {{/if}}
+                        {{#if tag2}}
+                        <div class="tag">
+                            <p>{{tag2}}</p>
+                        </div>
+                        {{/if}}
+                        {{#if tag3}}
+                        <div class="tag">
+                            <p>{{tag3}}</p>
+                        </div>
+                        {{/if}}
+                    </div> 
         </div>
         {{#if ../sameLoggedProfile}}
           {{> edit-delete-post}}
