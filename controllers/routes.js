@@ -477,8 +477,7 @@ function add(server){
       resp.render('edit-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Post',
-        post_data: post_data,
-        user: loggedUser
+        post_data: post_data
       });
     });
 
@@ -504,8 +503,7 @@ function add(server){
       resp.render('delete-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Post',
-        post_data: post_data,
-        user: loggedUser
+        post_data: post_data
       });
     });
 
@@ -528,8 +526,7 @@ function add(server){
       resp.render('edit-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Comment',
-        comment: comment,
-        user: loggedUser
+        comment: comment
       });
     });
 
@@ -553,8 +550,7 @@ function add(server){
       resp.render('delete-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Comment',
-        comment: comment,
-        user: loggedUser
+        comment: comment
       });
     });
 
@@ -713,7 +709,6 @@ function add(server){
               artistId: artistId,
               deleted: false,
               edited: false,
-              userId: loggedUser._id
           };
 
           for (let i = 0; i < Math.min(tags.length, 3); i++) {
