@@ -34,7 +34,7 @@ var isLogged = false;
     > Search Functionality
       * Searching posts 
       * Limit search with tags
-    * Profile Page functionality (edit and delete functions should only be visible to logged user):
+    > Profile Page functionality (edit and delete functions should only be visible to logged user):
       > Edit Profile functionality
       * Edit Post functionality
       * Delete Post functionality
@@ -482,7 +482,7 @@ function add(server){
       });
     });
 
-    server.post('/deleted/:postID', function(req, resp){
+    server.post('/deleted-post/:postID', function(req, resp){
       const postID = req.params.postID;
       postController.getPostInstance(postID).then(post => {
         post.deleted = true
@@ -490,6 +490,52 @@ function add(server){
           resp.redirect(`/profile-${post.user}`);
         });
       });
+    });
+
+
+    //EDIT COMMENT PAGE
+    server.get('/edit-comment/:commentID', async (req, resp) => {
+      const commentID = req.params.commentID;
+      const comment = await commentController.getCommentById(commentID);
+
+      resp.render('edit-comment', {
+        layout: 'editpost_layout',
+        title: 'Wavelength • Edit Comment',
+        comment: comment
+      });
+    });
+
+    server.post('/update-comment/:commentID', function(req, resp){
+      const commentID = req.params.commentID;
+      commentController.getCommentInstance(commentID).then(comment => {
+        comment.commentText = req.body.commentText
+        comment.edited = true;
+        comment.save().then(result => {
+          resp.redirect(`/profile-${comment.username}`);
+        });
+      });
+    });
+
+
+    //DELETE COMMENT PAGE
+    server.get('/delete-comment/:commentID', async (req, resp) => {
+      const commentID = req.params.commentID;
+      const comment = await commentController.getCommentById(commentID);
+
+      resp.render('delete-comment', {
+        layout: 'editpost_layout',
+        title: 'Wavelength • Delete Comment',
+        comment: comment
+      });
+    });
+
+    server.post('/deleted-comment/:commentID', async (req, resp) => {
+      const commentID = req.params.commentID;
+      const comment = await commentController.getCommentInstance(commentID);
+      comment.deleted = true;
+      await postController.removeCommentFromPost(commentID);
+      await comment.save();
+      resp.redirect(`/profile-${comment.username}`);
     });
 
     

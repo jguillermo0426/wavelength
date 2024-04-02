@@ -1,13 +1,20 @@
 {{#each comment_data}}
-<div class="recent-comment">
-  <div class="comment-body">
-    <div class="comment-profile-picture">
-      <img src="{{user_image}}">
+  {{#unless deleted}}
+    <div class="recent-comment">
+      <div class="comment-body">
+        <div class="comment-profile-picture">
+          <img src="{{user_image}}">
+        </div>
+        <div class="comment-info">
+          <p class="comment-status"><span class="comment-username">{{username}}
+            </span> commented on <span class="comment-title">{{postTitle}}</span> {{#if edited}} | Edited {{/if}}
+          </p>
+          <p class="comment-content">{{commentText}} </p>
+        </div>
+        {{#if ../sameLoggedProfile}}
+          {{> edit-delete-comment}}
+        {{/if}}
+      </div>
     </div>
-    <div class="comment-info">
-      <p class="comment-status"><span class="comment-username">{{username}}</span> commented on <span class="comment-title">{{postTitle}}</span></p>
-      <p class="comment-content">{{commentText}} </p>
-    </div>
-  </div>
-</div>
+  {{/unless}}
 {{/each}} 

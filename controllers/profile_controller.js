@@ -41,7 +41,7 @@ function createInstance(user, pass) {
 }
 
 function getLikes(username) {
-    var likedPosts = Profiles.postModel.find({likes: username._id}).populate('likes').lean().exec();
+    var likedPosts = Profiles.postModel.find({likes: username._id}).lean();
     return likedPosts;
 }
 

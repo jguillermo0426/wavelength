@@ -1,14 +1,19 @@
-function openPopUp() {
+function openEditProfilePopUp() {
     $("#edit-popup").css("visibility", "visible");
 }
 
 
-function closePopUp() {
+function closeEditProfilePopUp() {
     $("#edit-popup").css("visibility", "hidden");
 }
 
+function updateButtonColor(button) {
+    $(".profile-options p").css("color", "#A9A5B6"); 
+    button.css("color", "#BBA7FF"); 
+}
 
-function openEditDelete(postID) {
+
+function openEditDeletePost(postID) {
     $(".edit-delete-post").css({'visibility': 'hidden',});
     $(".edit-delete-post[post-id='" + postID + "']").css("visibility", "visible");
 }
@@ -26,10 +31,11 @@ function editPost(postID) {
 }
 
 
-function updateButtonColor(button) {
-    $(".profile-options p").css("color", "#A9A5B6"); 
-    button.css("color", "#BBA7FF"); 
+function openEditDeleteComment(commentID) {
+    $(".edit-delete-comment").css({'visibility': 'hidden',});
+    $(".edit-delete-comment[comment-id='" + commentID + "']").css("visibility", "visible");
 }
+
 
 $(document).ready(function() {
     
@@ -58,30 +64,35 @@ $(document).ready(function() {
     });
 
     $(".edit-profile").click(function() {
-        openPopUp();
+        openEditProfilePopUp();
     })
     
     $("#close-btn, #save-btn").click(function() {
-        closePopUp();
+        closeEditProfilePopUp();
     })
 
-    $(".three-dots img").click(function() {
+    $(".three-dots-post").click(function() {
         let postID = $(this).closest('.post').find('.edit-delete-post').attr('post-id');
-        openEditDelete(postID);
+        openEditDeletePost(postID);
         //alert("button clicked on "+ postID);
     });  
 
-    $(".edit").click(function() {
+    $(".edit-post").click(function() {
         let postID = $(this).closest('.edit-delete-post').attr('post-id');
         editPost(postID);
-        //alert("edit button clicked on "+ postID);
     });
 
-    $(".delete").click(function() {
+    $(".delete-post").click(function() {
         let postID = $(this).closest('.edit-delete-post').attr('post-id');
         deletePost(postID);
         //alert("delete button clicked on "+ postID);
     });
+
+    $(".three-dots-comment").click(function() {
+        let commentID = $(this).closest('.recent-comment').find('.edit-delete-comment').attr('comment-id');
+        openEditDeleteComment(commentID);
+        //alert("button clicked on " + commentID);
+    }); 
 });
 
 

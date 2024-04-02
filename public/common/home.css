@@ -1136,7 +1136,8 @@ input:focus {
   }
   
   /* EDIT DELETE POST */
-  .edit-delete-post {
+  .edit-delete-post,
+  .edit-delete-comment {
     display: flex;
     flex-direction: column;
     background-color:#3B3942;
@@ -1167,6 +1168,10 @@ input:focus {
   
   .option:hover {
     background-color: #A9A5B6;
+  }
+
+  a.option {
+    text-decoration: none;
   }
   
   .pen-stroke {
@@ -1267,4 +1272,35 @@ input:focus {
     background-color: rgb(189, 42, 42);
     border: 1px solid rgb(189, 42, 42);
   }
-  
+
+  .edit-comment-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 150px;
+  }
+
+  .edit-comment-box {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+    background-color: #3B3942;
+    max-height: 190px; 
+    padding: 20px;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+
+  .edit-recent-comment {
+    display: flex;
+    flex-direction: column;
+    background-color: #211F27;
+    width: 1100px;
+    max-height: 205px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 25px;
+  }
