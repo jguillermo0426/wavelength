@@ -452,6 +452,8 @@ function add(server){
       profileController.getUserInstance(username).then(profile => {
         profile.username = req.body.username;
         profile.bio = req.body.bio;
+        profile.user_image = req.body.user_image;
+        profile.header_image = req.body.header_image;
         profile.save().then(result => {
           resp.redirect(`/profile-${profile.username}`);
         });
