@@ -529,7 +529,7 @@ function add(server){
       const comment = await commentController.getCommentById(commentID);
 
       resp.render('edit-comment', {
-        layout: 'editpost_layout',
+        layout: 'createpost_layout',
         title: 'Wavelength • Edit Comment',
         comment: comment,
         isLogged: isLogged,
@@ -556,7 +556,7 @@ function add(server){
       const comment = await commentController.getCommentById(commentID);
 
       resp.render('delete-comment', {
-        layout: 'editpost_layout',
+        layout: 'createpost_layout',
         title: 'Wavelength • Delete Comment',
         comment: comment,
         isLogged: isLogged,
