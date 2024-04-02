@@ -291,6 +291,13 @@ body {
     margin-bottom: 0px;
 }
 
+a.user {
+    color: #8F59DD;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 0px;
+}
+
 .tags-area {
     display: flex;
     flex-direction: row;

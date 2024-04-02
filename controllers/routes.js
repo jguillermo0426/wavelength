@@ -475,7 +475,7 @@ function add(server){
       const post_data = await postController.getPostById(postID);
 
       resp.render('edit-post', {
-        layout: 'editpost_layout',
+        layout: 'createpost_layout',
         title: 'Wavelength • Edit Post',
         post_data: post_data,
         user: loggedUser
@@ -489,6 +489,11 @@ function add(server){
         post.postText = req.body.postText;
         post.rating = Number(req.body.rating);
         post.edited = true;
+
+        const tags = req.body.tags.split(',').map(tag => tag.trim());
+        post.tag1 = tags[0] || "";
+        post.tag2 = tags[1] || "";
+        post.tag3 = tags[2] || "";
         post.save().then(result => {
           resp.redirect(`/${post.trackName}-${post._id}`);
         });
@@ -713,7 +718,10 @@ function add(server){
               artistId: artistId,
               deleted: false,
               edited: false,
-              userId: loggedUser._id
+              userId: loggedUser._id,
+              tag1: "",
+              tag2: "",
+              tag3: ""
           };
 
           for (let i = 0; i < Math.min(tags.length, 3); i++) {
