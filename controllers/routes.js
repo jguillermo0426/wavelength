@@ -12,6 +12,12 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
 
+const LastFmApi = require('lastfm-api-client');
+const LastFmClient = new LastFmApi({
+    apiKey   : 'a51f36830a90a1c82caa90049def47a9',
+    apiSecret: '3f887f343ced4c2dc34d1502e7887384'
+});
+
 function errorFn(err){
   console.log('Error found. Please trace!');
   console.error(err);
@@ -585,16 +591,20 @@ function add(server){
           albumController.getArtistPicture(id).then(image => {
             postController.getAllPosts().then(posts => {
               artistController.getArtistAlbums(id, posts).then(albums => {
-                resp.render('artist', {
-                  layout: 'artistpage_layout',
-                  title: 'Wavelength • ' + artist,
-                  artistname: artist,
-                  artistImg: image,
-                  genres: genres,
-                  albums: albums,
-                  isLogged: isLogged,
-                  user: loggedUser
-                });
+                LastFmClient.artist.getInfo({artist: artist}).then((lfmresponse) => {
+                  console.log(lfmresponse);
+                  resp.render('artist', {
+                    layout: 'artistpage_layout',
+                    title: 'Wavelength • ' + artist,
+                    artistname: artist,
+                    artistImg: image,
+                    genres: genres,
+                    albums: albums,
+                    isLogged: isLogged,
+                    user: loggedUser,
+                    bio: lfmresponse.artist.bio.summary 
+                  });
+                })
               });
             });
           });

@@ -248,6 +248,24 @@ body {
     font-family: "OpenSans", sans-serif;
 }
 
+.artist-bio {
+    margin-right: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #F4EBEB;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.artist-bio > a:link, a:visited{
+    color: #F4EBEB;
+    font-weight: bold;
+}
+
+.artist-bio > a:link:hover {
+    color: #BBA7FF;
+}
 
 .discog-header-container{
     display: flex;
@@ -255,6 +273,7 @@ body {
     width: 100%;
     border-top: 3px solid #211F27;
     border-bottom: 3px solid #211F27;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 .discog-header > h1 {
