@@ -78,6 +78,7 @@ async function removeCommentFromPost(commentID){
     await Posts.postModel.updateMany({}, {$pull: {comments: commentID}});
 }
 
+
 module.exports = {
     getAllPosts,
     getUserPosts,

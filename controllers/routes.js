@@ -35,11 +35,11 @@ var isLogged = false;
       * Searching posts 
       * Limit search with tags
     > Profile Page functionality (edit and delete functions should only be visible to logged user):
-      > Edit Profile functionality
+      * Edit Profile functionality
       * Edit Post functionality
       * Delete Post functionality
-      > Edit Comment Functionality
-      > Delete Comment Functionality
+      * Edit Comment Functionality
+      * Delete Comment Functionality
     > Artists Page 
       > Genres tag (get most popular genre tags for that artist)
       > Reviews average aggregate (get total number of reviews for that album)

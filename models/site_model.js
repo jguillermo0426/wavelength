@@ -62,7 +62,8 @@ const commentSchema = new mongoose.Schema({
     replies: Number,
     edited: Boolean,
     deleted: Boolean,
-    userId: { type: Schema.Types.ObjectId, ref: 'profile'}
+    userId: { type: Schema.Types.ObjectId, ref: 'profile'},
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);

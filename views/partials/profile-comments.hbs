@@ -3,10 +3,10 @@
     <div class="recent-comment">
       <div class="comment-body">
         <div class="comment-profile-picture">
-          <img src="{{user_image}}">
+          <img src="{{userId.user_image}}">
         </div>
         <div class="comment-info">
-          <p class="comment-status"><span class="comment-username">{{username}}
+          <p class="comment-status"><span class="comment-username">{{userId.username}}
             </span> commented on <span class="comment-title">{{postTitle}}</span> {{#if edited}} | Edited {{/if}}
           </p>
           <p class="comment-content">{{commentText}} </p>
