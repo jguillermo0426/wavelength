@@ -504,7 +504,7 @@ function add(server){
       const post_data = await postController.getPostById(postID);
 
       resp.render('delete-post', {
-        layout: 'editpost_layout',
+        layout: 'createpost_layout',
         title: 'Wavelength • Delete Post',
         post_data: post_data,
         isLogged: isLogged,
