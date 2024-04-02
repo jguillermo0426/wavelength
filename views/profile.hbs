@@ -3,16 +3,16 @@
 {{> edit-profile}}
 
 <div class="profile-banner">
-  <img src="{{{user.header_image}}}"/>
+  <img src="{{{viewuser.header_image}}}"/>
 </div>
 <div class="profile">
   <div class="profile-section">
-    <img src="{{{user.user_image}}}"/>
+    <img src="{{{viewuser.user_image}}}"/>
     <div class="profile-elements">
       <div class="profile-info">
-        <p id="username">{{user.username}}</p>
-        {{#if user.bio}}
-          <p id="bio">{{user.bio}}</p>
+        <p id="username">{{viewuser.username}}</p>
+        {{#if viewuser.bio}}
+          <p id="bio">{{viewuser.bio}}</p>
         {{else}}
           <p id="bio">no bio</p>
         {{/if}}
