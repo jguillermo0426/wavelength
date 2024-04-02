@@ -28,10 +28,10 @@ function getUserPosts(username) {
 }
 
 
-function createPost(newPost) {
-    var postInstance = Posts.postModel(newPost);
-    return postInstance;
-}
+// function createPost(newPost) {
+//     var postInstance = Posts.postModel(newPost);
+//     return postInstance;
+// }
 
 function getAlbumReviews(id, posts){
     var reviewPosts = [];
@@ -76,7 +76,7 @@ async function removeCommentFromPost(commentID){
 module.exports = {
     getAllPosts,
     getUserPosts,
-    createPost,
+    // createPost,
     getPostById,
     getAlbumReviews,
     getSearched,

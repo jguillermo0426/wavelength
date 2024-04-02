@@ -9,6 +9,9 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const bcrypt = require('bcrypt');
 
+const session = require('express-session');
+const mongoStore = require('connect-mongodb-session')(session);
+
 function errorFn(err){
   console.log('Error found. Please trace!');
   console.error(err);
@@ -64,6 +67,19 @@ var isLogged = false;
        
 */
 function add(server){
+    //Session
+    const mongo_uri = 'mongodb+srv://wavelength_group:wavelength@wavelength.gszzu7l.mongodb.net/wavelength';
+    server.use(session({
+      secret: 'like its magnetic',
+      saveUninitialized: true, 
+      resave: true,
+      store: new mongoStore({ 
+        uri: mongo_uri,
+        collection: 'mySession',
+        expires: 21*24*1000*60*60 // 3 weeks
+      })
+    }));
+
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
@@ -280,9 +296,12 @@ function add(server){
     });
 
     server.post('/login', async (req, resp) => {
-      var user = req.body.username;
-      var pass = req.body.password;
-      
+      let user = req.body.username;
+      let pass = req.body.password;
+      let remember = req.body.rememberme;
+
+      console.log(remember);
+
       profileController.getUserProfile(user).then(function(user_data){
         console.log('Finding user');
         
@@ -292,6 +311,11 @@ function add(server){
               console.log(user_data);
               isLogged = true;
               loggedUser = user_data;
+              if(remember === 'true'){
+                req.session.login_user = user_data._id;
+                req.session.login_id = req.sessionID;
+              }
+              console.log(req.session); // for checking
               resp.redirect('/');
               console.log('Redirecting');
             } else {
@@ -306,7 +330,6 @@ function add(server){
             }
           });
         } else {
-          // add detailed error handling in the future
           console.log('User not found.')
           resp.render('login',{
             layout: 'index',
@@ -330,11 +353,9 @@ function add(server){
     });
 
     server.post('/signup', async (req, resp) => {
-      const username = req.body.username;
-      const password = req.body.password;
-      const confirmpassword = req.body.confirmpassword;
-
-      //const { username, password, confirmpassword } = req.body;
+      const username = String(req.body.username);
+      const password = String(req.body.password);
+      const confirmpassword = String(req.body.confirmpassword);
       
       console.log(username);
       console.log(password);
@@ -344,10 +365,6 @@ function add(server){
         console.log('Checking validity of username...');
 
         if(user_data != undefined && user_data._id != null){
-          //Turn Error message to visible and display "Username already taken"
-          //var error = "Username already taken"; 
-          
-          //resp.status(400).json({ message: 'Username already taken' });
           resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
@@ -357,12 +374,8 @@ function add(server){
             password: password,
             confirmpassword: confirmpassword
           });
-          //resp.send({ message : 'Username already taken' });
           console.log('Username already taken');
         } else if(password != confirmpassword){
-          //Turn Error message to visible and display "Password and Confirmed Password does not match"
-          //var error = "Passwords does not match";
-          
           resp.render('signup',{
             layout: 'index',
             title: 'Wavelength • Sign-up',
@@ -389,35 +402,6 @@ function add(server){
           
         }
       }).catch(errorFn);
-    
-   /** 
-        const { username, password, confirmpassword } = req.body;
-        
-        console.log(username);
-        console.log(password);
-        console.log(confirmpassword);
-        // Check Password Match
-        if (password !== confirmpassword) {
-          return resp.status(400).json({ message: 'Passwords do not match' });
-        }
-
-        // Hash Password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        try {
-          // Create User
-          const profileInstance = profileController.createInstance(username,hashedPassword);
-          await profileInstance.save();
-
-          resp.status(201).json({ message: 'User created successfully!' });
-          await resp.redirect('/');
-        } catch (err) {
-          // Handle duplicate username error
-          if (err.code === 11000) {
-            return resp.status(400).json({ message: 'Username already taken' });
-          }
-          resp.status(500).json({ message: 'Error creating user' });
-        }*/
     });
 
     //PROFILE PAGE
@@ -627,7 +611,10 @@ function add(server){
       loggedUser = [];
       console.log('Logging out');
       console.log(loggedUser);
-      resp.redirect('/');
+      req.session.destroy(function(err) {
+        resp.redirect('/');
+      });
+      console.log(req.session);
     })
 
     var albumCover = 'https://via.placeholder.com/150';
@@ -661,13 +648,26 @@ function add(server){
 
     server.post('/createpost', async (req, resp) => {
       try {
-        const postData = req.body; 
-        const newPost = await postController.createPost(postData);
-        resp.redirect('/'); 
+          const postData = {
+              // trackName: req.body.trackName,
+              // artist: req.body.artist,
+              title: req.body.title,
+              postText: req.body.postText,
+              rating: req.body.rating,
+              // user
+              // tag
+          };
+  
+          console.log(req.body);
+          const newPost = new Model.postModel(postData);
+            
+          const savedPost = await newPost.save();
+            resp.redirect('/');
       } catch (error) {
-        resp.status(500).send('Error creating post: ' + error.message);
+          resp.status(500).send('Error creating post: ' + error.message);
       }
-    });
+  });
+  
 
     //VIEW POST PAGE
     server.get('/:title-:postID', function(req, resp){
