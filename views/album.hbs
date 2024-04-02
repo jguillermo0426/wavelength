@@ -3,15 +3,15 @@
 <div class="feed">
     <div class="album-side-panel">
         <div class="album-pic">
-            <img src="{{album.album_image}}">
+            <img src="{{albumData.image}}">
         </div>  
         <div class="tracklist-box-parent">
             <div class="tracklist-box-inner">
                 <p class="album-tracklist-header">Track List</p>
-                {{#each album.tracklist as |track index|}}
+                {{#each albumData.tracks as |track index|}}
                 <div class="tracklist-container">
                     <span class="tracklist-number">{{increment index}}</span>
-                    <span class="tracklist-name">{{track}}</span>
+                    <span class="tracklist-name">{{track.name}}</span>
                 </div>
                 {{/each}}
             </div>
@@ -20,31 +20,21 @@
     </div>
     <div class="main-panel">
         <div class="album-info">
-            <span class="album-name">{{album.album_name}}</span>
+            <span class="album-name">{{albumData.name}}</span>
             <table class="album-info">
                 <tr>
                     <th>Artist</th>
-                    <td>{{album.artist_name}}</td>
+                    <td>{{albumData.artist}}</td>
                 </tr>
                 <tr>
                     <th>Release Date</th>
-                    <td>{{album.release_date}}</td>
+                    <td>{{albumData.release_date}}</td>
                 </tr>
                 <tr>
                     <th>Rating</th>
-                    <td>{{album.average_rating}} / 5.0</td>
-                </tr>
-                <tr>
-                    <th>Tags</th>
+                    <td>{{albumData.average}} / 5.0</td>
                 </tr>
             </table>
-            <div class="tags-area">
-                {{#each album.tags}}
-                <div class="tag">
-                    <p>{{this}}</p>
-                </div>
-                {{/each}}
-                </div>
         </div>
         <div class="reviews-header-container">
             <span class="reviews-header">Reviews</span>

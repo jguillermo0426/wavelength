@@ -33,9 +33,15 @@ function createPost(newPost) {
     return postInstance;
 }
 
-function getAlbumReviews(albumName){
-    var albumReviews = Posts.postModel.find({trackName: albumName}).lean();
-    return albumReviews;
+function getAlbumReviews(id, posts){
+    var reviewPosts = [];
+    for (let j = 0; j < posts.length; j++) {
+        if (posts[j].albumId === id) {
+            reviewPosts.push(posts[j]);
+        }
+    }
+    
+    return reviewPosts;
 }
 
 function getSearched(query, option) {

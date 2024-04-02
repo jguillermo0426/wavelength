@@ -190,6 +190,7 @@ body {
     display: flex;
     flex-direction: row;
     margin-top: 30px;
+    width: 1350px;
 }
 
 .artist-pic-container {
@@ -206,6 +207,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     padding-left: 30px;
     width: 75%;
 }
@@ -246,24 +248,6 @@ body {
     font-family: "OpenSans", sans-serif;
 }
 
-.artist-bio {
-    margin-right: 40px;
-    font-family: "OpenSans", sans-serif;
-    font-weight: normal;
-    font-size: 18px;
-    color: #F4EBEB;
-    margin-top: 10px;
-    margin-bottom: 0px;
-}
-
-.artist-bio > a:link, a:visited{
-    color: #F4EBEB;
-    font-weight: bold; 
-}
-
-.artist-bio > a:link:hover {
-    color: #BBA7FF;
-}
 
 .discog-header-container{
     display: flex;
@@ -344,19 +328,18 @@ body {
     width: 90%;
 }
 
-.album-title {
+    
+
+.album-link:link, .album-link:visited{
+    color: #BBA7FF;
+    text-decoration: none;
+    font-weight: bold;
     margin-right: 40px;
     font-family: "OpenSans", sans-serif;
     font-weight: bold;
     font-size: 25px;
     color: #BBA7FF;
     text-align: left;
-}
-
-.album-title > a:link, a:visited{
-    color: #BBA7FF;
-    text-decoration: none;
-    font-weight: bold;
 }
 
 .album-title > a:hover {
@@ -373,7 +356,6 @@ body {
 }
 
 .album-reviews {
-    margin-right: 40px;
     font-family: "OpenSans", sans-serif;
     font-weight: normal;
     font-size: 18px;
@@ -382,12 +364,21 @@ body {
 }
 
 .album-average{
-    margin-right: 40px;
     font-family: "OpenSans", sans-serif;
     font-weight: bold;
     font-size: 18px;
     color: #BBA7FF;
-    text-align: left;
+    text-align: right;  
+    width: 60px;
+}
+
+.album-metrics {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 0px 40px;
+    margin-right: 40px;
+    margin-top: 10px;
 }
 
 .text {
