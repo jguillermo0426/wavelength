@@ -477,7 +477,9 @@ function add(server){
       resp.render('edit-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Post',
-        post_data: post_data
+        post_data: post_data,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
@@ -503,7 +505,9 @@ function add(server){
       resp.render('delete-post', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Post',
-        post_data: post_data
+        post_data: post_data,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
@@ -526,7 +530,10 @@ function add(server){
       resp.render('edit-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Edit Comment',
-        comment: comment
+        comment: comment,
+        isLogged: isLogged,
+        user: loggedUser
+        
       });
     });
 
@@ -550,7 +557,9 @@ function add(server){
       resp.render('delete-comment', {
         layout: 'editpost_layout',
         title: 'Wavelength • Delete Comment',
-        comment: comment
+        comment: comment,
+        isLogged: isLogged,
+        user: loggedUser
       });
     });
 
