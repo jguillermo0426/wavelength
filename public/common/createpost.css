@@ -668,7 +668,8 @@ textarea {
     flex-direction: row;
 }
 
-  #delete-text {
+  #delete-text,
+  #delete-comment-text {
     color: #F4EBEB;
     font-size: 34px;
     font-family: OpenSans;
@@ -677,7 +678,8 @@ textarea {
     margin-bottom: 8px;
   }
 
-  #delete-post-warning {
+  #delete-post-warning,
+  #delete-comment-warning {
     color: #A9A5B6;
     font-size: 20px;
     font-family: OpenSans;
@@ -723,6 +725,76 @@ textarea {
   #confirm-delete-btn:hover {
     background-color: rgb(189, 42, 42);
     border: 1px solid rgb(189, 42, 42);
+  }
+
+  .edit-comment-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 150px;
+  }
+
+  .edit-recent-comment {
+    display: flex;
+    flex-direction: column;
+    background-color: #211F27;
+    width: 1100px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 25px;
+    padding: 20px;
+  }
+
+  .edit-comment-box textarea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    height: 155px;
+    background-color: #3B3942;
+  }
+
+  .edit-comment-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin: 0px;
+  }
+
+  .comment-status {
+    font-family: OpenSans;
+    font-weight: normal;
+    color: #F4EBEB;
+    font-size: 18px;
+    margin: 0px;
+    margin-bottom: 15px;
+  }
+
+  .comment-title {
+    font-weight: bold;
+    color: #8F59DD;
+    text-decoration: none;
+  }
+
+  #save-changes-btn {
+    font-family: OpenSans;
+    font-weight: bold;
+    color: #F4EBEB;
+    font-size: 16px;
+    background-color: #8F59DD;
+    border-radius: 20px;
+    border: none;
+    padding: 6px 15px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 60px;
+  }
+  
+  #save-btn-changes:hover {
+    opacity: 0.9;
   }
   
 

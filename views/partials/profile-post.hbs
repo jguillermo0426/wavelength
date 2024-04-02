@@ -40,19 +40,21 @@
       </div>
             
       <div class="post-footer">
-        <div id="likes-bar" class="react-bar">
-          <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
-          <p id="like-counter" class="counter">{{likes.length}}</p>
+        <div id="likes-bar" class="react-bar likes-bar">
+            <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+            <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
+            <p id="like-counter" class="counter">{{likes.length}}</p>
         </div>
 
-        <div id="dislikes-bar" class="react-bar">
-          <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
-          <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
+        <div id="dislikes-bar" class="react-bar dislikes-bar">
+            <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+            <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
+            <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
         </div>
 
-        <div id="comments-bar" class="react-bar">
-          <input type="image" class="comment" src="../common/svg/comment.svg">
-          <p id="comment-counter" class="counter">{{comments.length}}</p>
+        <div id="comments-bar" class="react-bar comment-bar" onclick="window.location = `/{{{ title }}}-{{{ _id }}}`">
+            <input type="image" class="comment" src="../common/svg/comment.svg">
+            <p id="comment-counter" class="counter">{{comments.length}}</p>
         </div>
       </div>
     </div>

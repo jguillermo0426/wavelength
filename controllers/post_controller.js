@@ -69,6 +69,9 @@ function getPostDislikes(posts) {
     return postDislikes;
 }
 
+async function removeCommentFromPost(commentID){
+    await Posts.postModel.updateMany({}, {$pull: {comments: commentID}});
+}
 
 module.exports = {
     getAllPosts,
@@ -79,6 +82,7 @@ module.exports = {
     getSearched,
     getPostLikes,
     getPostDislikes,
-    getPostInstance
+    getPostInstance,
+    removeCommentFromPost
 }
 

@@ -58,7 +58,9 @@ const commentSchema = new mongoose.Schema({
     commentText: String,
     likes: Number,
     dislikes: Number,
-    replies: Number
+    replies: Number,
+    edited: Boolean,
+    deleted: Boolean
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);

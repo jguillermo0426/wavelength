@@ -5,6 +5,11 @@ function errorFn(err){
     console.error(err);
 }
 
+function getCommentById (commentID){
+    var commentID = Comments.commentModel.findById(commentID).lean();
+    return commentID;
+}
+
 
 function getAllComments() {
     var allComments = Comments.commentModel.find({}).lean();
@@ -33,6 +38,15 @@ function getPostComments(postId, comments) {
     return comments;
 }
 
-module.exports.getAllComments = getAllComments; 
-module.exports.getUserComments = getUserComments; 
-module.exports.getPostComments = getPostComments;
+function getCommentInstance (commentID){
+    var comment = Comments.commentModel.findById(commentID).exec();
+    return comment;
+}
+
+module.exports = {
+    getAllComments,
+    getUserComments,
+    getPostComments,
+    getCommentById,
+    getCommentInstance
+}

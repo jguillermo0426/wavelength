@@ -1,0 +1,15 @@
+{{> navigation}}
+<div class="edit-comment-parent">
+  <form name="update-comment" action="/update-comment/{{comment._id}}" method="post">
+    <div class="edit-recent-comment">
+      <p class="comment-status">Editing comment on <span class="comment-title">{{comment.postTitle}}</span></p>
+      <div class="edit-comment-box ">
+        <textarea name="commentText">{{comment.commentText}}</textarea>
+      </div>
+      <div class="edit-comment-footer">
+        <button id="save-changes-btn" type="submit">Save Changes</button>
+      </div>
+    </div>
+  </form>
+</div>
+
