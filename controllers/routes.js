@@ -417,35 +417,35 @@ function add(server){
       const username = req.params.username;
 
       profileController.getUserProfile(username).then(profile => {
-      const userID = String(profile._id);
-      postController.getUserPost(userID).then(posts => {
-      commentController.getUserComments(userID).then(comments => {
-      profileController.getLikes(profile).then(liked_posts => {
-        postController.markdownPosts(posts);
-        postController.markdownPosts(liked_posts);
-        sameLoggedProfile = false;
-        if(String(loggedUser._id) == String(profile._id)){
-          sameLoggedProfile = true;
-        }
-        else{
-          sameLoggedProfile = false;
-        }
+        const userID = String(profile._id);
+        postController.getUserPost(userID).then(posts => {
+          commentController.getUserComments(userID).then(comments => {
+            profileController.getLikes(profile).then(liked_posts => {
+              postController.markdownPosts(posts);
+              postController.markdownPosts(liked_posts);
+              sameLoggedProfile = false;
+              if(String(loggedUser._id) == String(profile._id)){
+                sameLoggedProfile = true;
+              }
+              else{
+                sameLoggedProfile = false;
+              }
 
-        console.log(sameLoggedProfile)
-        resp.render('profile',{
-          layout: 'index',
-          title: 'Wavelength • '+ username,
-          isLogged: isLogged,
-          user : loggedUser,
-          viewuser: profile,
-          post_data: posts,
-          comment_data: comments,
-          liked_posts: liked_posts,
-          sameLoggedProfile: sameLoggedProfile
-      }); 
-      });   
-      }).catch(errorFn);
-      }).catch(errorFn);
+              console.log(sameLoggedProfile)
+              resp.render('profile',{
+                layout: 'index',
+                title: 'Wavelength • '+ username,
+                isLogged: isLogged,
+                user : loggedUser,
+                viewuser: profile,
+                post_data: posts,
+                comment_data: comments,
+                liked_posts: liked_posts,
+                sameLoggedProfile: sameLoggedProfile
+              }); 
+            });   
+          }).catch(errorFn);
+        }).catch(errorFn);
       }).catch(errorFn); 
     });
 
