@@ -812,8 +812,6 @@ function add(server){
               postId: postId,
               edited: false,
               deleted: false,
-              likes: likes,
-              dislikes: dislikes,
               userId: loggedUser._id,
               commentDate: fullDate,
               timeCommented: time,
