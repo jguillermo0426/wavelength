@@ -32,7 +32,7 @@
 
                 </div>
             </div>
-            {{#if sameLoggedProfile}}
+            {{#if (sameLoggedProfile user.username post_data.userId.username)}}
                 {{> edit-delete-post-main}}
             {{/if}}
         </div>

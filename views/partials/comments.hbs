@@ -7,20 +7,10 @@
         </div>
         <div class="comment-panel" id="text">
           <div class="user-panel">
-            <p class="user-name"><strong>{{userId.username}}</strong> • {{commentDate}}</p>
-            <div class="three-dots">
-              <img src="../common/png/dots.png" onclick="openEditDelete('edit-delete-post-1')">
-              <div id="edit-delete-post-1" class="edit-delete-post">
-                <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
-                  <img class="pen-stroke" src="../png/pen-stroke.png">
-                  <p>Edit Post</p>
-                </div>
-                <div class="option" onclick="closeEditDelete('edit-delete-post-1')">
-                  <img class="trash" src="../png/trash.png">
-                  <p>Delete Post</p>
-                </div>
-              </div>
-            </div>
+            <p class="user-name"><strong>{{userId.username}}</strong> • {{commentDate}} {{#if edited}} | Edited{{/if}}</p>
+            {{#if (sameLoggedProfile ../user.username userId.username)}}
+              {{> edit-delete-comment-main}}
+            {{/if}}
           </div>
           <p class="comment-text">{{commentText}}</p>
           <div class="post-footer">

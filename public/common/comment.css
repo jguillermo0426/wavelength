@@ -620,7 +620,8 @@ textarea {
   }
 
 /* EDIT DELETE POST */
-.edit-delete-post {
+.edit-delete-post,
+.edit-delete-comment {
     display: flex;
     flex-direction: column;
     background-color:#3B3942;
@@ -697,8 +698,15 @@ textarea {
     margin-top: 0px;
     margin-right: 0px;
   }
+
+  .three-dots-div-comment {
+    margin-left: auto;
+    margin-top: 0px;
+    margin-right: 35px;
+  }
   
-  .three-dots > img {
+  .three-dots > img,
+  .three-dots-div-comment > img {
     cursor: pointer;
   }
 

@@ -37,22 +37,17 @@ $(document).ready(function() {
   $(".delete-post").click(function() {
       let postID = $(this).closest('.edit-delete-post').attr('post-id');
       deletePost(postID);
-      //alert("delete button clicked on "+ postID);
   });
 
   $(".three-dots-comment").click(function() {
       let commentID = $(this).closest('.recent-comment').find('.edit-delete-comment').attr('comment-id');
       openEditDeleteComment(commentID);
-      //alert("button clicked on " + commentID);
   }); 
 
-  $("#cancel-delete-btn").click(function() {
-    window.history.back();
-  });
-
-  $("#confirm-delete-btn").click(function() {
-      window.history.back();
-  });
+  $(".three-dots-comment-main").click(function() {
+    let commentID = $(this).closest('.comment-container').find('.edit-delete-comment').attr('comment-id');
+    openEditDeleteComment(commentID);
+}); 
 });
 
 

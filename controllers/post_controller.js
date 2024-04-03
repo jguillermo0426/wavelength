@@ -6,7 +6,7 @@ function errorFn(err){
 }
 
 function getPostById (postID){
-    var postID = Posts.postModel.findById(postID).lean();
+    var postID = Posts.postModel.findById(postID).populate('userId').lean();
     return postID;
 }
 
