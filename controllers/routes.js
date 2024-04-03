@@ -283,6 +283,7 @@ function add(server){
       }
       else {
         postController.getSearched(searchquery, option).then(posts => {
+          postController.markdownPosts(posts);
           resp.render('searchresults', {
             layout: 'index',
             title: 'Wavelength • Search',
