@@ -715,7 +715,7 @@ function add(server){
 
       var albumId = albumLink.replace("https://open.spotify.com/album/", "");
       const artistId = await albumController.getAlbumArtistId(albumId);
-      const fullDate = month + " " + day + ", " + year + " " + date.toLocaleTimeString();
+      const fullDate = month + " " + day + ", " + year;
       try {
 
         const tags = req.body.tags.split(',').map(tag => tag.trim());
