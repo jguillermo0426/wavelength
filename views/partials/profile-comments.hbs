@@ -7,8 +7,9 @@
         </div>
         <div class="comment-info">
           <p class="comment-status"><span class="comment-username">{{userId.username}}
-            </span> commented on <span class="comment-title">{{postTitle}}</span> {{#if edited}} | Edited {{/if}}
+            </span> commented on <span class="comment-title">{{postId.title}}</span> {{#if edited}} | Edited {{/if}}
           </p>
+          <div id="time-commented">{{timeCommented}}</div>
           <p class="comment-content">{{commentText}} </p>
         </div>
         {{#if ../sameLoggedProfile}}

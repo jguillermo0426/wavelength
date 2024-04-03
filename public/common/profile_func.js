@@ -47,8 +47,21 @@ function editComment(commentID) {
     editComment.css("visibility", "hidden");
 }
 
+function sort(container, childSelector) {
+    var elements = $(container).children();
+    
+    elements.sort(function (a, b) {
+        let a_date = ($(a).find(childSelector).text());
+        let b_date = ($(b).find(childSelector).text());
+        return b_date - a_date;
+    }).appendTo($(container));
+}
+
 
 $(document).ready(function() {
+    sort("#recent-posts-area", "#time-reviewed");
+    sort("#likes-area", "#time-reviewed");
+    sort("#recent-comments-area", "#time-commented");
     
     $("#posts-btn").click(function(){
         $("#recent-posts-area").css("display", "block");

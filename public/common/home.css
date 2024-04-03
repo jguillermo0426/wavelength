@@ -263,7 +263,8 @@ body {
     flex-direction: column;
 }
 
-#time-reviewed {
+#time-reviewed,
+#time-commented {
   display: none;
 }
 

@@ -56,8 +56,6 @@ const profileModel = mongoose.model('profile', profileSchema);
 
 
 const commentSchema = new mongoose.Schema({
-    username: String,
-    user_image: String,
     commentText: String,
     likes: Number,
     dislikes: Number,
@@ -65,7 +63,8 @@ const commentSchema = new mongoose.Schema({
     edited: Boolean,
     deleted: Boolean,
     userId: { type: Schema.Types.ObjectId, ref: 'profile'},
-    postId: { type: Schema.Types.ObjectId, ref: 'post_data'}
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'},
+    timeCommented: Number
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);

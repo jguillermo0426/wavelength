@@ -422,6 +422,7 @@ function add(server){
         //console.log(liked_posts);
         //console.log(userID);
         //console.log(posts);
+        console.log(comments);
 
         sameLoggedProfile = false;
         if(String(loggedUser._id) == String(profile._id)){
