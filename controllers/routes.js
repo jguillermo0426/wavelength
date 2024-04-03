@@ -424,7 +424,7 @@ function add(server){
         postController.markdownPosts(liked_posts);
         //console.log(profile);
         //console.log(loggedUser._id);
-        console.log(liked_posts);
+        //console.log(liked_posts);
         //console.log(userID);
         //console.log(posts);
         //console.log(comments);
