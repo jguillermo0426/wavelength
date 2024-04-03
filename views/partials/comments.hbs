@@ -13,20 +13,22 @@
             {{/if}}
           </div>
           <p class="comment-text">{{commentText}}</p>
-          <div class="post-footer">
-            <div id="likes-bar" class="react-bar">
-              <input type="image" class="like" src="../common/svg/thumbs-up-stroke.svg">
-              <p id="like-counter" class="counter">{{likes}}</p>
+        <div class="post-footer">
+            <div id="likes-bar" class="react-bar likes-bar">
+                <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
+                <p id="like-counter" class="counter">{{comments.likes.length}}</p>
             </div>
-            <div id="dislikes-bar" class="react-bar">
-              <input type="image" class="dislike" src="../common/svg/thumbs-up-stroke.svg">
-              <p id="dislike-counter" class="counter">{{dislikes}}</p>
+            <div id="dislikes-bar" class="react-bar dislikes-bar">
+                 <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
+                <p id="dislike-counter" class="counter">{{comments.dislikes.length}}</p>
             </div>
             <div id="comments-bar" class="react-bar">
-              <input type="image" class="comment" src="../common/svg/comment.svg">
-              <p id="comment-counter" class="counter">{{replies}}</p>
+                <input type="image" class="comment" src="../common/svg/comment.svg">
+                <p id="comment-counter" class="counter">{{comments.comments.length}}</p>
             </div>
-          </div>
+        </div>
         </div>
       </div>
         <div class="divider">           

@@ -2,7 +2,7 @@ $('document').ready(function() {
     var post = $(".post");
     var postId = $(post).attr('id');
     var id = postId.replace("post_", "");   
-
+// likes dislikes function for comment
     $.post(
         '/like-dislike',
         {postId: id, type: 'load'},
