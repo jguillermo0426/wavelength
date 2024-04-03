@@ -10,7 +10,8 @@
           <div class="rating">
             {{{ratingStars rating}}}
           </div>
-          <p class="user-reviewed">reviewed on <span class="date">{{reviewDate}} {{#if edited}} | Edited {{/if}}</span></p>
+         <p class="user-reviewed">reviewed by <a href="/profile-{{user}}" class="user">{{user}}</a> on 
+         <span class="date">{{reviewDate}}{{#if edited}} | Edited {{/if}}</span></p>
           <div id="time-reviewed">{{timeReviewed}}</div>
           <div class="tags-area">
             {{#if tag1}}
@@ -30,9 +31,6 @@
             {{/if}}
           </div>    
         </div>
-        {{#if ../sameLoggedProfile}}
-          {{> edit-delete-post}}
-        {{/if}}
       </div>
             
       <div class="post-body">
