@@ -10,7 +10,12 @@
             </span> commented on <a href="/{{postId.title}}-{{postId._id}}" class="comment-title">{{postId.title}}</a> {{#if edited}} | Edited {{/if}}
           </p>
           <div id="time-commented">{{timeCommented}}</div>
-          <p class="comment-content">{{commentText}} </p>
+          <p class="comment-content">
+            {{{truncateText commentText 300}}}
+            {{#if (showSeeMore commentText 300)}}
+              <a href="/{{postId.title}}-{{postId._id}}" class="see-more"> See more</a>
+            {{/if}}
+          </p>
         </div>
         {{#if ../sameLoggedProfile}}
           {{> edit-delete-comment}}
