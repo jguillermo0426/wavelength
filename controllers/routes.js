@@ -456,16 +456,16 @@ function add(server){
       const update = {}
 
       profileController.getUserInstance(username).then(profile => {
-        profileController.getUserProfile(req.body.username).then(newProfile => {
+        profileController.getUserProfile(req.body.username.trim()).then(newProfile => {
           if(newProfile){
             console.log("username already taken!");
             resp.redirect(`/profile-${username}`);
           }
           else{
             if (req.body.username){
-              if(req.body.username != username){
-                profile.username = req.body.username;
-                update.username = req.body.username;
+              if(req.body.username.trim() != username){
+                profile.username = req.body.username.trim();
+                update.username = req.body.username.trim();
               }  
             }
             if (req.body.bio){
