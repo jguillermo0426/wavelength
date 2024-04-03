@@ -698,6 +698,7 @@ function add(server){
       const year = date.getFullYear();
       const month = months[date.getMonth()];
       const day = date.getDate();
+      const time = date.getTime();
 
       var albumId = albumLink.replace("https://open.spotify.com/album/", "");
       const artistId = await albumController.getAlbumArtistId(albumId);
@@ -722,7 +723,8 @@ function add(server){
               userId: loggedUser._id,
               tag1: "",
               tag2: "",
-              tag3: ""
+              tag3: "",
+              timeReviewed: time
           };
 
           for (let i = 0; i < Math.min(tags.length, 3); i++) {

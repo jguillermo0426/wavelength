@@ -37,7 +37,8 @@ const postSchema = new mongoose.Schema({
     deleted: Boolean,
     artistId: String,
     albumId: String,
-    userId: { type: Schema.Types.ObjectId, ref: 'profile'}
+    userId: { type: Schema.Types.ObjectId, ref: 'profile'},
+    timeReviewed: Number
 },{ versionKey: false });
 
 const postModel = mongoose.model('post_data', postSchema);

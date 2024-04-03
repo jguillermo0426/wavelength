@@ -8,9 +8,9 @@ $(document).ready(function() {
     var posts = $("#post-area").children();
 
     posts.sort(function (a, b) {
-        let a_date = new Date($(a).find(".date").text());
-        let b_date = new Date($(b).find(".date").text());
-        return b_date.getTime() - a_date.getTime();
+        let a_date = ($(a).find("#time-reviewed").text());
+        let b_date = ($(b).find("#time-reviewed").text());
+        return b_date - a_date;
     }).appendTo($("#post-area"));
 
     $("#recent").click(function() {

@@ -20,6 +20,7 @@ function getDiscogAlbums(artistname){
 function getAlbumAverage(id, posts) {
     var postRatings = [];
     for (let i = 0; i < posts.length; i++) {
+        console.log(posts[i].albumId, id);
         if (posts[i].albumId === id && posts[i].deleted === false) {
             postRatings.push(posts[i].rating);
         }
@@ -46,7 +47,7 @@ function getArtistAlbums(id, posts) {
         for (let i = 0; i < albums.length; i++) {
             var qty = 0;
             for (let j = 0; j < posts.length; j++) {
-                if (posts[j].albumId === albums[i].id) {
+                if (posts[j].albumId === albums[i].id && posts[j].deleted === false) {
                     qty += 1;
                 }
             }
