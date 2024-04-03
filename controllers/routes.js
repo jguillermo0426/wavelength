@@ -453,7 +453,6 @@ function add(server){
     //EDIT PROFILE
     server.post('/edit-profile/:username', function(req, resp){
       const username = req.params.username;
-      const filter = { username: username};
       const update = {}
 
       profileController.getUserInstance(username).then(profile => {
@@ -476,23 +475,6 @@ function add(server){
           resp.redirect(`/profile-${profile.username}`);
         });
       });
-
-      /*const filter = { username: username};
-      const update = {}
-      if (req.body.username){
-        update.username = req.body.username;
-      }
-      if (req.body.bio){
-        update.bio = req.body.bio;
-      }
-      if (req.body.user_image){
-        update.user_image = req.body.user_image;
-      }
-      if (req.body.header_image){
-        update.header_image = req.body.header_image;
-      }
-      Object.assign(loggedUser, update);
-      resp.redirect(`/profile-${loggedUser.username}`);*/
     });
 
 
