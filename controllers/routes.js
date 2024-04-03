@@ -755,7 +755,7 @@ function add(server){
   
 
     //VIEW POST PAGE
-    server.get('/:title-:postID', function(req, resp){
+    server.get("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", function(req, resp){
       const postID = req.params.postID;
 
       profileController.getProfileByPost(postID).then(profile => {
