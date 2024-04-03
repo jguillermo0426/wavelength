@@ -38,8 +38,8 @@ function getPostComments(postId, comments) {
     return comments;
 }
 
-function getCommentInstance (commentID){
-    var comment = Comments.commentModel.findById(commentID).exec();
+async function getCommentInstance (commentID){
+    var comment = await Comments.commentModel.findById(commentID).populate('userId').exec();
     return comment;
 }
 

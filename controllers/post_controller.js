@@ -11,7 +11,7 @@ function getPostById (postID){
 }
 
 function getPostInstance (postID){
-    var post = Posts.postModel.findById(postID).exec();
+    var post = Posts.postModel.findById(postID).populate('userId').exec();
     return post;
 }
 

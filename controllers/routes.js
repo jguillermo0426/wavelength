@@ -422,8 +422,7 @@ function add(server){
         //console.log(liked_posts);
         //console.log(userID);
         //console.log(posts);
-        console.log(comments);
-
+        //console.log(comments);
         sameLoggedProfile = false;
         if(String(loggedUser._id) == String(profile._id)){
           sameLoggedProfile = true;
@@ -531,7 +530,7 @@ function add(server){
       postController.getPostInstance(postID).then(post => {
         post.deleted = true
         post.save().then(result => {
-          resp.redirect(`/profile-${post.user}`);
+          resp.redirect(`/profile-${post.userId.username}`);
         });
       });
     });
@@ -558,7 +557,7 @@ function add(server){
         comment.commentText = req.body.commentText
         comment.edited = true;
         comment.save().then(result => {
-          resp.redirect(`/profile-${comment.username}`);
+          resp.redirect(`/profile-${comment.userId.username}`);
         });
       });
     });
@@ -584,7 +583,7 @@ function add(server){
       comment.deleted = true;
       await postController.removeCommentFromPost(commentID);
       await comment.save();
-      resp.redirect(`/profile-${comment.username}`);
+      resp.redirect(`/profile-${comment.userId.username}`);
     });
 
     
