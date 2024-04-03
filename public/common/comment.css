@@ -538,6 +538,7 @@ textarea {
     border-radius: 50%;
     width: 60px;
     margin-left: 20px;
+    object-fit: cover;
 }
 
 #pfp {
