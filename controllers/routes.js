@@ -423,12 +423,6 @@ function add(server){
       profileController.getLikes(profile).then(liked_posts => {
         postController.markdownPosts(posts);
         postController.markdownPosts(liked_posts);
-        //console.log(profile);
-        //console.log(loggedUser._id);
-        //console.log(liked_posts);
-        //console.log(userID);
-        //console.log(posts);
-        //console.log(comments);
         sameLoggedProfile = false;
         if(String(loggedUser._id) == String(profile._id)){
           sameLoggedProfile = true;
