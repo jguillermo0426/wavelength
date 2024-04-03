@@ -40,10 +40,10 @@ var isLogged = false;
       * Comment functionality (can be redirection to view full post page)
       * Recent and Popular functionality
     > Sign up or log-in prompt (for unlogged user when trying to upvote, downvote, or comment)
-    > Search Functionality
+    * Search Functionality
       * Searching posts 
       * Limit search with tags
-    > Profile Page functionality (edit and delete functions should only be visible to logged user):
+    * Profile Page functionality (edit and delete functions should only be visible to logged user):
       * Edit Profile functionality
       * Edit Post functionality
       * Delete Post functionality
@@ -53,13 +53,13 @@ var isLogged = false;
       * Genres tag (get most popular genre tags for that artist)
       > Reviews average aggregate (get total number of reviews for that album)
       > Average score aggregate (get average score for that album
-    > Album Page
+    * Album Page
       * Average Ratings aggregate
       * Make reviews in album page link to full post of review
-    > Create Post Page
+    * Create Post Page
       * Search Album Pop-up (must list albums available in database and have ability to search for specific album)
       * Add tags
-      > Markdown (optional for bonus points)
+      * Markdown (optional for bonus points)
       * Search tag popup
       * Submit post 
     > View Full Post Page
@@ -456,24 +456,40 @@ function add(server){
       const update = {}
 
       profileController.getUserInstance(username).then(profile => {
-        if (req.body.username){
-          profile.username = req.body.username;
-          update.username = req.body.username;
-        }
-        if (req.body.bio){
-          profile.bio = req.body.bio;
-        }
-        if (req.body.user_image){
-          profile.user_image = req.body.user_image;
-          update.user_image = req.body.user_image;
-        }
-        if (req.body.header_image){
-          profile.header_image = req.body.header_image;
-        }
-        Object.assign(loggedUser, update);
-        profile.save().then(result => {
-          resp.redirect(`/profile-${profile.username}`);
-        });
+        profileController.getUserProfile(req.body.username).then(newProfile => {
+          if(newProfile){
+            console.log("username already taken!");
+            resp.redirect(`/profile-${username}`);
+          }
+          else{
+            if (req.body.username){
+              if(req.body.username != username){
+                profile.username = req.body.username;
+                update.username = req.body.username;
+              }  
+            }
+            if (req.body.bio){
+              profile.bio = req.body.bio;
+            }
+            if (req.body.user_image){
+              profile.user_image = req.body.user_image;
+              update.user_image = req.body.user_image;
+            }
+            if (req.body.header_image){
+              profile.header_image = req.body.header_image;
+            }
+            Object.assign(loggedUser, update);
+            profile.save().then(result => {
+              resp.redirect(`/profile-${profile.username}`);
+            }).catch(err=>{
+              resp.status(500).send("Error saving profile");
+            });
+          } 
+        }).catch(err=>{
+          resp.status(500).send("Error retrieving user profile");
+        });   
+      }).catch(err=>{
+        resp.status(500).send("Error retrieving user instance");
       });
     });
 

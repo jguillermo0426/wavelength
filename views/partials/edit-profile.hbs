@@ -6,29 +6,18 @@
       <p>Edit Profile</p>
       <button type="submit" id="save-btn">Save</button>
     </div>
-  <!--
-    <div class="edit-banner">
-      <img class="banner" src="{{user.header_image}}">
-      <img class="banner-pen" src="/common/png/pen.png">
-    </div>
-
-    <img class="profile-pen" src="/common/png/pen.png">
-    <div class="edit-profile-picture">
-      <input type="file" id="edit-profile-picture" name="user_image">
-      <img src="{{user.user_image}}">
-    </div>-->
 
     <div class="edit-details">
       <p>Display name</p>
       <div class="input-details">
-        <input id="edit-username" type="text" value="{{user.username}}" name="username">
+        <input id="edit-username" type="text" placeholder="Display name" name="username">
       </div>
     </div>
 
     <div class="edit-details">
       <p>Bio</p>
       <div class="input-details">
-        <input id="edit-bio" type="text" value="{{user.bio}}" name="bio">
+        <input id="edit-bio" type="text" placeholder="Bio" name="bio">
       </div>
     </div>
 
@@ -45,9 +34,5 @@
         <input id="edit-header" type="text" placeholder="Insert link" name="header_image">
       </div>
     </div>
-
-    <!--<div id="edit-profile-message">
-      <p>Username already taken</p>
-    </div>-->
   </div>
 </form>
