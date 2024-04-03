@@ -38,7 +38,7 @@
         </div>
         <div class="post-body">
             <p class="post-title">{{post_data.title}}</p>
-            <p class="post-text">{{post_data.postText}}</p>
+            <p class="post-text">{{{post_data.markdown}}}</p>
         </div>
         <div class="post-footer">
             <div id="likes-bar" class="react-bar likes-bar">
@@ -87,7 +87,7 @@
       {{> comments}}
     {{else}}
       <p class="no-content">
-        There's nothing here...
+        Start a discussion!
       </p>
     {{/if}}
   </div>

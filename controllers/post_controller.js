@@ -1,5 +1,6 @@
 const Posts = require('../models/site_model');
-
+var showdown  = require('showdown');
+var converter = new showdown.Converter({'underline': 'true', 'strikethrough': 'true'});
 function errorFn(err){
     console.log('Error fond. Please trace!');
     console.error(err);
@@ -78,6 +79,13 @@ async function removeCommentFromPost(commentID){
     await Posts.postModel.updateMany({}, {$pull: {comments: commentID}});
 }
 
+function markdownPosts(posts) {
+    for (let i = 0; i < posts.length; i++) {
+        var text = posts[i].postText;
+        var html = converter.makeHtml(text);
+        posts[i].markdown = html;
+    }
+}
 
 module.exports = {
     getAllPosts,
@@ -90,6 +98,7 @@ module.exports = {
     getPostDislikes,
     getPostInstance,
     removeCommentFromPost,
-    getUserPost
+    getUserPost,
+    markdownPosts
 }
 
