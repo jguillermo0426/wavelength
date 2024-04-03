@@ -793,6 +793,52 @@ function add(server){
         }).catch(errorFn);
       }).catch(errorFn); 
     });
+
+    server.post('/:title-:postID', async (req, resp) => {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = months[date.getMonth()];
+      const day = date.getDate();
+      const time = date.getTime();
+  
+      const fullDate = month + " " + day + ", " + year;
+
+      const postId = req.params.postID;
+      try {
+          const commentData = {
+              commentText: req.body.commentText,
+              postId: postId,
+              edited: false,
+              deleted: false,
+              likes: likes,
+              dislikes: dislikes,
+              userId: loggedUser._id,
+              commentDate: fullDate,
+              timeCommented: time,
+          };
+          
+          console.log(req.body.commentText);
+          const newComment = new Model.commentModel(commentData);
+          const savedComment = await newComment.save();
+  
+          const post = await Model.postModel.findById(postId);
+          if (!post) {
+              return resp.status(404).json({ error: 'Post not found' });
+          }
+          post.comments.push(savedComment._id);
+          await post.save();
+  
+          resp.redirect(`/${req.params.title}-${req.params.postID}`);
+      } catch (error) {
+          resp.status(500).send('Error creating comment: ' + error.message);
+      }
+  
+  });
+
+  
+
   }
 
 module.exports.add = add;

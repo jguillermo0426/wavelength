@@ -7,7 +7,7 @@
         </div>
         <div class="comment-panel" id="text">
           <div class="user-panel">
-            <p class="user-name"><strong>{{userId.username}}</strong> • {{commentDate}} {{#if edited}} | Edited{{/if}}</p>
+            <p class="user-name"><strong>{{userId.username}}</strong> • <span class="date">{{commentDate}}</span> {{#if edited}} | Edited{{/if}}</p>
             {{#if (sameLoggedProfile ../user.username userId.username)}}
               {{> edit-delete-comment-main}}
             {{/if}}
