@@ -766,18 +766,8 @@ function add(server){
               if (postComments.length) {
                 pComments = postComments;
               }
-
-              /*sameLoggedProfile = false;
-              if(String(loggedUser._id) == String(profile._id)){
-                sameLoggedProfile = true;
-              }
-              else{
-                sameLoggedProfile = false;
-              }*/
-
               //console.log(postComments);
               console.log(pComments);
-              //console.log("same logged:" + sameLoggedProfile);
               resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',
@@ -786,7 +776,6 @@ function add(server){
               userpost : profile,
               post_data: post,
               comments: pComments,
-              //sameLoggedProfile: sameLoggedProfile
             }); 
             });
           }).catch(errorFn);
