@@ -713,3 +713,11 @@ textarea {
   a.option {
     text-decoration: none;
   }
+
+  .divider {
+    width: 1100px;
+    border-bottom: 2px solid;
+    border-color: #3B3942;
+
+
+  }
