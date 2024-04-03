@@ -6,6 +6,8 @@ const albumController = require('./album_controller');
 const Model = require('../models/site_model');
 const { trusted } = require('mongoose');
 const ObjectId = require('mongoose').Types.ObjectId;
+var showdown  = require('showdown');
+var converter = new showdown.Converter({'underline': 'true', 'strikethrough': 'true'});
 
 const bcrypt = require('bcrypt');
 
@@ -86,6 +88,8 @@ function add(server){
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
+        postController.markdownPosts(posts);
+        console.log(posts);
         resp.render('main',{
           layout: 'index',
           title: 'Wavelength • Home',
@@ -93,7 +97,6 @@ function add(server){
           isLogged: isLogged,
           user : loggedUser
         });
-        console.log(posts);
       }).catch(err => {
           console.error('Error occurred while getting posts:', err);
       });
@@ -417,9 +420,11 @@ function add(server){
       postController.getUserPost(userID).then(posts => {
       commentController.getUserComments(userID).then(comments => {
       profileController.getLikes(profile).then(liked_posts => {
+        postController.markdownPosts(posts);
+        postController.markdownPosts(liked_posts);
         //console.log(profile);
         //console.log(loggedUser._id);
-        //console.log(liked_posts);
+        console.log(liked_posts);
         //console.log(userID);
         //console.log(posts);
         //console.log(comments);
@@ -644,6 +649,7 @@ function add(server){
       const id = req.params.id;
       postController.getAllPosts().then(posts => {
         albumController.getAlbumData(id, posts).then(data => {
+          postController.markdownPosts(posts);
           var reviews = postController.getAlbumReviews(id, posts);
             resp.render('album', {
               layout: 'albumpage_layout',
@@ -762,6 +768,9 @@ function add(server){
         postController.getPostById(postID).then(post => {
           commentController.getAllComments().then(comments => {
             commentController.getPostComments(postID, comments).then(postComments => {
+              var text = post.postText;
+              var html = converter.makeHtml(text);
+              post.markdown = html;
               var pComments = [];
               if (postComments.length) {
                 pComments = postComments;
@@ -794,7 +803,7 @@ function add(server){
       }).catch(errorFn); 
     });
 
-    server.post('/:title-:postID', async (req, resp) => {
+    server.post("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", async (req, resp) => {
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   
       const date = new Date();

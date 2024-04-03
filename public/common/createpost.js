@@ -60,4 +60,48 @@ $(document).ready(function() {
     });
 
     form.addEventListener('submit', submitForm);
+
+    $(".bold").click(function() {
+        var text = document.getElementById("postText");
+        var t = text.value.substr(text.selectionStart,text.selectionEnd-text.selectionStart);
+
+        if (t) {
+            var newContents = document.createElement('span');
+            newContents.textContent = text;
+            text.value = text.value.replace(t, `**${t}**`);
+        }
+    });
+
+    $(".italics").click(function() {
+        var text = document.getElementById("postText");
+        var t = text.value.substr(text.selectionStart,text.selectionEnd-text.selectionStart);
+
+        if (t) {
+            var newContents = document.createElement('span');
+            newContents.textContent = text;
+            text.value = text.value.replace(t, `*${t}*`);
+        }
+    });
+
+    $(".underline").click(function() {
+        var text = document.getElementById("postText");
+        var t = text.value.substr(text.selectionStart,text.selectionEnd-text.selectionStart);
+
+        if (t) {
+            var newContents = document.createElement('span');
+            newContents.textContent = text;
+            text.value = text.value.replace(t, `__${t}__`);
+        }
+    });
+
+    $(".strikethrough").click(function() {
+        var text = document.getElementById("postText");
+        var t = text.value.substr(text.selectionStart,text.selectionEnd-text.selectionStart);
+
+        if (t) {
+            var newContents = document.createElement('span');
+            newContents.textContent = text;
+            text.value = text.value.replace(t, `~~${t}~~`);
+        }
+    });
 });

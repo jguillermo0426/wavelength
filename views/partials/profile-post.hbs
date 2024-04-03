@@ -39,7 +39,7 @@
           {{title}}
         </p>
         <p class="post-text">
-          {{{truncateText postText 500}}}
+          {{{truncateText markdown 500}}}
           {{#if (showSeeMore postText 500)}}
             <a href="/{{{ title }}}-{{{ _id }}}" class="see-more"> See more</a>
           {{/if}}
