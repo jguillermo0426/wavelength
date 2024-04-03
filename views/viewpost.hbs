@@ -13,16 +13,6 @@
                 <p class="user-reviewed">reviewed by <a href="/profile-{{post_data.user}}" class="user">{{post_data.user}}</a> on <span class="date">{{post_data.reviewDate}}
                     {{#if post_data.edited}} | Edited {{/if}}
                 </span></p>
-                {{!-- <div class="tags-area">
-                    <div class="tag">
-                        <p>{{post_data.tag1}}</p>
-                    </div>
-                    <div class="tag">
-                        <p>{{post_data.tag2}}</p>
-                    </div>
-                    <div class="tag">
-                        <p>{{post_data.tag3}}</p>
-                    </div> --}}
                     <div class="tags-area">
                         {{#if post_data.tag1}}
                         <div class="tag">

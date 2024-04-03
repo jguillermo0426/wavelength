@@ -530,7 +530,7 @@ function add(server){
       postController.getPostInstance(postID).then(post => {
         post.deleted = true
         post.save().then(result => {
-          resp.redirect(`/profile-${post.userId.username}`);
+          resp.redirect('/');
         });
       });
     });
@@ -557,7 +557,7 @@ function add(server){
         comment.commentText = req.body.commentText
         comment.edited = true;
         comment.save().then(result => {
-          resp.redirect(`/profile-${comment.userId.username}`);
+          resp.redirect(`/${comment.postId.trackName}-${comment.postId._id}`);
         });
       });
     });
@@ -583,7 +583,7 @@ function add(server){
       comment.deleted = true;
       await postController.removeCommentFromPost(commentID);
       await comment.save();
-      resp.redirect(`/profile-${comment.userId.username}`);
+      resp.redirect('/');
     });
 
     
@@ -764,7 +764,7 @@ function add(server){
             commentController.getPostComments(postID, comments).then(postComments => {
               var pComments = [];
               if (postComments.length) {
-                pComments = postComments[0].comments
+                pComments = postComments;
               }
 
               sameLoggedProfile = false;
@@ -776,6 +776,7 @@ function add(server){
               }
 
               console.log(postComments);
+              //console.log(pComments);
               resp.render('viewpost',{
               layout: 'comment_layout',
               title: 'Wavelength • View Post',

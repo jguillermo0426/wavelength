@@ -64,6 +64,7 @@ const commentSchema = new mongoose.Schema({
     deleted: Boolean,
     userId: { type: Schema.Types.ObjectId, ref: 'profile'},
     postId: { type: Schema.Types.ObjectId, ref: 'post_data'},
+    commentDate: String,
     timeCommented: Number
 }, {versionKey: false});
 

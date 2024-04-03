@@ -6,7 +6,7 @@ function errorFn(err){
 }
 
 function getCommentById (commentID){
-    var commentID = Comments.commentModel.findById(commentID).lean();
+    var commentID = Comments.commentModel.findById(commentID).populate('userId').populate('postId').lean();
     return commentID;
 }
 
@@ -34,8 +34,9 @@ function getPostComments(postId, comments) {
         }
     }
     console.log(commentsId);
-    var comments = Comments.postModel.find({comments: {$in: commentsId}}).populate('comments').lean().exec();
-    return comments;
+    //var postComments = Comments.postModel.find({comments: {$in: commentsId}}).populate('comments').lean().exec();
+    var postComments =  Comments.commentModel.find({_id: {$in: commentsId}}).populate('userId').lean().exec();
+    return postComments;
 }
 
 async function getCommentInstance (commentID){

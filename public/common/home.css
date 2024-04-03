@@ -969,7 +969,7 @@ input:focus {
     font-weight: bold;
   }
   
-  .comment-title {
+  a.comment-title {
     font-weight: bold;
     color: #8F59DD;
     text-decoration: none;
