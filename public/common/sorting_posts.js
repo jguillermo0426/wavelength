@@ -27,9 +27,9 @@ $(document).ready(function() {
         var posts = $("#post-area").children();
 
         posts.sort(function (a, b) {
-            let a_date = new Date($(a).find(".date").text());
-            let b_date = new Date($(b).find(".date").text());
-            return b_date.getTime() - a_date.getTime();
+            let a_date = ($(a).find("#time-reviewed").text());
+            let b_date = ($(b).find("#time-reviewed").text());
+            return b_date - a_date;
         }).appendTo($("#post-area"));
     });
 
@@ -54,7 +54,7 @@ $(document).ready(function() {
     console.log(posts);
     var loaded = 0;
 
-    var unloadedPosts = posts.slice(16, posts.length);
+    var unloadedPosts = posts.slice(15, posts.length);
     console.log(unloadedPosts);
     for (let i = 0; i < unloadedPosts.length; i++) {
         $(unloadedPosts[i]).css("display", "none");
