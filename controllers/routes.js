@@ -258,6 +258,166 @@ function add(server){
       }
     });
 
+
+    //COMMENTS DATA
+    server.post('/comment-like-dislike', function(req, resp){
+      if (isLogged === true) {
+        var id = req.body.commentId; 
+        var liked = false;
+        var disliked = false;
+        var match = false;
+        commentController.getCommentById(id).then(comment => { 
+          commentController.getCommentLikes(comment.likes).then(commentLikes => {
+            commentController.getCommentDislikes(comment.dislikes).then(commentDislikes => {
+              if (comment.likes.length || comment.dislikes.length) {
+                if (commentLikes && commentLikes._id.toString() === loggedUser._id.toString()) {
+                  liked = false; // Unlike
+                  disliked = true;
+                  console.log(id, '1', liked, disliked);
+                }
+                else if (commentLikes && commentLikes._id.toString() != loggedUser._id.toString() && commentDislikes && commentDislikes._id.toString() != loggedUser._id.toString()) {
+                  liked = true; // Like
+                  disliked = true;
+                  console.log(id, '2', liked, disliked);
+                } 
+                else if (commentDislikes && commentDislikes._id.toString() === loggedUser._id.toString()) {
+                  disliked = false;
+                  liked = true;
+                  console.log(id, '5', liked, disliked);
+                }
+                else {
+                  liked = true; // Like
+                  disliked = true;
+                  console.log(id, '8', liked, disliked);
+                }
+              }
+              else {
+                liked = true; // Like
+                disliked = true;
+                console.log(id, '3', liked, disliked);
+              }
+    
+              if (req.body.type === 'clicked') {
+                if (liked === false) {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                    if (disliked === true && req.body.click === 'dislike') {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: comment.likes.length,
+                          disliked: disliked,
+                          dislikes: comment.dislikes.length,
+                          match: match
+                        });
+                        console.log('disliked 2');
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: comment.likes.length,
+                        disliked: disliked,
+                        dislikes: comment.dislikes.length,
+                        match: match
+                      });
+                      console.log('unliked 2');
+                    }
+                  });
+                }
+                else if (liked === true && req.body.click === 'like') {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                    if (disliked === false) {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: comment.likes.length,
+                          disliked: disliked,
+                          dislikes: comment.dislikes.length,
+                          match: match
+                        });
+                        console.log('undisliked 1');
+                      });
+                    }
+                    else if (disliked === true) {
+                      resp.send({
+                        liked: liked,
+                        likes: comment.likes.length,
+                        disliked: disliked,
+                        dislikes: comment.dislikes.length,
+                        match: match
+                      });
+                    console.log('liked 1');
+                    }
+                  });
+                }
+                else if (disliked === false) {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                    if (liked === false) {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: comment.likes.length,
+                          disliked: disliked,
+                          dislikes: comment.dislikes.length,
+                          match: match
+                        });
+                        console.log("liked 2");
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: comment.likes.length,
+                        disliked: disliked,
+                        dislikes: comment.dislikes.length,
+                        match: match
+                      });
+                      console.log('undisliked 2');
+                    }
+                  });
+                }
+                else if (disliked === true) {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                    if (liked === false) {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: comment.likes.length,
+                          disliked: disliked,
+                          dislikes: comment.dislikes.length,
+                          match: match
+                        });
+                        console.log('unliked 1');
+                      });
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: comment.likes.length,
+                        disliked: disliked,
+                        dislikes: comment.dislikes.length,
+                        match: match
+                      });
+                    console.log('disliked 1');
+                    }
+                  });
+                }
+                console.log('\n');
+              }
+              else if (req.body.type === 'load') {
+                resp.send({liked: liked, disliked: disliked, id: comment._id});
+              }
+            });
+          }); 
+        });
+      }
+      else {
+        resp.send({output: "nouser"});
+      }
+    });
+    
+
+    
     //POST SEARCH RESULTS PAGE
     server.get('/search', function(req, resp){
       var searchquery = req.query.search;

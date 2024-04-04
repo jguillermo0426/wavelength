@@ -44,10 +44,23 @@ async function getCommentInstance (commentID){
     return comment;
 }
 
+
+function getCommentLikes(comments) {
+    var commentLikes = Comments.commentModel.findOne({_id: {$in: comments}}).lean();
+    return commentLikes;
+}
+
+function getCommentDislikes(comments) {
+    var commentDislikes = Comments.commentModel.findOne({_id: {$in: comments}}).lean();
+    return commentDislikes;
+}
+
 module.exports = {
     getAllComments,
     getUserComments,
     getPostComments,
     getCommentById,
-    getCommentInstance
+    getCommentInstance,
+    getCommentLikes,
+    getCommentDislikes
 }
