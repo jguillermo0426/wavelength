@@ -32,6 +32,7 @@ const postSchema = new mongoose.Schema({
     likes: [{ type: Schema.Types.ObjectId, ref: 'profile'}],
     dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
     comments: [{ type: Schema.Types.ObjectId, ref: 'comment'}],
+    replies: [{ type: Schema.Types.ObjectId, ref: 'reply'}],
     postText: String,
     edited: Boolean,
     deleted: Boolean,
@@ -59,7 +60,7 @@ const commentSchema = new mongoose.Schema({
     commentText: String,
     likes: [{ type: Schema.Types.ObjectId, ref: 'profile'}],
     dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
-    replies: [{ type: String }],
+    replies: [{ type: Schema.Types.ObjectId, ref: 'reply'}],
     edited: Boolean,
     deleted: Boolean,
     userId: { type: Schema.Types.ObjectId, ref: 'profile'},
@@ -69,6 +70,21 @@ const commentSchema = new mongoose.Schema({
 }, {versionKey: false});
 
 const commentModel = mongoose.model('comment', commentSchema);
+
+const replySchema = new mongoose.Schema({
+    replyText: String,
+    likes: [{ type: Schema.Types.ObjectId, ref: 'profile'}],
+    dislikes:[ { type: Schema.Types.ObjectId, ref: 'profile'}],
+    edited: Boolean,
+    deleted: Boolean,
+    userId: { type: Schema.Types.ObjectId, ref: 'profile'},
+    postId: { type: Schema.Types.ObjectId, ref: 'post_data'},
+    commentId: { type: Schema.Types.ObjectId, ref: 'comment'},
+    replyDate: String,
+    timeReplied: Number
+}, {versionKey: false});
+
+const replyModel = mongoose.model('reply', replySchema);
 
 const artistSchema = new mongoose.Schema({
     artist_name: { type: String },
@@ -102,4 +118,5 @@ module.exports = {postModel,
                 commentModel,
                 artistModel, 
                 albumModel,
-                spotifyApi};
+                spotifyApi,
+                replyModel};

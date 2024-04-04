@@ -537,6 +537,7 @@ textarea {
 .comment-icon{
     border-radius: 50%;
     width: 60px;
+    height: 60px;
     margin-left: 20px;
     object-fit: cover;
 }
@@ -592,7 +593,8 @@ textarea {
 }
 
 
-.comment-text {
+.comment-text,
+.reply-text {
     color: #F4EBEB;
     font-weight: normal;
     margin-right: 40px;
@@ -606,7 +608,15 @@ textarea {
 
 .comment-feed {
     margin-top: 30px;
-    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+
+}
+
+.reply-feed {
+    margin-top: 30px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     margin-bottom: 0px;
