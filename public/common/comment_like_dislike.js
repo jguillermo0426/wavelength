@@ -6,45 +6,45 @@ $('document').ready(function() {
     for (let i = 0; i < comment.length; i++) {
         var commentId = $(comment[i]).attr('id');
         var id = commentId.replace("comment_", ""); 
-    $.post(
-        '/comment-like-dislike',
-        { commentId: id, type: 'load' }, 
-        function(data, status) {
-            console.log(status);
-            if (status === 'success') {
-                var unliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#no-like');
-                var liked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#with-like');
+        $.post(
+            '/comment-like-dislike',
+            { commentId: id, type: 'load' }, 
+            function(data, status) {
+                console.log(status);
+                if (status === 'success') {
+                    var unliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#no-like');
+                    var liked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#with-like');
 
-                var undisliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#no-like');
-                var disliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#with-like');
+                    var undisliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#no-like');
+                    var disliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#with-like');
 
-                if (data.output === 'nouser') {
-                    console.log("user is not logged in");
-                } else {
-                    console.log(data.id, data.liked, data.disliked);
-                    if (data.liked === false) {
-                        console.log('liked');
-                        unliked.css("display", "none");
-                        liked.css("display", "block");
-                    } else if (data.liked === true) {
-                        console.log('unliked');
-                        liked.css("display", "none");
-                        unliked.css("display", "block");
-                    }
+                    if (data.output === 'nouser') {
+                        console.log("user is not logged in");
+                    } else {
+                        console.log(data.id, data.liked, data.disliked);
+                        if (data.liked === false) {
+                            console.log('liked');
+                            unliked.css("display", "none");
+                            liked.css("display", "block");
+                        } else if (data.liked === true) {
+                            console.log('unliked');
+                            liked.css("display", "none");
+                            unliked.css("display", "block");
+                        }
 
-                    if (data.disliked === false) {
-                        console.log('disliked');
-                        undisliked.css("display", "none");
-                        disliked.css("display", "block");
-                    } else if (data.disliked === true) {
-                        console.log('undisliked');
-                        disliked.css("display", "none");
-                        undisliked.css("display", "block");
+                        if (data.disliked === false) {
+                            console.log('disliked');
+                            undisliked.css("display", "none");
+                            disliked.css("display", "block");
+                        } else if (data.disliked === true) {
+                            console.log('undisliked');
+                            disliked.css("display", "none");
+                            undisliked.css("display", "block");
+                        }
                     }
                 }
             }
-        }
-    );
+        );
     }
 
     $(".likes-bar-comment").click(function() {
@@ -123,6 +123,7 @@ $('document').ready(function() {
             { commentId: id, type: 'clicked', click: 'dislike' }, // Changed from "postId" to "commentId"
             function(data, status) {
                 if (status === "success") {
+                    console.log(status);
                     if (data.disliked === true) {
                         console.log('disliked');
                         var dislikes = data.dislikes + 1;
