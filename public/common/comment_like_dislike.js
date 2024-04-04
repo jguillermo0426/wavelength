@@ -1,24 +1,22 @@
 $('document').ready(function() {
-    var comment = $(".comment"); 
-    var commentId = $(comment).attr('id'); 
-    var id = commentId.replace("comment_", ""); 
+    var comment = $("#comments-area").children(".comment-feed"); 
 
     // likes dislikes function for comment
 
     for (let i = 0; i < comment.length; i++) {
         var commentId = $(comment[i]).attr('id');
-        console.log(commentId);
         var id = commentId.replace("comment_", ""); 
     $.post(
         '/comment-like-dislike',
         { commentId: id, type: 'load' }, 
         function(data, status) {
+            console.log(status);
             if (status === 'success') {
-                var unliked = $(comment).children('.post-footer').children('#likes-bar').children('#no-like');
-                var liked = $(comment).children('.post-footer').children('#likes-bar').children('#with-like');
+                var unliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#no-like');
+                var liked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#with-like');
 
-                var undisliked = $(comment).children('.post-footer').children('#dislikes-bar').children('#no-like');
-                var disliked = $(comment).children('.post-footer').children('#dislikes-bar').children('#with-like');
+                var undisliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#no-like');
+                var disliked = $(comment).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#with-like');
 
                 if (data.output === 'nouser') {
                     console.log("user is not logged in");
@@ -49,11 +47,11 @@ $('document').ready(function() {
     );
     }
 
-    $(".likes-bar").click(function() {
-        var comment = $(this).parent().parent().attr('id');
+    $(".likes-bar-comment").click(function() {
+        var comment = $(this).parent().parent().parent().parent().attr('id');
         var id = comment.replace("comment_", ""); // Changed from "post_" to "comment_"
 
-        var dislikesBar = $(this).parent().children("#dislikes-bar");
+        var dislikesBar = $(this).parent().children("#dislikes-bar-comment");
 
         var likeCounter = $(this).children('#like-counter');
         var dislikeCounter = $(dislikesBar).children("#dislike-counter");
@@ -68,6 +66,7 @@ $('document').ready(function() {
             'comment-like-dislike',
             { commentId: id, type: 'clicked', click: 'like' }, // Changed from "postId" to "commentId"
             function(data, status) {
+                console.log("worked");
                 if (status === "success") {
                     if (data.liked === true) {
                         console.log('liked');
@@ -104,11 +103,11 @@ $('document').ready(function() {
             });
     });
 
-    $(".dislikes-bar").click(function() {
-        var comment = $(this).parent().parent().attr('id');
+    $(".dislikes-bar-comment").click(function() {
+        var comment = $(this).parent().parent().parent().parent().attr('id');
         var id = comment.replace("comment_", ""); // Changed from "post_" to "comment_"
 
-        var likesbar = $(this).parent().children("#likes-bar");
+        var likesbar = $(this).parent().children("#likes-bar-comment");
 
         var dislikeCounter = $(this).children('#dislike-counter');
         var likeCounter = $(likesbar).children("#like-counter");

@@ -107,6 +107,7 @@ function add(server){
       });
     });
 
+ 
     server.post('/like-dislike', function(req, resp){
       var isLogged;
         var loggedUser = [];
@@ -272,47 +273,54 @@ function add(server){
 
     //COMMENTS DATA
     server.post('/comment-like-dislike', function(req, resp){
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
       if (isLogged === true) {
-        var id = req.body.commentId; 
+        var commentId = req.body.commentId; 
         var liked = false;
         var disliked = false;
         var match = false;
-        commentController.getCommentById(id).then(comment => { 
+        commentController.getCommentById(commentId).then(comment => { 
           commentController.getCommentLikes(comment.likes).then(commentLikes => {
             commentController.getCommentDislikes(comment.dislikes).then(commentDislikes => {
               if (comment.likes.length || comment.dislikes.length) {
                 if (commentLikes && commentLikes._id.toString() === loggedUser._id.toString()) {
                   liked = false; // Unlike
                   disliked = true;
-                  console.log(id, '1', liked, disliked);
+                  console.log(commentId, '1', liked, disliked);
                 }
                 else if (commentLikes && commentLikes._id.toString() != loggedUser._id.toString() && commentDislikes && commentDislikes._id.toString() != loggedUser._id.toString()) {
                   liked = true; // Like
                   disliked = true;
-                  console.log(id, '2', liked, disliked);
+                  console.log(commentId, '2', liked, disliked);
                 } 
                 else if (commentDislikes && commentDislikes._id.toString() === loggedUser._id.toString()) {
                   disliked = false;
                   liked = true;
-                  console.log(id, '5', liked, disliked);
+                  console.log(commentId, '5', liked, disliked);
                 }
                 else {
                   liked = true; // Like
                   disliked = true;
-                  console.log(id, '8', liked, disliked);
+                  console.log(commentId, '8', liked, disliked);
                 }
               }
               else {
                 liked = true; // Like
                 disliked = true;
-                console.log(id, '3', liked, disliked);
+                console.log(commentId, '3', liked, disliked);
               }
     
               if (req.body.type === 'clicked') {
+                console.log("id: ", comment._id);
                 if (liked === false) {
-                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                  Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                     if (disliked === true && req.body.click === 'dislike') {
-                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                      Model.commentModel.findByIdAndUpdate(comment._id, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -321,7 +329,7 @@ function add(server){
                           match: match
                         });
                         console.log('disliked 2');
-                      });
+                      }).catch(errorFn);
                     }
                     else {
                       resp.send({
@@ -333,12 +341,12 @@ function add(server){
                       });
                       console.log('unliked 2');
                     }
-                  });
+                  }).catch(errorFn);
                 }
                 else if (liked === true && req.body.click === 'like') {
-                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                  Model.commentModel.findByIdAndUpdate(comment._id, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                     if (disliked === false) {
-                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                      Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -347,7 +355,7 @@ function add(server){
                           match: match
                         });
                         console.log('undisliked 1');
-                      });
+                      }).catch(errorFn);
                     }
                     else if (disliked === true) {
                       resp.send({
@@ -359,12 +367,12 @@ function add(server){
                       });
                     console.log('liked 1');
                     }
-                  });
+                  }).catch(errorFn);
                 }
                 else if (disliked === false) {
-                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                  Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                     if (liked === false) {
-                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                      Model.commentModel.findByIdAndUpdate(comment._id, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -373,7 +381,7 @@ function add(server){
                           match: match
                         });
                         console.log("liked 2");
-                      });
+                      }).catch(errorFn);
                     }
                     else {
                       resp.send({
@@ -385,12 +393,12 @@ function add(server){
                       });
                       console.log('undisliked 2');
                     }
-                  });
+                  }).catch(errorFn);
                 }
                 else if (disliked === true) {
-                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                  Model.commentModel.findByIdAndUpdate(comment._id, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                     if (liked === false) {
-                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                      Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -399,7 +407,7 @@ function add(server){
                           match: match
                         });
                         console.log('unliked 1');
-                      });
+                      }).catch(errorFn);
                     }
                     else {
                       resp.send({
@@ -411,7 +419,7 @@ function add(server){
                       });
                     console.log('disliked 1');
                     }
-                  });
+                  }).catch(errorFn);
                 }
                 console.log('\n');
               }
@@ -426,8 +434,6 @@ function add(server){
         resp.send({output: "nouser"});
       }
     });
-    
-
     
     //POST SEARCH RESULTS PAGE
     server.get('/search', function(req, resp){

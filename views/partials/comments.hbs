@@ -1,6 +1,6 @@
 {{#each comments}}
   {{#unless deleted}}
-    <div class="comment-feed">
+    <div class="comment-feed" id="comment_{{_id}}">
       <div class="comment-container">
         <div class="comment-panel" id="pfp">
           <img class="comment-icon" src="{{userId.user_image}}">
@@ -14,12 +14,12 @@
           </div>
           <p class="comment-text">{{commentText}}</p>
         <div class="post-footer">
-            <div id="likes-bar" class="react-bar likes-bar">
+            <div id="likes-bar-comment" class="react-bar likes-bar-comment">
                 <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
                 <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
                 <p id="like-counter" class="counter">{{likes.length}}</p>
             </div>
-            <div id="dislikes-bar" class="react-bar dislikes-bar">
+            <div id="dislikes-bar-comment" class="react-bar dislikes-bar-comment">
                  <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
                 <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
                 <p id="dislike-counter" class="counter">{{dislikes.length}}</p>

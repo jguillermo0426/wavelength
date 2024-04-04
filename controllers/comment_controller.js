@@ -46,12 +46,12 @@ async function getCommentInstance (commentID){
 
 
 function getCommentLikes(comments) {
-    var commentLikes = Comments.commentModel.findOne({_id: {$in: comments}}).lean();
+    var commentLikes = Comments.profileModel.findOne({_id: {$in: comments}}).lean();
     return commentLikes;
 }
 
 function getCommentDislikes(comments) {
-    var commentDislikes = Comments.commentModel.findOne({_id: {$in: comments}}).lean();
+    var commentDislikes = Comments.profileModel.findOne({_id: {$in: comments}}).lean();
     return commentDislikes;
 }
 
