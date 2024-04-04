@@ -31,9 +31,9 @@
         </div>
         </div>
       </div>
-      {{#unless @last}} 
+      {{#if replies.length}} 
         <div class="divider"></div>
-      {{/unless}}
+      {{/if}}
     </div>
     {{#if ../reply.length}}
       {{> replies reply=../reply}}
