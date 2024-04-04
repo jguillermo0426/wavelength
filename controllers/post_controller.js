@@ -18,7 +18,7 @@ function getPostInstance (postID){
 
 
 function getAllPosts() {
-    var allPosts = Posts.postModel.find({}).populate('userId').lean();
+    var allPosts = Posts.postModel.find({}).populate('userId').populate('comments').lean();
     return allPosts;
 }
 

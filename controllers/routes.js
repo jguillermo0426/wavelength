@@ -1059,17 +1059,23 @@ function add(server){
               if (postComments.length) {
                 pComments = postComments;
               }
-              //console.log(postComments);
-              console.log(pComments);
-              resp.render('viewpost',{
-              layout: 'comment_layout',
-              title: 'Wavelength • View Post',
-              isLogged: isLogged,
-              user: loggedUser,
-              userpost : profile,
-              post_data: post,
-              comments: pComments,
-            }); 
+              commentController.getPostReplies(postID).then(reply => {
+
+                //console.log(postComments);
+                //console.log(pComments);
+                //console.log(reply);
+                resp.render('viewpost',{
+                  layout: 'comment_layout',
+                  title: 'Wavelength • View Post',
+                  isLogged: isLogged,
+                  user: loggedUser,
+                  userpost : profile,
+                  post_data: post,
+                  comments: pComments,
+                  reply: reply,
+                  totalReplies: reply.length
+                }); 
+              });
             });
           }).catch(errorFn);
         }).catch(errorFn);

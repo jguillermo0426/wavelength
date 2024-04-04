@@ -48,5 +48,19 @@ module.exports = {
     sameLoggedProfile: function(loggedUser, profile){
         let sameLoggedProfile = loggedUser == profile;
         return sameLoggedProfile;
+    },
+
+    sameCommentId: function(commentID, replyCommentID){
+        let sameCommentId = commentID.toString() == replyCommentID.toString();
+        return sameCommentId;
+    },
+
+    commentsAndRepliesCounter: function(commentCount, replyCount){
+        let comments = parseInt(commentCount, 10);
+        let replies = parseInt(replyCount, 10);
+        if (isNaN(commentCount) || isNaN(replyCount)) {
+            return 0; // Or handle it accordingly
+        }
+        return comments + replies;
     }
 }

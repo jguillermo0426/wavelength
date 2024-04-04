@@ -19,7 +19,7 @@
     "express-session": "^1.18.0",
     "lastfm-api-client": "^0.1.0",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.2.4",
+    "mongoose": "^8.3.0",
     "showdown": "^2.1.0",
     "spotify-web-api-node": "^5.0.2",
     "url": "^0.11.3"
