@@ -25,9 +25,6 @@ function errorFn(err){
   console.log('Error found. Please trace!');
   console.error(err);
 }
-
-var loggedUser = [];
-var isLogged = false;
 /*
   To Do List ( "*" - done ; ">" = to be accomplished):  
     * Sign Up functionality
@@ -78,19 +75,27 @@ function add(server){
       secret: 'like its magnetic',
       saveUninitialized: true, 
       resave: true,
+      cookie: {},
       store: new mongoStore({ 
         uri: mongo_uri,
-        collection: 'mySession',
-        expires: 21*24*1000*60*60 // 3 weeks
+        collection: 'mySession'
       })
     }));
+
 
     //HOMEPAGE
     server.get('/', function(req, resp){
       postController.getAllPosts().then(posts => {
         postController.markdownPosts(posts);
-        console.log(posts);
-        resp.render('main',{
+        console.log(req.session);
+        var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
+        //console.log(posts);
+        resp.render('main', {
           layout: 'index',
           title: 'Wavelength • Home',
           post_data: posts,
@@ -103,6 +108,12 @@ function add(server){
     });
 
     server.post('/like-dislike', function(req, resp){
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
       if (isLogged === true) {
         var id = req.body.postId;
         var liked = false;
@@ -422,7 +433,12 @@ function add(server){
     server.get('/search', function(req, resp){
       var searchquery = req.query.search;
       var option = req.query.options;
-
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       if (option === "username") {
         profileController.getUserProfile(searchquery).then(user => {
           if (user != null) {
@@ -469,6 +485,12 @@ function add(server){
       let remember = req.body.rememberme;
 
       console.log(remember);
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
 
       profileController.getUserProfile(user).then(function(user_data){
         console.log('Finding user');
@@ -479,9 +501,16 @@ function add(server){
               console.log(user_data);
               isLogged = true;
               loggedUser = user_data;
-              if(remember === 'true'){
-                req.session.login_user = user_data._id;
-                req.session.login_id = req.sessionID;
+              req.session.user = {
+                user_data: user_data,
+                login_id: req.sessionID
+              }
+              if(remember === 'true'){  
+                req.session.cookie.expires = 21*24*1000*60*60;
+                console.log(req.session.cookie.expires);
+              }
+              else {
+                console.log(req.session.cookie.expires);
               }
               console.log(req.session); // for checking
               resp.redirect('/');
@@ -576,6 +605,13 @@ function add(server){
     server.get('/profile-:username', function(req, resp){
       const username = req.params.username;
 
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
+
       profileController.getUserProfile(username).then(profile => {
         const userID = String(profile._id);
         postController.getUserPost(userID).then(posts => {
@@ -614,6 +650,13 @@ function add(server){
     server.post('/edit-profile/:username', function(req, resp){
       const username = req.params.username;
       const update = {}
+
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
 
       profileController.getUserInstance(username).then(profile => {
         profileController.getUserProfile(req.body.username.trim()).then(newProfile => {
@@ -659,6 +702,13 @@ function add(server){
       const postID = req.params.postID;
       const post_data = await postController.getPostById(postID);
 
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
+
       resp.render('edit-post', {
         layout: 'createpost_layout',
         title: 'Wavelength • Edit Post',
@@ -692,6 +742,13 @@ function add(server){
       const postID = req.params.postID;
       const post_data = await postController.getPostById(postID);
 
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
+
       resp.render('delete-post', {
         layout: 'createpost_layout',
         title: 'Wavelength • Delete Post',
@@ -716,6 +773,13 @@ function add(server){
     server.get('/edit-comment/:commentID', async (req, resp) => {
       const commentID = req.params.commentID;
       const comment = await commentController.getCommentById(commentID);
+
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
 
       resp.render('edit-comment', {
         layout: 'createpost_layout',
@@ -743,6 +807,13 @@ function add(server){
     server.get('/delete-comment/:commentID', async (req, resp) => {
       const commentID = req.params.commentID;
       const comment = await commentController.getCommentById(commentID);
+
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
 
       resp.render('delete-comment', {
         layout: 'createpost_layout',
@@ -786,6 +857,13 @@ function add(server){
     */
 
     server.get('/artist-page/:artist-:id', async (req, resp) => { // /artist-page/:artist_name
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
+
       const id = req.params.id;
       albumController.getArtistName(id).then(artist => {
         artistController.getArtistGenres(id).then(genres => {
@@ -818,6 +896,13 @@ function add(server){
     server.get("/album-:albumname([a-zA-Z0-9,.;:_'\\s-]*)-:id", function(req, resp){
       const albumname = req.params.albumname;
       const id = req.params.id;
+
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       postController.getAllPosts().then(posts => {
         albumController.getAlbumData(id, posts).then(data => {
           postController.markdownPosts(posts);
@@ -837,7 +922,12 @@ function add(server){
     //LOGOUT Function 
     server.get('/logout', async(req, resp) => {
       isLogged = false;
-      loggedUser = [];
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       console.log('Logging out');
       console.log(loggedUser);
       req.session.destroy(function(err) {
@@ -869,6 +959,12 @@ function add(server){
 
     // CREATE POST
     server.get('/createpost', (req, resp) => {
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       //console.log('albumData:', albumData);
       resp.render('createpost', { 
         layout: 'createpost_layout',
@@ -882,6 +978,12 @@ function add(server){
     });
 
     server.post('/createpost', async (req, resp) => {
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
       const date = new Date();
@@ -934,7 +1036,12 @@ function add(server){
     //VIEW POST PAGE
     server.get("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", function(req, resp){
       const postID = req.params.postID;
-
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       profileController.getProfileByPost(postID).then(profile => {
         postController.getPostById(postID).then(post => {
           commentController.getAllComments().then(comments => {
@@ -965,7 +1072,12 @@ function add(server){
 
     server.post("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", async (req, resp) => {
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
       const date = new Date();
       const year = date.getFullYear();
       const month = months[date.getMonth()];
