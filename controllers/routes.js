@@ -291,36 +291,36 @@ function add(server){
                 if (commentLikes && commentLikes._id.toString() === loggedUser._id.toString()) {
                   liked = false; // Unlike
                   disliked = true;
-                  console.log(commentId, '1', liked, disliked);
+                  console.log("comment: ", commentId, '1', liked, disliked);
                 }
                 else if (commentLikes && commentLikes._id.toString() != loggedUser._id.toString() && commentDislikes && commentDislikes._id.toString() != loggedUser._id.toString()) {
                   liked = true; // Like
                   disliked = true;
-                  console.log(commentId, '2', liked, disliked);
+                  console.log("comment: ", commentId, '2', liked, disliked);
                 } 
                 else if (commentDislikes && commentDislikes._id.toString() === loggedUser._id.toString()) {
                   disliked = false;
                   liked = true;
-                  console.log(commentId, '5', liked, disliked);
+                  console.log("comment: ", commentId, '5', liked, disliked);
                 }
                 else {
                   liked = true; // Like
                   disliked = true;
-                  console.log(commentId, '8', liked, disliked);
+                  console.log("comment: ", commentId, '8', liked, disliked);
                 }
               }
               else {
                 liked = true; // Like
                 disliked = true;
-                console.log(commentId, '3', liked, disliked);
+                console.log("comment: ", commentId, '3', liked, disliked);
               }
     
               if (req.body.type === 'clicked') {
                 console.log("id: ", comment._id);
                 if (liked === false) {
-                  Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                     if (disliked === true && req.body.click === 'dislike') {
-                      Model.commentModel.findByIdAndUpdate(comment._id, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -344,9 +344,9 @@ function add(server){
                   }).catch(errorFn);
                 }
                 else if (liked === true && req.body.click === 'like') {
-                  Model.commentModel.findByIdAndUpdate(comment._id, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                     if (disliked === false) {
-                      Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -370,9 +370,9 @@ function add(server){
                   }).catch(errorFn);
                 }
                 else if (disliked === false) {
-                  Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                     if (liked === false) {
-                      Model.commentModel.findByIdAndUpdate(comment._id, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
@@ -396,9 +396,9 @@ function add(server){
                   }).catch(errorFn);
                 }
                 else if (disliked === true) {
-                  Model.commentModel.findByIdAndUpdate(comment._id, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                  Model.commentModel.findOneAndUpdate({_id: comment._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
                     if (liked === false) {
-                      Model.commentModel.findByIdAndUpdate(comment._id, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                      Model.commentModel.findOneAndUpdate({_id: comment._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
                         resp.send({
                           liked: liked,
                           likes: comment.likes.length,
