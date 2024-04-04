@@ -484,11 +484,13 @@ body {
     padding-top: 12px;
 }
 
-.three-dots {
+.three-dots,
+.three-dots-div-reply {
   margin-left: auto;
 }
 
-.three-dots > img {
+.three-dots > img,
+.three-dots-div-reply > img{
   cursor: pointer;
 }
 
@@ -933,7 +935,8 @@ input:focus {
   display: none;
 }
 
-.recent-comment {
+.recent-comment,
+.recent-reply {
   background-color: #211F27;
   width: 1100px;
   max-height: 155px;
@@ -953,8 +956,10 @@ input:focus {
   
   .comment-profile-picture > img{
     width: 80px;
+    height: 80px;
     border-radius: 50%;
     margin-right: 20px;
+    object-fit: cover;
   }
   
   .comment-status {
@@ -1145,7 +1150,8 @@ input:focus {
   
   /* EDIT DELETE POST */
   .edit-delete-post,
-  .edit-delete-comment {
+  .edit-delete-comment,
+  .edit-delete-reply {
     display: flex;
     flex-direction: column;
     background-color:#3B3942;

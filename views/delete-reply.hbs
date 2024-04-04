@@ -1,0 +1,13 @@
+{{> navigation}}
+<div id="delete-post-popup" class="delete-post-popup">
+  <div class="delete-popup-content">
+    <p id="delete-comment-text">Delete Reply?</p>
+    <p id="delete-comment-warning">Once you delete this reply, it cannot be undone.</p>
+    <div class="delete-popup-options">
+      <button type="submit" id="cancel-delete-btn">Cancel</button>
+      <form name="deleted" action="/deleted-reply/{{reply._id}}" method="post">
+        <button type="submit" id="confirm-delete-btn">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -623,28 +623,31 @@ function add(server){
         postController.getUserPost(userID).then(posts => {
           commentController.getUserComments(userID).then(comments => {
             profileController.getLikes(profile).then(liked_posts => {
-              postController.markdownPosts(posts);
-              postController.markdownPosts(liked_posts);
-              sameLoggedProfile = false;
-              if(String(loggedUser._id) == String(profile._id)){
-                sameLoggedProfile = true;
-              }
-              else{
+              commentController.getUserReplies(userID).then(replies => {
+                postController.markdownPosts(posts);
+                postController.markdownPosts(liked_posts);
                 sameLoggedProfile = false;
-              }
-
-              console.log(sameLoggedProfile)
-              resp.render('profile',{
-                layout: 'index',
-                title: 'Wavelength • '+ username,
-                isLogged: isLogged,
-                user : loggedUser,
-                viewuser: profile,
-                post_data: posts,
-                comment_data: comments,
-                liked_posts: liked_posts,
-                sameLoggedProfile: sameLoggedProfile
-              }); 
+                if(String(loggedUser._id) == String(profile._id)){
+                  sameLoggedProfile = true;
+                }
+                else{
+                  sameLoggedProfile = false;
+                }
+                console.log(replies);
+                //console.log(sameLoggedProfile)
+                resp.render('profile',{
+                  layout: 'index',
+                  title: 'Wavelength • '+ username,
+                  isLogged: isLogged,
+                  user : loggedUser,
+                  viewuser: profile,
+                  post_data: posts,
+                  comment_data: comments,
+                  liked_posts: liked_posts,
+                  sameLoggedProfile: sameLoggedProfile,
+                  replies: replies
+                }); 
+              });
             });   
           }).catch(errorFn);
         }).catch(errorFn);
@@ -836,8 +839,74 @@ function add(server){
       comment.deleted = true;
       await postController.removeCommentFromPost(commentID);
       await comment.save();
-      resp.redirect('/');
+      resp.redirect(`/${comment.postId.trackName}-${comment.postId._id}`);
     });
+
+
+    //EDIT REPLY PAGE
+    server.get('/edit-reply/:replyID', async (req, resp) => {
+      const replyID = req.params.replyID;
+      const reply = await commentController.getReplyById(replyID);
+
+      var isLogged;
+      var loggedUser = [];
+      if (req.session.user) {
+        loggedUser = req.session.user.user_data;
+        isLogged = true;
+      }
+
+      resp.render('edit-reply', {
+        layout: 'createpost_layout',
+        title: 'Wavelength • Edit Reply',
+        reply: reply,
+        isLogged: isLogged,
+        user: loggedUser
+        
+      });
+    });
+
+    server.post('/update-reply/:replyID', function(req, resp){
+      const replyID = req.params.replyID;
+      commentController.getReplyInstance(replyID).then(reply => {
+        reply.replyText = req.body.replyText
+        reply.edited = true;
+        reply.save().then(result => {
+          resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
+        });
+      });
+    });
+
+
+    //DELETE REPLY PAGE
+    server.get('/delete-reply/:replyID', async (req, resp) => {
+      const replyID = req.params.replyID;
+      const reply = await commentController.getReplyById(replyID);
+
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
+
+      resp.render('delete-reply', {
+        layout: 'createpost_layout',
+        title: 'Wavelength • Delete Reply',
+        reply: reply,
+        isLogged: isLogged,
+        user: loggedUser
+      });
+    });
+
+    server.post('/deleted-reply/:replyID', async (req, resp) => {
+      const replyID = req.params.replyID;
+      const reply = await commentController.getReplyInstance(replyID);
+      reply.deleted = true;
+      await commentController.removeReply(replyID);
+      await reply.save();
+      resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
+    });
+
 
     
     // ARTIST PAGE

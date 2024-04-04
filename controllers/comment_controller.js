@@ -73,6 +73,25 @@ function getCommentDislikes(comments) {
     return commentDislikes;
 }
 
+function getReplyById (replyID){
+    var reply = Replies.replyModel.findById(replyID).populate('userId').populate('postId').lean();
+    return reply;
+}
+
+async function getReplyInstance (replyID){
+    var reply = await Replies.replyModel.findById(replyID).populate('userId').exec();
+    return reply;
+}
+
+async function removeReply(replyID){
+    await Comments.commentModel.updateMany({}, {$pull: {replies: replyID}});
+}
+
+function getUserReplies (userID){
+    var reply = Replies.replyModel.find({ userId: userID }).populate('userId').populate('postId').lean();
+    return reply;
+}
+
 module.exports = {
     getAllComments,
     getUserComments,
@@ -82,5 +101,9 @@ module.exports = {
     getPostReplies,
     getAllReplies,
     getCommentLikes,
-    getCommentDislikes
+    getCommentDislikes,
+    getReplyById,
+    getReplyInstance,
+    removeReply,
+    getUserReplies
 }

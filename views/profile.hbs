@@ -47,7 +47,7 @@
 
   <!-- RECENT COMMENTS -->
   <div id="recent-comments-area">
-    {{#if comment_data.length}}
+    {{#if (hasCommentsOrReplies comment_data.length replies.length)}}
       {{> profile-comments}}
     {{else}}
       <p class="no-content">

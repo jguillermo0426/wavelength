@@ -62,5 +62,9 @@ module.exports = {
             return 0; // Or handle it accordingly
         }
         return comments + replies;
+    },
+
+    hasCommentsOrReplies: function(commentLength, replyLength){
+        return commentLength || replyLength;
     }
 }

@@ -33,8 +33,15 @@ function editPost(postID) {
 
 function openEditDeleteComment(commentID) {
     $(".edit-delete-comment").css({'visibility': 'hidden',});
+    $(".edit-delete-reply").css({'visibility': 'hidden',});
     $(".edit-delete-comment[comment-id='" + commentID + "']").css("visibility", "visible");
 }
+
+function closeEditDeleteComment(commentID) {
+    $(".edit-delete-comment").css({'visibility': 'hidden',});
+    $(".edit-delete-comment[comment-id='" + commentID + "']").css("visibility", "hidden");
+}
+
 
 function deleteComment(commentID) {
     let deleteComment = $('[comment-id="' + commentID + '"]');
@@ -42,9 +49,9 @@ function deleteComment(commentID) {
 }
 
 
-function editComment(commentID) {
-    let editComment = $('[comment-id="' + commentID + '"]');
-    editComment.css("visibility", "hidden");
+function deleteReply(replyID) {
+    let deleteReply = $('[reply-id="' + replyID + '"]');
+    deleteReply.css("visibility", "hidden");
 }
 
 function sort(container, childSelector) {
@@ -55,6 +62,17 @@ function sort(container, childSelector) {
         let b_date = ($(b).find(childSelector).text());
         return b_date - a_date;
     }).appendTo($(container));
+}
+
+function openEditDeleteReply(replyID) {
+    $(".edit-delete-reply").css({'visibility': 'hidden',});
+    $(".edit-delete-comment").css({'visibility': 'hidden',});
+    $(".edit-delete-reply[reply-id='" + replyID + "']").css("visibility", "visible");
+}
+
+function editReply(replyID) {
+    let editReply = $('[reply-id="' + replyID + '"]');
+    editReply.css("visibility", "hidden");
 }
 
 
@@ -118,6 +136,7 @@ $(document).ready(function() {
         //alert("button clicked on " + commentID);
     }); 
 
+
     $(".edit-comment").click(function() {
         let commentID = $(this).closest('.edit-delete-comment').attr('comment-id');
         editComment(commentID);
@@ -134,6 +153,28 @@ $(document).ready(function() {
 
     $("#confirm-delete-btn").click(function() {
         window.history.back();
+    });
+
+    $(".three-dots-reply").click(function() {
+        let replyID = $(this).closest('.recent-reply').find('.edit-delete-reply').attr('reply-id');
+        openEditDeleteReply(replyID);
+        //alert("button clicked on " + replyID);
+    }); 
+
+    $(".edit-reply").click(function() {
+        let replyID = $(this).closest('.edit-delete-reply').attr('reply-id');
+        editReply(replyID);
+    });
+
+    $(".delete-reply").click(function() {
+        let replyID = $(this).closest('.edit-delete-reply').attr('reply-id');
+        deleteReply(replyID);
+    });
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.three-dots-post, .edit-delete-post, .three-dots-comment, .edit-delete-comment, .three-dots-reply, .edit-delete-reply').length) {
+            $('.edit-delete-post, .edit-delete-comment, .edit-delete-reply').css('visibility', 'hidden');
+        }
     });
 });
 

@@ -24,3 +24,31 @@
     </div>
   {{/unless}}
 {{/each}} 
+
+
+{{#each replies}}
+  {{#unless deleted}}
+    <div class="recent-reply">
+      <div class="comment-body">
+        <div class="comment-profile-picture">
+          <img src="{{userId.user_image}}">
+        </div>
+        <div class="comment-info">
+          <p class="comment-status"><span class="comment-username">{{userId.username}}
+            </span> commented on <a href="/{{postId.title}}-{{postId._id}}" class="comment-title">{{postId.title}}</a> {{#if edited}} | Edited {{/if}}
+          </p>
+          <div id="time-commented">{{timeReplied}}</div>
+          <p class="comment-content">
+            {{{truncateText replyText 300}}}
+            {{#if (showSeeMore replyText 300)}}
+              <a href="/{{postId.title}}-{{postId._id}}" class="see-more"> See more</a>
+            {{/if}}
+          </p>
+        </div>
+        {{#if ../sameLoggedProfile}}
+          {{> edit-delete-reply}}
+        {{/if}}
+      </div>
+    </div>
+  {{/unless}}
+{{/each}} 

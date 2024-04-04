@@ -521,7 +521,8 @@ textarea {
     resize:none;
 }
 
-.comment-container {
+.comment-container,
+.reply-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -632,7 +633,8 @@ textarea {
 
 /* EDIT DELETE POST */
 .edit-delete-post,
-.edit-delete-comment {
+.edit-delete-comment,
+.edit-delete-reply {
     display: flex;
     flex-direction: column;
     background-color:#3B3942;
@@ -710,14 +712,17 @@ textarea {
     margin-right: 0px;
   }
 
-  .three-dots-div-comment {
+  .three-dots-div-comment,
+  .three-dots-div-reply {
     margin-left: auto;
     margin-top: 0px;
     margin-right: 35px;
+    cursor: pointer;
   }
-  
+
   .three-dots > img,
-  .three-dots-div-comment > img {
+  .three-dots-div-comment > img 
+  .three-dots-div-reply > img {
     cursor: pointer;
   }
 
