@@ -92,6 +92,16 @@ function getUserReplies (userID){
     return reply;
 }
 
+function getReplyLikes(replies) {
+    var replyLikes = Replies.profileModel.findOne({_id: {$in: replies}}).lean();
+    return replyLikes;
+}
+
+function getReplyDislikes(replies) {
+    var replyDislikes = Replies.profileModel.findOne({_id: {$in: replies}}).lean();
+    return replyDislikes;
+}
+
 module.exports = {
     getAllComments,
     getUserComments,
@@ -105,5 +115,7 @@ module.exports = {
     getReplyById,
     getReplyInstance,
     removeReply,
-    getUserReplies
+    getUserReplies,
+    getReplyLikes,
+    getReplyDislikes
 }

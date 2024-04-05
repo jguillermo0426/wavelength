@@ -1,7 +1,7 @@
 {{#each reply}}
   {{#unless deleted}}
     {{#if (sameCommentId ../_id commentId._id)}}
-      <div class="reply-feed">
+      <div class="reply-feed" id="reply_{{_id}}">
         <div class="reply-container">
           <div class="comment-panel" id="pfp">
             <img class="comment-icon" src="{{userId.user_image}}">
@@ -15,12 +15,12 @@
             </div>
             <p class="reply-text">{{{replyText}}}</p>
           <div class="post-footer">
-              <div id="likes-bar" class="react-bar likes-bar">
+              <div id="likes-bar" class="react-bar likes-bar-reply">
                   <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
                   <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
                   <p id="like-counter" class="counter">{{likes.length}}</p>
               </div>
-              <div id="dislikes-bar" class="react-bar dislikes-bar">
+              <div id="dislikes-bar" class="react-bar dislikes-bar-reply">
                   <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
                   <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
                   <p id="dislike-counter" class="counter">{{dislikes.length}}</p>

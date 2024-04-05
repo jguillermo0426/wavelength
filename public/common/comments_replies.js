@@ -28,7 +28,7 @@ $('document').ready(function() {
         $(replies[i]).submit(function(event) {
             event.preventDefault();
             
-            var replyText = $(".replyText").val();
+            var replyText = $(this).children('.comment-area').children(".replyText").val();
             var commentId = $(this).parent().parent().parent().parent().attr("id");
             var cId = commentId.replace("comment_", "");
 

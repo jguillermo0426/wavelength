@@ -435,6 +435,168 @@ function add(server){
         resp.send({output: "nouser"});
       }
     });
+
+    server.post('/reply-like-dislike', function(req, resp){
+      var isLogged;
+        var loggedUser = [];
+        if (req.session.user) {
+          loggedUser = req.session.user.user_data;
+          isLogged = true;
+        }
+      if (isLogged === true) {
+        var replyId = req.body.replyId; 
+        var liked = false;
+        var disliked = false;
+        var match = false;
+        commentController.getReplyById(replyId).then(reply => { 
+          commentController.getReplyLikes(reply.likes).then(replyLikes => {
+            commentController.getReplyDislikes(reply.dislikes).then(replyDislikes => {
+              if (reply.likes.length || reply.dislikes.length) {
+                if (replyLikes && replyLikes._id.toString() === loggedUser._id.toString()) {
+                  liked = false; // Unlike
+                  disliked = true;
+                  //console.log("comment: ", commentId, '1', liked, disliked);
+                }
+                else if (replyLikes && replyLikes._id.toString() != loggedUser._id.toString() && replyDislikes && replyDislikes._id.toString() != loggedUser._id.toString()) {
+                  liked = true; // Like
+                  disliked = true;
+                  //console.log("comment: ", commentId, '2', liked, disliked);
+                } 
+                else if (replyDislikes && replyDislikes._id.toString() === loggedUser._id.toString()) {
+                  disliked = false;
+                  liked = true;
+                  //console.log("comment: ", commentId, '5', liked, disliked);
+                }
+                else {
+                  liked = true; // Like
+                  disliked = true;
+                  //console.log("comment: ", commentId, '8', liked, disliked);
+                }
+              }
+              else {
+                liked = true; // Like
+                disliked = true;
+                //console.log("comment: ", commentId, '3', liked, disliked);
+              }
+    
+              if (req.body.type === 'clicked') {
+                if (liked === false) {
+                  Model.replyModel.findOneAndUpdate({_id: reply._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                    if (disliked === true && req.body.click === 'dislike') {
+                      Model.replyModel.findOneAndUpdate({_id: reply._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: reply.likes.length,
+                          disliked: disliked,
+                          dislikes: reply.dislikes.length,
+                          match: match
+                        });
+                        console.log('disliked 2');
+                      }).catch(errorFn);
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: reply.likes.length,
+                        disliked: disliked,
+                        dislikes: reply.dislikes.length,
+                        match: match
+                      });
+                      console.log('unliked 2');
+                    }
+                  }).catch(errorFn);
+                }
+                else if (liked === true && req.body.click === 'like') {
+                  Model.replyModel.findOneAndUpdate({_id: reply._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(commentLikes => {
+                    if (disliked === false) {
+                      Model.replyModel.findOneAndUpdate({_id: reply._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(commentDislikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: reply.likes.length,
+                          disliked: disliked,
+                          dislikes: reply.dislikes.length,
+                          match: match
+                        });
+                        console.log('undisliked 1');
+                      }).catch(errorFn);
+                    }
+                    else if (disliked === true) {
+                      resp.send({
+                        liked: liked,
+                        likes: reply.likes.length,
+                        disliked: disliked,
+                        dislikes: reply.dislikes.length,
+                        match: match
+                      });
+                    console.log('liked 1');
+                    }
+                  }).catch(errorFn);
+                }
+                else if (disliked === false) {
+                  Model.replyModel.findOneAndUpdate({_id: reply._id}, {$pull: {dislikes: new ObjectId(loggedUser._id)}}).then(replyDislikes => {
+                    if (liked === false) {
+                      Model.replyModel.findOneAndUpdate({_id: reply._id}, {$push: {likes: new ObjectId(loggedUser._id)}}).then(replyLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: reply.likes.length,
+                          disliked: disliked,
+                          dislikes: reply.dislikes.length,
+                          match: match
+                        });
+                        console.log("liked 2");
+                      }).catch(errorFn);
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: reply.likes.length,
+                        disliked: disliked,
+                        dislikes: reply.dislikes.length,
+                        match: match
+                      });
+                      console.log('undisliked 2');
+                    }
+                  }).catch(errorFn);
+                }
+                else if (disliked === true) {
+                  Model.replyModel.findOneAndUpdate({_id: reply._id}, {$push: {dislikes: new ObjectId(loggedUser._id)}}).then(replyDislikes => {
+                    if (liked === false) {
+                      Model.replyModel.findOneAndUpdate({_id: reply._id}, {$pull: {likes: new ObjectId(loggedUser._id)}}).then(replyLikes => {
+                        resp.send({
+                          liked: liked,
+                          likes: reply.likes.length,
+                          disliked: disliked,
+                          dislikes: reply.dislikes.length,
+                          match: match
+                        });
+                        console.log('unliked 1');
+                      }).catch(errorFn);
+                    }
+                    else {
+                      resp.send({
+                        liked: liked,
+                        likes: reply.likes.length,
+                        disliked: disliked,
+                        dislikes: reply.dislikes.length,
+                        match: match
+                      });
+                    console.log('disliked 1');
+                    }
+                  }).catch(errorFn);
+                }
+                console.log('\n');
+              }
+              else if (req.body.type === 'load') {
+                resp.send({liked: liked, disliked: disliked, id: reply._id});
+              }
+            });
+          }); 
+        });
+      }
+      else {
+        resp.send({output: "nouser"});
+      }
+    });
     
     //POST SEARCH RESULTS PAGE
     server.get('/search', function(req, resp){
