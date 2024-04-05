@@ -775,10 +775,8 @@ a.user {
 
   .divider {
     width: 1100px;
-    border-bottom: 2px solid;
+    border-top: 2px solid;
     border-color: #3B3942;
-
-
   }
 
   .post-body > p:not(.post-title) {

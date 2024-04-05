@@ -1,6 +1,7 @@
 {{#each reply}}
   {{#unless deleted}}
     {{#if (sameCommentId ../_id commentId._id)}}
+      <div class="divider"></div>
       <div class="reply-feed" id="reply_{{_id}}">
         <div class="reply-container">
           <div class="comment-panel" id="pfp">
@@ -25,15 +26,9 @@
                   <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
                   <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
               </div>
-              <!--<div id="comments-bar" class="react-bar">
-                  <input type="image" class="comment" src="../common/svg/comment.svg">
-                  <p id="comment-counter" class="counter">{{comments.length}}</p>
-              </div>-->
           </div>
           </div>
         </div>
-          <div class="divider">           
-            </div>
       </div>
     {{/if}}
   {{/unless}}
