@@ -1072,6 +1072,7 @@ function add(server){
       const reply = await commentController.getReplyInstance(replyID);
       reply.deleted = true;
       await commentController.removeReply(replyID);
+      await postController.removeReply(replyID);
       await reply.save();
       resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
     });
@@ -1371,6 +1372,7 @@ function add(server){
     const fullDate = month + " " + day + ", " + year;
 
     const postId = req.body.postId;
+    const commentId = req.body.commentId
     try {
         const replyData = {
             replyText: req.body.replyText,
@@ -1380,19 +1382,27 @@ function add(server){
             userId: loggedUser._id,
             replyDate: fullDate,
             timeCommented: time,
-            commentId: req.body.commentId
+            commentId: commentId
         };
         
         console.log(req.body.replyText);
         const newReply = new Model.replyModel(replyData);
         const savedReply = await newReply.save();
-
+  
         const post = await Model.postModel.findById(postId);
         if (!post) {
             return resp.status(404).json({ error: 'Post not found' });
         }
+
+        const comment = await Model.commentModel.findById(commentId);
+        if (!comment) {
+            return resp.status(404).json({ error: 'Comment not found' });
+        }
+   
         post.replies.push(savedReply._id);
         await post.save();
+        comment.replies.push(savedReply._id);
+        await comment.save();
 
         resp.send({action: 'redirect'});
 
