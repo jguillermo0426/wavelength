@@ -54,20 +54,17 @@ $(document).ready(function() {
       deletePost(postID);
   });
 
-  $(".three-dots-comment").click(function() {
-      let commentID = $(this).closest('.recent-comment').find('.edit-delete-comment').attr('comment-id');
-      openEditDeleteComment(commentID);
-  }); 
-
-  $(".three-dots-comment-main").click(function() {
+  $(".three-dots-comment-main").click(function(event) {
+    event.stopPropagation();
     let commentID = $(this).closest('.comment-container').find('.edit-delete-comment').attr('comment-id');
-    openEditDeleteComment(commentID);
+    $(".edit-delete-comment[comment-id='" + commentID + "']").css("visibility", "visible");
     //alert("button clicked on " + commentID);
   }); 
     
-  $(".three-dots-reply").click(function() {
+  $(".three-dots-reply").click(function(event) {
+    event.stopPropagation();
     let replyID = $(this).closest('.reply-container').find('.edit-delete-reply').attr('reply-id');
-    openEditDeleteReply(replyID);
+    $(".edit-delete-reply[reply-id='" + replyID + "']").css("visibility", "visible");
     //alert("button clicked on " + replyID);
   }); 
 

@@ -1,6 +1,6 @@
 {{> navigation}}
   <div class="feed">
-    <form name="update-post" action="/update-post/{{post_data._id}}" method="post">
+    <form name="update-post" action="/update-post/{{post_data._id}}" onsubmit="return validatePost()" method="post">
       <div class="post">
           <div class="panel" id="select-album">
               <img class="cover" src="{{post_data.cover}}">
@@ -12,7 +12,7 @@
                   <p class="artist">{{post_data.artist}}</p>
               </div>
               <div class="box-title">
-                  <input class="title-area" type="text" value="{{post_data.title}}" name="title">
+                  <input class="title-area" type="text" placeholder="Title" value="{{post_data.title}}" name="title" required="">
               </div>
                 <div class="box-post">
                     <div class="box-header">
@@ -22,7 +22,7 @@
                         <div class="strikethrough">S</div>
                         <div class="markdown">Markdown Mode</div>
                     </div>
-                    <textarea id="postText" name="postText">{{post_data.postText}}</textarea>
+                    <textarea placeholder="Write a review..." id="postText" name="postText" required="">{{post_data.postText}}</textarea>
                 </div>
               <div class="bottom-label">
                   <div class="rating-label">
