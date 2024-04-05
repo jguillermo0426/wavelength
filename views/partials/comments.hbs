@@ -1,5 +1,8 @@
 {{#each comments}}
   {{#if (showComment deleted replies.length)}}
+      {{#unless @first}}
+      <div class="divider"></div>
+    {{/unless}}
     <div class="comment-feed" id="comment_{{_id}}">
       <div class="comment-container">
         <div class="comment-panel" id="pfp">
@@ -44,9 +47,6 @@
           </div>
         </div>
       </div>
-      {{#unless @last}} 
-        <div class="divider"></div>
-      {{/unless}}
     </div>
     <div class="reply-div">
       {{#if ../reply.length}}
