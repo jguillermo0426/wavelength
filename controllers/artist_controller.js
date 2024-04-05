@@ -20,7 +20,6 @@ function getDiscogAlbums(artistname){
 function getAlbumAverage(id, posts) {
     var postRatings = [];
     for (let i = 0; i < posts.length; i++) {
-        console.log(posts[i].albumId, id);
         if (posts[i].albumId === id && posts[i].deleted === false) {
             postRatings.push(posts[i].rating);
         }
@@ -31,35 +30,42 @@ function getAlbumAverage(id, posts) {
 }
 
 function getArtistAlbums(id, posts) {
-    return Artist.spotifyApi.getArtistAlbums(id, {include_groups: 'album,single', limit: 50})
-    .then(data => {
-        const albums = data.body.items;
-        if (!albums.length) {
-            throw new Error('No albums'); 
-        }
+    let allAlbums = [];
+    let nextOffset = 0;
+  
+    const fetchAlbums = (offset) => {
+      return Artist.spotifyApi.getArtistAlbums(id, { include_groups: 'album,single', limit: 50, offset })
+        .then(data => {
+          const albums = data.body.items;
+          allAlbums = allAlbums.concat(albums); 
 
-        for (let i = 0; i < albums.length; i++) {
-            var average = parseFloat(getAlbumAverage(data.body.items[i].id, posts));
-            albums[i].average = average.toFixed(2);
-        }
-
-        
-        for (let i = 0; i < albums.length; i++) {
-            var qty = 0;
-            for (let j = 0; j < posts.length; j++) {
-                if (posts[j].albumId === albums[i].id && posts[j].deleted === false) {
-                    qty += 1;
+          if (albums.length === 50) {
+            nextOffset += 50; 
+            return fetchAlbums(nextOffset); 
+          } else {
+            for (let i = 0; i < allAlbums.length; i++) {
+              var average = parseFloat(getAlbumAverage(allAlbums[i].id, posts));
+              allAlbums[i].average = average.toFixed(2);
+  
+              var qty = 0;
+              for (let j = 0; j < posts.length; j++) {
+                if (posts[j].albumId === allAlbums[i].id && posts[j].deleted === false) {
+                  qty += 1;
                 }
+              }
+              allAlbums[i].reviews = qty;
             }
-            albums[i].reviews = qty;
-        }
-        return albums;
-    })
-    .catch(error => {
-        console.error('Error fetching albums:', error);
-        return 'Albums';
-    });
-}
+            return allAlbums;
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching albums:', error);
+          return 'Albums'; // Or handle the error differently
+        });
+    };
+  
+    return fetchAlbums(nextOffset); // Initial call to fetch first batch
+  }
 
 function getArtistGenres(id) {
     return Artist.spotifyApi.getArtist(id)
