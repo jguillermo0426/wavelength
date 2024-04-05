@@ -1132,8 +1132,7 @@ function add(server){
                       userpost : profile,
                       post_data: post,
                       comments: pComments,
-                      reply: reply,
-                      totalReplies: reply.length
+                      reply: reply
                     }); 
                   });
                 });
