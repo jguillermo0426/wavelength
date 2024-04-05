@@ -49,7 +49,9 @@ $('document').ready(function() {
         var reply = $(this).parent().parent().parent().parent().attr('id');
         var id = reply.replace("reply_", ""); // Changed from "post_" to "comment_"
 
-        var dislikesBar = $(this).parent().children("#dislikes-bar-reply");
+        var dislikesBar = $(this).parent().children(".dislikes-bar-reply");
+
+        console.log(dislikesBar);
 
         var likeCounter = $(this).children('#like-counter');
         var dislikeCounter = $(dislikesBar).children("#dislike-counter");
@@ -105,7 +107,7 @@ $('document').ready(function() {
         var reply = $(this).parent().parent().parent().parent().attr('id');
         var id = reply.replace("reply_", ""); // Changed from "post_" to "comment_"
 
-        var likesbar = $(this).parent().children("#likes-bar-comment");
+        var likesbar = $(this).parent().children(".likes-bar-reply");
 
         var dislikeCounter = $(this).children('#dislike-counter');
         var likeCounter = $(likesbar).children("#like-counter");
