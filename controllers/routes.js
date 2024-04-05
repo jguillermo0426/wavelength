@@ -1078,7 +1078,7 @@ function add(server){
       resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
     });
 
-    server.get('/artist-page/:artist-:id', async (req, resp) => { // /artist-page/:artist_name
+    server.get('/artist-page/:id', async (req, resp) => { // /artist-page/:artist_name
       var isLogged;
       var loggedUser = [];
       if (req.session.user) {
@@ -1115,10 +1115,8 @@ function add(server){
 
 
     //ALBUM PAGE
-    server.get("/album-:albumname([a-zA-Z0-9,.;:_'\\s-]*)-:id", function(req, resp){
-      const albumname = req.params.albumname;
+    server.get("/album-:id", function(req, resp){
       const id = req.params.id;
-
       var isLogged;
       var loggedUser = [];
       if (req.session.user) {
@@ -1131,14 +1129,14 @@ function add(server){
           var reviews = postController.getAlbumReviews(id, posts);
             resp.render('album', {
               layout: 'albumpage_layout',
-              title: 'Wavelength • '+ albumname,
+              title: 'Wavelength • '+ data.name,
               albumData: data,
               isLogged: isLogged,
               user: loggedUser,
               reviews: reviews
             });
-          });
-        });
+          }).catch(errorFn);
+        }).catch(errorFn);
       });
 
     //LOGOUT Function 

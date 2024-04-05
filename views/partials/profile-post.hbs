@@ -4,8 +4,8 @@
       <div class="post-header">
         <img class="cover" src="{{cover}}">
         <div class="post-titles">
-          <p class="song-album-title"><a href="/album-{{trackName}}-{{albumId}}">{{trackName}}</a></p>
-          <p class="artist"><a href="/artist-page/{{artist}}-{{artistId}}">{{artist}}</a></p>
+          <p class="song-album-title"><a href="/album-{{albumId}}">{{trackName}}</a></p>
+          <p class="artist"><a href="/artist-page/{{artistId}}">{{artist}}</a></p>
           <div class="rating">
             {{{ratingStars rating}}}
           </div>
@@ -61,7 +61,7 @@
 
         <div id="comments-bar" class="react-bar comment-bar" onclick="window.location = `/{{{ title }}}-{{{ _id }}}`">
             <input type="image" class="comment" src="../common/svg/comment.svg">
-            <p id="comment-counter" class="counter">{{commentsAndRepliesCounter comments.length replies.length}}</p>
+            <p id="comment-counter" class="counter">{{comments.length}}</p>
         </div>
       </div>
     </div>
