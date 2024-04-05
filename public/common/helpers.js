@@ -66,5 +66,9 @@ module.exports = {
 
     hasCommentsOrReplies: function(commentLength, replyLength){
         return commentLength || replyLength;
+    },
+
+    showComment: function (deleted, replyLength){
+        return !deleted || replyLength;
     }
 }

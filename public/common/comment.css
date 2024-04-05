@@ -630,6 +630,19 @@ a.user {
     margin-left: 20px;
 }
 
+.deleted-comment {
+    color: #F4EBEB;
+    font-weight: normal;
+    margin-right: 40px;
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: "OpenSans", sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    font-style: italic;
+}
+
 
 .comment-text,
 .reply-text {

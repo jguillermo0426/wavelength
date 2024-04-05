@@ -1,5 +1,5 @@
 {{#each comments}}
-  {{#unless deleted}}
+  {{#if (showComment deleted replies.length)}}
     <div class="comment-feed" id="comment_{{_id}}">
       <div class="comment-container">
         <div class="comment-panel" id="pfp">
@@ -12,7 +12,10 @@
               {{> edit-delete-comment-main}}
             {{/if}}
           </div>
-          <p class="comment-text">{{commentText}}</p>
+          <p class="comment-text">{{#if deleted}} <span class="deleted-comment">[deleted]</span>
+                                  {{else}} {{commentText}} 
+                                  {{/if}}
+          </p>
           <div class="footer-comments">
               <div class="post-footer">
               <div id="likes-bar-comment" class="react-bar likes-bar-comment">
@@ -50,5 +53,5 @@
         {{> replies reply=../reply user=../user}}
       {{/if}}
       </div>
-  {{/unless}}
+  {{/if}}
 {{/each}}
