@@ -62,7 +62,7 @@
 
                 <div id="comments-bar" class="react-bar comment-bar" onclick="window.location = `/{{{ title }}}-{{{ _id }}}`">
                     <input type="image" class="comment" src="../common/svg/comment.svg">
-                    <p id="comment-counter" class="counter">{{comments.length}}</p>
+                    <p id="comment-counter" class="counter">{{commentsAndRepliesCounter comments.length replies.length}}</p>
                 </div>
                 </div>
         </div>
