@@ -122,15 +122,27 @@ function add(server){
         var disliked = false;
         var match = false;
         postController.getPostById(id).then(post => {
-          postController.getPostLikes(post.likes).then(postLikes => {
-            postController.getPostDislikes(post.dislikes).then(postDislikes => {
-              if (post.likes.length || post.dislikes.length) {
-                if (postLikes && postLikes._id.toString() === loggedUser._id.toString()) {
+          postController.getPostLikes(post.likes).then(likedPosts => {
+            var postLikes = {_id: 0};
+            for (let i = 0; i < likedPosts.length; i++) {
+              if (likedPosts[i]._id.toString() === loggedUser._id.toString()) {
+                  postLikes = likedPosts[i];
+              }
+            }
+            postController.getPostDislikes(post.dislikes).then(dislikedPosts => {
+              var postDislikes = {_id: 0};
+              for (let i = 0; i < dislikedPosts.length; i++) {
+                if (dislikedPosts[i]._id.toString() === loggedUser._id.toString()) {
+                  postDislikes = dislikedPosts[i];
+                }
+              }
+              if (postLikes || postDislikes) {
+                if (postLikes && postLikes._id.toString() == loggedUser._id.toString()) {
                   liked = false; //unlike
                   disliked = true;
                   console.log(id, '1', liked, disliked);
                 }
-                else if (postLikes && postLikes._id.toString() != loggedUser._id.toString() && postDislikes && postDislikes._id.toString() != loggedUser._id.toString()) {
+                else if (postLikes.length && postLikes._id.toString() != loggedUser._id.toString() && postDislikes && postDislikes._id.toString() != loggedUser._id.toString()) {
                   liked = true; //like
                   disliked = true;
                   console.log(id, '2', liked, disliked);

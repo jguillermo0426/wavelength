@@ -66,12 +66,12 @@ function getSearched(query, option) {
 }
 
 function getPostLikes(posts) {
-    var postLikes = Posts.profileModel.findOne({_id: {$in: posts}}).lean();
+    var postLikes = Posts.profileModel.find({_id: {$in: posts}}).lean();
     return postLikes;
 }
 
 function getPostDislikes(posts) {
-    var postDislikes = Posts.profileModel.findOne({_id: {$in: posts}}).lean();
+    var postDislikes = Posts.profileModel.find({_id: {$in: posts}}).lean();
     return postDislikes;
 }
 
