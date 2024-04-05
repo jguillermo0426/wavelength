@@ -624,12 +624,6 @@ textarea {
 
 }
 
-.three-dots {
-    margin-top: 25px;
-    margin-right:40px;
-    margin-left: auto;
-    cursor: pointer;
-  }
 
 /* EDIT DELETE POST */
 .edit-delete-post,
@@ -717,11 +711,10 @@ textarea {
     margin-left: auto;
     margin-top: 0px;
     margin-right: 35px;
-    cursor: pointer;
   }
 
   .three-dots > img,
-  .three-dots-div-comment > img 
+  .three-dots-div-comment > img, 
   .three-dots-div-reply > img {
     cursor: pointer;
   }

@@ -803,8 +803,11 @@ function add(server){
     server.post('/update-comment/:commentID', function(req, resp){
       const commentID = req.params.commentID;
       commentController.getCommentInstance(commentID).then(comment => {
-        comment.commentText = req.body.commentText
-        comment.edited = true;
+        if (req.body.commentText){
+          comment.commentText = req.body.commentText.trim();
+          comment.edited = true;
+        }
+        
         comment.save().then(result => {
           resp.redirect(`/${comment.postId.trackName}-${comment.postId._id}`);
         });
@@ -868,8 +871,11 @@ function add(server){
     server.post('/update-reply/:replyID', function(req, resp){
       const replyID = req.params.replyID;
       commentController.getReplyInstance(replyID).then(reply => {
-        reply.replyText = req.body.replyText
-        reply.edited = true;
+        if(req.body.replyText){
+          reply.replyText = req.body.replyText.trim();
+          reply.edited = true;
+        }
+        
         reply.save().then(result => {
           resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
         });
@@ -1117,38 +1123,48 @@ function add(server){
         loggedUser = req.session.user.user_data;
         isLogged = true;
       }
-      profileController.getProfileByPost(postID).then(profile => {
-        postController.getPostById(postID).then(post => {
-          commentController.getAllComments().then(comments => {
-            commentController.getPostComments(postID, comments).then(postComments => {
-              var text = post.postText;
-              var html = converter.makeHtml(text);
-              post.markdown = html;
-              var pComments = [];
-              if (postComments.length) {
-                pComments = postComments;
-              }
-              commentController.getPostReplies(postID).then(reply => {
 
-                //console.log(postComments);
-                //console.log(pComments);
-                //console.log(reply);
-                resp.render('viewpost',{
-                  layout: 'comment_layout',
-                  title: 'Wavelength • View Post',
-                  isLogged: isLogged,
-                  user: loggedUser,
-                  userpost : profile,
-                  post_data: post,
-                  comments: pComments,
-                  reply: reply,
-                  totalReplies: reply.length
-                }); 
-              });
-            });
-          }).catch(errorFn);
-        }).catch(errorFn);
-      }).catch(errorFn); 
+      postController.getPostById(postID).then(post => {
+        if(post.deleted){
+          resp.render('deleted-post', {
+            layout: 'createpost_layout',
+            title: 'Wavelength • Deleted Post',
+            isLogged: isLogged,
+            user: loggedUser
+          });
+        }
+        else{
+          profileController.getProfileByPost(postID).then(profile => {
+            postController.getPostById(postID).then(post => {
+              commentController.getAllComments().then(comments => {
+                commentController.getPostComments(postID, comments).then(postComments => {
+                  var text = post.postText;
+                  var html = converter.makeHtml(text);
+                  post.markdown = html;
+                  var pComments = [];
+                  if (postComments.length) {
+                    pComments = postComments;
+                  }
+                  commentController.getPostReplies(postID).then(reply => {
+                    resp.render('viewpost',{
+                      layout: 'comment_layout',
+                      title: 'Wavelength • View Post',
+                      isLogged: isLogged,
+                      user: loggedUser,
+                      userpost : profile,
+                      post_data: post,
+                      comments: pComments,
+                      reply: reply,
+                      totalReplies: reply.length
+                    }); 
+                  });
+                });
+              }).catch(errorFn);
+            }).catch(errorFn);
+          }).catch(errorFn); 
+        }
+      });
+      
     });
 
     server.post("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", async (req, resp) => {
