@@ -86,37 +86,8 @@ const replySchema = new mongoose.Schema({
 
 const replyModel = mongoose.model('reply', replySchema);
 
-const artistSchema = new mongoose.Schema({
-    artist_name: { type: String },
-    artist_image: { type: String },
-    genres: { type : [String], default: null },
-    biography: { type: String },
-    albumIds: [{ type: Schema.Types.ObjectId, ref: 'album' }]
-
-}, {versionKey: false});
-
-const artistModel = mongoose.model('artist', artistSchema);
-
-const albumSchema = new mongoose.Schema({
-    album_name: String,
-    album_image: String,
-    artist_name: String,
-    _artistId: { type : Schema.Types.ObjectId, ref: 'artist' },
-    release_date: String,
-    release_year: String,
-    average_rating: Number, //aggregate: average of every reviews of the album
-    reviews: Number, // aggregate: total number of reviews
-    tags: { type : [String], default: null },
-    tracklist: { type : [String] },
-
-}, { versionKey: false});
-
-const albumModel = mongoose.model('album', albumSchema);
-
 module.exports = {postModel, 
                 profileModel,
                 commentModel,
-                artistModel, 
-                albumModel,
                 spotifyApi,
                 replyModel};
