@@ -366,12 +366,6 @@ body {
     transition: all 0.25s ease-in-out;
 }
 
-.tag:hover {
-    background-color: #BBA7FF;
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-}
-
 .tag > p {
     color: #F4EBEB;
     font-weight: normal;
