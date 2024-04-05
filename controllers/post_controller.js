@@ -87,6 +87,10 @@ function markdownPosts(posts) {
     }
 }
 
+async function removeReply(replyID){
+    await Posts.postModel.updateMany({}, {$pull: {replies: replyID}});
+}
+
 module.exports = {
     getAllPosts,
     getUserPosts,
@@ -99,6 +103,7 @@ module.exports = {
     getPostInstance,
     removeCommentFromPost,
     getUserPost,
-    markdownPosts
+    markdownPosts,
+    removeReply
 }
 
