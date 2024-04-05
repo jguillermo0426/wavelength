@@ -298,6 +298,13 @@ a.user {
     margin-bottom: 0px;
 }
 
+.user-name > a {
+    color: #8F59DD;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 0px;
+}
+
 .tags-area {
     display: flex;
     flex-direction: row;
@@ -365,6 +372,15 @@ a.user {
     margin: 10px 20px;
     margin-bottom: 20px;
 }
+
+.footer-comments {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10px 20px;
+    margin-bottom: 20px;
+}
+
 
 .react-bar {
     display: flex;
@@ -450,6 +466,11 @@ a.user {
     background-color: #8F59DD;
 }
 
+.comment-area {
+    display: none;
+    flex-direction: column;
+}
+
 .comment-section {
     display: flex;
     flex-direction: row;
@@ -505,7 +526,7 @@ a.user {
     cursor: pointer;
 }
 
-textarea {
+ .commentText {
     display: flex;
     flex-direction: column;
     margin: 0px 20px;
@@ -513,6 +534,22 @@ textarea {
     color: #A9A5B6;
     height: 3p50x; 
     width: 1020px;
+    padding: 20px;
+    border-radius: 25px;
+    font-family: "OpenSans", sans-serif;
+    overflow: hidden;
+    font-size: 16px;
+    resize:none;
+}
+
+ .replyText {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+    background-color: #232227;
+    color: #A9A5B6;
+    height: 3p50x; 
+    width: 800px;
     padding: 20px;
     border-radius: 25px;
     font-family: "OpenSans", sans-serif;

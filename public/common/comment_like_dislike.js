@@ -1,6 +1,6 @@
 $('document').ready(function() {
     var comment = $("#comments-area").children(".comment-feed"); 
-
+    var clicked = false;
     // likes dislikes function for comment
 
     for (let i = 0; i < comment.length; i++) {
@@ -12,15 +12,17 @@ $('document').ready(function() {
             function(data, status) {
                 console.log(status);
                 if (status === 'success') {
-                    var unliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#no-like');
-                    var liked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#likes-bar-comment').children('#with-like');
+                    var unliked = $(comment[i]).children('.comment-container').children('#text').children(".footer-comments").children('.post-footer').children('#likes-bar-comment').children('#no-like');
+                    var liked = $(comment[i]).children('.comment-container').children('#text').children(".footer-comments").children('.post-footer').children('#likes-bar-comment').children('#with-like');
 
-                    var undisliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#no-like');
-                    var disliked = $(comment[i]).children('.comment-container').children('#text').children('.post-footer').children('#dislikes-bar-comment').children('#with-like');
+                    var undisliked = $(comment[i]).children('.comment-container').children('#text').children(".footer-comments").children('.post-footer').children('#dislikes-bar-comment').children('#no-like');
+                    var disliked = $(comment[i]).children('.comment-container').children('#text').children(".footer-comments").children('.post-footer').children('#dislikes-bar-comment').children('#with-like');
 
                     if (data.output === 'nouser') {
                         console.log("user is not logged in");
+                        $(".comments-bar-comment").css('display', 'none');
                     } else {
+                        $(".comments-bar-comment").css('display', 'flex');
                         console.log(data.id, data.liked, data.disliked);
                         if (data.liked === false) {
                             console.log('liked');
@@ -48,7 +50,7 @@ $('document').ready(function() {
     }
 
     $(".likes-bar-comment").click(function() {
-        var comment = $(this).parent().parent().parent().parent().attr('id');
+        var comment = $(this).parent().parent().parent().parent().parent().attr('id');
         var id = comment.replace("comment_", ""); // Changed from "post_" to "comment_"
 
         var dislikesBar = $(this).parent().children("#dislikes-bar-comment");
@@ -104,7 +106,7 @@ $('document').ready(function() {
     });
 
     $(".dislikes-bar-comment").click(function() {
-        var comment = $(this).parent().parent().parent().parent().attr('id');
+        var comment = $(this).parent().parent().parent().parent().parent().attr('id');
         var id = comment.replace("comment_", ""); // Changed from "post_" to "comment_"
 
         var likesbar = $(this).parent().children("#likes-bar-comment");
@@ -159,5 +161,19 @@ $('document').ready(function() {
                 }
             });
 
+    });
+
+    $(".comments-bar-comment").click(function() {
+        var replyBar = $(this).parent().parent().children("#reply").children(".comment-area");
+
+        if (clicked === false) {
+            replyBar.css('display', 'flex');
+            clicked = true;
+        }
+        else {
+            replyBar.css('display', 'none');
+            clicked = false;
+        }
+        
     });
 });

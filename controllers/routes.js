@@ -108,6 +108,7 @@ function add(server){
     });
 
  
+    // POSTS LIKES
     server.post('/like-dislike', function(req, resp){
       var isLogged;
         var loggedUser = [];
@@ -907,30 +908,6 @@ function add(server){
       resp.redirect(`/${reply.postId.trackName}-${reply.postId._id}`);
     });
 
-
-    
-    // ARTIST PAGE
-    /*
-    server.get('/artist-page/:artist', async (req, resp) => { // /artist-page/:artist_name
-      const artistname = req.params.artist;
-      console.log(artistname);
-      artistController.getArtistPage(artistname).then(artist =>{
-        console.log(artist);
-        console.log('artist found!');
-        artistController.getDiscogAlbums(artistname).then(artist_full => {
-          console.log(artist_full);
-          resp.render('artist', {
-            layout: 'artistpage_layout',
-            title: 'Wavelength • '+ artistname,
-            artist: artist_full,
-            isLogged: isLogged,
-            user: loggedUser
-          });
-        });
-      }).catch(errorFn);
-    });
-    */
-
     server.get('/artist-page/:artist-:id', async (req, resp) => { // /artist-page/:artist_name
       var isLogged;
       var loggedUser = [];
@@ -1151,7 +1128,8 @@ function add(server){
       }).catch(errorFn); 
     });
 
-    server.post("/:title([a-zA-Z0-9,.;:_'\\s-]*)-:postID", async (req, resp) => {
+    // CREATE COMMENT
+    server.post("/create-comment", async (req, resp) => {
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       var isLogged;
       var loggedUser = [];
@@ -1167,7 +1145,7 @@ function add(server){
   
       const fullDate = month + " " + day + ", " + year;
 
-      const postId = req.params.postID;
+      const postId = req.body.postId;
       try {
           const commentData = {
               commentText: req.body.commentText,
@@ -1179,7 +1157,6 @@ function add(server){
               timeCommented: time,
           };
           
-          console.log(req.body.commentText);
           const newComment = new Model.commentModel(commentData);
           const savedComment = await newComment.save();
   
@@ -1189,8 +1166,8 @@ function add(server){
           }
           post.comments.push(savedComment._id);
           await post.save();
-  
-          resp.redirect(`/${req.params.title}-${req.params.postID}`);
+          
+          resp.send({action: 'redirect'});
       } catch (error) {
           resp.status(500).send('Error creating comment: ' + error.message);
       }
@@ -1198,6 +1175,54 @@ function add(server){
   });
 
   
+  // CREATE REPLY
+  server.post("/create-reply", async (req, resp) => {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var isLogged;
+    var loggedUser = [];
+    if (req.session.user) {
+      loggedUser = req.session.user.user_data;
+      isLogged = true;
+    }
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const time = date.getTime();
+
+    const fullDate = month + " " + day + ", " + year;
+
+    const postId = req.body.postId;
+    try {
+        const replyData = {
+            replyText: req.body.replyText,
+            postId: postId,
+            edited: false,
+            deleted: false,
+            userId: loggedUser._id,
+            replyDate: fullDate,
+            timeCommented: time,
+            commentId: req.body.commentId
+        };
+        
+        console.log(req.body.replyText);
+        const newReply = new Model.replyModel(replyData);
+        const savedReply = await newReply.save();
+
+        const post = await Model.postModel.findById(postId);
+        if (!post) {
+            return resp.status(404).json({ error: 'Post not found' });
+        }
+        post.replies.push(savedReply._id);
+        await post.save();
+
+        resp.send({action: 'redirect'});
+
+    } catch (error) {
+        resp.status(500).send('Error creating comment: ' + error.message);
+    }
+
+  });
 
   }
 

@@ -7,28 +7,38 @@
         </div>
         <div class="comment-panel" id="text">
           <div class="user-panel">
-            <p class="user-name"><strong>{{userId.username}}</strong> • <span class="date">{{commentDate}}</span> {{#if edited}} | Edited{{/if}}</p>
+            <p class="user-name"><a href="/profile-{{userId.username}}"><strong>{{userId.username}}</strong></a> • <span class="date">{{commentDate}}</span> {{#if edited}} | Edited{{/if}}</p>
             {{#if (sameLoggedProfile ../user.username userId.username)}}
               {{> edit-delete-comment-main}}
             {{/if}}
           </div>
           <p class="comment-text">{{commentText}}</p>
-        <div class="post-footer">
-            <div id="likes-bar-comment" class="react-bar likes-bar-comment">
-                <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
-                <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
-                <p id="like-counter" class="counter">{{likes.length}}</p>
-            </div>
-            <div id="dislikes-bar-comment" class="react-bar dislikes-bar-comment">
-                 <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
-                <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
-                <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
-            </div>
-            <div id="comments-bar" class="react-bar">
-                <input type="image" class="comment" src="../common/svg/comment.svg">
-                <p id="comment-counter" class="counter">{{replies.length}}</p>
-            </div>
-        </div>
+          <div class="footer-comments">
+              <div class="post-footer">
+              <div id="likes-bar-comment" class="react-bar likes-bar-comment">
+                  <input type="image" class="like" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                  <input type="image" class="like" id="with-like" src="../common/svg/thumbs-up.svg">
+                  <p id="like-counter" class="counter">{{likes.length}}</p>
+              </div>
+              <div id="dislikes-bar-comment" class="react-bar dislikes-bar-comment">
+                  <input type="image" class="dislike" id="no-like" src="../common/svg/thumbs-up-stroke.svg">
+                  <input type="image" class="dislike" id="with-like" src="../common/svg/thumbs-up.svg">
+                  <p id="dislike-counter" class="counter">{{dislikes.length}}</p>
+              </div>
+              <div id="comments-bar" class="react-bar comments-bar-comment">
+                  <input type="image" class="comment" src="../common/svg/comment.svg">
+                  <p id="comment-counter" class="counter">{{replies.length}}</p>
+              </div>
+          </div>
+          <form name="reply" class="reply" id="reply" method="post">
+            <div class="comment-area">
+              <textarea class="replyText" name="replyText" placeholder="Write a comment"></textarea>
+              <div class="comment-footer">
+                <button id="submit" class="comment-button" type="submit">Comment</button>
+              </div>
+              </div>
+          </form>
+          </div>
         </div>
       </div>
       {{#if replies.length}} 

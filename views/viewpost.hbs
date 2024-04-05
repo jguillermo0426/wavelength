@@ -61,7 +61,7 @@
           </div>
 
         <!-- COMMENTS SECTION -->
-        <form id="comment" method="post">
+        <form id="comment" name="comment" action="/create-comment" method="post">
         {{#if user}}
         <div class="comment-section">
             <div class="comment-label">
@@ -71,7 +71,7 @@
                 <p>{{user.username}}</p>
             </div>
         </div>
-        <textarea name="commentText" placeholder="Write a comment"></textarea>
+        <textarea class="commentText" name="commentText" placeholder="Write a comment"></textarea>
 
         <div class="comment-footer">
               <button id="submit" class="comment-button" type="submit">Comment</button>
