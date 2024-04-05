@@ -9,7 +9,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 var showdown  = require('showdown');
 var converter = new showdown.Converter({'underline': 'true', 'strikethrough': 'true'});
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const session = require('express-session');
 const mongoStore = require('connect-mongodb-session')(session);
