@@ -1,4 +1,4 @@
-// npm i express express-handlebars body-parser mongoose bcrypt express-session connect-mongodb-session spotify-web-api-node lastfm-api-client
+// npm i express express-handlebars body-parser mongoose express-session connect-mongodb-session spotify-web-api-node lastfm-api-client showdown
 const express = require('express');
 const server = express();
 var SpotifyWebApi = require('spotify-web-api-node');

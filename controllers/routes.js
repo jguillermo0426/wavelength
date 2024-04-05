@@ -1215,6 +1215,7 @@ function add(server){
       const time = date.getTime();
 
       var albumId = albumLink.replace("https://open.spotify.com/album/", "");
+      albumId = albumId.split("?si=")[0];
       const artistId = await albumController.getAlbumArtistId(albumId);
       const fullDate = month + " " + day + ", " + year;
       try {

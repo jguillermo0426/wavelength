@@ -17,6 +17,7 @@ function getAlbumCover(url) {
     }
     else {
         var splitUrl = url.replace("https://open.spotify.com/album/", "");
+        splitUrl = splitUrl.split("?si=")[0];
     }
     
     return Album.spotifyApi.getAlbum(splitUrl)
@@ -39,6 +40,7 @@ function getAlbumArtist(url) {
     }
     else {
         var splitUrl = url.replace("https://open.spotify.com/album/", "");
+        splitUrl = splitUrl.split("?si=")[0];
     }
     
     return Album.spotifyApi.getAlbum(splitUrl)
@@ -107,6 +109,7 @@ function getAlbumName(url) {
     }
     else {
         var splitUrl = url.replace("https://open.spotify.com/album/", "");
+        splitUrl = splitUrl.split("?si=")[0];
     }
     
     return Album.spotifyApi.getAlbum(splitUrl)
