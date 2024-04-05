@@ -1407,10 +1407,23 @@ function add(server){
     const fullDate = month + " " + day + ", " + year;
 
     const postId = req.body.postId;
-    const commentId = req.body.commentId
+    const commentId = req.body.commentId;
+
+    var replyText = req.body.replyText;
+    const regex = /@(.+?)(?:\s|$)/;
+    var match = replyText.match(regex);
+
+    console.log(match);
+    if (match) {
+        const userTag = match[0];
+        console.log(userTag);
+        var username = userTag.replace("@", "");
+        replyText = replyText.replace(userTag, `<a class='userTag' href='/profile-${username}'>${userTag}</a>`);
+    }
+
     try {
         const replyData = {
-            replyText: req.body.replyText,
+            replyText: replyText,
             postId: postId,
             edited: false,
             deleted: false,

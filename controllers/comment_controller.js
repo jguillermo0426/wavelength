@@ -26,6 +26,7 @@ function getUserComments(userID) {
 
 function getPostComments(postId, comments) {
     var commentsId = [];
+    const regex = /@([^,.!]+)/;
     //console.log('post id: ' + postId);
     for (i = 0; i < comments.length; i++) {
         //console.log('comment post id:' + comments[i].postId.toString());
@@ -44,6 +45,8 @@ function getPostComments(postId, comments) {
 async function getPostReplies(postID) {
     try {
         var postReplies = await Replies.replyModel.find({ postId: postID }).populate('userId').populate('commentId').lean().exec();
+     
+
         return postReplies;
     } catch (error) {
         throw error;
