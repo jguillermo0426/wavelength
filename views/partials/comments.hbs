@@ -45,8 +45,10 @@
         <div class="divider"></div>
       {{/unless}}
     </div>
-    {{#if ../reply.length}}
-      {{> replies reply=../reply user=../user}}
-    {{/if}}
+    <div class="reply-div">
+      {{#if ../reply.length}}
+        {{> replies reply=../reply user=../user}}
+      {{/if}}
+      </div>
   {{/unless}}
 {{/each}}
