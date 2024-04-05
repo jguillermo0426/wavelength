@@ -298,8 +298,20 @@ function add(server){
         var disliked = false;
         var match = false;
         commentController.getCommentById(commentId).then(comment => { 
-          commentController.getCommentLikes(comment.likes).then(commentLikes => {
-            commentController.getCommentDislikes(comment.dislikes).then(commentDislikes => {
+          commentController.getCommentLikes(comment.likes).then(likedComments => {
+            var commentLikes = {_id: 0};
+            for (let i = 0; i < likedComments.length; i++) {
+              if (likedComments[i]._id.toString() === loggedUser._id.toString()) {
+                commentLikes = likedComments[i];
+              }
+            }
+            commentController.getCommentDislikes(comment.dislikes).then(dislikedComments => {
+              var commentDislikes = {_id: 0};
+              for (let i = 0; i < dislikedComments.length; i++) {
+                if (dislikedComments[i]._id.toString() === loggedUser._id.toString()) {
+                  commentDislikes = dislikedComments[i];
+                }
+              }
               if (comment.likes.length || comment.dislikes.length) {
                 if (commentLikes && commentLikes._id.toString() === loggedUser._id.toString()) {
                   liked = false; // Unlike
@@ -462,8 +474,20 @@ function add(server){
         var disliked = false;
         var match = false;
         commentController.getReplyById(replyId).then(reply => { 
-          commentController.getReplyLikes(reply.likes).then(replyLikes => {
-            commentController.getReplyDislikes(reply.dislikes).then(replyDislikes => {
+          commentController.getReplyLikes(reply.likes).then(likedReplies => {
+            var replyLikes = {_id: 0};
+            for (let i = 0; i < likedReplies.length; i++) {
+              if (likedReplies[i]._id.toString() === loggedUser._id.toString()) {
+                replyLikes = likedReplies[i];
+              }
+            }
+            commentController.getReplyDislikes(reply.dislikes).then(dislikedReplies => {
+              var replyDislikes = {_id: 0};
+              for (let i = 0; i < dislikedReplies.length; i++) {
+                if (dislikedReplies[i]._id.toString() === loggedUser._id.toString()) {
+                  replyDislikes = dislikedReplies[i];
+                }
+              }
               if (reply.likes.length || reply.dislikes.length) {
                 if (replyLikes && replyLikes._id.toString() === loggedUser._id.toString()) {
                   liked = false; // Unlike
