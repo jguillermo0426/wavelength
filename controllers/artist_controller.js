@@ -55,6 +55,12 @@ function getArtistAlbums(id, posts) {
               }
               allAlbums[i].reviews = qty;
             }
+
+            allAlbums.sort(function (a, b) {
+              let a_date = (new Date(a.release_date)).getTime();
+              let b_date = (new Date(b.release_date)).getTime();
+              return b_date - a_date;
+            })
             return allAlbums;
           }
         })
