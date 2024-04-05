@@ -19,6 +19,7 @@
                                   {{else}} {{commentText}} 
                                   {{/if}}
           </p>
+          {{#unless deleted}}
           <div class="footer-comments">
               <div class="post-footer">
               <div id="likes-bar-comment" class="react-bar likes-bar-comment">
@@ -45,6 +46,7 @@
               </div>
           </form>
           </div>
+          {{/unless}}
         </div>
       </div>
     </div>

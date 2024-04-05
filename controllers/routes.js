@@ -60,8 +60,8 @@ function errorFn(err){
       * Search tag popup
       * Submit post 
     > View Full Post Page
-        > comment function
-        > nested comments
+        * comment function
+        * nested comments (implemented as replies, only 1 nest per comment)
         > liking and disliking other comments  
     > add tags database (?)
     > error checking!

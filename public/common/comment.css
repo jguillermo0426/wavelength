@@ -378,7 +378,7 @@ a.user {
     align-items: flex-start;
     flex-direction: column;
     margin: 10px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 
@@ -661,7 +661,7 @@ a.user {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
 
 }
 
